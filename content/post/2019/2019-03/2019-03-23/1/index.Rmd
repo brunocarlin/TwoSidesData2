@@ -37,7 +37,7 @@ in the folder specified, it is better that setwd() because it works on
 all languages.
 ```{r exploratory_data1-1 }
 knitr::opts_knit$set(root.dir = normalizePath(
-  "~/R/Blog/content/post/2019/2019-03/2019-03-23/1"))
+  "~/R/Blog/content/post"))
 
 ```
 

@@ -128,7 +128,7 @@ This is an basic example of how you can use either R or Python to accomplish the
 in the folder specified, it is better that setwd() because it works on
 all languages.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::opts_knit$set(root.dir = normalizePath(
-  &amp;quot;~/R/Blog/content/post/2019/2019-03/2019-03-23/1&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+  &amp;quot;~/R/Blog/content/post&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;anchor&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1.2&lt;/span&gt; Libraries&lt;/h3&gt;
