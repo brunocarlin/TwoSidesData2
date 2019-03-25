@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R and Python on TwoSidesData</title>
+    <link>/categories/r-and-python/</link>
+    <description>Recent content in R and Python on TwoSidesData</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/r-and-python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>exploratory data analysis: basic pandas and dplyr</title>
+      <link>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</guid>
+      <description>This is an basic example of how you can use either R or Python to acomplish the same goals, I really enjoy using the tidyverse but as you will see sometimes Python is just the more intuitive option. If you find yourself confused on whether a code chunk is an R or Python code please ask me or check my github page for this project. 1 Getting Started, we will use multiple functions from both languages1.</description>
+    </item>
+    
+  </channel>
+</rss>

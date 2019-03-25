@@ -1,0 +1,880 @@
+---
+title: 'exploratory data analysis: basic pandas and dplyr'
+author: Bruno Carlin
+date: '2019-03-23'
+slug: exploratory-data-analysis-basic-pandas-and-dplyr
+categories:
+  - R and Python
+tags:
+  - R Markdown
+  - reticulate
+  - pandas
+  - dplyr
+  - tidyverse
+header-includes:
+  This is an basic example of how you can use either R or Python to acomplish the same goals, I really enjoy using the tidyverse but as you will see sometimes Python is just the more intuitive option.  If you find yourself confused on whether a code chunk is an R or Python code please ask me or check my github page for this project. <br> <br> 
+output:
+  blogdown::html_page:
+    before_body: doc_prefix.html
+    toc: true # table of content true
+    number_sections: true  ## if you want number sections at each table header
+---
+I am currently doing exercises from [digital house brasil](https://github.com/sn3fru/datascience_course)
+
+
+
+# Getting Started, we will use multiple functions from both languages
+
+## How to set up reticulate?
+
+### Setting root folder
+
+I recommend using the Files tab to find the your system path to the folder containig all the data.  
+  
+Use opts_knit to guarantee that your markdown functions will search for files
+in the folder specified, it is better that setwd() because it works on
+all languages.
+```{r }
+knitr::opts_knit$set(root.dir = normalizePath(
+  "~/R/Blog TwoSidesData2/content/post/2019/2019-03/2019-03-23/1"))
+
+```
+
+### Libraries {#anchor}
+![](https://media.giphy.com/media/8YZEKuDRHPtgZTx7Rv/giphy.gif)
+<details><summary>R part</summary>
+<p>
+
+```{r, message=FALSE, warning=FALSE}
+library(reticulate)
+library(caTools)
+library(roperators)
+library(tidyverse)
+set.seed(123)
+```
+
+</p>
+</details>
+
+<details><summary>Python part</summary>
+<p>
+
+I am using my second virtual conda if you have just the root
+switch to conda_list()[[1]][1].
+```{r }
+conda_list()[[1]][2] %>% 
+  use_condaenv(required = TRUE)
+```
+
+Let's see what version of python this env is running.
+```{python }
+import platform
+print(platform.python_version())
+```
+
+Some basic Data Science Libraries.
+```{python }
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import os
+```
+
+</p>
+</details>
+
+
+# Python
+
+## Knowing data frames
+
+### Defining pandas series
+
+![](https://media.giphy.com/media/EPcvhM28ER9XW/giphy.gif)
+```{python }
+data = pd.Series([0.25, 0.5, 0.75, 1.0])
+data
+data.values
+data.index
+data[1]
+data[1:3]
+```
+
+### Indexing
+```{python }
+data = pd.Series([0.25, 0.5, 0.75, 1.0],
+                 index=['a', 'b', 'c', 'd'])
+data
+data['b']
+```
+
+## Combining two pd series
+
+### Create pd series from dictionary 1
+
+```{python }
+population_dict = {'California': 38332521,
+                   'Florida': 19552860,
+                   'Illinois': 12882135,
+                   'New York': 19651127,  
+                   'Texas': 26448193,}
+population = pd.Series(population_dict)
+
+population
+
+population['California']
+
+population['California':'Illinois']
+```
+
+one more example.
+
+```{python }
+area_dict = {'California': 423967, 
+             'Florida': 170312,
+             'Illinois': 149995,
+             'New York': 141297,
+             'Texas': 695662}
+             
+area = pd.Series(area_dict)
+
+area
+```
+
+### Combining the pd series into a data frame
+
+```{python }
+states = pd.DataFrame({'population': population,
+                       'area': area})
+states
+
+type(states)
+
+type(states["population"])
+
+type([states["population"]])
+```
+
+### Data frame properties
+
+```{python }
+states.shape
+```
+
+```{python }
+states.info()
+```
+
+```{python }
+states.index
+```
+
+```{python }
+states.columns
+```
+
+```{python }
+states['area']
+```
+
+### Creating some new columns
+
+```{python }
+states['density'] = states['population'] / states['area']
+states
+```
+
+### Ordering a data frame
+
+```{python }
+states.sort_values(['population'], ascending = True)
+```
+
+```{python }
+states.sort_values(['area'], ascending = True)
+```
+
+```{python }
+states.sort_values(['density'], ascending = True)
+```
+
+### Subsetting
+
+```{python }
+states['Florida':'Illinois']
+
+states[1:3]
+
+data_pop = (states['population'] > 19552860) & (states['area']>423967)
+
+data_pop
+
+```
+
+```{python }
+states[(states['population'] > 19552860) & (states['area']>423967)]
+
+states[['area','density']]
+
+states[states.density > 100]
+
+states.loc[states.density > 100, ['population', 'density']]
+
+states.loc[states.density > 100][['population', 'density']]
+
+states.loc['California', 'density']
+
+states.loc['California'][['density']]
+
+states.iloc[0, 2]
+```
+
+## Real data
+
+### Reading data
+
+```{python }
+sales = pd.DataFrame(pd.read_csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv',encoding='latin'))
+```
+
+```{python }
+sales.head()
+
+sales.tail(3)
+
+sales.index
+```
+
+### Variable types {#py_types_columns}
+
+If you need to [return](#r_types_columns).
+```{python }
+type(sales)
+
+
+type(sales["CustomerID"])
+
+type([sales["CustomerID"]])
+
+
+```
+
+### Basic Description
+
+```{python }
+sales.shape
+
+
+sales.columns.values
+
+
+sales.info()
+
+
+sales.describe()
+```
+
+### Subsetting data
+
+```{python }
+sales[:4]
+```
+
+```{python }
+sales["CustomerID"].head()
+```
+
+```{python }
+sales.loc[:,['Quantity']].head()
+```
+
+```{python }
+sales.iloc[:,[3]].head()
+```
+
+```{python }
+sales.iloc[0:6,2:3]
+```
+
+### Creating new columns with real data
+```{python }
+sales["Revenue"] = sales.Quantity * sales.UnitPrice
+```
+
+
+```{python }
+sales.head()
+```
+
+### Creating a new smaller data frame
+
+```{python }
+raw_sales = sales[["Quantity","UnitPrice", "Revenue"]]
+
+raw_sales.head()
+
+raw_sales.info()
+```
+
+### Plotting an line plot
+
+```{python }
+import matplotlib as plt
+from pylab import *
+
+sales.plot(x="InvoiceDate", y="Revenue", kind="line")
+
+plt.show()
+```
+
+### Filtering and replace data {#filtering_py}
+
+To [return](#filtering_r)
+```{python }
+cancels = sales[sales["Revenue"]<0]
+cancels.shape
+
+sales.drop(cancels.index, inplace=True)
+sales.shape
+```
+
+### Groupby example
+
+```{python }
+CountryGroups = sales.groupby(["Country"])["Revenue"].sum().reset_index()
+CountryGroups.sort_values(by= "Revenue", ascending=False)
+```
+
+### Ploting an histogram
+```{python }
+sales[sales["CustomerID"] == 17850.0]["Revenue"].plot(kind="hist")
+plt.show()
+```
+
+another example.
+
+```{python }
+sales[sales["StockCode"] == '71053']["Quantity"].hist()
+plt.show()
+```
+
+### Handling Missing values {#missing_values_py}
+to [return](#missing_values_r)
+```{python }
+sales.info()
+```
+
+```{python }
+sales.CustomerID.value_counts(dropna=False).nlargest(3)
+```
+
+```{python }
+sales.CustomerID.fillna(0, inplace=True)
+
+sales[sales.CustomerID.isnull()]
+
+sales.info()
+```
+
+### Replacing names with an dictionary
+
+```{python }
+mymap = {'United Kingdom':1, 'Netherlands':2, 'Germany':3, 'France':4, 'USA':5}       
+
+sales = sales.applymap(lambda s: mymap.get(s) if s in mymap else s)
+
+sales.head()
+
+sales.Country.value_counts().nlargest(7)
+```
+
+
+
+## Passing Objects
+
+### Python to R
+```{python }
+data2 = pd.Series([0.25, 0.5, 0.75, 1.0])
+
+```
+
+```{r }
+data_t = py$data2
+```
+
+```{r }
+data_t
+```
+
+
+# R
+
+## Knowing data frames
+
+### Defining an data frame
+
+tidy way ![](https://media.giphy.com/media/kKLr7rlj0KwjFfCxHJ/giphy.gif)
+```{r }
+data <-  tibble(0.25, 0.5, 0.75, 1.0)
+data
+data[2]
+data[2:3]
+```
+
+Not using tidyverse.
+```{r }
+data <-  data.frame(c(0.25, 0.5, 0.75, 1.0))
+rownames(data) <- 1:nrow(data)
+colnames(data) <- "nope"
+data
+```
+
+### Index search
+
+```{r }
+data <-  data.frame(c(0.25, 0.5, 0.75, 1.0),row.names = c("a", "b","c","d"))
+data
+data["b",]
+```
+
+## Creating an data frame from two R series
+
+### Create a date frame using an list
+
+```{r }
+population_dict <- list(
+  'California' = 38332521,
+  'Florida' = 19552860,
+  'Illinois' = 12882135,
+  'New York' = 19651127,
+  'Texas' = 26448193
+  )
+population <- population_dict %>% as_tibble()
+
+population['California']
+
+population %>% select(California:Illinois)
+
+```
+
+
+### Create a date frame using an list 2
+```{r }
+area_dict = list(
+  'California' = 423967, 
+  'Florida' = 170312,
+  'Illinois' = 149995,
+  'New York' = 141297,
+  'Texas' = 695662
+  )
+area_dict %>% as_tibble() -> area
+
+area
+```
+
+### Subsetting an data frame using join or cbind
+
+The tidy way doesn`t support indexes so we can tidy our data.
+```{r }
+tidy_area <- area %>% gather(key = "state", value = "area")
+tidy_state <- population %>% gather(key = "state", value = "population")
+```
+
+
+```{r }
+tidy_area
+
+tidy_state
+
+tidy_area %>% left_join(tidy_state)
+
+tidy_merge <- cbind(tidy_area,tidy_state[,-1])
+
+states <- tidy_merge
+```
+
+### Some info on our data frame
+
+```{r }
+class(tidy_merge)
+class(tidy_merge$population)
+class(list(tidy_merge["population"]))
+```
+
+```{r }
+states %>% dim()
+
+states %>% str()
+
+states %>% glimpse()
+
+states[["Estado"]]
+
+states %>% colnames() %>% tail(-1)
+
+states$area
+```
+
+### Creating new columns using mutate and basic R
+
+```{r }
+states$density <-  states$population / states$area
+states
+# or
+states$density <-  states[["population"]] / states[["area"]]
+states
+
+#or
+states %>% 
+  mutate(density = population / area)
+
+```
+
+### Ordering an data frame using the tidy way arrange or order.
+
+You can also use -c() or desc() sometimes -c() can give strange results.
+```{r }
+states %>% arrange(desc(population))
+
+states[order(states$area),]
+
+# Mix and match all three formas
+states %>% arrange(-c(density),desc(population,area),state)
+```
+
+### Filtering rows using standard R code or filter.
+
+```{r }
+states[1:3,]
+
+data_pop <- states[states$population > 19552860 & states$area > 423967,]
+data_pop
+
+states %>% 
+  filter(population > 19552860 & area > 423967)
+```
+
+you can mix and match filter for rows and select for columns.
+```{r }
+states %>% 
+  filter(density > 100)
+
+states %>%
+  filter(density > 100) %>% 
+  select(population,density)
+
+states[1,4]
+```
+
+## Real Case
+
+### Two way of importing an csv
+
+```{r }
+sales <- read_csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
+
+sales <- read.csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
+```
+
+If you think this looks like an ugly path and a was of space I would agree we
+can fix this by using one of my favorite thinks from python the "\"key I avoided.  
+I am now using it on the python part to show the power of neat line.
+
+```{python }
+path_file = 'data/\
+2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/\
+UKretail.csv' 
+```
+
+```{r }
+sales <- read_csv(py$path_file)
+```
+
+Finally our first usefull python to r functionality!
+
+### Let's look at our data
+
+```{r }
+sales %>% head()
+
+sales %>% tail(3)
+```
+
+
+### Types of columns r {#r_types_columns}
+
+If you payed attention read_ tries to inform what conversion was used in each column that is specially cool because base R tends to create unesceassary factor whne in fact you are working with strings, but know you can choose between three different implementation of the read command.  
+  
+A cool thing about tibbles is that they are in fact still data.frame.
+
+```{r }
+sales %>% class()
+```
+
+Pay attention to the R difference between "[[" and "[" if you recall this is  the "opposite" of the python behavior.  
+Jump to [python implementation](#py_types_columns).
+```{r }
+
+sales[["CustomerID"]] %>% class()
+
+sales["CustomerID"] %>% class()
+
+
+```
+
+### Basic Description real data using Glimpse and str
+
+```{r }
+sales %>% dim()
+
+sales %>% colnames()
+
+sales %>% glimpse()
+
+sales %>% str()
+
+sales %>% summary()
+```
+
+If you agree with me that summary sucks on a data.frame object I am glad to show skimr, also if you don't like summary behaviour on model outputs [broom](https://cran.r-project.org/web/packages/broom/index.html) is there to save you, I will talk more about when I make an [scikit-learn](https://scikit-learn.org/stable/) and [caret](https://topepo.github.io/caret/) + [tidymodels](https://www.tidyverse.org/articles/2018/08/tidymodels-0-0-1/) post.
+
+### Subsetting Data with select or base R
+
+```{r }
+sales[1:4,]
+
+sales$CustomerID %>% head()
+
+sales[["CustomerID"]] %>% head()
+
+sales[,3] %>% head()
+
+sales[1:5,3]
+
+sales$Revenue2 <- sales$Quantity * sales$UnitPrice
+
+sales[["Revenue3"]] <- sales[["Quantity"]] * sales[["UnitPrice"]]
+
+# () show created objects 
+# Strange behavior right here 6 rowns on head()
+(sales <- sales %>% mutate(Revenue = Quantity * UnitPrice)) %>% head()
+
+sum(sales$Revenue == sales$Revenue2)/nrow(sales)
+sum(sales$Revenue == sales$Revenue3)/nrow(sales)
+sum(sales$Revenue2 == sales$Revenue3)/nrow(sales)
+    
+# If there were any differences between our columns the sum would return <1    
+```
+
+### Creating a new smaller data frame using transmute and base
+
+```{r }
+raw_sales <- sales %>% select(Quantity, UnitPrice, Revenue)
+
+raw_sales %>% head()
+
+raw_sales %>% glimpse()
+
+raw_sales %>% skimr::skim()
+```
+
+
+### Ploting with ggplot
+```{r }
+sales %>% ggplot() +
+  aes(x = InvoiceDate, y = Revenue) +
+  geom_line()
+```
+
+### Filtering and replace data {#filtering_r}
+
+Here I really couldn`t figure out an easy way to filter using this
+cancel tricky that works in [python](#filtering_py).
+```{r }
+cancels = sales$Revenue < 0
+cancels %>% nrow()
+
+invert_func <- function(cancel){
+  ifelse(cancel == 1,
+         0,
+         1)
+  }
+
+
+sales2 = sales[invert_func(cancels),]
+
+sales2 %>% dim()
+```
+
+
+I really prefer the tidy way also.
+
+```{r }
+sales <- sales %>% filter(Revenue > 0)
+```
+
+### Groupby example in tidyverse
+
+I prefer the tidy way here as well.
+```{r }
+CountryGroups <- sales %>% 
+  group_by(Country) %>% 
+  summarise(sum_revenue = sum(Revenue),
+            number_cases = n()) %>% 
+  arrange(-sum_revenue)
+
+CountryGroups
+```
+
+
+```{r }
+skimr::skim(sales)
+```
+
+### Ploting an histogram using ggplot2
+
+```{r }
+sales %>%
+  filter(CustomerID == 17850) %>% 
+  ggplot() +
+  aes(Revenue) +
+  geom_histogram(bins = 20)
+```
+
+Another example.
+
+```{r }
+sales %>%
+  filter(StockCode == 71053) %>% 
+  ggplot() +
+  aes(Revenue) +
+  geom_histogram(bins = 20)
+```
+
+### Handling Missing values in R {#missing_values_r}
+
+Ok I got hand this one to [python](#missing_values_py). 
+```{r }
+sales2$CustomerID %>% 
+  table(useNA = 'always') %>%
+  sort(decreasing = TRUE) %>%
+  head(3)
+```
+
+This is just not simple enough luckly we can create functions for our afflictions, plus this is replacement as an side effect which sucks.
+```{r }
+#sales[sales[["CustomerID"]] %>% is.na(),"CustomerID"] <- 0
+```
+
+This is an way better tidy way.
+```{r }
+# sales %>% mutate_if(is.numeric, funs(replace(., is.na(.), 0)))
+sales2 <- sales %>% mutate_at(vars(CustomerID),
+                    list(
+                      ~replace(.,
+                              is.na(.), # function that check condition (na)
+                              0) # value to replace could be mean(.,na.rm = T)
+                      )
+                    )
+
+
+```
+
+
+Using an stronger method like mice even with an [amazing multicore package](https://cran.r-project.org/web/packages/micemd/index.html) takes too long for an blogpost, plus I really don't think there should be an model for CustomerID here is some workflow if you need to split your data.
+```{r }
+non_character_sales <- sales %>%
+  select_if(function(col)
+    is.numeric(col) |
+      is.factor(col))
+
+# or my favorite
+select_cases <- function(col) {
+  is.numeric(col) |
+  is.factor(col)
+}
+
+non_character_sales <- sales %>% select_if(select_cases)
+
+non_character_sales %>% head()
+
+character_sales <- sales %>% select_if(negate(is.numeric))
+
+character_sales %>% head()
+
+sales3 <- cbind(character_sales,non_character_sales)
+
+# if you need the same order
+
+sales3 <- sales3 %>% select(names(sales)) 
+
+```
+
+
+### Replacing names with an case when aproach
+
+Don't mix and match numbers and characters else this will cause an error.
+```{r }
+replace_function <-  function(country) {
+  case_when(
+  country == 'United Kingdom' ~ "1",
+  country == 'Netherlands' ~ "2",
+  country == 'Germany' ~ "3",
+  country == 'France' ~ "4",
+  country == 'USA' ~ "5",
+  TRUE    ~ country
+)
+  }
+
+```
+
+```{r }
+sales3 <- sales3 %>% mutate(new = replace_function(Country))
+
+sales3 %>% head()
+```
+
+Two ways of solving our case_count deficiency.
+
+```{r }
+value_counts <- function(column, useNA = 'always', decreasing = TRUE) {
+  column %>% 
+  table(useNA = useNA) %>%
+  sort(decreasing = decreasing)
+}
+
+sales3[["new"]] %>% value_counts() %>% head(7)
+```
+
+## Passing Objects to Python
+
+Simple example.
+
+```{python }
+sales2 = r.sales2
+type(sales2)
+```
+
+
+We can solve our value_counts problem by simply stealing from python then returning the results to r.
+
+```{python }
+sales3_solution = \
+r.\
+sales3.\
+new.\
+value_counts().\
+nlargest(7)
+```
+
+
+If we want to continue working in r after the steal.
+
+```{r }
+sales3_solution = py$sales3_solution
+sales3_solution
+```
+
+![](https://media.giphy.com/media/7zW0iLn9SKYao6f8sE/giphy.gif)
+
+
