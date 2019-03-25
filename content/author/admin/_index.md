@@ -1,6 +1,6 @@
 ---
 authors:
-- admin
+- brunoo-carlin
 bio: Data Science learner
 education:
   courses:

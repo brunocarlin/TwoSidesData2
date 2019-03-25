@@ -75,6 +75,11 @@
   
     <url>
     
+      <loc>/author/admin/6-bruno-carlin/</loc>
+    </url>
+  
+    <url>
+    
       <loc>/author/admin/</loc>
     </url>
   
@@ -219,7 +224,13 @@
     <url>
     
       <loc>/authors/admin/</loc>
-      <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+  
+    <url>
+    
+      <loc>/authors/brunoo-carlin/</loc>
       <priority>0</priority>
     </url>
   
