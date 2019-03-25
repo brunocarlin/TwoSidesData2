@@ -45,5 +45,5 @@ user_groups:
 - Researchers
 - Visitors
 ---
-Bruno Testaguzza Carlin is an student of Data Science at Digital House, previus work experience as an Finance intern for Bayer in the Risk Managment Area.  
+Bruno Testaguzza Carlin is an student of Data Science at Digital House, previous work experience as an finance intern for Bayer in the Risk Managment Area.  
 Experience using R and BI tools, improving Python skills.
