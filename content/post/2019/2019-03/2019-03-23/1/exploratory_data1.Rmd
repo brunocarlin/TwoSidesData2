@@ -34,9 +34,9 @@ I recommend using the Files tab to find the your system path to the folder conta
 Use opts_knit to guarantee that your markdown functions will search for files
 in the folder specified, it is better that setwd() because it works on
 all languages.
-```{r }
+```{r exploratory_data1-1 }
 knitr::opts_knit$set(root.dir = normalizePath(
-  "~/R/Blog TwoSidesData2/content/post/2019/2019-03/2019-03-23/1"))
+  "~/R/Blog/content/post/2019/2019-03/2019-03-23/1"))
 
 ```
 
@@ -45,7 +45,7 @@ knitr::opts_knit$set(root.dir = normalizePath(
 <details><summary>R part</summary>
 <p>
 
-```{r, message=FALSE, warning=FALSE}
+```{r exploratory_data1-2, message=FALSE, warning=FALSE}
 library(reticulate)
 library(caTools)
 library(roperators)
@@ -61,19 +61,19 @@ set.seed(123)
 
 I am using my second virtual conda if you have just the root
 switch to conda_list()[[1]][1].
-```{r }
+```{r exploratory_data1-3 }
 conda_list()[[1]][2] %>% 
   use_condaenv(required = TRUE)
 ```
 
 Let's see what version of python this env is running.
-```{python }
+```{python exploratory_data1-4}
 import platform
 print(platform.python_version())
 ```
 
 Some basic Data Science Libraries.
-```{python }
+```{python exploratory_data1-5}
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -91,7 +91,7 @@ import os
 ### Defining pandas series
 
 ![](https://media.giphy.com/media/EPcvhM28ER9XW/giphy.gif)
-```{python }
+```{python exploratory_data1-6}
 data = pd.Series([0.25, 0.5, 0.75, 1.0])
 data
 data.values
@@ -101,7 +101,7 @@ data[1:3]
 ```
 
 ### Indexing
-```{python }
+```{python exploratory_data1-7}
 data = pd.Series([0.25, 0.5, 0.75, 1.0],
                  index=['a', 'b', 'c', 'd'])
 data
@@ -112,7 +112,7 @@ data['b']
 
 ### Create pd series from dictionary 1
 
-```{python }
+```{python exploratory_data1-8}
 population_dict = {'California': 38332521,
                    'Florida': 19552860,
                    'Illinois': 12882135,
@@ -129,7 +129,7 @@ population['California':'Illinois']
 
 one more example.
 
-```{python }
+```{python exploratory_data1-9}
 area_dict = {'California': 423967, 
              'Florida': 170312,
              'Illinois': 149995,
@@ -143,7 +143,7 @@ area
 
 ### Combining the pd series into a data frame
 
-```{python }
+```{python exploratory_data1-10}
 states = pd.DataFrame({'population': population,
                        'area': area})
 states
@@ -157,50 +157,50 @@ type([states["population"]])
 
 ### Data frame properties
 
-```{python }
+```{python exploratory_data1-11}
 states.shape
 ```
 
-```{python }
+```{python exploratory_data1-12}
 states.info()
 ```
 
-```{python }
+```{python exploratory_data1-13}
 states.index
 ```
 
-```{python }
+```{python exploratory_data1-14}
 states.columns
 ```
 
-```{python }
+```{python exploratory_data1-15}
 states['area']
 ```
 
 ### Creating some new columns
 
-```{python }
+```{python exploratory_data1-16}
 states['density'] = states['population'] / states['area']
 states
 ```
 
 ### Ordering a data frame
 
-```{python }
+```{python exploratory_data1-17}
 states.sort_values(['population'], ascending = True)
 ```
 
-```{python }
+```{python exploratory_data1-18}
 states.sort_values(['area'], ascending = True)
 ```
 
-```{python }
+```{python exploratory_data1-19}
 states.sort_values(['density'], ascending = True)
 ```
 
 ### Subsetting
 
-```{python }
+```{python exploratory_data1-20}
 states['Florida':'Illinois']
 
 states[1:3]
@@ -211,7 +211,7 @@ data_pop
 
 ```
 
-```{python }
+```{python exploratory_data1-21}
 states[(states['population'] > 19552860) & (states['area']>423967)]
 
 states[['area','density']]
@@ -233,11 +233,11 @@ states.iloc[0, 2]
 
 ### Reading data
 
-```{python }
+```{python exploratory_data1-22}
 sales = pd.DataFrame(pd.read_csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv',encoding='latin'))
 ```
 
-```{python }
+```{python exploratory_data1-23}
 sales.head()
 
 sales.tail(3)
@@ -248,7 +248,7 @@ sales.index
 ### Variable types {#py_types_columns}
 
 If you need to [return](#r_types_columns).
-```{python }
+```{python exploratory_data1-24}
 type(sales)
 
 
@@ -261,7 +261,7 @@ type([sales["CustomerID"]])
 
 ### Basic Description
 
-```{python }
+```{python exploratory_data1-25}
 sales.shape
 
 
@@ -276,39 +276,39 @@ sales.describe()
 
 ### Subsetting data
 
-```{python }
+```{python exploratory_data1-26}
 sales[:4]
 ```
 
-```{python }
+```{python exploratory_data1-27}
 sales["CustomerID"].head()
 ```
 
-```{python }
+```{python exploratory_data1-28}
 sales.loc[:,['Quantity']].head()
 ```
 
-```{python }
+```{python exploratory_data1-29}
 sales.iloc[:,[3]].head()
 ```
 
-```{python }
+```{python exploratory_data1-30}
 sales.iloc[0:6,2:3]
 ```
 
 ### Creating new columns with real data
-```{python }
+```{python exploratory_data1-31}
 sales["Revenue"] = sales.Quantity * sales.UnitPrice
 ```
 
 
-```{python }
+```{python exploratory_data1-32}
 sales.head()
 ```
 
 ### Creating a new smaller data frame
 
-```{python }
+```{python exploratory_data1-33}
 raw_sales = sales[["Quantity","UnitPrice", "Revenue"]]
 
 raw_sales.head()
@@ -318,7 +318,7 @@ raw_sales.info()
 
 ### Plotting an line plot
 
-```{python }
+```{python exploratory_data1-34}
 import matplotlib as plt
 from pylab import *
 
@@ -330,7 +330,7 @@ plt.show()
 ### Filtering and replace data {#filtering_py}
 
 To [return](#filtering_r)
-```{python }
+```{python exploratory_data1-35}
 cancels = sales[sales["Revenue"]<0]
 cancels.shape
 
@@ -340,35 +340,35 @@ sales.shape
 
 ### Groupby example
 
-```{python }
+```{python exploratory_data1-36}
 CountryGroups = sales.groupby(["Country"])["Revenue"].sum().reset_index()
 CountryGroups.sort_values(by= "Revenue", ascending=False)
 ```
 
 ### Ploting an histogram
-```{python }
+```{python exploratory_data1-37}
 sales[sales["CustomerID"] == 17850.0]["Revenue"].plot(kind="hist")
 plt.show()
 ```
 
 another example.
 
-```{python }
+```{python exploratory_data1-38}
 sales[sales["StockCode"] == '71053']["Quantity"].hist()
 plt.show()
 ```
 
 ### Handling Missing values {#missing_values_py}
 to [return](#missing_values_r)
-```{python }
+```{python exploratory_data1-39}
 sales.info()
 ```
 
-```{python }
+```{python exploratory_data1-40}
 sales.CustomerID.value_counts(dropna=False).nlargest(3)
 ```
 
-```{python }
+```{python exploratory_data1-41}
 sales.CustomerID.fillna(0, inplace=True)
 
 sales[sales.CustomerID.isnull()]
@@ -378,7 +378,7 @@ sales.info()
 
 ### Replacing names with an dictionary
 
-```{python }
+```{python exploratory_data1-42}
 mymap = {'United Kingdom':1, 'Netherlands':2, 'Germany':3, 'France':4, 'USA':5}       
 
 sales = sales.applymap(lambda s: mymap.get(s) if s in mymap else s)
@@ -393,16 +393,16 @@ sales.Country.value_counts().nlargest(7)
 ## Passing Objects
 
 ### Python to R
-```{python }
+```{python exploratory_data1-43}
 data2 = pd.Series([0.25, 0.5, 0.75, 1.0])
 
 ```
 
-```{r }
+```{r exploratory_data1-44 }
 data_t = py$data2
 ```
 
-```{r }
+```{r exploratory_data1-45 }
 data_t
 ```
 
@@ -414,7 +414,7 @@ data_t
 ### Defining an data frame
 
 tidy way ![](https://media.giphy.com/media/kKLr7rlj0KwjFfCxHJ/giphy.gif)
-```{r }
+```{r exploratory_data1-46 }
 data <-  tibble(0.25, 0.5, 0.75, 1.0)
 data
 data[2]
@@ -422,7 +422,7 @@ data[2:3]
 ```
 
 Not using tidyverse.
-```{r }
+```{r exploratory_data1-47 }
 data <-  data.frame(c(0.25, 0.5, 0.75, 1.0))
 rownames(data) <- 1:nrow(data)
 colnames(data) <- "nope"
@@ -431,7 +431,7 @@ data
 
 ### Index search
 
-```{r }
+```{r exploratory_data1-48 }
 data <-  data.frame(c(0.25, 0.5, 0.75, 1.0),row.names = c("a", "b","c","d"))
 data
 data["b",]
@@ -441,7 +441,7 @@ data["b",]
 
 ### Create a date frame using an list
 
-```{r }
+```{r exploratory_data1-49 }
 population_dict <- list(
   'California' = 38332521,
   'Florida' = 19552860,
@@ -459,7 +459,7 @@ population %>% select(California:Illinois)
 
 
 ### Create a date frame using an list 2
-```{r }
+```{r exploratory_data1-50 }
 area_dict = list(
   'California' = 423967, 
   'Florida' = 170312,
@@ -475,13 +475,13 @@ area
 ### Subsetting an data frame using join or cbind
 
 The tidy way doesn`t support indexes so we can tidy our data.
-```{r }
+```{r exploratory_data1-51 }
 tidy_area <- area %>% gather(key = "state", value = "area")
 tidy_state <- population %>% gather(key = "state", value = "population")
 ```
 
 
-```{r }
+```{r exploratory_data1-52 }
 tidy_area
 
 tidy_state
@@ -495,13 +495,13 @@ states <- tidy_merge
 
 ### Some info on our data frame
 
-```{r }
+```{r exploratory_data1-53 }
 class(tidy_merge)
 class(tidy_merge$population)
 class(list(tidy_merge["population"]))
 ```
 
-```{r }
+```{r exploratory_data1-54 }
 states %>% dim()
 
 states %>% str()
@@ -517,7 +517,7 @@ states$area
 
 ### Creating new columns using mutate and basic R
 
-```{r }
+```{r exploratory_data1-55 }
 states$density <-  states$population / states$area
 states
 # or
@@ -533,7 +533,7 @@ states %>%
 ### Ordering an data frame using the tidy way arrange or order.
 
 You can also use -c() or desc() sometimes -c() can give strange results.
-```{r }
+```{r exploratory_data1-56 }
 states %>% arrange(desc(population))
 
 states[order(states$area),]
@@ -544,7 +544,7 @@ states %>% arrange(-c(density),desc(population,area),state)
 
 ### Filtering rows using standard R code or filter.
 
-```{r }
+```{r exploratory_data1-57 }
 states[1:3,]
 
 data_pop <- states[states$population > 19552860 & states$area > 423967,]
@@ -555,7 +555,7 @@ states %>%
 ```
 
 you can mix and match filter for rows and select for columns.
-```{r }
+```{r exploratory_data1-58 }
 states %>% 
   filter(density > 100)
 
@@ -570,7 +570,7 @@ states[1,4]
 
 ### Two way of importing an csv
 
-```{r }
+```{r exploratory_data1-59 }
 sales <- read_csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
 
 sales <- read.csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
@@ -580,13 +580,13 @@ If you think this looks like an ugly path and a was of space I would agree we
 can fix this by using one of my favorite thinks from python the "\"key I avoided.  
 I am now using it on the python part to show the power of neat line.
 
-```{python }
+```{python exploratory_data1-60}
 path_file = 'data/\
 2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/\
 UKretail.csv' 
 ```
 
-```{r }
+```{r exploratory_data1-61 }
 sales <- read_csv(py$path_file)
 ```
 
@@ -594,7 +594,7 @@ Finally our first usefull python to r functionality!
 
 ### Let's look at our data
 
-```{r }
+```{r exploratory_data1-62 }
 sales %>% head()
 
 sales %>% tail(3)
@@ -607,13 +607,13 @@ If you payed attention read_ tries to inform what conversion was used in each co
   
 A cool thing about tibbles is that they are in fact still data.frame.
 
-```{r }
+```{r exploratory_data1-63 }
 sales %>% class()
 ```
 
 Pay attention to the R difference between "[[" and "[" if you recall this is  the "opposite" of the python behavior.  
 Jump to [python implementation](#py_types_columns).
-```{r }
+```{r exploratory_data1-64 }
 
 sales[["CustomerID"]] %>% class()
 
@@ -624,7 +624,7 @@ sales["CustomerID"] %>% class()
 
 ### Basic Description real data using Glimpse and str
 
-```{r }
+```{r exploratory_data1-65 }
 sales %>% dim()
 
 sales %>% colnames()
@@ -640,7 +640,7 @@ If you agree with me that summary sucks on a data.frame object I am glad to show
 
 ### Subsetting Data with select or base R
 
-```{r }
+```{r exploratory_data1-66 }
 sales[1:4,]
 
 sales$CustomerID %>% head()
@@ -668,7 +668,7 @@ sum(sales$Revenue2 == sales$Revenue3)/nrow(sales)
 
 ### Creating a new smaller data frame using transmute and base
 
-```{r }
+```{r exploratory_data1-67 }
 raw_sales <- sales %>% select(Quantity, UnitPrice, Revenue)
 
 raw_sales %>% head()
@@ -680,7 +680,7 @@ raw_sales %>% skimr::skim()
 
 
 ### Ploting with ggplot
-```{r }
+```{r exploratory_data1-68 }
 sales %>% ggplot() +
   aes(x = InvoiceDate, y = Revenue) +
   geom_line()
@@ -690,7 +690,7 @@ sales %>% ggplot() +
 
 Here I really couldn`t figure out an easy way to filter using this
 cancel tricky that works in [python](#filtering_py).
-```{r }
+```{r exploratory_data1-69 }
 cancels = sales$Revenue < 0
 cancels %>% nrow()
 
@@ -709,14 +709,14 @@ sales2 %>% dim()
 
 I really prefer the tidy way also.
 
-```{r }
+```{r exploratory_data1-70 }
 sales <- sales %>% filter(Revenue > 0)
 ```
 
 ### Groupby example in tidyverse
 
 I prefer the tidy way here as well.
-```{r }
+```{r exploratory_data1-71 }
 CountryGroups <- sales %>% 
   group_by(Country) %>% 
   summarise(sum_revenue = sum(Revenue),
@@ -727,13 +727,13 @@ CountryGroups
 ```
 
 
-```{r }
+```{r exploratory_data1-72 }
 skimr::skim(sales)
 ```
 
 ### Ploting an histogram using ggplot2
 
-```{r }
+```{r exploratory_data1-73 }
 sales %>%
   filter(CustomerID == 17850) %>% 
   ggplot() +
@@ -743,7 +743,7 @@ sales %>%
 
 Another example.
 
-```{r }
+```{r exploratory_data1-74 }
 sales %>%
   filter(StockCode == 71053) %>% 
   ggplot() +
@@ -754,7 +754,7 @@ sales %>%
 ### Handling Missing values in R {#missing_values_r}
 
 Ok I got hand this one to [python](#missing_values_py). 
-```{r }
+```{r exploratory_data1-75 }
 sales2$CustomerID %>% 
   table(useNA = 'always') %>%
   sort(decreasing = TRUE) %>%
@@ -762,12 +762,12 @@ sales2$CustomerID %>%
 ```
 
 This is just not simple enough luckly we can create functions for our afflictions, plus this is replacement as an side effect which sucks.
-```{r }
+```{r exploratory_data1-76 }
 #sales[sales[["CustomerID"]] %>% is.na(),"CustomerID"] <- 0
 ```
 
 This is an way better tidy way.
-```{r }
+```{r exploratory_data1-77 }
 # sales %>% mutate_if(is.numeric, funs(replace(., is.na(.), 0)))
 sales2 <- sales %>% mutate_at(vars(CustomerID),
                     list(
@@ -782,7 +782,7 @@ sales2 <- sales %>% mutate_at(vars(CustomerID),
 
 
 Using an stronger method like mice even with an [amazing multicore package](https://cran.r-project.org/web/packages/micemd/index.html) takes too long for an blogpost, plus I really don't think there should be an model for CustomerID here is some workflow if you need to split your data.
-```{r }
+```{r exploratory_data1-78 }
 non_character_sales <- sales %>%
   select_if(function(col)
     is.numeric(col) |
@@ -814,7 +814,7 @@ sales3 <- sales3 %>% select(names(sales))
 ### Replacing names with an case when aproach
 
 Don't mix and match numbers and characters else this will cause an error.
-```{r }
+```{r exploratory_data1-79 }
 replace_function <-  function(country) {
   case_when(
   country == 'United Kingdom' ~ "1",
@@ -828,7 +828,7 @@ replace_function <-  function(country) {
 
 ```
 
-```{r }
+```{r exploratory_data1-80 }
 sales3 <- sales3 %>% mutate(new = replace_function(Country))
 
 sales3 %>% head()
@@ -836,7 +836,7 @@ sales3 %>% head()
 
 Two ways of solving our case_count deficiency.
 
-```{r }
+```{r exploratory_data1-81 }
 value_counts <- function(column, useNA = 'always', decreasing = TRUE) {
   column %>% 
   table(useNA = useNA) %>%
@@ -850,7 +850,7 @@ sales3[["new"]] %>% value_counts() %>% head(7)
 
 Simple example.
 
-```{python }
+```{python exploratory_data1-82}
 sales2 = r.sales2
 type(sales2)
 ```
@@ -858,7 +858,7 @@ type(sales2)
 
 We can solve our value_counts problem by simply stealing from python then returning the results to r.
 
-```{python }
+```{python exploratory_data1-83}
 sales3_solution = \
 r.\
 sales3.\
@@ -870,7 +870,7 @@ nlargest(7)
 
 If we want to continue working in r after the steal.
 
-```{r }
+```{r exploratory_data1-84 }
 sales3_solution = py$sales3_solution
 sales3_solution
 ```
