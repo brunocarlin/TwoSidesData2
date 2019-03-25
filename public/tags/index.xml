@@ -21,20 +21,11 @@
     </item>
     
     <item>
-      <title>Deep Learning</title>
-      <link>/tags/deep-learning/</link>
+      <title>Personal Website</title>
+      <link>/tags/personal-website/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Demo</title>
-      <link>/tags/demo/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/tags/demo/</guid>
+      <guid>/tags/personal-website/</guid>
       <description></description>
     </item>
     
@@ -53,6 +44,24 @@
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/dplyr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>forecast</title>
+      <link>/tags/forecast/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/forecast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>libraries</title>
+      <link>/tags/libraries/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/libraries/</guid>
       <description></description>
     </item>
     

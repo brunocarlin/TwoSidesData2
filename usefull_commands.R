@@ -19,4 +19,4 @@ knitr::opts_knit$set(root.dir = normalizePath(
 
 setwd("~/R/Blog TwoSidesData/TwoSidesData/content/post")
 
-name_chunks('2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr.rmd')
+name_chunks('')
