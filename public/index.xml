@@ -128,7 +128,7 @@ This is an basic example of how you can use either R or Python to accomplish the
 in the folder specified, it is better that setwd() because it works on
 all languages.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::opts_knit$set(root.dir = normalizePath(
-  &amp;quot;~/R/Blog/content/post&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+  &amp;quot;~/R/Blog/content/post/data&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;anchor&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1.2&lt;/span&gt; Libraries&lt;/h3&gt;
@@ -376,7 +376,7 @@ data_pop&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; Real data&lt;/h2&gt;
 &lt;div id=&#34;reading-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.1&lt;/span&gt; Reading data&lt;/h3&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales = pd.DataFrame(pd.read_csv(&amp;#39;data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;,encoding=&amp;#39;latin&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales = pd.DataFrame(pd.read_csv(&amp;#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;,encoding=&amp;#39;latin&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.head()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##   InvoiceNo StockCode  ... CustomerID         Country
 ## 0    536365     22752  ...    17850.0  United Kingdom
@@ -917,7 +917,7 @@ data_pop&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Real Case&lt;/h2&gt;
 &lt;div id=&#34;two-way-of-importing-an-csv&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.1&lt;/span&gt; Two way of importing an csv&lt;/h3&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read_csv(&amp;#39;data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read_csv(&amp;#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Parsed with column specification:
 ## cols(
 ##   InvoiceNo = col_character(),
@@ -929,11 +929,11 @@ data_pop&lt;/code&gt;&lt;/pre&gt;
 ##   CustomerID = col_double(),
 ##   Country = col_character()
 ## )&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read.csv(&amp;#39;data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read.csv(&amp;#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you think this looks like an ugly path and a was of space I would agree we
 can fix this by using one of my favorite thinks from python the &#34;&#34;key I avoided.&lt;br /&gt;
 I am now using it on the python part to show the power of neat line.&lt;/p&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;path_file = &amp;#39;data/\
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;path_file = &amp;#39;\
 2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/\
 UKretail.csv&amp;#39; &lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read_csv(py$path_file)&lt;/code&gt;&lt;/pre&gt;

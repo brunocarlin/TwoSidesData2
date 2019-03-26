@@ -37,7 +37,7 @@ in the folder specified, it is better that setwd() because it works on
 all languages.
 ```{r exploratory_data1-1 }
 knitr::opts_knit$set(root.dir = normalizePath(
-  "~/R/Blog/content/post"))
+  "~/R/Blog/content/post/data"))
 
 ```
 
@@ -235,7 +235,7 @@ states.iloc[0, 2]
 ### Reading data
 
 ```{python exploratory_data1-22}
-sales = pd.DataFrame(pd.read_csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv',encoding='latin'))
+sales = pd.DataFrame(pd.read_csv('2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv',encoding='latin'))
 ```
 
 ```{python exploratory_data1-23}
@@ -572,9 +572,9 @@ states[1,4]
 ### Two way of importing an csv
 
 ```{r exploratory_data1-59 }
-sales <- read_csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
+sales <- read_csv('2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
 
-sales <- read.csv('data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
+sales <- read.csv('2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv')
 ```
 
 If you think this looks like an ugly path and a was of space I would agree we
@@ -582,7 +582,7 @@ can fix this by using one of my favorite thinks from python the "\"key I avoided
 I am now using it on the python part to show the power of neat line.
 
 ```{python exploratory_data1-60}
-path_file = 'data/\
+path_file = '\
 2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/\
 UKretail.csv' 
 ```

@@ -715,7 +715,7 @@ This is an basic example of how you can use either R or Python to accomplish the
 in the folder specified, it is better that setwd() because it works on
 all languages.</p>
 <pre class="r"><code>knitr::opts_knit$set(root.dir = normalizePath(
-  &quot;~/R/Blog/content/post&quot;))</code></pre>
+  &quot;~/R/Blog/content/post/data&quot;))</code></pre>
 </div>
 <div id="anchor" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> Libraries</h3>
@@ -963,7 +963,7 @@ data_pop</code></pre>
 <h2><span class="header-section-number">2.3</span> Real data</h2>
 <div id="reading-data" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Reading data</h3>
-<pre class="python"><code>sales = pd.DataFrame(pd.read_csv(&#39;data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&#39;,encoding=&#39;latin&#39;))</code></pre>
+<pre class="python"><code>sales = pd.DataFrame(pd.read_csv(&#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&#39;,encoding=&#39;latin&#39;))</code></pre>
 <pre class="python"><code>sales.head()</code></pre>
 <pre><code>##   InvoiceNo StockCode  ... CustomerID         Country
 ## 0    536365     22752  ...    17850.0  United Kingdom
@@ -1504,7 +1504,7 @@ data_pop</code></pre>
 <h2><span class="header-section-number">3.3</span> Real Case</h2>
 <div id="two-way-of-importing-an-csv" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> Two way of importing an csv</h3>
-<pre class="r"><code>sales &lt;- read_csv(&#39;data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&#39;)</code></pre>
+<pre class="r"><code>sales &lt;- read_csv(&#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&#39;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   InvoiceNo = col_character(),
@@ -1516,11 +1516,11 @@ data_pop</code></pre>
 ##   CustomerID = col_double(),
 ##   Country = col_character()
 ## )</code></pre>
-<pre class="r"><code>sales &lt;- read.csv(&#39;data/2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&#39;)</code></pre>
+<pre class="r"><code>sales &lt;- read.csv(&#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&#39;)</code></pre>
 <p>If you think this looks like an ugly path and a was of space I would agree we
 can fix this by using one of my favorite thinks from python the ""key I avoided.<br />
 I am now using it on the python part to show the power of neat line.</p>
-<pre class="python"><code>path_file = &#39;data/\
+<pre class="python"><code>path_file = &#39;\
 2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/\
 UKretail.csv&#39; </code></pre>
 <pre class="r"><code>sales &lt;- read_csv(py$path_file)</code></pre>
