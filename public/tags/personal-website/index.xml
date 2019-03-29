@@ -4,12 +4,10 @@
     <title>Personal Website on TwoSidesData</title>
     <link>/tags/personal-website/</link>
     <description>Recent content in Personal Website on TwoSidesData</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Apr 2016 00:00:00 -0300</lastBuildDate>
-    
-	<atom:link href="/tags/personal-website/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/tags/personal-website/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>TwoSidesData</title>
@@ -17,8 +15,9 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
       <guid>/project/internal-project/</guid>
-      <description>Creating this website and updating it weekly is my personal task for 2019.
-Content includes blogpost, eduction, accomplishments, my TCC and more.</description>
+      <description>&lt;p&gt;Creating this website and updating it weekly is my personal task for 2019.&lt;br /&gt;
+Content includes blogpost, eduction, accomplishments, my TCC and more.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

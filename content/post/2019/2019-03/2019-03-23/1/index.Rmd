@@ -6,6 +6,7 @@ date: '2019-03-23'
 slug: exploratory-data-analysis-basic-pandas-and-dplyr
 categories:
   - R and Python
+  - r-project
 tags:
   - R Markdown
   - reticulate

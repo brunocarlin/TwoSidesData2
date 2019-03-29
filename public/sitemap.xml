@@ -15,12 +15,6 @@
   
     <url>
     
-      <loc>/2019/02/05/display-jupyter-notebooks-with-academic/</loc>
-      <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
       <loc>/tutorial/example/</loc>
       <lastmod>2018-09-09T00:00:00-03:00</lastmod>
     </url>
@@ -51,20 +45,8 @@
   
     <url>
     
-      <loc>/2016/04/20/academic-the-website-designer-for-hugo/</loc>
-      <lastmod>2018-01-13T00:00:00-02:00</lastmod>
-    </url>
-  
-    <url>
-    
       <loc>/publication/person-re-id/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/2015/07/23/hello-r-markdown/</loc>
-      <lastmod>2015-07-23T21:13:14-05:00</lastmod>
     </url>
   
     <url>
@@ -94,13 +76,6 @@
     
       <loc>/publication_types/2/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/academic/</loc>
-      <lastmod>2018-01-13T00:00:00-02:00</lastmod>
       <priority>0</priority>
     </url>
   
@@ -147,6 +122,7 @@
     
       <loc>/post/</loc>
       <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <priority>0</priority>
     </url>
   
     <url>
@@ -167,13 +143,6 @@
     
       <loc>/publication/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/categories/r/</loc>
-      <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-      <priority>0</priority>
     </url>
   
     <url>
@@ -210,7 +179,7 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2018-01-13T00:00:00-02:00</lastmod>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
   
@@ -264,15 +233,8 @@
   
     <url>
     
-      <loc>/tags/plot/</loc>
-      <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/regression/</loc>
-      <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+      <loc>/categories/r-project/</loc>
+      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   

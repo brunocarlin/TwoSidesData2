@@ -4,12 +4,10 @@
     <title>MS Nixon on TwoSidesData</title>
     <link>/authors/ms-nixon/</link>
     <description>Recent content in MS Nixon on TwoSidesData</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Jul 2013 00:00:00 -0300</lastBuildDate>
-    
-	<atom:link href="/authors/ms-nixon/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/authors/ms-nixon/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mobile visual clothing search</title>
@@ -17,7 +15,8 @@
       <pubDate>Mon, 01 Jul 2013 00:00:00 -0300</pubDate>
       
       <guid>/publication/clothing-search/</guid>
-      <description>More detail can easily be written here using Markdown and $\rm \LaTeX$ math code.</description>
+      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

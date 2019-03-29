@@ -4,12 +4,10 @@
     <title>admin on TwoSidesData</title>
     <link>/authors/admin/</link>
     <description>Recent content in admin on TwoSidesData</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/authors/admin/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>exploratory data analysis: basic pandas and dplyr</title>
@@ -17,29 +15,1348 @@
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</guid>
-      <description>This is an basic example of how you can use either R or Python to accomplish the same goals, I really enjoy using the tidyverse but as you will see sometimes Python is just the more intuitive option. If you find yourself confused on whether a code chunk is an R or Python code please ask me or check my github page for this project. 1 Getting Started, we will use multiple functions from both languages1.</description>
-    </item>
-    
-    <item>
-      <title>Display Jupyter Notebooks with Academic</title>
-      <link>/2019/02/05/display-jupyter-notebooks-with-academic/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/02/05/display-jupyter-notebooks-with-academic/</guid>
-      <description>from IPython.core.display import Image Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)  print(&amp;quot;Welcome to Academic!&amp;quot;)  Welcome to Academic!  Install Python and Jupyter Install Anaconda which includes Python 3 and Jupyter notebook.
-Otherwise, for advanced users, install Jupyter notebook with pip3 install jupyter.
-Create a new blog post as usual Run the following commands in your Terminal, substituting &amp;lt;MY_WEBSITE_FOLDER&amp;gt; and my-post with the file path to your Academic website folder and a name for your blog post (without spaces), respectively:</description>
-    </item>
-    
-    <item>
-      <title>Academic: the website designer for Hugo</title>
-      <link>/2016/04/20/academic-the-website-designer-for-hugo/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/2016/04/20/academic-the-website-designer-for-hugo/</guid>
-      <description>Academic makes it easy to create a beautiful website for free using Markdown. Customize anything on your site with widgets, themes, and language packs.
-Follow our easy step by step guide to learn how to build your own free website with Academic. Check out the personal demo or the business demo of what you&amp;rsquo;ll get in less than 10 minutes.
- View the documentation Ask a question Request a feature or report a bug Updating?</description>
+      <description>
+This is an basic example of how you can use either R or Python to accomplish the same goals, I really enjoy using the tidyverse but as you will see sometimes Python is just the more intuitive option. If you find yourself confused on whether a code chunk is an R or Python code please ask me or check my github page for this project. &lt;br&gt; &lt;br&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-started-we-will-use-multiple-functions-from-both-languages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Getting Started, we will use multiple functions from both languages&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#how-to-set-up-reticulate&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1&lt;/span&gt; How to set up reticulate?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#setting-root-folder&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1.1&lt;/span&gt; Setting root folder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#anchor&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1.2&lt;/span&gt; Libraries&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#knowing-data-frames&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; Knowing data frames&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#defining-pandas-series&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1.1&lt;/span&gt; Defining pandas series&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#indexing&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1.2&lt;/span&gt; Indexing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#combining-two-pd-series&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; Combining two pd series&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#create-pd-series-from-dictionary-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.1&lt;/span&gt; Create pd series from dictionary 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#combining-the-pd-series-into-a-data-frame&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.2&lt;/span&gt; Combining the pd series into a data frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-frame-properties&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.3&lt;/span&gt; Data frame properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-some-new-columns&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.4&lt;/span&gt; Creating some new columns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ordering-a-data-frame&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.5&lt;/span&gt; Ordering a data frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#subsetting&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.6&lt;/span&gt; Subsetting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#real-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; Real data&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#reading-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.1&lt;/span&gt; Reading data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#py_types_columns&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.2&lt;/span&gt; Variable types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#basic-description&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.3&lt;/span&gt; Basic Description&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#subsetting-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.4&lt;/span&gt; Subsetting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-new-columns-with-real-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.5&lt;/span&gt; Creating new columns with real data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-new-smaller-data-frame&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.6&lt;/span&gt; Creating a new smaller data frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#plotting-an-line-plot&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.7&lt;/span&gt; Plotting an line plot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#filtering_py&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.8&lt;/span&gt; Filtering and replace data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#groupby-example&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.9&lt;/span&gt; Groupby example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ploting-an-histogram&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.10&lt;/span&gt; Ploting an histogram&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#missing_values_py&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.11&lt;/span&gt; Handling Missing values&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#replacing-names-with-an-dictionary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.12&lt;/span&gt; Replacing names with an dictionary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#passing-objects&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.4&lt;/span&gt; Passing Objects&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python-to-r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.4.1&lt;/span&gt; Python to R&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; R&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#knowing-data-frames-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Knowing data frames&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#defining-an-data-frame&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1.1&lt;/span&gt; Defining an data frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#index-search&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1.2&lt;/span&gt; Index search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-an-data-frame-from-two-r-series&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Creating an data frame from two R series&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#create-a-date-frame-using-an-list&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2.1&lt;/span&gt; Create a date frame using an list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#create-a-date-frame-using-an-list-2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2.2&lt;/span&gt; Create a date frame using an list 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#subsetting-an-data-frame-using-join-or-cbind&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2.3&lt;/span&gt; Subsetting an data frame using join or cbind&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#some-info-on-our-data-frame&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2.4&lt;/span&gt; Some info on our data frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-new-columns-using-mutate-and-basic-r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2.5&lt;/span&gt; Creating new columns using mutate and basic R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ordering-an-data-frame-using-the-tidy-way-arrange-or-order.&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2.6&lt;/span&gt; Ordering an data frame using the tidy way arrange or order.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#filtering-rows-using-standard-r-code-or-filter.&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2.7&lt;/span&gt; Filtering rows using standard R code or filter.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#real-case&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Real Case&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#two-way-of-importing-an-csv&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.1&lt;/span&gt; Two way of importing an csv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lets-look-at-our-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.2&lt;/span&gt; Let’s look at our data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#r_types_columns&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.3&lt;/span&gt; Types of columns r&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#basic-description-real-data-using-glimpse-and-str&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.4&lt;/span&gt; Basic Description real data using Glimpse and str&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#subsetting-data-with-select-or-base-r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.5&lt;/span&gt; Subsetting Data with select or base R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-new-smaller-data-frame-using-transmute-and-base&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.6&lt;/span&gt; Creating a new smaller data frame using transmute and base&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ploting-with-ggplot&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.7&lt;/span&gt; Ploting with ggplot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#filtering_r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.8&lt;/span&gt; Filtering and replace data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#groupby-example-in-tidyverse&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.9&lt;/span&gt; Groupby example in tidyverse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ploting-an-histogram-using-ggplot2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.10&lt;/span&gt; Ploting an histogram using ggplot2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#missing_values_r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.11&lt;/span&gt; Handling Missing values in R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#replacing-names-with-an-case-when-aproach&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3.12&lt;/span&gt; Replacing names with an case when aproach&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#passing-objects-to-python&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.4&lt;/span&gt; Passing Objects to Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I am currently doing exercises from &lt;a href=&#34;https://github.com/sn3fru/datascience_course&#34;&gt;digital house brasil&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;getting-started-we-will-use-multiple-functions-from-both-languages&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Getting Started, we will use multiple functions from both languages&lt;/h1&gt;
+&lt;div id=&#34;how-to-set-up-reticulate&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; How to set up reticulate?&lt;/h2&gt;
+&lt;div id=&#34;setting-root-folder&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1.1&lt;/span&gt; Setting root folder&lt;/h3&gt;
+&lt;p&gt;I recommend using the Files tab to find the your system path to the folder containig all the data.&lt;/p&gt;
+&lt;p&gt;Use opts_knit to guarantee that your markdown functions will search for files
+in the folder specified, it is better that setwd() because it works on
+all languages.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::opts_knit$set(root.dir = normalizePath(
+  &amp;quot;~/R/Blog/content/post/data&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;anchor&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1.2&lt;/span&gt; Libraries&lt;/h3&gt;
+&lt;img src=&#34;https://media.giphy.com/media/8YZEKuDRHPtgZTx7Rv/giphy.gif&#34; /&gt;
+&lt;details&gt;
+&lt;summary&gt;R part&lt;/summary&gt;
+&lt;p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)
+library(caTools)
+library(roperators)
+library(tidyverse)
+set.seed(123)&lt;/code&gt;&lt;/pre&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;Python part&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;I am using my second virtual conda if you have just the root
+switch to conda_list()[[1]][1].&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda_list()[[1]][2] %&amp;gt;% 
+  use_condaenv(required = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import platform
+print(platform.python_version())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 3.7.2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Some basic Data Science Libraries.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import os&lt;/code&gt;&lt;/pre&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Python&lt;/h1&gt;
+&lt;div id=&#34;knowing-data-frames&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; Knowing data frames&lt;/h2&gt;
+&lt;div id=&#34;defining-pandas-series&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1.1&lt;/span&gt; Defining pandas series&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/EPcvhM28ER9XW/giphy.gif&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data = pd.Series([0.25, 0.5, 0.75, 1.0])
+data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 0    0.25
+## 1    0.50
+## 2    0.75
+## 3    1.00
+## dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data.values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([0.25, 0.5 , 0.75, 1.  ])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data.index&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## RangeIndex(start=0, stop=4, step=1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data[1]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data[1:3]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 1    0.50
+## 2    0.75
+## dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;indexing&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1.2&lt;/span&gt; Indexing&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data = pd.Series([0.25, 0.5, 0.75, 1.0],
+                 index=[&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;])
+data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## a    0.25
+## b    0.50
+## c    0.75
+## d    1.00
+## dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data[&amp;#39;b&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;combining-two-pd-series&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; Combining two pd series&lt;/h2&gt;
+&lt;div id=&#34;create-pd-series-from-dictionary-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.1&lt;/span&gt; Create pd series from dictionary 1&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;population_dict = {&amp;#39;California&amp;#39;: 38332521,
+                   &amp;#39;Florida&amp;#39;: 19552860,
+                   &amp;#39;Illinois&amp;#39;: 12882135,
+                   &amp;#39;New York&amp;#39;: 19651127,  
+                   &amp;#39;Texas&amp;#39;: 26448193,}
+population = pd.Series(population_dict)
+
+population&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## California    38332521
+## Florida       19552860
+## Illinois      12882135
+## New York      19651127
+## Texas         26448193
+## dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;population[&amp;#39;California&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 38332521&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;population[&amp;#39;California&amp;#39;:&amp;#39;Illinois&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## California    38332521
+## Florida       19552860
+## Illinois      12882135
+## dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;one more example.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;area_dict = {&amp;#39;California&amp;#39;: 423967, 
+             &amp;#39;Florida&amp;#39;: 170312,
+             &amp;#39;Illinois&amp;#39;: 149995,
+             &amp;#39;New York&amp;#39;: 141297,
+             &amp;#39;Texas&amp;#39;: 695662}
+             
+area = pd.Series(area_dict)
+
+area&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## California    423967
+## Florida       170312
+## Illinois      149995
+## New York      141297
+## Texas         695662
+## dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;combining-the-pd-series-into-a-data-frame&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.2&lt;/span&gt; Combining the pd series into a data frame&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states = pd.DataFrame({&amp;#39;population&amp;#39;: population,
+                       &amp;#39;area&amp;#39;: area})
+states&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             population    area
+## California    38332521  423967
+## Florida       19552860  170312
+## Illinois      12882135  149995
+## New York      19651127  141297
+## Texas         26448193  695662&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;type(states)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;type(states[&amp;quot;population&amp;quot;])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.series.Series&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;type([states[&amp;quot;population&amp;quot;]])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;list&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-frame-properties&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.3&lt;/span&gt; Data frame properties&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (5, 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## Index: 5 entries, California to Texas
+## Data columns (total 2 columns):
+## population    5 non-null int64
+## area          5 non-null int64
+## dtypes: int64(2)
+## memory usage: 280.0+ bytes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.index&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Index([&amp;#39;California&amp;#39;, &amp;#39;Florida&amp;#39;, &amp;#39;Illinois&amp;#39;, &amp;#39;New York&amp;#39;, &amp;#39;Texas&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Index([&amp;#39;population&amp;#39;, &amp;#39;area&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states[&amp;#39;area&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## California    423967
+## Florida       170312
+## Illinois      149995
+## New York      141297
+## Texas         695662
+## Name: area, dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-some-new-columns&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.4&lt;/span&gt; Creating some new columns&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states[&amp;#39;density&amp;#39;] = states[&amp;#39;population&amp;#39;] / states[&amp;#39;area&amp;#39;]
+states&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             population    area     density
+## California    38332521  423967   90.413926
+## Florida       19552860  170312  114.806121
+## Illinois      12882135  149995   85.883763
+## New York      19651127  141297  139.076746
+## Texas         26448193  695662   38.018740&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ordering-a-data-frame&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.5&lt;/span&gt; Ordering a data frame&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.sort_values([&amp;#39;population&amp;#39;], ascending = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             population    area     density
+## Illinois      12882135  149995   85.883763
+## Florida       19552860  170312  114.806121
+## New York      19651127  141297  139.076746
+## Texas         26448193  695662   38.018740
+## California    38332521  423967   90.413926&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.sort_values([&amp;#39;area&amp;#39;], ascending = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             population    area     density
+## New York      19651127  141297  139.076746
+## Illinois      12882135  149995   85.883763
+## Florida       19552860  170312  114.806121
+## California    38332521  423967   90.413926
+## Texas         26448193  695662   38.018740&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.sort_values([&amp;#39;density&amp;#39;], ascending = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             population    area     density
+## Texas         26448193  695662   38.018740
+## Illinois      12882135  149995   85.883763
+## California    38332521  423967   90.413926
+## Florida       19552860  170312  114.806121
+## New York      19651127  141297  139.076746&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;subsetting&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.6&lt;/span&gt; Subsetting&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states[&amp;#39;Florida&amp;#39;:&amp;#39;Illinois&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           population    area     density
+## Florida     19552860  170312  114.806121
+## Illinois    12882135  149995   85.883763&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states[1:3]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           population    area     density
+## Florida     19552860  170312  114.806121
+## Illinois    12882135  149995   85.883763&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data_pop = (states[&amp;#39;population&amp;#39;] &amp;gt; 19552860) &amp;amp; (states[&amp;#39;area&amp;#39;]&amp;gt;423967)
+
+data_pop&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## California    False
+## Florida       False
+## Illinois      False
+## New York      False
+## Texas          True
+## dtype: bool&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states[(states[&amp;#39;population&amp;#39;] &amp;gt; 19552860) &amp;amp; (states[&amp;#39;area&amp;#39;]&amp;gt;423967)]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        population    area   density
+## Texas    26448193  695662  38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states[[&amp;#39;area&amp;#39;,&amp;#39;density&amp;#39;]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##               area     density
+## California  423967   90.413926
+## Florida     170312  114.806121
+## Illinois    149995   85.883763
+## New York    141297  139.076746
+## Texas       695662   38.018740&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states[states.density &amp;gt; 100]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           population    area     density
+## Florida     19552860  170312  114.806121
+## New York    19651127  141297  139.076746&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.loc[states.density &amp;gt; 100, [&amp;#39;population&amp;#39;, &amp;#39;density&amp;#39;]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           population     density
+## Florida     19552860  114.806121
+## New York    19651127  139.076746&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.loc[states.density &amp;gt; 100][[&amp;#39;population&amp;#39;, &amp;#39;density&amp;#39;]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           population     density
+## Florida     19552860  114.806121
+## New York    19651127  139.076746&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.loc[&amp;#39;California&amp;#39;, &amp;#39;density&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 90.41392608386974&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.loc[&amp;#39;California&amp;#39;][[&amp;#39;density&amp;#39;]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## density    90.413926
+## Name: California, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;states.iloc[0, 2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 90.41392608386974&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;real-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; Real data&lt;/h2&gt;
+&lt;div id=&#34;reading-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.1&lt;/span&gt; Reading data&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales = pd.DataFrame(pd.read_csv(&amp;#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;,encoding=&amp;#39;latin&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   InvoiceNo StockCode  ... CustomerID         Country
+## 0    536365     22752  ...    17850.0  United Kingdom
+## 1    536365     71053  ...    17850.0  United Kingdom
+## 2    536365    84029G  ...    17850.0  United Kingdom
+## 3    536365    85123A  ...    17850.0  United Kingdom
+## 4    536366     22633  ...    17850.0  United Kingdom
+## 
+## [5 rows x 8 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.tail(3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        InvoiceNo StockCode  ... CustomerID  Country
+## 325142    581587     22899  ...    12680.0   France
+## 325143    581587     23254  ...    12680.0   France
+## 325144    581587     23256  ...    12680.0   France
+## 
+## [3 rows x 8 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.index&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## RangeIndex(start=0, stop=325145, step=1)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;py_types_columns&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.2&lt;/span&gt; Variable types&lt;/h3&gt;
+&lt;p&gt;If you need to &lt;a href=&#34;#r_types_columns&#34;&gt;return&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;type(sales)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;type(sales[&amp;quot;CustomerID&amp;quot;])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.series.Series&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;type([sales[&amp;quot;CustomerID&amp;quot;]])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;list&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic-description&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.3&lt;/span&gt; Basic Description&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.shape
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (325145, 8)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.columns.values
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([&amp;#39;InvoiceNo&amp;#39;, &amp;#39;StockCode&amp;#39;, &amp;#39;Description&amp;#39;, &amp;#39;Quantity&amp;#39;, &amp;#39;InvoiceDate&amp;#39;,
+##        &amp;#39;UnitPrice&amp;#39;, &amp;#39;CustomerID&amp;#39;, &amp;#39;Country&amp;#39;], dtype=object)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.info()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## RangeIndex: 325145 entries, 0 to 325144
+## Data columns (total 8 columns):
+## InvoiceNo      325145 non-null object
+## StockCode      325145 non-null object
+## Description    324275 non-null object
+## Quantity       325145 non-null int64
+## InvoiceDate    325145 non-null object
+## UnitPrice      325145 non-null float64
+## CustomerID     244154 non-null float64
+## Country        325145 non-null object
+## dtypes: float64(2), int64(1), object(5)
+## memory usage: 19.8+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.describe()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             Quantity      UnitPrice     CustomerID
+## count  325145.000000  325145.000000  244154.000000
+## mean        9.273340       4.845239   15288.823120
+## std       154.394112     116.830451    1713.496816
+## min    -80995.000000  -11062.060000   12347.000000
+## 25%         1.000000       1.250000   13959.000000
+## 50%         3.000000       2.080000   15150.000000
+## 75%        10.000000       4.130000   16792.750000
+## max     12540.000000   38970.000000   18287.000000&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;subsetting-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.4&lt;/span&gt; Subsetting data&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[:4]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   InvoiceNo StockCode  ... CustomerID         Country
+## 0    536365     22752  ...    17850.0  United Kingdom
+## 1    536365     71053  ...    17850.0  United Kingdom
+## 2    536365    84029G  ...    17850.0  United Kingdom
+## 3    536365    85123A  ...    17850.0  United Kingdom
+## 
+## [4 rows x 8 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[&amp;quot;CustomerID&amp;quot;].head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 0    17850.0
+## 1    17850.0
+## 2    17850.0
+## 3    17850.0
+## 4    17850.0
+## Name: CustomerID, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.loc[:,[&amp;#39;Quantity&amp;#39;]].head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Quantity
+## 0         2
+## 1         6
+## 2         6
+## 3         6
+## 4         6&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.iloc[:,[3]].head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Quantity
+## 0         2
+## 1         6
+## 2         6
+## 3         6
+## 4         6&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.iloc[0:6,2:3]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                            Description
+## 0         SET 7 BABUSHKA NESTING BOXES
+## 1                  WHITE METAL LANTERN
+## 2  KNITTED UNION FLAG HOT WATER BOTTLE
+## 3   WHITE HANGING HEART T-LIGHT HOLDER
+## 4               HAND WARMER UNION JACK
+## 5             HOME BUILDING BLOCK WORD&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-new-columns-with-real-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.5&lt;/span&gt; Creating new columns with real data&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[&amp;quot;Revenue&amp;quot;] = sales.Quantity * sales.UnitPrice&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   InvoiceNo StockCode  ...         Country  Revenue
+## 0    536365     22752  ...  United Kingdom    15.30
+## 1    536365     71053  ...  United Kingdom    20.34
+## 2    536365    84029G  ...  United Kingdom    20.34
+## 3    536365    85123A  ...  United Kingdom    15.30
+## 4    536366     22633  ...  United Kingdom    11.10
+## 
+## [5 rows x 9 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-new-smaller-data-frame&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.6&lt;/span&gt; Creating a new smaller data frame&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;raw_sales = sales[[&amp;quot;Quantity&amp;quot;,&amp;quot;UnitPrice&amp;quot;, &amp;quot;Revenue&amp;quot;]]
+
+raw_sales.head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Quantity  UnitPrice  Revenue
+## 0         2       7.65    15.30
+## 1         6       3.39    20.34
+## 2         6       3.39    20.34
+## 3         6       2.55    15.30
+## 4         6       1.85    11.10&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;raw_sales.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## RangeIndex: 325145 entries, 0 to 325144
+## Data columns (total 3 columns):
+## Quantity     325145 non-null int64
+## UnitPrice    325145 non-null float64
+## Revenue      325145 non-null float64
+## dtypes: float64(2), int64(1)
+## memory usage: 7.4 MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;plotting-an-line-plot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.7&lt;/span&gt; Plotting an line plot&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import matplotlib as plt
+from pylab import *
+
+sales.plot(x=&amp;quot;InvoiceDate&amp;quot;, y=&amp;quot;Revenue&amp;quot;, kind=&amp;quot;line&amp;quot;)
+
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filtering_py&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
+&lt;p&gt;To &lt;a href=&#34;#filtering_r&#34;&gt;return&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;cancels = sales[sales[&amp;quot;Revenue&amp;quot;]&amp;lt;0]
+cancels.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (5588, 9)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.drop(cancels.index, inplace=True)
+sales.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (319557, 9)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;groupby-example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.9&lt;/span&gt; Groupby example&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;CountryGroups = sales.groupby([&amp;quot;Country&amp;quot;])[&amp;quot;Revenue&amp;quot;].sum().reset_index()
+CountryGroups.sort_values(by= &amp;quot;Revenue&amp;quot;, ascending=False)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  Country      Revenue
+## 36        United Kingdom  5311080.101
+## 10                  EIRE   176304.590
+## 24           Netherlands   165582.790
+## 14               Germany   138778.440
+## 13                France   127193.680
+## 0              Australia    79197.590
+## 31                 Spain    36116.710
+## 33           Switzerland    34315.240
+## 3                Belgium    24014.970
+## 25                Norway    23182.220
+## 32                Sweden    21762.450
+## 20                 Japan    21072.590
+## 27              Portugal    20109.410
+## 30             Singapore    13383.590
+## 6        Channel Islands    12556.740
+## 12               Finland    12362.880
+## 9                Denmark    11739.370
+## 19                 Italy    10837.890
+## 16             Hong Kong     8227.020
+## 7                 Cyprus     7781.900
+## 1                Austria     6100.960
+## 18                Israel     4225.780
+## 26                Poland     3974.080
+## 37           Unspecified     2898.650
+## 15                Greece     2677.570
+## 17               Iceland     2461.230
+## 34                   USA     2388.740
+## 5                 Canada     2093.390
+## 23                 Malta     1318.990
+## 35  United Arab Emirates     1277.500
+## 21               Lebanon     1120.530
+## 22             Lithuania     1038.560
+## 11    European Community      876.550
+## 4                 Brazil      602.310
+## 28                   RSA      573.180
+## 8         Czech Republic      488.580
+## 2                Bahrain      343.400
+## 29          Saudi Arabia       90.720&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ploting-an-histogram&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.10&lt;/span&gt; Ploting an histogram&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;CustomerID&amp;quot;] == 17850.0][&amp;quot;Revenue&amp;quot;].plot(kind=&amp;quot;hist&amp;quot;)
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;another example.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;StockCode&amp;quot;] == &amp;#39;71053&amp;#39;][&amp;quot;Quantity&amp;quot;].hist()
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;missing_values_py&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.11&lt;/span&gt; Handling Missing values&lt;/h3&gt;
+&lt;p&gt;to &lt;a href=&#34;#missing_values_r&#34;&gt;return&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## Int64Index: 319557 entries, 0 to 325144
+## Data columns (total 9 columns):
+## InvoiceNo      319557 non-null object
+## StockCode      319557 non-null object
+## Description    318687 non-null object
+## Quantity       319557 non-null int64
+## InvoiceDate    319557 non-null object
+## UnitPrice      319557 non-null float64
+## CustomerID     238801 non-null float64
+## Country        319557 non-null object
+## Revenue        319557 non-null float64
+## dtypes: float64(3), int64(1), object(5)
+## memory usage: 24.4+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.CustomerID.value_counts(dropna=False).nlargest(3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## NaN        80756
+## 17841.0     4702
+## 14911.0     3449
+## Name: CustomerID, dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.CustomerID.fillna(0, inplace=True)
+
+sales[sales.CustomerID.isnull()]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Empty DataFrame
+## Columns: [InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country, Revenue]
+## Index: []&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## Int64Index: 319557 entries, 0 to 325144
+## Data columns (total 9 columns):
+## InvoiceNo      319557 non-null object
+## StockCode      319557 non-null object
+## Description    318687 non-null object
+## Quantity       319557 non-null int64
+## InvoiceDate    319557 non-null object
+## UnitPrice      319557 non-null float64
+## CustomerID     319557 non-null float64
+## Country        319557 non-null object
+## Revenue        319557 non-null float64
+## dtypes: float64(3), int64(1), object(5)
+## memory usage: 24.4+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replacing-names-with-an-dictionary&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.12&lt;/span&gt; Replacing names with an dictionary&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;mymap = {&amp;#39;United Kingdom&amp;#39;:1, &amp;#39;Netherlands&amp;#39;:2, &amp;#39;Germany&amp;#39;:3, &amp;#39;France&amp;#39;:4, &amp;#39;USA&amp;#39;:5}       
+
+sales = sales.applymap(lambda s: mymap.get(s) if s in mymap else s)
+
+sales.head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   InvoiceNo StockCode  ... Country  Revenue
+## 0    536365     22752  ...       1    15.30
+## 1    536365     71053  ...       1    20.34
+## 2    536365    84029G  ...       1    20.34
+## 3    536365    85123A  ...       1    15.30
+## 4    536366     22633  ...       1    11.10
+## 
+## [5 rows x 9 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales.Country.value_counts().nlargest(7)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 1          292640
+## 3            5466
+## 4            5026
+## EIRE         4789
+## Spain        1420
+## 2            1393
+## Belgium      1191
+## Name: Country, dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;passing-objects&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.4&lt;/span&gt; Passing Objects&lt;/h2&gt;
+&lt;div id=&#34;python-to-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.4.1&lt;/span&gt; Python to R&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;data2 = pd.Series([0.25, 0.5, 0.75, 1.0])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data_t = py$data2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data_t&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    0    1    2    3 
+## 0.25 0.50 0.75 1.00&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; R&lt;/h1&gt;
+&lt;div id=&#34;knowing-data-frames-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; Knowing data frames&lt;/h2&gt;
+&lt;div id=&#34;defining-an-data-frame&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1.1&lt;/span&gt; Defining an data frame&lt;/h3&gt;
+&lt;p&gt;tidy way &lt;img src=&#34;https://media.giphy.com/media/kKLr7rlj0KwjFfCxHJ/giphy.gif&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data &amp;lt;-  tibble(0.25, 0.5, 0.75, 1.0)
+data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 4
+##   `0.25` `0.5` `0.75`   `1`
+##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1   0.25   0.5   0.75     1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
+##   `0.5`
+##   &amp;lt;dbl&amp;gt;
+## 1   0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data[2:3]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
+##   `0.5` `0.75`
+##   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+## 1   0.5   0.75&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Not using tidyverse.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data &amp;lt;-  data.frame(c(0.25, 0.5, 0.75, 1.0))
+rownames(data) &amp;lt;- 1:nrow(data)
+colnames(data) &amp;lt;- &amp;quot;nope&amp;quot;
+data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   nope
+## 1 0.25
+## 2 0.50
+## 3 0.75
+## 4 1.00&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;index-search&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1.2&lt;/span&gt; Index search&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data &amp;lt;-  data.frame(c(0.25, 0.5, 0.75, 1.0),row.names = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;d&amp;quot;))
+data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   c.0.25..0.5..0.75..1.
+## a                  0.25
+## b                  0.50
+## c                  0.75
+## d                  1.00&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data[&amp;quot;b&amp;quot;,]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-an-data-frame-from-two-r-series&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; Creating an data frame from two R series&lt;/h2&gt;
+&lt;div id=&#34;create-a-date-frame-using-an-list&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2.1&lt;/span&gt; Create a date frame using an list&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;population_dict &amp;lt;- list(
+  &amp;#39;California&amp;#39; = 38332521,
+  &amp;#39;Florida&amp;#39; = 19552860,
+  &amp;#39;Illinois&amp;#39; = 12882135,
+  &amp;#39;New York&amp;#39; = 19651127,
+  &amp;#39;Texas&amp;#39; = 26448193
+  )
+population &amp;lt;- population_dict %&amp;gt;% as_tibble()
+
+population[&amp;#39;California&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
+##   California
+##        &amp;lt;dbl&amp;gt;
+## 1   38332521&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;population %&amp;gt;% select(California:Illinois)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
+##   California  Florida Illinois
+##        &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1   38332521 19552860 12882135&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-a-date-frame-using-an-list-2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2.2&lt;/span&gt; Create a date frame using an list 2&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;area_dict = list(
+  &amp;#39;California&amp;#39; = 423967, 
+  &amp;#39;Florida&amp;#39; = 170312,
+  &amp;#39;Illinois&amp;#39; = 149995,
+  &amp;#39;New York&amp;#39; = 141297,
+  &amp;#39;Texas&amp;#39; = 695662
+  )
+area_dict %&amp;gt;% as_tibble() -&amp;gt; area
+
+area&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 5
+##   California Florida Illinois `New York`  Texas
+##        &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+## 1     423967  170312   149995     141297 695662&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;subsetting-an-data-frame-using-join-or-cbind&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2.3&lt;/span&gt; Subsetting an data frame using join or cbind&lt;/h3&gt;
+&lt;p&gt;The tidy way doesn`t support indexes so we can tidy our data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_area &amp;lt;- area %&amp;gt;% gather(key = &amp;quot;state&amp;quot;, value = &amp;quot;area&amp;quot;)
+tidy_state &amp;lt;- population %&amp;gt;% gather(key = &amp;quot;state&amp;quot;, value = &amp;quot;population&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_area&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 2
+##   state        area
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1 California 423967
+## 2 Florida    170312
+## 3 Illinois   149995
+## 4 New York   141297
+## 5 Texas      695662&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_state&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 2
+##   state      population
+##   &amp;lt;chr&amp;gt;           &amp;lt;dbl&amp;gt;
+## 1 California   38332521
+## 2 Florida      19552860
+## 3 Illinois     12882135
+## 4 New York     19651127
+## 5 Texas        26448193&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_area %&amp;gt;% left_join(tidy_state)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Joining, by = &amp;quot;state&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 3
+##   state        area population
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1 California 423967   38332521
+## 2 Florida    170312   19552860
+## 3 Illinois   149995   12882135
+## 4 New York   141297   19651127
+## 5 Texas      695662   26448193&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_merge &amp;lt;- cbind(tidy_area,tidy_state[,-1])
+
+states &amp;lt;- tidy_merge&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;some-info-on-our-data-frame&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2.4&lt;/span&gt; Some info on our data frame&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class(tidy_merge)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;data.frame&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class(tidy_merge$population)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;numeric&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class(list(tidy_merge[&amp;quot;population&amp;quot;]))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;list&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;% dim()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 5 3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;% str()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;#39;data.frame&amp;#39;:    5 obs. of  3 variables:
+##  $ state     : chr  &amp;quot;California&amp;quot; &amp;quot;Florida&amp;quot; &amp;quot;Illinois&amp;quot; &amp;quot;New York&amp;quot; ...
+##  $ area      : num  423967 170312 149995 141297 695662
+##  $ population: num  38332521 19552860 12882135 19651127 26448193&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;% glimpse()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 5
+## Variables: 3
+## $ state      &amp;lt;chr&amp;gt; &amp;quot;California&amp;quot;, &amp;quot;Florida&amp;quot;, &amp;quot;Illinois&amp;quot;, &amp;quot;New York&amp;quot;, &amp;quot;T...
+## $ area       &amp;lt;dbl&amp;gt; 423967, 170312, 149995, 141297, 695662
+## $ population &amp;lt;dbl&amp;gt; 38332521, 19552860, 12882135, 19651127, 26448193&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states[[&amp;quot;Estado&amp;quot;]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;% colnames() %&amp;gt;% tail(-1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;area&amp;quot;       &amp;quot;population&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states$area&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 423967 170312 149995 141297 695662&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-new-columns-using-mutate-and-basic-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2.5&lt;/span&gt; Creating new columns using mutate and basic R&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states$density &amp;lt;-  states$population / states$area
+states&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        state   area population   density
+## 1 California 423967   38332521  90.41393
+## 2    Florida 170312   19552860 114.80612
+## 3   Illinois 149995   12882135  85.88376
+## 4   New York 141297   19651127 139.07675
+## 5      Texas 695662   26448193  38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# or
+states$density &amp;lt;-  states[[&amp;quot;population&amp;quot;]] / states[[&amp;quot;area&amp;quot;]]
+states&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        state   area population   density
+## 1 California 423967   38332521  90.41393
+## 2    Florida 170312   19552860 114.80612
+## 3   Illinois 149995   12882135  85.88376
+## 4   New York 141297   19651127 139.07675
+## 5      Texas 695662   26448193  38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#or
+states %&amp;gt;% 
+  mutate(density = population / area)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        state   area population   density
+## 1 California 423967   38332521  90.41393
+## 2    Florida 170312   19552860 114.80612
+## 3   Illinois 149995   12882135  85.88376
+## 4   New York 141297   19651127 139.07675
+## 5      Texas 695662   26448193  38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ordering-an-data-frame-using-the-tidy-way-arrange-or-order.&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2.6&lt;/span&gt; Ordering an data frame using the tidy way arrange or order.&lt;/h3&gt;
+&lt;p&gt;You can also use -c() or desc() sometimes -c() can give strange results.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;% arrange(desc(population))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        state   area population   density
+## 1 California 423967   38332521  90.41393
+## 2      Texas 695662   26448193  38.01874
+## 3   New York 141297   19651127 139.07675
+## 4    Florida 170312   19552860 114.80612
+## 5   Illinois 149995   12882135  85.88376&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states[order(states$area),]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        state   area population   density
+## 4   New York 141297   19651127 139.07675
+## 3   Illinois 149995   12882135  85.88376
+## 2    Florida 170312   19552860 114.80612
+## 1 California 423967   38332521  90.41393
+## 5      Texas 695662   26448193  38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Mix and match all three formas
+states %&amp;gt;% arrange(-c(density),desc(population,area),state)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        state   area population   density
+## 1   New York 141297   19651127 139.07675
+## 2    Florida 170312   19552860 114.80612
+## 3 California 423967   38332521  90.41393
+## 4   Illinois 149995   12882135  85.88376
+## 5      Texas 695662   26448193  38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filtering-rows-using-standard-r-code-or-filter.&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2.7&lt;/span&gt; Filtering rows using standard R code or filter.&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states[1:3,]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        state   area population   density
+## 1 California 423967   38332521  90.41393
+## 2    Florida 170312   19552860 114.80612
+## 3   Illinois 149995   12882135  85.88376&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data_pop &amp;lt;- states[states$population &amp;gt; 19552860 &amp;amp; states$area &amp;gt; 423967,]
+data_pop&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   state   area population  density
+## 5 Texas 695662   26448193 38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;% 
+  filter(population &amp;gt; 19552860 &amp;amp; area &amp;gt; 423967)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   state   area population  density
+## 1 Texas 695662   26448193 38.01874&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;you can mix and match filter for rows and select for columns.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;% 
+  filter(density &amp;gt; 100)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      state   area population  density
+## 1  Florida 170312   19552860 114.8061
+## 2 New York 141297   19651127 139.0767&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states %&amp;gt;%
+  filter(density &amp;gt; 100) %&amp;gt;% 
+  select(population,density)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   population  density
+## 1   19552860 114.8061
+## 2   19651127 139.0767&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states[1,4]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 90.41393&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;real-case&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Real Case&lt;/h2&gt;
+&lt;div id=&#34;two-way-of-importing-an-csv&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.1&lt;/span&gt; Two way of importing an csv&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read_csv(&amp;#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
+## cols(
+##   InvoiceNo = col_character(),
+##   StockCode = col_character(),
+##   Description = col_character(),
+##   Quantity = col_double(),
+##   InvoiceDate = col_datetime(format = &amp;quot;&amp;quot;),
+##   UnitPrice = col_double(),
+##   CustomerID = col_double(),
+##   Country = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read.csv(&amp;#39;2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/UKretail.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you think this looks like an ugly path and a was of space I would agree we
+can fix this by using one of my favorite thinks from python the &#34;&#34;key I avoided.&lt;br /&gt;
+I am now using it on the python part to show the power of neat line.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;path_file = &amp;#39;\
+2019-03-23-exploratory-data-analysis-basic-pandas-and-dplyr/\
+UKretail.csv&amp;#39; &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- read_csv(py$path_file)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
+## cols(
+##   InvoiceNo = col_character(),
+##   StockCode = col_character(),
+##   Description = col_character(),
+##   Quantity = col_double(),
+##   InvoiceDate = col_datetime(format = &amp;quot;&amp;quot;),
+##   UnitPrice = col_double(),
+##   CustomerID = col_double(),
+##   Country = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally our first usefull python to r functionality!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lets-look-at-our-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.2&lt;/span&gt; Let’s look at our data&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 8
+##   InvoiceNo StockCode Description Quantity InvoiceDate         UnitPrice
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt; &amp;lt;dttm&amp;gt;                  &amp;lt;dbl&amp;gt;
+## 1 536365    22752     SET 7 BABU~        2 2010-12-01 08:26:02      7.65
+## 2 536365    71053     WHITE META~        6 2010-12-01 08:26:02      3.39
+## 3 536365    84029G    KNITTED UN~        6 2010-12-01 08:26:02      3.39
+## 4 536365    85123A    WHITE HANG~        6 2010-12-01 08:26:02      2.55
+## 5 536366    22633     HAND WARME~        6 2010-12-01 08:28:02      1.85
+## 6 536367    21754     HOME BUILD~        3 2010-12-01 08:33:59      5.95
+## # ... with 2 more variables: CustomerID &amp;lt;dbl&amp;gt;, Country &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% tail(3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 8
+##   InvoiceNo StockCode Description Quantity InvoiceDate         UnitPrice
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt; &amp;lt;dttm&amp;gt;                  &amp;lt;dbl&amp;gt;
+## 1 581587    22899     CHILDREN&amp;#39;S~        6 2011-12-09 12:49:59      2.1 
+## 2 581587    23254     CHILDRENS ~        4 2011-12-09 12:49:59      4.15
+## 3 581587    23256     CHILDRENS ~        4 2011-12-09 12:49:59      4.15
+## # ... with 2 more variables: CustomerID &amp;lt;dbl&amp;gt;, Country &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r_types_columns&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.3&lt;/span&gt; Types of columns r&lt;/h3&gt;
+&lt;p&gt;If you payed attention read_ tries to inform what conversion was used in each column that is specially cool because base R tends to create unesceassary factor whne in fact you are working with strings, but know you can choose between three different implementation of the read command.&lt;/p&gt;
+&lt;p&gt;A cool thing about tibbles is that they are in fact still data.frame.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% class()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;spec_tbl_df&amp;quot; &amp;quot;tbl_df&amp;quot;      &amp;quot;tbl&amp;quot;         &amp;quot;data.frame&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pay attention to the R difference between “[[” and “[” if you recall this is the “opposite” of the python behavior.&lt;br /&gt;
+Jump to &lt;a href=&#34;#py_types_columns&#34;&gt;python implementation&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales[[&amp;quot;CustomerID&amp;quot;]] %&amp;gt;% class()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;numeric&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales[&amp;quot;CustomerID&amp;quot;] %&amp;gt;% class()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;tbl_df&amp;quot;     &amp;quot;tbl&amp;quot;        &amp;quot;data.frame&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic-description-real-data-using-glimpse-and-str&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.4&lt;/span&gt; Basic Description real data using Glimpse and str&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% dim()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 325145      8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% colnames()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;InvoiceNo&amp;quot;   &amp;quot;StockCode&amp;quot;   &amp;quot;Description&amp;quot; &amp;quot;Quantity&amp;quot;    &amp;quot;InvoiceDate&amp;quot;
+## [6] &amp;quot;UnitPrice&amp;quot;   &amp;quot;CustomerID&amp;quot;  &amp;quot;Country&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% glimpse()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 325,145
+## Variables: 8
+## $ InvoiceNo   &amp;lt;chr&amp;gt; &amp;quot;536365&amp;quot;, &amp;quot;536365&amp;quot;, &amp;quot;536365&amp;quot;, &amp;quot;536365&amp;quot;, &amp;quot;536366&amp;quot;, ...
+## $ StockCode   &amp;lt;chr&amp;gt; &amp;quot;22752&amp;quot;, &amp;quot;71053&amp;quot;, &amp;quot;84029G&amp;quot;, &amp;quot;85123A&amp;quot;, &amp;quot;22633&amp;quot;, &amp;quot;21...
+## $ Description &amp;lt;chr&amp;gt; &amp;quot;SET 7 BABUSHKA NESTING BOXES&amp;quot;, &amp;quot;WHITE METAL LANTE...
+## $ Quantity    &amp;lt;dbl&amp;gt; 2, 6, 6, 6, 6, 3, 3, 4, 6, 6, 6, 8, 4, 3, 3, 48, 2...
+## $ InvoiceDate &amp;lt;dttm&amp;gt; 2010-12-01 08:26:02, 2010-12-01 08:26:02, 2010-12...
+## $ UnitPrice   &amp;lt;dbl&amp;gt; 7.65, 3.39, 3.39, 2.55, 1.85, 5.95, 5.95, 7.95, 1....
+## $ CustomerID  &amp;lt;dbl&amp;gt; 17850, 17850, 17850, 17850, 17850, 13047, 13047, 1...
+## $ Country     &amp;lt;chr&amp;gt; &amp;quot;United Kingdom&amp;quot;, &amp;quot;United Kingdom&amp;quot;, &amp;quot;United Kingdo...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% str()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Classes &amp;#39;spec_tbl_df&amp;#39;, &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;: 325145 obs. of  8 variables:
+##  $ InvoiceNo  : chr  &amp;quot;536365&amp;quot; &amp;quot;536365&amp;quot; &amp;quot;536365&amp;quot; &amp;quot;536365&amp;quot; ...
+##  $ StockCode  : chr  &amp;quot;22752&amp;quot; &amp;quot;71053&amp;quot; &amp;quot;84029G&amp;quot; &amp;quot;85123A&amp;quot; ...
+##  $ Description: chr  &amp;quot;SET 7 BABUSHKA NESTING BOXES&amp;quot; &amp;quot;WHITE METAL LANTERN&amp;quot; &amp;quot;KNITTED UNION FLAG HOT WATER BOTTLE&amp;quot; &amp;quot;WHITE HANGING HEART T-LIGHT HOLDER&amp;quot; ...
+##  $ Quantity   : num  2 6 6 6 6 3 3 4 6 6 ...
+##  $ InvoiceDate: POSIXct, format: &amp;quot;2010-12-01 08:26:02&amp;quot; &amp;quot;2010-12-01 08:26:02&amp;quot; ...
+##  $ UnitPrice  : num  7.65 3.39 3.39 2.55 1.85 5.95 5.95 7.95 1.65 2.1 ...
+##  $ CustomerID : num  17850 17850 17850 17850 17850 ...
+##  $ Country    : chr  &amp;quot;United Kingdom&amp;quot; &amp;quot;United Kingdom&amp;quot; &amp;quot;United Kingdom&amp;quot; &amp;quot;United Kingdom&amp;quot; ...
+##  - attr(*, &amp;quot;spec&amp;quot;)=
+##   .. cols(
+##   ..   InvoiceNo = col_character(),
+##   ..   StockCode = col_character(),
+##   ..   Description = col_character(),
+##   ..   Quantity = col_double(),
+##   ..   InvoiceDate = col_datetime(format = &amp;quot;&amp;quot;),
+##   ..   UnitPrice = col_double(),
+##   ..   CustomerID = col_double(),
+##   ..   Country = col_character()
+##   .. )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% summary()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   InvoiceNo          StockCode         Description       
+##  Length:325145      Length:325145      Length:325145     
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##                                                          
+##     Quantity          InvoiceDate                    UnitPrice        
+##  Min.   :-80995.00   Min.   :2010-12-01 08:26:02   Min.   :-11062.06  
+##  1st Qu.:     1.00   1st Qu.:2011-03-28 12:13:02   1st Qu.:     1.25  
+##  Median :     3.00   Median :2011-07-20 10:50:59   Median :     2.08  
+##  Mean   :     9.27   Mean   :2011-07-04 14:11:43   Mean   :     4.85  
+##  3rd Qu.:    10.00   3rd Qu.:2011-10-19 10:47:59   3rd Qu.:     4.13  
+##  Max.   : 12540.00   Max.   :2011-12-09 12:49:59   Max.   : 38970.00  
+##                                                                       
+##    CustomerID      Country         
+##  Min.   :12347   Length:325145     
+##  1st Qu.:13959   Class :character  
+##  Median :15150   Mode  :character  
+##  Mean   :15289                     
+##  3rd Qu.:16793                     
+##  Max.   :18287                     
+##  NA&amp;#39;s   :80991&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you agree with me that summary sucks on a data.frame object I am glad to show skimr, also if you don’t like summary behaviour on model outputs &lt;a href=&#34;https://cran.r-project.org/web/packages/broom/index.html&#34;&gt;broom&lt;/a&gt; is there to save you, I will talk more about when I make an &lt;a href=&#34;https://scikit-learn.org/stable/&#34;&gt;scikit-learn&lt;/a&gt; and &lt;a href=&#34;https://topepo.github.io/caret/&#34;&gt;caret&lt;/a&gt; + &lt;a href=&#34;https://www.tidyverse.org/articles/2018/08/tidymodels-0-0-1/&#34;&gt;tidymodels&lt;/a&gt; post.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;subsetting-data-with-select-or-base-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.5&lt;/span&gt; Subsetting Data with select or base R&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales[1:4,]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 x 8
+##   InvoiceNo StockCode Description Quantity InvoiceDate         UnitPrice
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt; &amp;lt;dttm&amp;gt;                  &amp;lt;dbl&amp;gt;
+## 1 536365    22752     SET 7 BABU~        2 2010-12-01 08:26:02      7.65
+## 2 536365    71053     WHITE META~        6 2010-12-01 08:26:02      3.39
+## 3 536365    84029G    KNITTED UN~        6 2010-12-01 08:26:02      3.39
+## 4 536365    85123A    WHITE HANG~        6 2010-12-01 08:26:02      2.55
+## # ... with 2 more variables: CustomerID &amp;lt;dbl&amp;gt;, Country &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales$CustomerID %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 17850 17850 17850 17850 17850 13047&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales[[&amp;quot;CustomerID&amp;quot;]] %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 17850 17850 17850 17850 17850 13047&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales[,3] %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 1
+##   Description                        
+##   &amp;lt;chr&amp;gt;                              
+## 1 SET 7 BABUSHKA NESTING BOXES       
+## 2 WHITE METAL LANTERN                
+## 3 KNITTED UNION FLAG HOT WATER BOTTLE
+## 4 WHITE HANGING HEART T-LIGHT HOLDER 
+## 5 HAND WARMER UNION JACK             
+## 6 HOME BUILDING BLOCK WORD&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales[1:5,3]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 1
+##   Description                        
+##   &amp;lt;chr&amp;gt;                              
+## 1 SET 7 BABUSHKA NESTING BOXES       
+## 2 WHITE METAL LANTERN                
+## 3 KNITTED UNION FLAG HOT WATER BOTTLE
+## 4 WHITE HANGING HEART T-LIGHT HOLDER 
+## 5 HAND WARMER UNION JACK&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales$Revenue2 &amp;lt;- sales$Quantity * sales$UnitPrice
+
+sales[[&amp;quot;Revenue3&amp;quot;]] &amp;lt;- sales[[&amp;quot;Quantity&amp;quot;]] * sales[[&amp;quot;UnitPrice&amp;quot;]]
+
+# () show created objects 
+# Strange behavior right here 6 rowns on head()
+(sales &amp;lt;- sales %&amp;gt;% mutate(Revenue = Quantity * UnitPrice)) %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 11
+##   InvoiceNo StockCode Description Quantity InvoiceDate         UnitPrice
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt; &amp;lt;dttm&amp;gt;                  &amp;lt;dbl&amp;gt;
+## 1 536365    22752     SET 7 BABU~        2 2010-12-01 08:26:02      7.65
+## 2 536365    71053     WHITE META~        6 2010-12-01 08:26:02      3.39
+## 3 536365    84029G    KNITTED UN~        6 2010-12-01 08:26:02      3.39
+## 4 536365    85123A    WHITE HANG~        6 2010-12-01 08:26:02      2.55
+## 5 536366    22633     HAND WARME~        6 2010-12-01 08:28:02      1.85
+## 6 536367    21754     HOME BUILD~        3 2010-12-01 08:33:59      5.95
+## # ... with 5 more variables: CustomerID &amp;lt;dbl&amp;gt;, Country &amp;lt;chr&amp;gt;,
+## #   Revenue2 &amp;lt;dbl&amp;gt;, Revenue3 &amp;lt;dbl&amp;gt;, Revenue &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(sales$Revenue == sales$Revenue2)/nrow(sales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(sales$Revenue == sales$Revenue3)/nrow(sales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(sales$Revenue2 == sales$Revenue3)/nrow(sales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# If there were any differences between our columns the sum would return &amp;lt;1    &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-new-smaller-data-frame-using-transmute-and-base&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.6&lt;/span&gt; Creating a new smaller data frame using transmute and base&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;raw_sales &amp;lt;- sales %&amp;gt;% select(Quantity, UnitPrice, Revenue)
+
+raw_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 3
+##   Quantity UnitPrice Revenue
+##      &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1        2      7.65    15.3
+## 2        6      3.39    20.3
+## 3        6      3.39    20.3
+## 4        6      2.55    15.3
+## 5        6      1.85    11.1
+## 6        3      5.95    17.8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;raw_sales %&amp;gt;% glimpse()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 325,145
+## Variables: 3
+## $ Quantity  &amp;lt;dbl&amp;gt; 2, 6, 6, 6, 6, 3, 3, 4, 6, 6, 6, 8, 4, 3, 3, 48, 24,...
+## $ UnitPrice &amp;lt;dbl&amp;gt; 7.65, 3.39, 3.39, 2.55, 1.85, 5.95, 5.95, 7.95, 1.65...
+## $ Revenue   &amp;lt;dbl&amp;gt; 15.30, 20.34, 20.34, 15.30, 11.10, 17.85, 17.85, 31....&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;raw_sales %&amp;gt;% skimr::skim()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Skim summary statistics
+##  n obs: 325145 
+##  n variables: 3 
+## 
+## -- Variable type:numeric ------------------------------------------------
+##   variable missing complete      n  mean     sd         p0  p25  p50   p75
+##   Quantity       0   325145 325145  9.27 154.39  -80995    1    3    10   
+##    Revenue       0   325145 325145 17.43 331.85 -168469.6  3.4  9.48 17.4 
+##  UnitPrice       0   325145 325145  4.85 116.83  -11062.06 1.25 2.08  4.13
+##   p100     hist
+##  12540 &amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;
+##  38970 &amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;
+##  38970 &amp;lt;U+2581&amp;gt;&amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ploting-with-ggplot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.7&lt;/span&gt; Ploting with ggplot&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% ggplot() +
+  aes(x = InvoiceDate, y = Revenue) +
+  geom_line()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filtering_r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
+&lt;p&gt;Here I really couldn`t figure out an easy way to filter using this
+cancel tricky that works in &lt;a href=&#34;#filtering_py&#34;&gt;python&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cancels = sales$Revenue &amp;lt; 0
+cancels %&amp;gt;% nrow()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;invert_func &amp;lt;- function(cancel){
+  ifelse(cancel == 1,
+         0,
+         1)
+  }
+
+
+sales2 = sales[invert_func(cancels),]
+
+sales2 %&amp;gt;% dim()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 319557     11&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I really prefer the tidy way also.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales &amp;lt;- sales %&amp;gt;% filter(Revenue &amp;gt; 0)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;groupby-example-in-tidyverse&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.9&lt;/span&gt; Groupby example in tidyverse&lt;/h3&gt;
+&lt;p&gt;I prefer the tidy way here as well.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;CountryGroups &amp;lt;- sales %&amp;gt;% 
+  group_by(Country) %&amp;gt;% 
+  summarise(sum_revenue = sum(Revenue),
+            number_cases = n()) %&amp;gt;% 
+  arrange(-sum_revenue)
+
+CountryGroups&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 38 x 3
+##    Country        sum_revenue number_cases
+##    &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;        &amp;lt;int&amp;gt;
+##  1 United Kingdom    5311080.       291129
+##  2 EIRE               176305.         4788
+##  3 Netherlands        165583.         1391
+##  4 Germany            138778.         5465
+##  5 France             127194.         5025
+##  6 Australia           79198.          726
+##  7 Spain               36117.         1420
+##  8 Switzerland         34315.         1169
+##  9 Belgium             24015.         1191
+## 10 Norway              23182.          658
+## # ... with 28 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;skimr::skim(sales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Skim summary statistics
+##  n obs: 318036 
+##  n variables: 11 
+## 
+## -- Variable type:character ----------------------------------------------
+##     variable missing complete      n min max empty n_unique
+##      Country       0   318036 318036   3  20     0       38
+##  Description       0   318036 318036   6  35     0     3926
+##    InvoiceNo       0   318036 318036   6   7     0    19107
+##    StockCode       0   318036 318036   1  12     0     3835
+## 
+## -- Variable type:numeric ------------------------------------------------
+##    variable missing complete      n     mean      sd        p0      p25
+##  CustomerID   79261   238775 318036 15295.34 1713.1  12347     13969   
+##    Quantity       0   318036 318036    10.25   38.3      1         1   
+##     Revenue       0   318036 318036    19.78  104.17     0.001     3.75
+##    Revenue2       0   318036 318036    19.78  104.17     0.001     3.75
+##    Revenue3       0   318036 318036    19.78  104.17     0.001     3.75
+##   UnitPrice       0   318036 318036     3.96   42.53     0.001     1.25
+##       p50      p75     p100     hist
+##  15157    16800    18287    &amp;lt;U+2587&amp;gt;&amp;lt;U+2586&amp;gt;&amp;lt;U+2587&amp;gt;&amp;lt;U+2587&amp;gt;&amp;lt;U+2586&amp;gt;&amp;lt;U+2586&amp;gt;&amp;lt;U+2586&amp;gt;&amp;lt;U+2587&amp;gt;
+##      3       10     4800    &amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;
+##      9.9     17.7  38970    &amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;
+##      9.9     17.7  38970    &amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;
+##      9.9     17.7  38970    &amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;
+##      2.08     4.13 13541.33 &amp;lt;U+2587&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;&amp;lt;U+2581&amp;gt;
+## 
+## -- Variable type:POSIXct ------------------------------------------------
+##     variable missing complete      n        min        max     median
+##  InvoiceDate       0   318036 318036 2010-12-01 2011-12-09 2011-07-20
+##  n_unique
+##     17750&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ploting-an-histogram-using-ggplot2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.10&lt;/span&gt; Ploting an histogram using ggplot2&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;%
+  filter(CustomerID == 17850) %&amp;gt;% 
+  ggplot() +
+  aes(Revenue) +
+  geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Another example.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;%
+  filter(StockCode == 71053) %&amp;gt;% 
+  ggplot() +
+  aes(Revenue) +
+  geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;missing_values_r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.11&lt;/span&gt; Handling Missing values in R&lt;/h3&gt;
+&lt;p&gt;Ok I got hand this one to &lt;a href=&#34;#missing_values_py&#34;&gt;python&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales2$CustomerID %&amp;gt;% 
+  table(useNA = &amp;#39;always&amp;#39;) %&amp;gt;%
+  sort(decreasing = TRUE) %&amp;gt;%
+  head(3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## .
+##  17850   &amp;lt;NA&amp;gt; 
+## 319557      0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is just not simple enough luckly we can create functions for our afflictions, plus this is replacement as an side effect which sucks.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#sales[sales[[&amp;quot;CustomerID&amp;quot;]] %&amp;gt;% is.na(),&amp;quot;CustomerID&amp;quot;] &amp;lt;- 0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is an way better tidy way.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# sales %&amp;gt;% mutate_if(is.numeric, funs(replace(., is.na(.), 0)))
+sales2 &amp;lt;- sales %&amp;gt;% mutate_at(vars(CustomerID),
+                    list(
+                      ~replace(.,
+                              is.na(.), # function that check condition (na)
+                              0) # value to replace could be mean(.,na.rm = T)
+                      )
+                    )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using an stronger method like mice even with an &lt;a href=&#34;https://cran.r-project.org/web/packages/micemd/index.html&#34;&gt;amazing multicore package&lt;/a&gt; takes too long for an blogpost, plus I really don’t think there should be an model for CustomerID here is some workflow if you need to split your data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;non_character_sales &amp;lt;- sales %&amp;gt;%
+  select_if(function(col)
+    is.numeric(col) |
+      is.factor(col))
+
+# or my favorite
+select_cases &amp;lt;- function(col) {
+  is.numeric(col) |
+  is.factor(col)
+}
+
+non_character_sales &amp;lt;- sales %&amp;gt;% select_if(select_cases)
+
+non_character_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 6
+##   Quantity UnitPrice CustomerID Revenue2 Revenue3 Revenue
+##      &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1        2      7.65      17850     15.3     15.3    15.3
+## 2        6      3.39      17850     20.3     20.3    20.3
+## 3        6      3.39      17850     20.3     20.3    20.3
+## 4        6      2.55      17850     15.3     15.3    15.3
+## 5        6      1.85      17850     11.1     11.1    11.1
+## 6        3      5.95      13047     17.8     17.8    17.8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;character_sales &amp;lt;- sales %&amp;gt;% select_if(negate(is.numeric))
+
+character_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 5
+##   InvoiceNo StockCode Description            InvoiceDate         Country   
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;                  &amp;lt;dttm&amp;gt;              &amp;lt;chr&amp;gt;     
+## 1 536365    22752     SET 7 BABUSHKA NESTIN~ 2010-12-01 08:26:02 United Ki~
+## 2 536365    71053     WHITE METAL LANTERN    2010-12-01 08:26:02 United Ki~
+## 3 536365    84029G    KNITTED UNION FLAG HO~ 2010-12-01 08:26:02 United Ki~
+## 4 536365    85123A    WHITE HANGING HEART T~ 2010-12-01 08:26:02 United Ki~
+## 5 536366    22633     HAND WARMER UNION JACK 2010-12-01 08:28:02 United Ki~
+## 6 536367    21754     HOME BUILDING BLOCK W~ 2010-12-01 08:33:59 United Ki~&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales3 &amp;lt;- cbind(character_sales,non_character_sales)
+
+# if you need the same order
+
+sales3 &amp;lt;- sales3 %&amp;gt;% select(names(sales)) &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replacing-names-with-an-case-when-aproach&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.12&lt;/span&gt; Replacing names with an case when aproach&lt;/h3&gt;
+&lt;p&gt;Don’t mix and match numbers and characters else this will cause an error.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;replace_function &amp;lt;-  function(country) {
+  case_when(
+  country == &amp;#39;United Kingdom&amp;#39; ~ &amp;quot;1&amp;quot;,
+  country == &amp;#39;Netherlands&amp;#39; ~ &amp;quot;2&amp;quot;,
+  country == &amp;#39;Germany&amp;#39; ~ &amp;quot;3&amp;quot;,
+  country == &amp;#39;France&amp;#39; ~ &amp;quot;4&amp;quot;,
+  country == &amp;#39;USA&amp;#39; ~ &amp;quot;5&amp;quot;,
+  TRUE    ~ country
+)
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales3 &amp;lt;- sales3 %&amp;gt;% mutate(new = replace_function(Country))
+
+sales3 %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   InvoiceNo StockCode                         Description Quantity
+## 1    536365     22752        SET 7 BABUSHKA NESTING BOXES        2
+## 2    536365     71053                 WHITE METAL LANTERN        6
+## 3    536365    84029G KNITTED UNION FLAG HOT WATER BOTTLE        6
+## 4    536365    85123A  WHITE HANGING HEART T-LIGHT HOLDER        6
+## 5    536366     22633              HAND WARMER UNION JACK        6
+## 6    536367     21754            HOME BUILDING BLOCK WORD        3
+##           InvoiceDate UnitPrice CustomerID        Country Revenue2
+## 1 2010-12-01 08:26:02      7.65      17850 United Kingdom    15.30
+## 2 2010-12-01 08:26:02      3.39      17850 United Kingdom    20.34
+## 3 2010-12-01 08:26:02      3.39      17850 United Kingdom    20.34
+## 4 2010-12-01 08:26:02      2.55      17850 United Kingdom    15.30
+## 5 2010-12-01 08:28:02      1.85      17850 United Kingdom    11.10
+## 6 2010-12-01 08:33:59      5.95      13047 United Kingdom    17.85
+##   Revenue3 Revenue new
+## 1    15.30   15.30   1
+## 2    20.34   20.34   1
+## 3    20.34   20.34   1
+## 4    15.30   15.30   1
+## 5    11.10   11.10   1
+## 6    17.85   17.85   1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Two ways of solving our case_count deficiency.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;value_counts &amp;lt;- function(column, useNA = &amp;#39;always&amp;#39;, decreasing = TRUE) {
+  column %&amp;gt;% 
+  table(useNA = useNA) %&amp;gt;%
+  sort(decreasing = decreasing)
+}
+
+sales3[[&amp;quot;new&amp;quot;]] %&amp;gt;% value_counts() %&amp;gt;% head(7)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## .
+##       1       3       4    EIRE   Spain       2 Belgium 
+##  291129    5465    5025    4788    1420    1391    1191&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;passing-objects-to-python&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; Passing Objects to Python&lt;/h2&gt;
+&lt;p&gt;Simple example.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales2 = r.sales2
+type(sales2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can solve our value_counts problem by simply stealing from python then returning the results to r.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales3_solution = \
+r.\
+sales3.\
+new.\
+value_counts().\
+nlargest(7)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we want to continue working in r after the steal.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales3_solution = py$sales3_solution
+sales3_solution&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       1       3       4    EIRE   Spain       2 Belgium 
+##  291129    5465    5025    4788    1420    1391    1191&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/7zW0iLn9SKYao6f8sE/giphy.gif&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

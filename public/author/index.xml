@@ -4,11 +4,9 @@
     <title>Authors on TwoSidesData</title>
     <link>/author/</link>
     <description>Recent content in Authors on TwoSidesData</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    
-	<atom:link href="/author/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/author/" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>

@@ -7,6 +7,8 @@
 # Title of your site
 title = "TwoSidesData"
 
+
+
 # The URL of your site.
 # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
 baseurl = "https://twosidesdata.netlify.com/"
@@ -19,7 +21,7 @@ copyright = ""
 googleAnalytics = "UA-136744370-1"
 
 # Enable comments by entering your Disqus shortname
-disqusShortname = "@bruno_carlin"
+disqusShortname = "twosidesdata"
 
 ############################
 ## Advanced options below ##
@@ -48,6 +50,8 @@ preserveTaxonomyNames = true
 [outputs]
   home = [ "HTML", "CSS", "RSS", "JSON" ]
   section = [ "HTML", "RSS" ]
+  taxonomy = [ "HTML", "RSS" ]
+  taxonomyTerm = [ "HTML", "RSS" ]
 
 # Configure BlackFriday Markdown rendering.
 #   See: https://gohugo.io/getting-started/configuration/#configure-blackfriday
