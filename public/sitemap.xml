@@ -9,6 +9,12 @@
   
     <url>
     
+      <loc>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</loc>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
       <loc>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</loc>
       <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     </url>
@@ -67,6 +73,11 @@
   
     <url>
     
+      <loc>/cv/cv/</loc>
+    </url>
+  
+    <url>
+    
       <loc>/publication_types/1/</loc>
       <lastmod>2013-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
@@ -99,6 +110,12 @@
   
     <url>
     
+      <loc>/cv/</loc>
+      <priority>0</priority>
+    </url>
+  
+    <url>
+    
       <loc>/authors/ga-cushen/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
@@ -121,7 +138,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   
@@ -148,14 +165,14 @@
     <url>
     
       <loc>/tags/r-markdown/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   
     <url>
     
       <loc>/categories/r-and-python/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   
@@ -206,7 +223,7 @@
     <url>
     
       <loc>/tags/dplyr/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   
@@ -227,28 +244,35 @@
     <url>
     
       <loc>/tags/pandas/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   
     <url>
     
       <loc>/categories/r-project/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   
     <url>
     
       <loc>/tags/reticulate/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+  
+    <url>
+    
+      <loc>/tags/scipy/</loc>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   
     <url>
     
       <loc>/tags/tidyverse/</loc>
-      <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
   

@@ -6,8 +6,21 @@
     <description>Recent content in R and Python on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/categories/r-and-python/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>exploratory data analysis: basic statistical inference</title>
+      <link>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</link>
+      <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</guid>
+      <description>
+
+
+
+</description>
+    </item>
     
     <item>
       <title>exploratory data analysis: basic pandas and dplyr</title>
