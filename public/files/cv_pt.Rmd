@@ -19,12 +19,6 @@ library(vitae)
 
 # Educação
 
-## Porto Seguro
-
-[Curso Técnico - Comércio Exterior](https://www.portoseguro.org.br/conteudo/detalhe/currculo-brasileiro/ensino-mdio-comrcio-exterior)
-
-Finalizado 2013
-
 ## Insper
 
 [Bacharelado em Economia](https://www.insper.edu.br/graduacao/economia/)
@@ -35,6 +29,12 @@ Finalizado 2013
 
 [Cursando Data Science](https://br.digitalhouse.com/curso/data-science/)
 
+## Porto Seguro
+
+[Curso Técnico - Comércio Exterior](https://www.portoseguro.org.br/conteudo/detalhe/currculo-brasileiro/ensino-mdio-comrcio-exterior)
+
+Finalizado 2013
+
 # Experiência
 
 ## Bayer
@@ -43,14 +43,11 @@ Tenho um ano de experiencia de trabalho como estagiário de finanças da área d
 
 Executei um projeto de previsões usando o meu próprio algoritmo escrito na linguagem R, a ideia do projeto foi melhorar nossas previsões de forma automática.
 
-Eu tive a oportunidade de participar de disciplinas eletivas sobre R para ciência de dados (tidydata), e aprendizagem estatística no Insper que ajudaram muito na execução do projeto.
-
-Me interesso por ciência de dados, finanças e economia.
-
 ## Ernst & Young
 
-Estou começando no dia 08/04.
+Trainee [FAAS](https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services).
 
+Em treinamento.
 
 # Idiomas
 
@@ -58,7 +55,7 @@ Estou começando no dia 08/04.
 
 Avançado-Fluente.
 
-Sem certificação porém eu uso no dia a dia.
+Sem certificação porém eu uso no dia a dia, realizei intercâmbio para a inglaterra pelo escola e já viajei para diversos países usando o inglês como meio principal de comunicação.
 
 ## Alemão
 
@@ -72,3 +69,9 @@ Certificação B1, pórem não pratico desde o Colégio.
 Básico
 
 Sem Certifacação.
+
+## Interesses
+
+Eu tive a oportunidade de participar de disciplinas eletivas sobre R para ciência de dados (tidydata), e aprendizagem estatística no Insper que ajudaram muito na execução do projeto.
+
+Me interesso por ciência de dados, finanças e economia.

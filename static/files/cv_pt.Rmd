@@ -1,0 +1,77 @@
+---
+name: Bruno Testaguzza Carlin
+position: "Trainee"
+address: "Ernst & Young - São Paulo"
+phone: +55 11 99376-5775
+www: twosidesdata.netlify.com/
+email: "brunotestaguzza@gmail.com"
+twitter: BrunoTestaguzza
+github: brunocarlin
+linkedin: bruno-carlin-451007172
+date: "`r format(Sys.time(), '%B %Y')`"
+output: vitae::awesomecv
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+```
+
+# Educação
+
+## Insper
+
+[Bacharelado em Economia](https://www.insper.edu.br/graduacao/economia/)
+
+2014-2018.
+
+## Digital House
+
+[Cursando Data Science](https://br.digitalhouse.com/curso/data-science/)
+
+## Porto Seguro
+
+[Curso Técnico - Comércio Exterior](https://www.portoseguro.org.br/conteudo/detalhe/currculo-brasileiro/ensino-mdio-comrcio-exterior)
+
+Finalizado 2013
+
+# Experiência
+
+## Bayer
+
+Tenho um ano de experiencia de trabalho como estagiário de finanças da área de Risk Managment na Bayer. Fui responsável pela criação, automação e manutenção de relatórios para a área de crédito e tesouraria. Meu principal diferencial nessas tarefas foi a busca por novas maneiras de melhorar nossos processos, usando ferramentas como o VBA, power query e power pivot.
+
+Executei um projeto de previsões usando o meu próprio algoritmo escrito na linguagem R, a ideia do projeto foi melhorar nossas previsões de forma automática.
+
+## Ernst & Young
+
+Trainee [FAAS](https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services).
+
+Em treinamento.
+
+# Idiomas
+
+## Inglês
+
+Avançado-Fluente.
+
+Sem certificação porém eu uso no dia a dia, realizei intercâmbio para a inglaterra pelo escola e já viajei para diversos países usando o inglês como meio principal de comunicação.
+
+## Alemão
+
+Básico-Intermediario
+
+Certificação B1, pórem não pratico desde o Colégio.
+
+
+## Espanhol
+
+Básico
+
+Sem Certifacação.
+
+## Interesses
+
+Eu tive a oportunidade de participar de disciplinas eletivas sobre R para ciência de dados (tidydata), e aprendizagem estatística no Insper que ajudaram muito na execução do projeto.
+
+Me interesso por ciência de dados, finanças e economia.
