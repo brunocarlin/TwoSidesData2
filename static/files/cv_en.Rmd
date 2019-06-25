@@ -21,6 +21,10 @@ library(vitae)
 
 ## Insper
 
+[Post-graduate Degree Data Science and Decisions](https://www.insper.edu.br/pos-graduacao/programas-avancados/programa-avancado-em-data-science-e-decisao/)
+
+2019-2020.
+
 [Graduation Economics](https://www.insper.edu.br/graduacao/economia/)
 
 2014-2018.
@@ -72,7 +76,9 @@ Basic.
 
 No Certification.
 
-## Data Science Skills
+
+
+# Data Science Skills
 
 I am an  eager to learn Data Science, following blogs, reddit, reading books, doing online an on site courses, watching conference videos and more.
 

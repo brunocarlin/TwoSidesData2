@@ -21,6 +21,10 @@ library(vitae)
 
 ## Insper
 
+[Pós-graduação Data Science e decisão](https://www.insper.edu.br/pos-graduacao/programas-avancados/programa-avancado-em-data-science-e-decisao/)
+
+2019-2020.
+
 [Bacharelado em Economia](https://www.insper.edu.br/graduacao/economia/)
 
 2014-2018.
@@ -39,7 +43,7 @@ Finalizado 2013
 
 ## [Ernst & Young](https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services)
 
-Trabalho como especialista em tecnologias de dados em clientes que contratam a área em busca de consultorias para resolver problemas em grande escala que necessitam de inteligência profissional em soluções novas ou mais modernas aos seus problemas contábeis, também realizo a análise e documentação de sistemas já implementados.
+Trabalho como Trainee resolvendo problemas contábeis em grande escala, também realizo a análise e documentação de sistemas já implementados.
 
 ## Bayer
 
@@ -65,10 +69,6 @@ Certificação B1, pórem não pratico desde o Colégio.
 
 Básico
 
-Sem Certifacação.
+# Interesses profissionais
 
-## Interesses
-
-Eu tive a oportunidade de participar de disciplinas eletivas sobre R para ciência de dados (tidydata), e aprendizagem estatística no Insper.
-
-Me interesso por ciência de dados, finanças e economia.
+Ciência de dados, finanças e economia.
