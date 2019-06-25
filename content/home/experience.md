@@ -17,10 +17,27 @@ date_format = "Jan 2006"
 #   Required fields are `title`, `company`, and `date_start`.
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
+
+[[experience]]
+  title = "Trainee - FAAS"
+  company = "EY"
+  company_url = "https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services"
+  location = "São Paulo"
+  date_start = "2019-04-08"
+  date_end = ""
+  description = """
+  Responsabilities Include:
+  
+  * Delivering large scale accounting automation projects
+  * Documentation and analysis of already implemented accounting solutions
+
+  """
+  
+  
 [[experience]]
   title = "Intern - Risk Managment - Process Improvement - Reporting"
   company = "Bayer"
-  company_url = ""
+  company_url = "https://www.bayer.com.br/"
   location = "São Paulo"
   date_start = "2018-01-19"
   date_end = "2018-12-31"

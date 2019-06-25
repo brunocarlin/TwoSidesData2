@@ -1,0 +1,581 @@
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2019.4.5)  12 APR 2019 01:32
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**cv_en.tex
+(./cv_en.tex
+LaTeX2e <2018-12-01>
+(./awesome-cv.cls
+Document Class: awesome-cv 2017/02/05 v1.6.1 Awesome Curriculum Vitae Class
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen103
+\ar@mcellbox=\box27
+\extrarowheight=\dimen104
+\NC@list=\toks14
+\extratabsurround=\skip43
+\backup@length=\skip44
+\ar@cellbox=\box28
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.
+sty
+Package: enumitem 2019/02/04 v3.8 Customized lists
+\enitkv@toks@=\toks15
+\labelindent=\skip45
+\enit@outerparindent=\dimen105
+\enit@toks=\toks16
+\enit@inbox=\box29
+\enit@count@id=\count88
+\enitdp@description=\count89
+) (c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ms/ragged2e.sty
+Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ms/everysel.sty
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip46
+\RaggedLeftLeftskip=\skip47
+\RaggedRightLeftskip=\skip48
+\CenteringRightskip=\skip49
+\RaggedLeftRightskip=\skip50
+\RaggedRightRightskip=\skip51
+\CenteringParfillskip=\skip52
+\RaggedLeftParfillskip=\skip53
+\RaggedRightParfillskip=\skip54
+\JustifyingParfillskip=\skip55
+\CenteringParindent=\skip56
+\RaggedLeftParindent=\skip57
+\RaggedRightParindent=\skip58
+\JustifyingParindent=\skip59
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geometry.
+sty
+Package: geometry 2018/04/16 v5.8 Page Geometry
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.st
+y
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/ifpdf.s
+ty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/ifvtex.
+sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ifxetex/ifxetex.
+sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count90
+\Gm@cntv=\count91
+\c@Gm@tempcnt=\count92
+\Gm@bindingoffset=\dimen106
+\Gm@wd@mp=\dimen107
+\Gm@odd@mp=\dimen108
+\Gm@even@mp=\dimen109
+\Gm@layoutwidth=\dimen110
+\Gm@layoutheight=\dimen111
+\Gm@layouthoffset=\dimen112
+\Gm@layoutvoffset=\dimen113
+\Gm@dimlist=\toks18
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.
+sty
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip60
+\f@nch@O@elh=\skip61
+\f@nch@O@erh=\skip62
+\f@nch@O@olh=\skip63
+\f@nch@O@orh=\skip64
+\f@nch@O@elf=\skip65
+\f@nch@O@erf=\skip66
+\f@nch@O@olf=\skip67
+\f@nch@O@orf=\skip68
+) (c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.st
+y
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color
+.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex
+.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xifthen/xifthen.st
+y
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count93
+\calc@Bcount=\count94
+\calc@Adimen=\dimen114
+\calc@Bdimen=\dimen115
+\calc@Askip=\skip69
+\calc@Bskip=\skip70
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count95
+\calc@Cskip=\skip71
+) (c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ifmtarg/ifmtarg.st
+y
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.
+sty
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count96
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/setspace/setspace.
+sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.
+sty
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/
+xparse.sty
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2019-02-15 L3 programming layer (loader) 
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3-cod
+e.tex
+Package: expl3 2019-02-15 L3 programming layer (code)
+\c_max_int=\count97
+\l_tmpa_int=\count98
+\l_tmpb_int=\count99
+\g_tmpa_int=\count100
+\g_tmpb_int=\count101
+\g__kernel_prg_map_int=\count102
+\c_log_iow=\count103
+\l_iow_line_count_int=\count104
+\l__iow_line_target_int=\count105
+\l__iow_one_indent_int=\count106
+\l__iow_indent_int=\count107
+\c_zero_dim=\dimen116
+\c_max_dim=\dimen117
+\l_tmpa_dim=\dimen118
+\l_tmpb_dim=\dimen119
+\g_tmpa_dim=\dimen120
+\g_tmpb_dim=\dimen121
+\c_zero_skip=\skip72
+\c_max_skip=\skip73
+\l_tmpa_skip=\skip74
+\l_tmpb_skip=\skip75
+\g_tmpa_skip=\skip76
+\g_tmpb_skip=\skip77
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+\l_keys_choice_int=\count108
+\l__intarray_loop_int=\count109
+\c__intarray_sp_dim=\dimen122
+\g__intarray_font_int=\count110
+\c__fp_leading_shift_int=\count111
+\c__fp_middle_shift_int=\count112
+\c__fp_trailing_shift_int=\count113
+\c__fp_big_leading_shift_int=\count114
+\c__fp_big_middle_shift_int=\count115
+\c__fp_big_trailing_shift_int=\count116
+\c__fp_Bigg_leading_shift_int=\count117
+\c__fp_Bigg_middle_shift_int=\count118
+\c__fp_Bigg_trailing_shift_int=\count119
+\g__fp_array_int=\count120
+\l__fp_array_loop_int=\count121
+\l__sort_length_int=\count122
+\l__sort_min_int=\count123
+\l__sort_top_int=\count124
+\l__sort_max_int=\count125
+\l__sort_true_max_int=\count126
+\l__sort_block_int=\count127
+\l__sort_begin_int=\count128
+\l__sort_end_int=\count129
+\l__sort_A_int=\count130
+\l__sort_B_int=\count131
+\l__sort_C_int=\count132
+\l__tl_analysis_normal_int=\count133
+\l__tl_analysis_index_int=\count134
+\l__tl_analysis_nesting_int=\count135
+\l__tl_analysis_type_int=\count136
+\l__regex_internal_a_int=\count137
+\l__regex_internal_b_int=\count138
+\l__regex_internal_c_int=\count139
+\l__regex_balance_int=\count140
+\l__regex_group_level_int=\count141
+\l__regex_mode_int=\count142
+\c__regex_cs_in_class_mode_int=\count143
+\c__regex_cs_mode_int=\count144
+\l__regex_catcodes_int=\count145
+\l__regex_default_catcodes_int=\count146
+\c__regex_catcode_L_int=\count147
+\c__regex_catcode_O_int=\count148
+\c__regex_catcode_A_int=\count149
+\c__regex_all_catcodes_int=\count150
+\l__regex_show_lines_int=\count151
+\l__regex_min_state_int=\count152
+\l__regex_max_state_int=\count153
+\l__regex_left_state_int=\count154
+\l__regex_right_state_int=\count155
+\l__regex_capturing_group_int=\count156
+\l__regex_min_pos_int=\count157
+\l__regex_max_pos_int=\count158
+\l__regex_curr_pos_int=\count159
+\l__regex_start_pos_int=\count160
+\l__regex_success_pos_int=\count161
+\l__regex_curr_char_int=\count162
+\l__regex_curr_catcode_int=\count163
+\l__regex_last_char_int=\count164
+\l__regex_case_changed_char_int=\count165
+\l__regex_curr_state_int=\count166
+\l__regex_step_int=\count167
+\l__regex_min_active_int=\count168
+\l__regex_max_active_int=\count169
+\l__regex_replacement_csnames_int=\count170
+\l__regex_match_count_int=\count171
+\l__regex_min_submatch_int=\count172
+\l__regex_submatch_int=\count173
+\l__regex_zeroth_submatch_int=\count174
+\g__regex_trace_regex_int=\count175
+\c_empty_box=\box30
+\l_tmpa_box=\box31
+\l_tmpb_box=\box32
+\g_tmpa_box=\box33
+\g_tmpb_box=\box34
+\l__box_top_dim=\dimen123
+\l__box_bottom_dim=\dimen124
+\l__box_left_dim=\dimen125
+\l__box_right_dim=\dimen126
+\l__box_top_new_dim=\dimen127
+\l__box_bottom_new_dim=\dimen128
+\l__box_left_new_dim=\dimen129
+\l__box_right_new_dim=\dimen130
+\l__box_internal_box=\box35
+\l__coffin_internal_box=\box36
+\l__coffin_internal_dim=\dimen131
+\l__coffin_offset_x_dim=\dimen132
+\l__coffin_offset_y_dim=\dimen133
+\l__coffin_x_dim=\dimen134
+\l__coffin_y_dim=\dimen135
+\l__coffin_x_prime_dim=\dimen136
+\l__coffin_y_prime_dim=\dimen137
+\c_empty_coffin=\box37
+\l__coffin_aligned_coffin=\box38
+\l__coffin_aligned_internal_coffin=\box39
+\l_tmpa_coffin=\box40
+\l_tmpb_coffin=\box41
+\g_tmpa_coffin=\box42
+\g_tmpb_coffin=\box43
+\c__coffin_empty_coffin=\box44
+\l__coffin_display_coffin=\box45
+\l__coffin_display_coord_coffin=\box46
+\l__coffin_display_pole_coffin=\box47
+\l__coffin_display_offset_dim=\dimen138
+\l__coffin_display_x_dim=\dimen139
+\l__coffin_display_y_dim=\dimen140
+\g__file_internal_ior=\read1
+\l__coffin_bounding_shift_dim=\dimen141
+\l__coffin_left_corner_dim=\dimen142
+\l__coffin_right_corner_dim=\dimen143
+\l__coffin_bottom_corner_dim=\dimen144
+\l__coffin_top_corner_dim=\dimen145
+\l__coffin_scaled_total_height_dim=\dimen146
+\l__coffin_scaled_width_dim=\dimen147
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/l3xdvipdf
+mx.def
+File: l3xdvipdfmx.def 2019-02-15 v L3 Experimental driver: xdvipdfmx
+\g__driver_image_int=\count176
+\g__driver_pdf_object_int=\count177
+))
+Package: xparse 2018-10-17 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count178
+\g__xparse_grabber_int=\count179
+\l__xparse_m_args_int=\count180
+\l__xparse_mandatory_args_int=\count181
+\l__xparse_v_nesting_int=\count182
+)
+Package: fontspec 2019/02/12 v2.7b Font selection for XeLaTeX and LuaLaTeX
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-
+xetex.sty
+Package: fontspec-xetex 2019/02/12 v2.7b Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count183
+\l__fontspec_language_int=\count184
+\l__fontspec_strnum_int=\count185
+\l__fontspec_tmp_int=\count186
+\l__fontspec_tmpa_int=\count187
+\l__fontspec_tmpb_int=\count188
+\l__fontspec_tmpc_int=\count189
+\l__fontspec_em_int=\count190
+\l__fontspec_emdef_int=\count191
+\l__fontspec_strong_int=\count192
+\l__fontspec_strongdef_int=\count193
+\l__fontspec_tmpa_dim=\dimen148
+\l__fontspec_tmpb_dim=\dimen149
+\l__fontspec_tmpc_dim=\dimen150
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/tuenc.def
+File: tuenc.def 2018/08/11 v2.0j Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TU on input line 82.
+))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.
+cfg)
+LaTeX Info: Redefining \itshape on input line 4044.
+LaTeX Info: Redefining \slshape on input line 4049.
+LaTeX Info: Redefining \scshape on input line 4054.
+LaTeX Info: Redefining \upshape on input line 4059.
+LaTeX Info: Redefining \em on input line 4089.
+LaTeX Info: Redefining \emph on input line 4114.
+))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unico
+de-math.sty
+Package: unicode-math 2019/02/15 v0.8n Unicode maths in XeLaTeX and LuaLaTeX
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unico
+de-math-xetex.sty
+Package: unicode-math-xetex 2019/02/15 v0.8n Unicode maths in XeLaTeX and LuaLa
+TeX
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2
+e/l3keys2e.sty
+Package: l3keys2e 2018-10-17 LaTeX2e option processing using LaTeX3 keys
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/filehook/filehook.
+sty
+Package: filehook 2011/10/12 v0.5d Hooks for input files
+) (c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+))
+\g__um_fam_int=\count194
+\g__um_fonts_used_int=\count195
+\l__um_primecount_int=\count196
+\g__um_primekern_muskip=\muskip16
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unico
+de-math-table.tex)))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontawesome/fontaw
+esome.sty
+Package: fontawesome 2016/05/15 v4.6.3.1 font awesome icons
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/ifluate
+x.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontawesome/fontaw
+esomesymbols-generic.tex)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontawesome/fontaw
+esomesymbols-xeluatex.tex))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/sourcesanspro/sour
+cesanspro.sty
+Package: sourcesanspro 2016/12/03 v2.6 Adobe's Source Sans Pro typeface
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.st
+y
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.
+tex
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils
+.tex
+\XKV@toks=\toks19
+\XKV@tempa@toks=\toks20
+)
+\XKV@depth=\count197
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+LaTeX Info: Redefining \sffamily on input line 123.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/SourceSansPro(1)/m/n on input line 
+123.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/SourceSansPro(1)/bx/n on input lin
+e 123.
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbo
+x.sty
+Package: tcolorbox 2018/12/07 version 4.15 text color boxes
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf
+.sty
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfr
+cs.sty
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+futil-common.tex
+\pgfutil@everybye=\toks21
+\pgfutil@tempdima=\dimen151
+\pgfutil@tempdimb=\dimen152
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+futil-common-lists.tex))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+futil-latex.def
+\pgfutil@abb=\box48
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+frcs.code.tex
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision
+.tex)
+Package: pgfrcs 2019/02/02 v3.1.1 (3.1.1)
+))
+Package: pgf 2019/02/02 v3.1.1 (3.1.1)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf
+core.sty
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.
+sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.
+sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graph
+ics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 99.
+)
+\Gin@req@height=\dimen153
+\Gin@req@width=\dimen154
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pg
+fsys.sty
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsys.code.tex
+Package: pgfsys 2019/02/02 v3.1.1 (3.1.1)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+fkeys.code.tex
+\pgfkeys@pathtoks=\toks22
+\pgfkeys@temptoks=\toks23
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+fkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks24
+))
+\pgf@x=\dimen155
+\pgf@y=\dimen156
+\pgf@xa=\dimen157
+\pgf@ya=\dimen158
+\pgf@xb=\dimen159
+\pgf@yb=\dimen160
+\pgf@xc=\dimen161
+\pgf@yc=\dimen162
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count198
+\c@pgf@countb=\count199
+\c@pgf@countc=\count266
+\c@pgf@countd=\count267
+\t@pgf@toka=\toks25
+\t@pgf@tokb=\toks26
+\t@pgf@tokc=\toks27
+\pgf@sys@id@count=\count268
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgf.cfg
+File: pgf.cfg 2019/02/02 v3.1.1 (3.1.1)
+)
+Driver file for pgf: pgfsys-xetex.def
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsys-xetex.def
+File: pgfsys-xetex.def 2019/02/02 v3.1.1 (3.1.1)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2019/02/02 v3.1.1 (3.1.1)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2019/02/02 v3.1.1 (3.1.1)
+)
+\pgfsys@objnum=\count269
+)))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfsyssoftpath@smallbuffer@items=\count270
+\pgfsyssoftpath@bigbuffer@items=\count271
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2019/02/02 v3.1.1 (3.1.1)
+))
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcore.code.tex
+Package: pgfcore 2019/02/02 v3.1.1 (3.1.1)
+
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+.code.tex
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+calc.code.tex
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+util.code.tex)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+parser.code.tex
+\pgfmath@dimen=\dimen163
+\pgfmath@count=\count272
+\pgfmath@box=\box49
+\pgfmath@toks=\toks28
+\pgfmath@stack@operand=\toks29
+\pgfmath@stack@operation=\toks30
+)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.code.tex
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.basic.code.tex)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.trigonometric.code.tex)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.random.code.tex)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.comparison.code.tex)
+(c:/Users/Anton/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.base.
