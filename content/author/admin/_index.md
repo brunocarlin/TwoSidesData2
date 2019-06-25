@@ -47,3 +47,4 @@ user_groups:
 ---
 Bruno Testaguzza Carlin is an student of Data Science at Digital House, previous work experience as an finance intern for Bayer in the Risk Managment Area.  
 Experience using R and BI tools, improving Python skills.
+Currently working at EY FAAS Tech

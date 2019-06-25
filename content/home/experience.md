@@ -26,7 +26,11 @@ date_format = "Jan 2006"
   date_start = "2019-04-08"
   date_end = ""
   description = """
-  In training.
+  Responsabilities Include:
+  
+  * Delivering large scale accounting automation projects
+  * Documentation and analysis of already implemented accounting solutions
+
   """
   
   
