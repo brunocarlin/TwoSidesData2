@@ -37,17 +37,15 @@ Finalizado 2013
 
 # Experiência
 
+## [Ernst & Young](https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services)
+
+Trabalho como especialista em tecnologias de dados em clientes que contratam a área em busca de consultorias para resolver problemas em grande escala que necessitam de inteligência profissional em soluções novas ou mais modernas aos seus problemas contábeis, também realizo a análise e documentação de sistemas já implementados.
+
 ## Bayer
 
 Tenho um ano de experiencia de trabalho como estagiário de finanças da área de Risk Managment na Bayer. Fui responsável pela criação, automação e manutenção de relatórios para a área de crédito e tesouraria. Meu principal diferencial nessas tarefas foi a busca por novas maneiras de melhorar nossos processos, usando ferramentas como o VBA, power query e power pivot.
 
 Executei um projeto de previsões usando o meu próprio algoritmo escrito na linguagem R, a ideia do projeto foi melhorar nossas previsões de forma automática.
-
-## Ernst & Young
-
-Trainee [FAAS](https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services).
-
-Em treinamento.
 
 # Idiomas
 
@@ -63,7 +61,6 @@ Básico-Intermediario
 
 Certificação B1, pórem não pratico desde o Colégio.
 
-
 ## Espanhol
 
 Básico
@@ -72,6 +69,6 @@ Sem Certifacação.
 
 ## Interesses
 
-Eu tive a oportunidade de participar de disciplinas eletivas sobre R para ciência de dados (tidydata), e aprendizagem estatística no Insper que ajudaram muito na execução do projeto.
+Eu tive a oportunidade de participar de disciplinas eletivas sobre R para ciência de dados (tidydata), e aprendizagem estatística no Insper.
 
 Me interesso por ciência de dados, finanças e economia.
