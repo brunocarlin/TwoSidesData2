@@ -41,9 +41,13 @@ Finalizado 2013
 
 # Experiência
 
+## Driven Consulting
+
+Trabalho como Consultor de Ciência de Dados na área de BI resolvendo problemas como o estoque futuro nos clientes.
+
 ## [Ernst & Young](https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services)
 
-Trabalho como Trainee resolvendo problemas contábeis em grande escala, também realizo a análise e documentação de sistemas já implementados.
+Trabalhei como Trainee resolvendo problemas contábeis em grande escala, também realizei a análise e documentação de sistemas já implementados.
 
 ## Bayer
 

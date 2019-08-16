@@ -1,0 +1,181 @@
+---
+title: Classification - KNN
+authors: 
+- admin
+date: '2019-08-15'
+slug: classification-knn
+categories:
+  - r-project
+tags:
+  - tidyverse
+  - tidymodels
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Breast Cancer problem.
+
+# Setting up Rmarkdown
+
+```{r setup, include=FALSE}
+library(tictoc)
+library(knitr)
+tictoc::tic.clearlog()
+knitr::knit_hooks$set(timeit = local({
+  function(before, options) {
+    if (before) {
+      now <<- tic(options$label)
+    } else {
+      after = toc(log = TRUE, quiet = TRUE)
+      paste(tail(tic.log(format = TRUE),1))
+    }
+  }})
+)
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  timeit = TRUE
+)
+root_dir <- paste(here::here(), "content/post/data", sep = "/")
+knitr::opts_knit$set(root.dir = root_dir)
+```
+  root.dir = 
+
+# Loading Librais
+
+```{r Loading Libraries}
+library(tidyverse)
+library(tidymodels)
+library(janitor)
+library(skimr)
+library(DataExplorer)
+```
+
+# Getting Data
+
+Got the dataset with headers on  [kaggle link](https://www.kaggle.com/uciml/breast-cancer-wisconsin-data/version/2)
+
+```{r Set Chunk}
+df <- read_csv("breast_cancer.csv")
+```
+
+There is a strange extra column named X33 dealing with that using janitor package
+
+```{r Cleaning Data}
+df <- df %>% 
+  janitor::remove_empty_cols()
+```
+
+
+# Visualizing the data using DataExplorer and Skimr
+
+## Skimr is a fast way to get info on your data even though the hist plot fails on my blog :(
+```{r Skimr}
+df %>% 
+  skimr::skim() %>% 
+  skimr::kable()
+```
+
+## Data Explorer
+
+Is a imho a prettier option with individual cool plots and a super powerfull(but slow) report creation tool when working outside of an Rmarkdownm document
+
+```{r Data Explorer  individual plots}
+df %>% 
+  DataExplorer::plot_intro()
+
+df %>% 
+  DataExplorer::plot_bar()
+
+df %>% 
+  DataExplorer::plot_correlation()
+```
+
+
+There are much more amaziong tools such as the [ggforce package](https://www.data-imaginist.com/2019/a-flurry-of-facets/) , but I hope you get the gist of the exploration stage.
+
+
+# Modeling
+
+For now I am going to focus on the tools provided by the tidymodels packages and the KNN, in the future I may come back to add more models and probably to play around the DALEX package a little bit.
+
+Just to remember M is Malignant and B is Benign, we are trying to correcly classify our patients, I am going to ignore the id Varible since it should not be reliaded upon to generate predictions(Even though it may capture some interesting effects such as better screening for patients on the latter id's).
+
+## Train Test Split
+
+Usually we split our data into training and test data to ensure a fair evaluation of the models or parameters being tested(hoping to avoid overfitting).
+
+
+
+The workflow for the tidymodels is that we first split our data.
+
+```{r}
+df_split <- df %>% 
+  rsample::initial_split(prop = 0.8)
+df_split
+```
+
+Then we model on our Training Data
+
+## Recipes
+
+Recipes are used to preprocess our data, the main mistake here is using the whole data set.
+
+The recipe package helps us with this process.
+
+For those not familearized with the formula notation I am fitting the model on all variables except the id variable.
+
+I am than Normalizing my data since the KNN alghoritm is sensible to the scale of the variables being used, I am also excluding variables with high absolute correlation amongst themselves.
+
+Recipes are easy to read and can be quite complex for example I could scale all predictor that are numeric on 
+```{r}
+df_recipe <- training(df_split) %>% 
+  recipe(diagnosis ~ .-id) %>% 
+  step_center(all_predictors()) %>% 
+  step_scale(all_predictors(),all_numeric()) %>% 
+  step_corr(all_predictors()) %>% 
+  prep()
+df_recipe
+```
+
+We can then create our train and test data frames by baking our recipe and juicing our recipe
+
+```{r}
+df_testing <- df_recipe %>% 
+  bake(testing(df_split))
+df_testing
+```
+```{r}
+df_training <- juice(df_recipe)
+```
+
+## Cross Validation and Random Serch
+
+### Cross Validation
+
+We further divide our data frame into folds in order to improve our certainty that the ideal number of neighbours is right.
+
+```{r}
+df_cross_testing <- df_testing %>% vfold_cv(v = 10)
+```
+
+To decide the KNN parameters we could use the Dials package, grid searchign neighbors 1 to 50,  Working on this
+
+```{r}
+bst_grid <- grid_random(
+  neighbors %>%  range_set(c( 1,  50)), 
+  size = 10
+)
+```
+
+```{r}
+nearest_neighbor_model <- parsnip::nearest_neighbor(mode = "classification") %>% 
+  set_engine("kknn") %>%
+  merge(bst_grid)
+```
+
+```{r}
+results_cross_validation <- crossing(df_cross_testing,nearest_neighbor_model) 
+```
+
