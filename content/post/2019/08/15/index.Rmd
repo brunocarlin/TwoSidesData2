@@ -176,6 +176,6 @@ nearest_neighbor_model <- parsnip::nearest_neighbor(mode = "classification") %>%
 ```
 
 ```{r}
-results_cross_validation <- crossing(df_cross_testing,nearest_neighbor_model) 
+#results_cross_validation <- crossing(df_cross_testing,nearest_neighbor_model) 
 ```
 

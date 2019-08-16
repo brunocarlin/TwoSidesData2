@@ -25,6 +25,7 @@
 &lt;/div&gt;
 &lt;div id=&#34;loading-librais&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Loading Librais&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------- tidyverse 1.2.1 --&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## v ggplot2 3.2.1     v purrr   0.3.2
 ## v tibble  2.1.3     v dplyr   0.8.3
@@ -33,6 +34,7 @@
 &lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidymodels)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;xts&amp;#39;:
 ##   method     from
 ##   as.zoo.xts zoo&lt;/code&gt;&lt;/pre&gt;
@@ -48,11 +50,13 @@
 ## x dplyr::lag()      masks stats::lag()
 ## x yardstick::spec() masks readr::spec()
 ## x recipes::step()   masks stats::step()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(janitor)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Attaching package: &amp;#39;janitor&amp;#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
 ## 
 ##     chisq.test, fisher.test&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(skimr)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Attaching package: &amp;#39;skimr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:knitr&amp;#39;:
@@ -61,11 +65,13 @@
 &lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:stats&amp;#39;:
 ## 
 ##     filter&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Loading Libraries: 4.73 sec elapsed&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DataExplorer)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Loading Libraries: 4.91 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;getting-data&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Getting Data&lt;/h1&gt;
 &lt;p&gt;Got the dataset with headers on &lt;a href=&#34;https://www.kaggle.com/uciml/breast-cancer-wisconsin-data/version/2&#34;&gt;kaggle link&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df &amp;lt;- read_csv(&amp;quot;breast_cancer.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Missing column names filled in: &amp;#39;X33&amp;#39; [33]&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Parsed with column specification:
 ## cols(
@@ -83,17 +89,22 @@
 ##   5  -- 33 columns 32 columns &amp;#39;breast_cancer.csv&amp;#39;
 ## ... ... .......... .......... ...................
 ## See problems(...) for more details.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Set Chunk: 0.24 sec elapsed&lt;/p&gt;
+&lt;p&gt;Set Chunk: 0.23 sec elapsed&lt;/p&gt;
 &lt;p&gt;There is a strange extra column named X33 dealing with that using janitor package&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df &amp;lt;- df %&amp;gt;% 
+  janitor::remove_empty_cols()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: &amp;#39;janitor::remove_empty_cols&amp;#39; é obsoleto.
 ## Use &amp;#39;remove_empty(&amp;quot;cols&amp;quot;)&amp;#39; em seu lugar
 ## Veja help(&amp;quot;Deprecated&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Cleaning Data: 0.02 sec elapsed&lt;/p&gt;
+&lt;p&gt;Cleaning Data: 0 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;visualizing-the-data-using-dataexplorer-and-skimr&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Visualizing the data using DataExplorer and Skimr&lt;/h1&gt;
 &lt;div id=&#34;skimr-is-a-fast-way-to-get-info-on-your-data-even-though-the-hist-plot-fails-on-my-blog&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Skimr is a fast way to get info on your data even though the hist plot fails on my blog :(&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
+  skimr::skim() %&amp;gt;% 
+  skimr::kable()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Skim summary statistics  
 ##  n obs: 569    
 ##  n variables: 32    
@@ -144,7 +155,15 @@
 &lt;div id=&#34;data-explorer&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Data Explorer&lt;/h2&gt;
 &lt;p&gt;Is a imho a prettier option with individual cool plots and a super powerfull(but slow) report creation tool when working outside of an Rmarkdownm document&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.3 sec elapsed&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
+  DataExplorer::plot_intro()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;index_files/figure-html/Data Explorer  individual plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
+  DataExplorer::plot_bar()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;index_files/figure-html/Data Explorer  individual plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
+  DataExplorer::plot_correlation()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;index_files/figure-html/Data Explorer  individual plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.39 sec elapsed&lt;/p&gt;
 &lt;p&gt;There are much more amaziong tools such as the &lt;a href=&#34;https://www.data-imaginist.com/2019/a-flurry-of-facets/&#34;&gt;ggforce package&lt;/a&gt; , but I hope you get the gist of the exploration stage.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -156,7 +175,11 @@
 &lt;h2&gt;Train Test Split&lt;/h2&gt;
 &lt;p&gt;Usually we split our data into training and test data to ensure a fair evaluation of the models or parameters being tested(hoping to avoid overfitting).&lt;/p&gt;
 &lt;p&gt;The workflow for the tidymodels is that we first split our data.&lt;/p&gt;
-&lt;p&gt;unnamed-chunk-1: 0 sec elapsed&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_split &amp;lt;- df %&amp;gt;% 
+  rsample::initial_split(prop = 0.8)
+df_split&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;456/113/569&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-1: 0.01 sec elapsed&lt;/p&gt;
 &lt;p&gt;Then we model on our Training Data&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;recipes&#34; class=&#34;section level2&#34;&gt;
@@ -166,6 +189,13 @@
 &lt;p&gt;For those not familearized with the formula notation I am fitting the model on all variables except the id variable.&lt;/p&gt;
 &lt;p&gt;I am than Normalizing my data since the KNN alghoritm is sensible to the scale of the variables being used, I am also excluding variables with high absolute correlation amongst themselves.&lt;/p&gt;
 &lt;p&gt;Recipes are easy to read and can be quite complex for example I could scale all predictor that are numeric on&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_recipe &amp;lt;- training(df_split) %&amp;gt;% 
+  recipe(diagnosis ~ .-id) %&amp;gt;% 
+  step_center(all_predictors()) %&amp;gt;% 
+  step_scale(all_predictors(),all_numeric()) %&amp;gt;% 
+  step_corr(all_predictors()) %&amp;gt;% 
+  prep()
+df_recipe&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Data Recipe
 ## 
 ## Inputs:
@@ -174,12 +204,62 @@
 ##    outcome          1
 ##  predictor         31
 ## 
+## Training data contained 456 data points and no missing data.
+## 
 ## Operations:
 ## 
-## Centering for all_predictors
-## Scaling for all_predictors, all_numeric
-## Correlation filter on all_predictors&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;unnamed-chunk-2: 0.02 sec elapsed&lt;/p&gt;
+## Centering for id, radius_mean, ... [trained]
+## Scaling for id, radius_mean, ... [trained]
+## Correlation filter removed perimeter_mean, ... [trained]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-2: 0.08 sec elapsed&lt;/p&gt;
+&lt;p&gt;We can then create our train and test data frames by baking our recipe and juicing our recipe&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_testing &amp;lt;- df_recipe %&amp;gt;% 
+  bake(testing(df_split))
+df_testing&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 113 x 21
+##        id diagnosis texture_mean area_mean smoothness_mean compactness_mean
+##     &amp;lt;dbl&amp;gt; &amp;lt;fct&amp;gt;            &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;           &amp;lt;dbl&amp;gt;            &amp;lt;dbl&amp;gt;
+##  1  0.552 M                0.261    -0.774           3.33            3.36  
+##  2 -0.241 M                1.09      0.344          -0.918          -0.0899
+##  3  0.555 M                0.776    -0.232           1.20            2.33  
+##  4 -0.168 M               -1.15      0.123           0.774           2.03  
+##  5 -0.240 M                0.875     2.09           -0.172          -0.0523
+##  6 -0.240 M                1.39      0.202           0.839           1.21  
+##  7 -0.240 M                1.67      1.41           -0.191           1.25  
+##  8 -0.240 M               -0.317     0.413           0.534           0.955 
+##  9 -0.240 M                0.238    -0.325           0.542           0.724 
+## 10 -0.240 B                0.704    -0.281          -0.663          -0.525 
+## # ... with 103 more rows, and 15 more variables: symmetry_mean &amp;lt;dbl&amp;gt;,
+## #   fractal_dimension_mean &amp;lt;dbl&amp;gt;, texture_se &amp;lt;dbl&amp;gt;, area_se &amp;lt;dbl&amp;gt;,
+## #   smoothness_se &amp;lt;dbl&amp;gt;, compactness_se &amp;lt;dbl&amp;gt;, concavity_se &amp;lt;dbl&amp;gt;,
+## #   `concave points_se` &amp;lt;dbl&amp;gt;, symmetry_se &amp;lt;dbl&amp;gt;,
+## #   fractal_dimension_se &amp;lt;dbl&amp;gt;, smoothness_worst &amp;lt;dbl&amp;gt;,
+## #   compactness_worst &amp;lt;dbl&amp;gt;, `concave points_worst` &amp;lt;dbl&amp;gt;,
+## #   symmetry_worst &amp;lt;dbl&amp;gt;, fractal_dimension_worst &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-3: 0.08 sec elapsed&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_training &amp;lt;- juice(df_recipe)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-4: 0.02 sec elapsed&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cross-validation-and-random-serch&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cross Validation and Random Serch&lt;/h2&gt;
+&lt;div id=&#34;cross-validation&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Cross Validation&lt;/h3&gt;
+&lt;p&gt;We further divide our data frame into folds in order to improve our certainty that the ideal number of neighbours is right.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_cross_testing &amp;lt;- df_testing %&amp;gt;% vfold_cv(v = 10)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-5: 0 sec elapsed&lt;/p&gt;
+&lt;p&gt;To decide the KNN parameters we could use the Dials package, grid searchign neighbors 1 to 50, Working on this&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bst_grid &amp;lt;- grid_random(
+  neighbors %&amp;gt;%  range_set(c( 1,  50)), 
+  size = 10
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-6: 0 sec elapsed&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;nearest_neighbor_model &amp;lt;- parsnip::nearest_neighbor(mode = &amp;quot;classification&amp;quot;) %&amp;gt;% 
+  set_engine(&amp;quot;kknn&amp;quot;) %&amp;gt;%
+  merge(bst_grid)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-7: 0.02 sec elapsed&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#results_cross_validation &amp;lt;- crossing(df_cross_testing,nearest_neighbor_model) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unnamed-chunk-8: 0 sec elapsed&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
