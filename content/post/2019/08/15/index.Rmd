@@ -12,11 +12,6 @@ tags:
 image:
   caption: ''
   focal_point: ''
-output: 
-  html_document:
-    toc: true
-    toc_float:
-      toc_collapsed: true
 ---
 
 Breast Cancer problem.

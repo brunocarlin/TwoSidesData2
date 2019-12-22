@@ -1,0 +1,528 @@
+---
+title: FizzBuzz in the tidyverse
+author: 
+- admin
+date: '2019-12-22'
+slug: fizzbuzz-in-the-tidyverse
+categories:
+  - r-project
+tags:
+  - tidyverse
+  - programming
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<p>FizzBuzz is and old kids games</p>
+<p>Not that popular where I am from Brazil, Fizz Buzz has a simple set of rules</p>
+<p>You start counting from 1 (obviously) and when a number is a multiple of 3 you say <strong>Fizz</strong>,<br />
+if the number is a multiple of 5 you say <strong>Buzz</strong>,<br />
+and if the number is a multiple of both you shout <strong>FizzBuzz</strong>,
+And for every other case you can say the <strong>number itself</strong>, simple right?</p>
+<p>I watched this really cool video on Tom Scott channel and realized that I have never attempted this problem as a programmer</p>
+<p>This is an blog post full of tricks I will try to point them all out.</p>
+<p><a href="https://youtu.be/QPZ0pIK_wsc">Scott’s video</a></p>
+<div id="naive-fizzbuzz" class="section level1">
+<h1>Naive FizzBuzz</h1>
+<p><a href="https://www.r-bloggers.com/fizzbuzz-in-r-and-python/">Naive FizzBuzz</a></p>
+<pre class="r"><code>for (i in 1:15){
+  
+  if(i%%3 == 0 &amp; i%%5 == 0) {
+    print(&#39;FizzBuzz&#39;)
+  }
+  else if(i%%3 == 0) {
+    print(&#39;Fizz&#39;)
+  }
+  else if (i%%5 == 0){
+    print(&#39;Buzz&#39;)
+  }
+  else {
+    print(i)
+  }
+  
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] &quot;Fizz&quot;
+## [1] 4
+## [1] &quot;Buzz&quot;
+## [1] &quot;Fizz&quot;
+## [1] 7
+## [1] 8
+## [1] &quot;Fizz&quot;
+## [1] &quot;Buzz&quot;
+## [1] 11
+## [1] &quot;Fizz&quot;
+## [1] 13
+## [1] 14
+## [1] &quot;FizzBuzz&quot;</code></pre>
+<ol style="list-style-type: decimal">
+<li>Simple flow control with if, else statements</li>
+<li>Some basic operators ($, ==)</li>
+</ol>
+</div>
+<div id="extending-the-loop-approach" class="section level1">
+<h1>Extending the loop approach</h1>
+<p>Using Scott’s approach we can improve a bit on the logic</p>
+<pre class="r"><code>for (i in 1:15){
+  current_out &lt;- &#39;&#39;
+  if(i%%3 == 0) {
+    current_out &lt;- paste0(current_out,&#39;Fizz&#39;)
+  }
+  if (i%%5 == 0){
+    current_out &lt;- paste0(current_out,&#39;Buzz&#39;)
+  }
+  if (current_out == &#39;&#39;){
+    print(i)
+  }
+  else print(current_out)
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] &quot;Fizz&quot;
+## [1] 4
+## [1] &quot;Buzz&quot;
+## [1] &quot;Fizz&quot;
+## [1] 7
+## [1] 8
+## [1] &quot;Fizz&quot;
+## [1] &quot;Buzz&quot;
+## [1] 11
+## [1] &quot;Fizz&quot;
+## [1] 13
+## [1] 14
+## [1] &quot;FizzBuzz&quot;</code></pre>
+<p>While it is possible to improve open this loop, I think it already is close to the limits of what I would call a very simple example</p>
+</div>
+<div id="functional-approach" class="section level1">
+<h1>Functional approach</h1>
+<p>Thanks <a href="https://www.r-bloggers.com/fizzbuzz-in-r/">Functional FizzBuzz</a></p>
+<pre class="r"><code>divisor &lt;-
+  function(number, string) {
+    function(d) {
+      if (d %% number == 0) string else &quot;&quot;
+    }
+  }
+
+mod3er &lt;- divisor(3, &quot;Fizz&quot;)
+mod5er &lt;- divisor(5, &quot;Buzz&quot;)
+
+fizzbuzz &lt;- 
+  function(i) {
+    res &lt;- paste0(mod3er(i), mod5er(i))
+    ifelse(res == &quot;&quot;, i, res)
+  }
+
+sapply(1:15, fizzbuzz)</code></pre>
+<pre><code>##  [1] &quot;1&quot;        &quot;2&quot;        &quot;Fizz&quot;     &quot;4&quot;        &quot;Buzz&quot;     &quot;Fizz&quot;    
+##  [7] &quot;7&quot;        &quot;8&quot;        &quot;Fizz&quot;     &quot;Buzz&quot;     &quot;11&quot;       &quot;Fizz&quot;    
+## [13] &quot;13&quot;       &quot;14&quot;       &quot;FizzBuzz&quot;</code></pre>
+<p>So enumerating the new concepts here:</p>
+<ol style="list-style-type: decimal">
+<li>Functions that create functions (mod3er,mod5er)</li>
+<li>Functions that create functions that create functions (divisor)</li>
+<li>Applying functions (sapply)</li>
+<li>Functional if else (I prefer it)</li>
+</ol>
+<p>All of which seen pretty complicated at first but will pay off big time latter.</p>
+</div>
+<div id="my-approach-tidyverse" class="section level1">
+<h1>My approach (tidyverse)</h1>
+<div id="the-basics" class="section level2">
+<h2>The Basics</h2>
+<p>Loading the tidyverse</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ---------------------------------------------------------------------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## &lt;U+2713&gt; ggplot2 3.2.1     &lt;U+2713&gt; purrr   0.3.3
+## &lt;U+2713&gt; tibble  2.1.3     &lt;U+2713&gt; dplyr   0.8.3
+## &lt;U+2713&gt; tidyr   1.0.0     &lt;U+2713&gt; stringr 1.4.0
+## &lt;U+2713&gt; readr   1.3.1     &lt;U+2713&gt; forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>divisor &lt;- function(number, string) {
+    function(input) {
+      if_else(condition = input %% number == 0,
+              true = string,
+              false = &quot;&quot;)
+    }
+}
+
+mod3 &lt;- divisor(3, &quot;Fizz&quot;)
+mod5 &lt;- divisor(5, &quot;Buzz&quot;)
+
+list_functions &lt;- list(mod3,mod5)
+
+mapper_list &lt;- function(i,list_functions) map(list_functions, exec,i)
+
+map(1:15,mapper_list,list_functions) %&gt;% 
+  map(reduce,str_c)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;&quot;
+## 
+## [[2]]
+## [1] &quot;&quot;
+## 
+## [[3]]
+## [1] &quot;Fizz&quot;
+## 
+## [[4]]
+## [1] &quot;&quot;
+## 
+## [[5]]
+## [1] &quot;Buzz&quot;
+## 
+## [[6]]
+## [1] &quot;Fizz&quot;
+## 
+## [[7]]
+## [1] &quot;&quot;
+## 
+## [[8]]
+## [1] &quot;&quot;
+## 
+## [[9]]
+## [1] &quot;Fizz&quot;
+## 
+## [[10]]
+## [1] &quot;Buzz&quot;
+## 
+## [[11]]
+## [1] &quot;&quot;
+## 
+## [[12]]
+## [1] &quot;Fizz&quot;
+## 
+## [[13]]
+## [1] &quot;&quot;
+## 
+## [[14]]
+## [1] &quot;&quot;
+## 
+## [[15]]
+## [1] &quot;FizzBuzz&quot;</code></pre>
+<p>We learned two new tricks:</p>
+<ol style="list-style-type: decimal">
+<li>Executing a list of functions using exec</li>
+<li>reducing an list</li>
+</ol>
+</div>
+<div id="making-just-one-call" class="section level2">
+<h2>Making just one call</h2>
+<pre class="r"><code>fancy &lt;- function(i,...) {
+  list_functions &lt;- list(...)
+  mapper_list &lt;- function(i,list_functions) map(list_functions, exec,i)
+  map(i,mapper_list,list_functions) %&gt;%
+  map(reduce,str_c)
+}
+
+fancy(1:15,mod3,mod5)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;&quot;
+## 
+## [[2]]
+## [1] &quot;&quot;
+## 
+## [[3]]
+## [1] &quot;Fizz&quot;
+## 
+## [[4]]
+## [1] &quot;&quot;
+## 
+## [[5]]
+## [1] &quot;Buzz&quot;
+## 
+## [[6]]
+## [1] &quot;Fizz&quot;
+## 
+## [[7]]
+## [1] &quot;&quot;
+## 
+## [[8]]
+## [1] &quot;&quot;
+## 
+## [[9]]
+## [1] &quot;Fizz&quot;
+## 
+## [[10]]
+## [1] &quot;Buzz&quot;
+## 
+## [[11]]
+## [1] &quot;&quot;
+## 
+## [[12]]
+## [1] &quot;Fizz&quot;
+## 
+## [[13]]
+## [1] &quot;&quot;
+## 
+## [[14]]
+## [1] &quot;&quot;
+## 
+## [[15]]
+## [1] &quot;FizzBuzz&quot;</code></pre>
+<p>One new trick using ellipsis</p>
+</div>
+<div id="or-preparing-for-an-api" class="section level2">
+<h2>Or preparing for an api</h2>
+<pre class="r"><code>api_less_fancy &lt;- function(i,list_functions) {
+  mapper_list &lt;- function(i,list_functions) map(list_functions, exec,i)
+  map(i,mapper_list,list_functions) %&gt;%
+  map(reduce,str_c)
+}
+
+api_less_fancy(1:15,list(mod3,mod5))</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;&quot;
+## 
+## [[2]]
+## [1] &quot;&quot;
+## 
+## [[3]]
+## [1] &quot;Fizz&quot;
+## 
+## [[4]]
+## [1] &quot;&quot;
+## 
+## [[5]]
+## [1] &quot;Buzz&quot;
+## 
+## [[6]]
+## [1] &quot;Fizz&quot;
+## 
+## [[7]]
+## [1] &quot;&quot;
+## 
+## [[8]]
+## [1] &quot;&quot;
+## 
+## [[9]]
+## [1] &quot;Fizz&quot;
+## 
+## [[10]]
+## [1] &quot;Buzz&quot;
+## 
+## [[11]]
+## [1] &quot;&quot;
+## 
+## [[12]]
+## [1] &quot;Fizz&quot;
+## 
+## [[13]]
+## [1] &quot;&quot;
+## 
+## [[14]]
+## [1] &quot;&quot;
+## 
+## [[15]]
+## [1] &quot;FizzBuzz&quot;</code></pre>
+</div>
+</div>
+<div id="extending-fizzbuzz" class="section level1">
+<h1>Extending FizzBuzz</h1>
+<p>Let’s see how easy it is too make the game more difficult:</p>
+<div id="changing-names" class="section level2">
+<h2>Changing names</h2>
+<pre class="r"><code>mod3n &lt;- divisor(3, &quot;Buzz&quot;)
+mod5n &lt;- divisor(5,&#39;Fizz&#39;)
+fancy(1:15,mod3n,mod5n)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;&quot;
+## 
+## [[2]]
+## [1] &quot;&quot;
+## 
+## [[3]]
+## [1] &quot;Buzz&quot;
+## 
+## [[4]]
+## [1] &quot;&quot;
+## 
+## [[5]]
+## [1] &quot;Fizz&quot;
+## 
+## [[6]]
+## [1] &quot;Buzz&quot;
+## 
+## [[7]]
+## [1] &quot;&quot;
+## 
+## [[8]]
+## [1] &quot;&quot;
+## 
+## [[9]]
+## [1] &quot;Buzz&quot;
+## 
+## [[10]]
+## [1] &quot;Fizz&quot;
+## 
+## [[11]]
+## [1] &quot;&quot;
+## 
+## [[12]]
+## [1] &quot;Buzz&quot;
+## 
+## [[13]]
+## [1] &quot;&quot;
+## 
+## [[14]]
+## [1] &quot;&quot;
+## 
+## [[15]]
+## [1] &quot;BuzzFizz&quot;</code></pre>
+</div>
+<div id="adding-divisors" class="section level2">
+<h2>Adding divisors</h2>
+<pre class="r"><code>mod2 &lt;- divisor(2, &quot;Deuce&quot;)
+fancy(1:30,mod2,mod3,mod5)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;&quot;
+## 
+## [[2]]
+## [1] &quot;Deuce&quot;
+## 
+## [[3]]
+## [1] &quot;Fizz&quot;
+## 
+## [[4]]
+## [1] &quot;Deuce&quot;
+## 
+## [[5]]
+## [1] &quot;Buzz&quot;
+## 
+## [[6]]
+## [1] &quot;DeuceFizz&quot;
+## 
+## [[7]]
+## [1] &quot;&quot;
+## 
+## [[8]]
+## [1] &quot;Deuce&quot;
+## 
+## [[9]]
+## [1] &quot;Fizz&quot;
+## 
+## [[10]]
+## [1] &quot;DeuceBuzz&quot;
+## 
+## [[11]]
+## [1] &quot;&quot;
+## 
+## [[12]]
+## [1] &quot;DeuceFizz&quot;
+## 
+## [[13]]
+## [1] &quot;&quot;
+## 
+## [[14]]
+## [1] &quot;Deuce&quot;
+## 
+## [[15]]
+## [1] &quot;FizzBuzz&quot;
+## 
+## [[16]]
+## [1] &quot;Deuce&quot;
+## 
+## [[17]]
+## [1] &quot;&quot;
+## 
+## [[18]]
+## [1] &quot;DeuceFizz&quot;
+## 
+## [[19]]
+## [1] &quot;&quot;
+## 
+## [[20]]
+## [1] &quot;DeuceBuzz&quot;
+## 
+## [[21]]
+## [1] &quot;Fizz&quot;
+## 
+## [[22]]
+## [1] &quot;Deuce&quot;
+## 
+## [[23]]
+## [1] &quot;&quot;
+## 
+## [[24]]
+## [1] &quot;DeuceFizz&quot;
+## 
+## [[25]]
+## [1] &quot;Buzz&quot;
+## 
+## [[26]]
+## [1] &quot;Deuce&quot;
+## 
+## [[27]]
+## [1] &quot;Fizz&quot;
+## 
+## [[28]]
+## [1] &quot;Deuce&quot;
+## 
+## [[29]]
+## [1] &quot;&quot;
+## 
+## [[30]]
+## [1] &quot;DeuceFizzBuzz&quot;</code></pre>
+</div>
+<div id="adding-new-rules" class="section level2">
+<h2>Adding new rules</h2>
+<pre class="r"><code>less &lt;- function(number, string) {
+    function(input) {
+      if_else(condition = input &lt; number,
+              true = string,
+              false = &quot;&quot;)
+    }
+}</code></pre>
+<pre class="r"><code>less10 &lt;- less(10,&quot;Small&quot;)</code></pre>
+<pre class="r"><code>fancy(1:15,less10,mod3,mod5)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Small&quot;
+## 
+## [[2]]
+## [1] &quot;Small&quot;
+## 
+## [[3]]
+## [1] &quot;SmallFizz&quot;
+## 
+## [[4]]
+## [1] &quot;Small&quot;
+## 
+## [[5]]
+## [1] &quot;SmallBuzz&quot;
+## 
+## [[6]]
+## [1] &quot;SmallFizz&quot;
+## 
+## [[7]]
+## [1] &quot;Small&quot;
+## 
+## [[8]]
+## [1] &quot;Small&quot;
+## 
+## [[9]]
+## [1] &quot;SmallFizz&quot;
+## 
+## [[10]]
+## [1] &quot;Buzz&quot;
+## 
+## [[11]]
+## [1] &quot;&quot;
+## 
+## [[12]]
+## [1] &quot;Fizz&quot;
+## 
+## [[13]]
+## [1] &quot;&quot;
+## 
+## [[14]]
+## [1] &quot;&quot;
+## 
+## [[15]]
+## [1] &quot;FizzBuzz&quot;</code></pre>
+<p>That is it have a great day.</p>
+</div>
+</div>
