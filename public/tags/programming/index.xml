@@ -1,0 +1,534 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming on TwoSidesData</title>
+    <link>/tags/programming/</link>
+    <description>Recent content in programming on TwoSidesData</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/programming/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>FizzBuzz in the tidyverse</title>
+      <link>/2019/12/22/fizzbuzz-in-the-tidyverse/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/22/fizzbuzz-in-the-tidyverse/</guid>
+      <description>
+
+
+&lt;p&gt;FizzBuzz is and old kids games&lt;/p&gt;
+&lt;p&gt;Not that popular where I am from Brazil, Fizz Buzz has a simple set of rules&lt;/p&gt;
+&lt;p&gt;You start counting from 1 (obviously) and when a number is a multiple of 3 you say &lt;strong&gt;Fizz&lt;/strong&gt;,&lt;br /&gt;
+if the number is a multiple of 5 you say &lt;strong&gt;Buzz&lt;/strong&gt;,&lt;br /&gt;
+and if the number is a multiple of both you shout &lt;strong&gt;FizzBuzz&lt;/strong&gt;,
+And for every other case you can say the &lt;strong&gt;number itself&lt;/strong&gt;, simple right?&lt;/p&gt;
+&lt;p&gt;I watched this really cool video on Tom Scott channel and realized that I have never attempted this problem as a programmer&lt;/p&gt;
+&lt;p&gt;This is an blog post full of tricks I will try to point them all out.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://youtu.be/QPZ0pIK_wsc&#34;&gt;Scott’s video&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;naive-fizzbuzz&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Naive FizzBuzz&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.r-bloggers.com/fizzbuzz-in-r-and-python/&#34;&gt;Naive FizzBuzz&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;for (i in 1:15){
+  
+  if(i%%3 == 0 &amp;amp; i%%5 == 0) {
+    print(&amp;#39;FizzBuzz&amp;#39;)
+  }
+  else if(i%%3 == 0) {
+    print(&amp;#39;Fizz&amp;#39;)
+  }
+  else if (i%%5 == 0){
+    print(&amp;#39;Buzz&amp;#39;)
+  }
+  else {
+    print(i)
+  }
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1
+## [1] 2
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] 4
+## [1] &amp;quot;Buzz&amp;quot;
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] 7
+## [1] 8
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] &amp;quot;Buzz&amp;quot;
+## [1] 11
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] 13
+## [1] 14
+## [1] &amp;quot;FizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Simple flow control with if, else statements&lt;/li&gt;
+&lt;li&gt;Some basic operators ($, ==)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;extending-the-loop-approach&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Extending the loop approach&lt;/h1&gt;
+&lt;p&gt;Using Scott’s approach we can improve a bit on the logic&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;for (i in 1:15){
+  current_out &amp;lt;- &amp;#39;&amp;#39;
+  if(i%%3 == 0) {
+    current_out &amp;lt;- paste0(current_out,&amp;#39;Fizz&amp;#39;)
+  }
+  if (i%%5 == 0){
+    current_out &amp;lt;- paste0(current_out,&amp;#39;Buzz&amp;#39;)
+  }
+  if (current_out == &amp;#39;&amp;#39;){
+    print(i)
+  }
+  else print(current_out)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1
+## [1] 2
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] 4
+## [1] &amp;quot;Buzz&amp;quot;
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] 7
+## [1] 8
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] &amp;quot;Buzz&amp;quot;
+## [1] 11
+## [1] &amp;quot;Fizz&amp;quot;
+## [1] 13
+## [1] 14
+## [1] &amp;quot;FizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While it is possible to improve open this loop, I think it already is close to the limits of what I would call a very simple example&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;functional-approach&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Functional approach&lt;/h1&gt;
+&lt;p&gt;Thanks &lt;a href=&#34;https://www.r-bloggers.com/fizzbuzz-in-r/&#34;&gt;Functional FizzBuzz&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divisor &amp;lt;-
+  function(number, string) {
+    function(d) {
+      if (d %% number == 0) string else &amp;quot;&amp;quot;
+    }
+  }
+
+mod3er &amp;lt;- divisor(3, &amp;quot;Fizz&amp;quot;)
+mod5er &amp;lt;- divisor(5, &amp;quot;Buzz&amp;quot;)
+
+fizzbuzz &amp;lt;- 
+  function(i) {
+    res &amp;lt;- paste0(mod3er(i), mod5er(i))
+    ifelse(res == &amp;quot;&amp;quot;, i, res)
+  }
+
+sapply(1:15, fizzbuzz)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;1&amp;quot;        &amp;quot;2&amp;quot;        &amp;quot;Fizz&amp;quot;     &amp;quot;4&amp;quot;        &amp;quot;Buzz&amp;quot;     &amp;quot;Fizz&amp;quot;    
+##  [7] &amp;quot;7&amp;quot;        &amp;quot;8&amp;quot;        &amp;quot;Fizz&amp;quot;     &amp;quot;Buzz&amp;quot;     &amp;quot;11&amp;quot;       &amp;quot;Fizz&amp;quot;    
+## [13] &amp;quot;13&amp;quot;       &amp;quot;14&amp;quot;       &amp;quot;FizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So enumerating the new concepts here:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Functions that create functions (mod3er,mod5er)&lt;/li&gt;
+&lt;li&gt;Functions that create functions that create functions (divisor)&lt;/li&gt;
+&lt;li&gt;Applying functions (sapply)&lt;/li&gt;
+&lt;li&gt;Functional if else (I prefer it)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;All of which seen pretty complicated at first but will pay off big time latter.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;my-approach-tidyverse&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;My approach (tidyverse)&lt;/h1&gt;
+&lt;div id=&#34;the-basics&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The Basics&lt;/h2&gt;
+&lt;p&gt;Loading the tidyverse&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------------------------------------------------------------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;U+2713&amp;gt; ggplot2 3.2.1     &amp;lt;U+2713&amp;gt; purrr   0.3.3
+## &amp;lt;U+2713&amp;gt; tibble  2.1.3     &amp;lt;U+2713&amp;gt; dplyr   0.8.3
+## &amp;lt;U+2713&amp;gt; tidyr   1.0.0     &amp;lt;U+2713&amp;gt; stringr 1.4.0
+## &amp;lt;U+2713&amp;gt; readr   1.3.1     &amp;lt;U+2713&amp;gt; forcats 0.4.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divisor &amp;lt;- function(number, string) {
+    function(input) {
+      if_else(condition = input %% number == 0,
+              true = string,
+              false = &amp;quot;&amp;quot;)
+    }
+}
+
+mod3 &amp;lt;- divisor(3, &amp;quot;Fizz&amp;quot;)
+mod5 &amp;lt;- divisor(5, &amp;quot;Buzz&amp;quot;)
+
+list_functions &amp;lt;- list(mod3,mod5)
+
+mapper_list &amp;lt;- function(i,list_functions) map(list_functions, exec,i)
+
+map(1:15,mapper_list,list_functions) %&amp;gt;% 
+  map(reduce,str_c)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[3]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[4]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[5]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[6]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[7]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[8]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[9]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[10]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[11]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[12]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[13]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[14]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[15]]
+## [1] &amp;quot;FizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We learned two new tricks:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Executing a list of functions using exec&lt;/li&gt;
+&lt;li&gt;reducing an list&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;making-just-one-call&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Making just one call&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fancy &amp;lt;- function(i,...) {
+  list_functions &amp;lt;- list(...)
+  mapper_list &amp;lt;- function(i,list_functions) map(list_functions, exec,i)
+  map(i,mapper_list,list_functions) %&amp;gt;%
+  map(reduce,str_c)
+}
+
+fancy(1:15,mod3,mod5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[3]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[4]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[5]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[6]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[7]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[8]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[9]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[10]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[11]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[12]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[13]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[14]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[15]]
+## [1] &amp;quot;FizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One new trick using ellipsis&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;or-preparing-for-an-api&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Or preparing for an api&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;api_less_fancy &amp;lt;- function(i,list_functions) {
+  mapper_list &amp;lt;- function(i,list_functions) map(list_functions, exec,i)
+  map(i,mapper_list,list_functions) %&amp;gt;%
+  map(reduce,str_c)
+}
+
+api_less_fancy(1:15,list(mod3,mod5))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[3]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[4]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[5]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[6]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[7]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[8]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[9]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[10]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[11]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[12]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[13]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[14]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[15]]
+## [1] &amp;quot;FizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;extending-fizzbuzz&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Extending FizzBuzz&lt;/h1&gt;
+&lt;p&gt;Let’s see how easy it is too make the game more difficult:&lt;/p&gt;
+&lt;div id=&#34;changing-names&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Changing names&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mod3n &amp;lt;- divisor(3, &amp;quot;Buzz&amp;quot;)
+mod5n &amp;lt;- divisor(5,&amp;#39;Fizz&amp;#39;)
+fancy(1:15,mod3n,mod5n)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[3]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[4]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[5]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[6]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[7]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[8]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[9]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[10]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[11]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[12]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[13]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[14]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[15]]
+## [1] &amp;quot;BuzzFizz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-divisors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Adding divisors&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mod2 &amp;lt;- divisor(2, &amp;quot;Deuce&amp;quot;)
+fancy(1:30,mod2,mod3,mod5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[3]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[4]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[5]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[6]]
+## [1] &amp;quot;DeuceFizz&amp;quot;
+## 
+## [[7]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[8]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[9]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[10]]
+## [1] &amp;quot;DeuceBuzz&amp;quot;
+## 
+## [[11]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[12]]
+## [1] &amp;quot;DeuceFizz&amp;quot;
+## 
+## [[13]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[14]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[15]]
+## [1] &amp;quot;FizzBuzz&amp;quot;
+## 
+## [[16]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[17]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[18]]
+## [1] &amp;quot;DeuceFizz&amp;quot;
+## 
+## [[19]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[20]]
+## [1] &amp;quot;DeuceBuzz&amp;quot;
+## 
+## [[21]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[22]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[23]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[24]]
+## [1] &amp;quot;DeuceFizz&amp;quot;
+## 
+## [[25]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[26]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[27]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[28]]
+## [1] &amp;quot;Deuce&amp;quot;
+## 
+## [[29]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[30]]
+## [1] &amp;quot;DeuceFizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-new-rules&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Adding new rules&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;less &amp;lt;- function(number, string) {
+    function(input) {
+      if_else(condition = input &amp;lt; number,
+              true = string,
+              false = &amp;quot;&amp;quot;)
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;less10 &amp;lt;- less(10,&amp;quot;Small&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fancy(1:15,less10,mod3,mod5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;Small&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;Small&amp;quot;
+## 
+## [[3]]
+## [1] &amp;quot;SmallFizz&amp;quot;
+## 
+## [[4]]
+## [1] &amp;quot;Small&amp;quot;
+## 
+## [[5]]
+## [1] &amp;quot;SmallBuzz&amp;quot;
+## 
+## [[6]]
+## [1] &amp;quot;SmallFizz&amp;quot;
+## 
+## [[7]]
+## [1] &amp;quot;Small&amp;quot;
+## 
+## [[8]]
+## [1] &amp;quot;Small&amp;quot;
+## 
+## [[9]]
+## [1] &amp;quot;SmallFizz&amp;quot;
+## 
+## [[10]]
+## [1] &amp;quot;Buzz&amp;quot;
+## 
+## [[11]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[12]]
+## [1] &amp;quot;Fizz&amp;quot;
+## 
+## [[13]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[14]]
+## [1] &amp;quot;&amp;quot;
+## 
+## [[15]]
+## [1] &amp;quot;FizzBuzz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That is it have a great day.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

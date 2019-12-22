@@ -1,0 +1,221 @@
+---
+title: FizzBuzz in the tidyverse
+author: 
+- admin
+date: '2019-12-22'
+slug: fizzbuzz-in-the-tidyverse
+categories:
+  - r-project
+tags:
+  - tidyverse
+  - programming
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+
+FizzBuzz is and old kids games
+
+Not that popular where I am from Brazil, Fizz Buzz has a simple set of rules
+
+You start counting from 1 (obviously) and when a number is a multiple of 3 you say **Fizz**,  
+if the number is a multiple of 5 you say  **Buzz**,  
+and if the number is a multiple of both you shout **FizzBuzz**,
+And for every other case you can say the **number itself**, simple right?
+
+I watched this really cool video on Tom Scott channel and realized that I have never attempted this problem as a programmer
+
+This is an blog post full of tricks I will try to point them all out.
+
+[Scott's video](https://youtu.be/QPZ0pIK_wsc)
+
+# Naive FizzBuzz
+
+[Naive FizzBuzz](https://www.r-bloggers.com/fizzbuzz-in-r-and-python/)
+
+```{r Naive FizzBuzz}
+for (i in 1:15){
+  
+  if(i%%3 == 0 & i%%5 == 0) {
+    print('FizzBuzz')
+  }
+  else if(i%%3 == 0) {
+    print('Fizz')
+  }
+  else if (i%%5 == 0){
+    print('Buzz')
+  }
+  else {
+    print(i)
+  }
+  
+}
+```
+
+1. Simple flow control with if, else statements
+2. Some basic operators ($, ==)
+
+# Extending the loop approach
+
+Using Scott's approach we can improve a bit on the logic
+
+```{r Scott FizzBuzz}
+for (i in 1:15){
+  current_out <- ''
+  if(i%%3 == 0) {
+    current_out <- paste0(current_out,'Fizz')
+  }
+  if (i%%5 == 0){
+    current_out <- paste0(current_out,'Buzz')
+  }
+  if (current_out == ''){
+    print(i)
+  }
+  else print(current_out)
+}
+```
+
+While it is possible to improve open this loop, I think it already is close to the limits of what I would call a very simple example
+
+# Functional approach
+
+Thanks [Functional FizzBuzz](https://www.r-bloggers.com/fizzbuzz-in-r/)
+
+```{r}
+divisor <-
+  function(number, string) {
+    function(d) {
+      if (d %% number == 0) string else ""
+    }
+  }
+
+mod3er <- divisor(3, "Fizz")
+mod5er <- divisor(5, "Buzz")
+
+fizzbuzz <- 
+  function(i) {
+    res <- paste0(mod3er(i), mod5er(i))
+    ifelse(res == "", i, res)
+  }
+
+sapply(1:15, fizzbuzz)
+```
+
+So enumerating the new concepts here:
+
+1. Functions that create functions (mod3er,mod5er)
+2. Functions that create functions that create functions (divisor)
+3. Applying functions (sapply)
+4. Functional if else (I prefer it)
+
+All of which seen pretty complicated at first but will pay off big time latter.
+
+# My approach (tidyverse)
+
+## The Basics
+
+Loading the tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+```{r Basic Tidyverse}
+divisor <- function(number, string) {
+    function(input) {
+      if_else(condition = input %% number == 0,
+              true = string,
+              false = "")
+    }
+}
+
+mod3 <- divisor(3, "Fizz")
+mod5 <- divisor(5, "Buzz")
+
+list_functions <- list(mod3,mod5)
+
+mapper_list <- function(i,list_functions) map(list_functions, exec,i)
+
+map(1:15,mapper_list,list_functions) %>% 
+  map(reduce,str_c)
+```
+
+We learned two new tricks:
+
+1. Executing a list of functions using exec
+2. reducing an list
+
+
+
+## Making just one call
+
+```{r Ellipsis Tidyverse}
+fancy <- function(i,...) {
+  list_functions <- list(...)
+  mapper_list <- function(i,list_functions) map(list_functions, exec,i)
+  map(i,mapper_list,list_functions) %>%
+  map(reduce,str_c)
+}
+
+fancy(1:15,mod3,mod5)
+```
+
+One new trick using ellipsis
+
+## Or preparing for an api
+
+```{r API Tidyverse}
+api_less_fancy <- function(i,list_functions) {
+  mapper_list <- function(i,list_functions) map(list_functions, exec,i)
+  map(i,mapper_list,list_functions) %>%
+  map(reduce,str_c)
+}
+
+api_less_fancy(1:15,list(mod3,mod5))
+```
+
+# Extending FizzBuzz
+
+Let's see how easy it is too make the game more difficult:
+
+## Changing names
+
+```{r}
+mod3n <- divisor(3, "Buzz")
+mod5n <- divisor(5,'Fizz')
+fancy(1:15,mod3n,mod5n)
+```
+
+
+## Adding divisors
+
+```{r}
+mod2 <- divisor(2, "Deuce")
+fancy(1:30,mod2,mod3,mod5)
+```
+
+## Adding new rules
+
+```{r}
+less <- function(number, string) {
+    function(input) {
+      if_else(condition = input < number,
+              true = string,
+              false = "")
+    }
+}
+```
+
+```{r}
+less10 <- less(10,"Small")
+```
+
+```{r}
+fancy(1:15,less10,mod3,mod5)
+```
+
+That is it have a great day.
+
