@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on TwoSidesData</title>
@@ -25,7 +24,7 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
       <guid>/project/internal-project/</guid>
-      <description>&lt;p&gt;Creating this website and updating it weekly is my personal task for 2019.&lt;br /&gt;
+      <description>&lt;p&gt;Creating this website and updating it weekly is my personal task for 2019.&lt;br&gt;
 Content includes blogpost, eduction, accomplishments, my TCC and more.&lt;/p&gt;
 </description>
     </item>

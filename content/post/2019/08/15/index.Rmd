@@ -12,9 +12,17 @@ tags:
 image:
   caption: ''
   focal_point: ''
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      toc_collapsed: true
 ---
 
 Breast Cancer problem.
+
+This is a problem that I have trid to solve using just the old tidymodels package and got stuck so here is the new implementation using the amazing tune and workflows
+packages
 
 # Setting up Rmarkdown
 
@@ -42,7 +50,7 @@ knitr::opts_knit$set(root.dir = root_dir)
 ```
   root.dir = 
 
-# Loading Librais
+# Loading Libraries
 
 ```{r Loading Libraries}
 library(tidyverse)
@@ -54,7 +62,7 @@ library(DataExplorer)
 
 # Getting Data
 
-Got the dataset with headers on  [kaggle link](https://www.kaggle.com/uciml/breast-cancer-wisconsin-data/version/2)
+Got the dataset with headers on  [kaggle link](https://www.kaggle.com/uciml/breast-cancer-wisconsin-data/version/2), there is also a cool explanation about the problem there.
 
 ```{r Set Chunk}
 df <- read_csv("breast_cancer.csv")
@@ -73,8 +81,7 @@ df <- df %>%
 ## Skimr is a fast way to get info on your data even though the hist plot fails on my blog :(
 ```{r Skimr}
 df %>% 
-  skimr::skim() %>% 
-  skimr::kable()
+  skimr::skim()
 ```
 
 ## Data Explorer
@@ -110,10 +117,14 @@ Usually we split our data into training and test data to ensure a fair evaluatio
 
 The workflow for the tidymodels is that we first split our data.
 
-```{r}
+```{r Initial Split}
 df_split <- df %>% 
   rsample::initial_split(prop = 0.8)
-df_split
+```
+
+```{r, Train test split}
+df_training <- df_split %>% training()
+df_testing <- df_split %>% testing()
 ```
 
 Then we model on our Training Data
@@ -124,59 +135,239 @@ Recipes are used to preprocess our data, the main mistake here is using the whol
 
 The recipe package helps us with this process.
 
-For those not familearized with the formula notation I am fitting the model on all variables except the id variable.
+For those not familiarized with the formula notation I am fitting the model on all variables except the id variable.
 
 I am than Normalizing my data since the KNN alghoritm is sensible to the scale of the variables being used, I am also excluding variables with high absolute correlation amongst themselves.
 
-Recipes are easy to read and can be quite complex for example I could scale all predictor that are numeric on 
-```{r}
+Recipes are easy to read and can be quite complex
+
+```{r, recipes}
 df_recipe <- training(df_split) %>% 
-  recipe(diagnosis ~ .-id) %>% 
+  recipe(diagnosis ~ .) %>%
+  step_rm(id) %>% 
   step_center(all_predictors()) %>% 
   step_scale(all_predictors(),all_numeric()) %>% 
-  step_corr(all_predictors()) %>% 
-  prep()
-df_recipe
+  step_corr(all_predictors())
 ```
 
-We can then create our train and test data frames by baking our recipe and juicing our recipe
+We could then create our train and test data frames by baking our recipe and juicing our recipe
 
 ```{r}
-df_testing <- df_recipe %>% 
-  bake(testing(df_split))
-df_testing
-```
-```{r}
-df_training <- juice(df_recipe)
+# df_testing <- df_recipe %>% 
+#   bake(testing(df_split))
+# df_testing
+#df_training <- juice(df_recipe)
 ```
 
+But I am going for a Bayes search approch
 
-## Cross Validation and Random Serch
+## Cross Validation and Bayes Search
 
 ### Cross Validation
 
 We further divide our data frame into folds in order to improve our certainty that the ideal number of neighbours is right.
 
-```{r}
-df_cross_testing <- df_testing %>% vfold_cv(v = 10)
+```{r, cvfold split}
+cv_splits <- df_testing %>% vfold_cv(v = 5)
 ```
 
-To decide the KNN parameters we could use the Dials package, grid searchign neighbors 1 to 50,  Working on this
+### Using the new tune package currently on github
 
-```{r}
-bst_grid <- grid_random(
-  neighbors %>%  range_set(c( 1,  50)), 
-  size = 10
-)
+```{r, timeit = FALSE}
+library(tune)
+knn_mod <- 
+  nearest_neighbor(neighbors = tune(), weight_func = tune()) %>% 
+  set_engine("kknn") %>% 
+  set_mode("classification")
 ```
 
-```{r}
-nearest_neighbor_model <- parsnip::nearest_neighbor(mode = "classification") %>% 
-  set_engine("kknn") %>%
-  merge(bst_grid)
+### Combining everything so far in the new package workflow
+
+```{r, timeit = FALSE}
+library(workflows)
+knn_wflow <- 
+  workflow() %>% 
+  add_model(knn_mod) %>% 
+  add_recipe(df_recipe)
 ```
 
-```{r}
-results_cross_validation <- crossing(df_cross_testing,nearest_neighbor_model) 
+### Limiting our search
+
+```{r, timeit = FALSE}
+knn_param <- 
+  knn_wflow %>% 
+  parameters() %>% 
+    update(
+    neighbors = neighbors(c(3, 50)),
+    weight_func = weight_func(values = c("rectangular", "inv", "gaussian", "triangular"))
+  )
 ```
 
+### Searching for the best model 
+
+I used 5 iterations as the limit for the process because of printing reasons.
+
+Keep in mind that mtune will maximize just the first metric from the package yardstick
+
+```{r Bayes Search}
+ctrl <- control_bayes(verbose = TRUE,no_improve = 5)
+set.seed(42)
+knn_search <- tune_bayes(knn_wflow,
+                         resamples = cv_splits,
+                         initial = 5,
+                         iter = 20,
+                         param_info = knn_param,
+                         control = ctrl,
+                         metrics = metric_set(roc_auc,accuracy))
+```
+
+### Visualizing our search
+```{r, timeit = FALSE}
+autoplot(knn_search, type = "performance", metric = "accuracy")
+```
+
+```{r, timeit = FALSE}
+autoplot(knn_search, type = "performance", metric = "roc_auc")
+```
+
+
+### Seing the best result
+
+```{r, timeit = FALSE}
+collect_metrics(knn_search) %>% 
+  dplyr::filter(.metric == "accuracy") %>% 
+  arrange(mean %>% desc)
+```
+
+```{r,timeit = FALSE}
+collect_metrics(knn_search) %>% 
+  dplyr::filter(.metric == "roc_auc") %>% 
+  arrange(mean %>% desc)
+```
+
+
+### Extracting the best model
+
+```{r, timeit = FALSE}
+best_metrics <- collect_metrics(knn_search) %>% 
+  dplyr::filter(.metric == "roc_auc") %>% 
+  arrange(mean %>% desc) %>% 
+  head(1) %>% 
+  select(neighbors,weight_func) %>% 
+  as.list()
+```
+
+### Creating production model
+
+```{r,timeit = FALSE}
+production_knn <-  
+  nearest_neighbor(neighbors = best_metrics$neighbors,weight_func = best_metrics$weight_func) %>% 
+  set_engine("kknn") %>% 
+  set_mode("classification")
+```
+
+### Creating production wflow
+
+```{r,timeit =FALSE}
+production_wflow <-   workflow() %>% 
+  add_model(production_knn) %>% 
+  add_recipe(df_recipe)
+```
+
+### Finally applying testing production model
+
+```{r Fitting production}
+fit_prod <- fit(production_wflow,df_training)
+```
+
+### Metrics
+
+```{r Calculating metrics}
+fit_prod %>% predict(df_testing) %>% 
+  bind_cols(df_testing %>% transmute(diagnosis = diagnosis %>% as.factor())) %>% 
+  yardstick::metrics(truth = diagnosis,estimate = .pred_class)
+```
+
+```{r Calculating metrics auc}
+predict(fit_prod,df_testing,type = 'prob') %>%
+  bind_cols(df_testing %>% transmute(diagnosis = diagnosis %>% as.factor())) %>% 
+  yardstick::roc_auc(truth = diagnosis,.pred_B)
+```
+
+
+## Another visualization
+
+```{r, timeit = FALSE}
+knn_naive <- 
+  nearest_neighbor(neighbors = tune()) %>% 
+  set_engine("kknn") %>% 
+  set_mode("classification")
+```
+
+### Combining everything so far in the new package workflow
+
+```{r, timeit = FALSE}
+knn_wflow_naive <- 
+  workflow() %>% 
+  add_model(knn_naive) %>% 
+  add_recipe(df_recipe)
+```
+
+```{r, timit = FALSE}
+knn_naive_param <- 
+  knn_wflow %>% 
+  parameters() %>% 
+    update(
+    neighbors = neighbors(c(10, 50))
+  )
+```
+
+One advantage of the naive search is that it is easy to parallelize
+
+```{r, set up parallel}
+all_cores <- parallel::detectCores(logical = FALSE)
+
+library(doParallel)
+cl <- makePSOCKcluster(all_cores)
+registerDoParallel(cl)
+```
+
+```{r naive grid search}
+ctrl <- control_grid(verbose = FALSE)
+set.seed(42)
+naive_search <- tune_grid(knn_wflow_naive,
+                         resamples = cv_splits,
+                         param_info = knn_naive_param,
+                         control = ctrl,
+                         grid = 50,
+                         metrics = metric_set(roc_auc,accuracy))
+```
+
+```{r, timeit = FALSE}
+best_naive_metrics <- collect_metrics(naive_search) %>% 
+  dplyr::filter(.metric == "roc_auc") %>% 
+  arrange(mean %>% desc)
+DT::datatable(best_naive_metrics,options = list(pageLength = 5, scrollX=T))
+```
+
+```{r, timeit = FALSE}
+p <- best_naive_metrics %>% 
+  ggplot() +
+  aes(neighbors,mean) +
+  geom_point() +
+  ylim(.95,1)
+p
+```
+
+
+# Checking the timing table
+
+```{r,timeit=FALSE}
+(x <- tic.log() %>%
+  as.character() %>% 
+  tibble(log = .) %>% 
+  separate(log,sep = ': ',into = c('name','time'))) %>% 
+  separate(time, sep = ' ',c('measure','units')) %>%
+  mutate(measure = measure %>% as.numeric()) %>% 
+  arrange(measure %>% desc())
+```

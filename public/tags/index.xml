@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on TwoSidesData</title>
@@ -6,24 +5,24 @@
     <description>Recent content in Tags on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Personal Website</title>
-      <link>/tags/personal-website/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      <title>tidymodels</title>
+      <link>/tags/tidymodels/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/personal-website/</guid>
+      <guid>/tags/tidymodels/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>R Markdown</title>
-      <link>/tags/r-markdown/</link>
-      <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
+      <title>tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r-markdown/</guid>
+      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
@@ -37,29 +36,20 @@
     </item>
     
     <item>
-      <title>forecast</title>
-      <link>/tags/forecast/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/tags/forecast/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>libraries</title>
-      <link>/tags/libraries/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/tags/libraries/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pandas</title>
       <link>/tags/pandas/</link>
       <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Markdown</title>
+      <link>/tags/r-markdown/</link>
+      <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r-markdown/</guid>
       <description></description>
     </item>
     
@@ -82,20 +72,29 @@
     </item>
     
     <item>
-      <title>tidymodels</title>
-      <link>/tags/tidymodels/</link>
-      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      <title>forecast</title>
+      <link>/tags/forecast/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/tidymodels/</guid>
+      <guid>/tags/forecast/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      <title>libraries</title>
+      <link>/tags/libraries/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/tidyverse/</guid>
+      <guid>/tags/libraries/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Personal Website</title>
+      <link>/tags/personal-website/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/personal-website/</guid>
       <description></description>
     </item>
     

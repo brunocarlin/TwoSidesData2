@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors on TwoSidesData</title>
@@ -6,7 +5,17 @@
     <description>Recent content in Authors on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/authors/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>admin</title>
+      <link>/authors/admin/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/admin/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>GA Cushen</title>
@@ -23,15 +32,6 @@
       <pubDate>Mon, 01 Jul 2013 00:00:00 -0300</pubDate>
       
       <guid>/authors/ms-nixon/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>admin</title>
-      <link>/authors/admin/</link>
-      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/admin/</guid>
       <description></description>
     </item>
     
