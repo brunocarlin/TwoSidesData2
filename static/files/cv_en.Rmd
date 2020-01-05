@@ -41,13 +41,19 @@ library(vitae)
 
 # Experience
 
+## Bayer
+
+Right now I am allocated at a new area of the company called Account Receivable Data Analysis, I will be working on Data Science models and the creation of data procedures.
+
+I worked as a Credit analyst for 3 months, doing  financial analysis of clients and developing some scripts in R to automate daily tasks.
+
 ## Driven Consulting
 
-I am working as a Data Scientist Consultor on projects for the BI area, working on problems like the future amount of products on our clients stores.
+I worked as a Data Scientist Consultant on projects for the BI area, working on problems like the future amount of products on our clients stores.
 
 ## Ernst & Young
 
-I worked as a trainee at EY, using my experience working with data and technology, delivering large scale accounting projects that require automation, I am also working on the documentation and analysis of already implemented solutions.
+I worked as a trainee at EY, using my experience working with data and technology, delivering large scale accounting projects that require automation, I am also worked on the documentation and analysis of already implemented solutions.
 
 ## Bayer
 
@@ -84,10 +90,10 @@ No Certification.
 
 # Data Science Skills
 
-I am learning Data Science, following blogs, reddit, reading books, doing online and on site courses, watching conference videos and more.
+I am learning Data Science, following blogs, Reddit, reading books, doing online and on site courses, watching conference videos and more.
 
-I am well versed into using the tidyverse for Data Analisys and Statistical Inference.
+I am well versed into using the tidyverse for Data Analysis and Statistical Inference.
 
-## Tecnologies
+## Technologies
 
 R, SQL, Python.

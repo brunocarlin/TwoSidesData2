@@ -8,14 +8,11 @@ email: "brunotestaguzza@gmail.com"
 twitter: BrunoTestaguzza
 github: brunocarlin
 linkedin: bruno-carlin-451007172
-date: "`r format(Sys.time(), '%B %Y')`"
+date: "janeiro 2020"
 output: vitae::awesomecv
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-library(vitae)
-```
+
 
 # Educação
 
