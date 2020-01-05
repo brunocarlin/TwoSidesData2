@@ -41,6 +41,13 @@ Finalizado 2013
 
 # Experiência
 
+## Bayer
+
+Começo esse ano em uma nova área da Empresa chamada, Contas a Receber Análise de Dados, vou trabalhar com modelos de Ciência de dados e criação de procedimentos de dados em toda a América latina.
+
+
+Trabalhei 3 meses como analista de Crédito, fazendo analises de crédito dos clientes e desenvolvendo scripts para automação de tarefas diárias em R.
+
 ## Driven Consulting
 
 Trabalho como Consultor de Ciência de Dados na área de BI resolvendo problemas como o estoque futuro nos clientes.

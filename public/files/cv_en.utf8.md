@@ -8,7 +8,7 @@ email: "brunotestaguzza@gmail.com"
 twitter: BrunoTestaguzza
 github: brunocarlin
 linkedin: bruno-carlin-451007172
-date: "abril 2019"
+date: "janeiro 2020"
 output: vitae::awesomecv
 ---
 
@@ -17,6 +17,10 @@ output: vitae::awesomecv
 # Education
 
 ## Insper
+
+[Post-graduate Degree Data Science and Decisions](https://www.insper.edu.br/pos-graduacao/programas-avancados/programa-avancado-em-data-science-e-decisao/)
+
+2019-2020.
 
 [Graduation Economics](https://www.insper.edu.br/graduacao/economia/)
 
@@ -36,15 +40,23 @@ output: vitae::awesomecv
 
 ## Bayer
 
-I have 1 year of working experience as an Intern for the Risk Managment, Reporting area in Bayer. I was responsible for the creation, automation and maintance of several credit and cash flow reports. My most remarkble skill when doing these regular tasks was combining my VBA and Excel knowledge to create and improve Dashboards.
+Right now I am allocated at a new area of the company called Account Receivable Data Analysis, I will be working on Data Science models and the creation of data procedures.
 
-I executed a forecasting project that involved using my own algorithm created in R to improve automatic forecasting performance of time series by ensemble models, I then hirarhical forecasts bringing information on all branches of recevables toghether, most importanly the project proved the viability of doing automated forecasts, potencially reducing working hours threfore costs.
+I worked as a Credit analyst for 3 months, doing  financial analysis of clients and developing some scripts in R to automate daily tasks.
+
+## Driven Consulting
+
+I worked as a Data Scientist Consultant on projects for the BI area, working on problems like the future amount of products on our clients stores.
 
 ## Ernst & Young
 
-Trainee [FAAS](https://www.ey.com/us/en/services/assurance/financial-accounting-advisory-services).
+I worked as a trainee at EY, using my experience working with data and technology, delivering large scale accounting projects that require automation, I am also worked on the documentation and analysis of already implemented solutions.
 
-In training.
+## Bayer
+
+I have 1 year of working experience as an Intern for the Risk Management, Reporting area in Bayer. I was responsible for the creation, automation and maintenance of several credit and cash flow reports. My most remarkable skill when doing these regular tasks was combining my VBA and Excel knowledge to create and improve Dashboards.
+
+I executed a forecasting project that involved using my own algorithm created in R to improve automatic forecasting performance of time series by ensemble models, I then hierarchical forecasts bringing information on all branches of receivables together, most importantly the project proved the viability of doing automated forecasts, potentially reducing working hours therefore costs.
 
 # Languages
 
@@ -71,14 +83,14 @@ Basic.
 
 No Certification.
 
-## Data Science Skills
 
-I am an  eager to learn Data Science, following blogs, reddit, reading books, doing online an on site courses, watching conference videos and more.
 
-I am well versed into using the tidyverse for Data Analisys and Statistical Inference, with a formal background aquired in optional courses on my college.
+# Data Science Skills
 
-I have studied the most about time series.
+I am learning Data Science, following blogs, Reddit, reading books, doing online and on site courses, watching conference videos and more.
 
-Advanced R.
+I am well versed into using the tidyverse for Data Analysis and Statistical Inference.
 
-Intermediary Python.
+## Technologies
+
+R, SQL, Python.
