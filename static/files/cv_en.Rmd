@@ -92,7 +92,7 @@ No Certification.
 
 I am learning Data Science, following blogs, Reddit, reading books, doing online and on site courses, watching conference videos and more.
 
-I am well versed into using the tidyverse for Data Analysis and Statistical Inference.
+I am well versed into using the tidyverse for Data Analysis and Statistical Inference and doing time series forecasts.
 
 ## Technologies
 
