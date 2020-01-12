@@ -713,15 +713,12 @@ calculate_minutes splits the string ‘10:30’ into ‘10’ and ‘30’ and t
 </div>
 <div id="reframing-the-problem" class="section level1">
 <h1>Reframing the problem</h1>
-<p>While the first the may seem useless in both r and python since ‘14:30’ &lt; “10:30” will return FALSE/False, this idea made me realize a really cool functional way to solve this problem</p>
+<p>While at first the calculate_minutes may seem useless in both r and python since ‘14:30’ &lt; “10:30” will return FALSE/False</p>
 <p>We can reframe the focus on minutes overlapping of each appointment instead of time comparison like Tim used is his solution.</p>
 <p>So based on this new idea, I created a function to convert the the strings we received into ranges of minutes, basically the interval of each appointment.</p>
 <p>We will also need the interval of the full Day</p>
 <pre class="r"><code>full_day &lt;- 1:(24*60) # 24 hours * 60 minutes -&gt; range 1: to result</code></pre>
 <p>Here is the function that applies Step One and Two</p>
-<pre class="r"><code>calculate_interval &lt;- . %&gt;% 
-  map_depth(.depth = 2,calculate_minutes) %&gt;% 
-  map(.,~ reduce(.,seq))</code></pre>
 <pre class="r"><code>calculate_interval &lt;- . %&gt;% 
   map(calculate_minutes) %&gt;% 
   reduce(seq)</code></pre>
@@ -795,7 +792,7 @@ allowed_time2_interval &lt;- allowed_time2 %&gt;%
 </div>
 <div id="calculating-occupied-and-available-minutes" class="section level1">
 <h1>Calculating occupied and available minutes</h1>
-<p>This is a simple step we simply need to collapse the lists in the result</p>
+<p>This is a simple step we collapse the lists into one</p>
 <pre class="r"><code>schedule_1_occupied &lt;- person1_interval &lt;- person1_interval %&gt;% reduce(c)
 schedule_1_avalaible &lt;- allowed_time1_interval %&gt;% reduce(c)
 
@@ -810,8 +807,8 @@ Here is an example of how to collapse a simple list</p>
 </div>
 <div id="filtering-lists" class="section level1">
 <h1>Filtering lists</h1>
-<p>Now finally to our last core functional language function (filter), in the tidyverse filter was split into two function discard and keep, mostly because the actual filter function is used in the core of the dplyr essential function.</p>
-<p>We can start with the full_day and take away occupied minutes in this manner, and keep valid minutes.</p>
+<p>Now finally to our last core functional language function (filter), in the tidyverse filter was split into two functions discard and keep, mostly because the actual filter function is used in dplyr</p>
+<p>We can start with the full_day and take away occupied minutes and keep valid minutes, all using filter.</p>
 <pre class="r"><code>possible_minutes &lt;- full_day %&gt;% 
   discard(~ .x %in% c(schedule_1_occupied,schedule_2_occupied)) %&gt;%
   keep(~ .x %in% schedule_1_avalaible) %&gt;% 
@@ -868,7 +865,7 @@ start_end_minutes</code></pre>
 </div>
 <div id="pairing-start-and-end-hours" class="section level1">
 <h1>Pairing Start and End Hours</h1>
-<p>I will over complicate the flagging of Even and odd numbers to show another really cool functional concept of currying, while currying is not encouraged by the tidyverse the partial functions does make it pretty easy to use (same as Python)</p>
+<p>I will over complicate the flagging of even and odd numbers to show another really cool functional concept of currying, while currying is not encouraged by the tidyverse the partial functions does make it pretty easy to use (same as Python)</p>
 <p>The other cool concept is that you can negate a function, in this case turning the results of is_even into is_odd</p>
 <pre class="r"><code>diviseble_by &lt;- function(number_vector,divisor,quocient) {
   number_vector %% divisor == quocient
@@ -890,10 +887,13 @@ is_odd &lt;- is_even %&gt;% negate()</code></pre>
 <pre class="r"><code>readable_time %&gt;% pair_wise_combination</code></pre>
 <pre><code>## [1] &quot;11:31 11:59&quot; &quot;14:31 15:59&quot;</code></pre>
 <p>That is all folks.</p>
-<p>My answer would solve for n individuals just fine</p>
-<p>I failed because it 3 hours to get into this solution, and I would have blankly stared into the interviewer face for a while before admitting that I have no idea the Big O of this answer</p>
+<p>My answer also works for n people</p>
 <p>I can answer questions anywhere, please do share it if you have enjoyed it.</p>
-<p>A disclaimer is that while I do understand big O notation and its importance, I am not a Software Engineer nor a Computer Scientist, and as such I have no idea how efficient my solution is, I know it is fast enough for me, but I understand that big O knowledge is a major difference while learning DS, rarely if ever people mention the Big O of our algorithms so I never deeply studied about the subject.</p>
+</div>
+<div id="big-o-problem-and-data-science" class="section level1">
+<h1>Big O problem and Data Science</h1>
+<p>I also failed because, I would have blankly stared into the interviewer face for a while before admitting that I have no idea the Big O of this answer is</p>
+<p>While I do understand big O notation and its importance, I am not a Software Engineer nor a Computer Scientist, I have no idea how efficient my solution is, I know it is fast enough for me, but I understand that big O knowledge is a major difference while learning DS compared to the usual programming paths, rarely if ever people mention the Big O of our algorithms so I never deeply studied about the subject.</p>
 </div>
 
     </div>
