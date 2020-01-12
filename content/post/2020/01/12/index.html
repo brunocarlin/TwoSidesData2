@@ -14,9 +14,24 @@ image:
   caption: ''
 subtitle: 'How I failed at solving a very hard question'
 summary: 'Google questions are hard'
+output:
+  blogdown::html_page:
+    toc: true # table of content true
 ---
 
 
+<div id="TOC">
+<ul>
+<li><a href="#turning-strings-into-numbers">Turning strings into numbers</a></li>
+<li><a href="#reframing-the-problem">Reframing the problem</a></li>
+<li><a href="#calculating-occupied-and-available-minutes">Calculating occupied and available minutes</a></li>
+<li><a href="#filtering-lists">Filtering lists</a></li>
+<li><a href="#calculating-start-and-end-minutes">Calculating start and end minutes</a></li>
+<li><a href="#converting-minutes-back-into-readable-hours">Converting minutes back into readable hours</a></li>
+<li><a href="#pairing-start-and-end-hours">Pairing Start and End Hours</a></li>
+<li><a href="#big-o-problem-and-data-science">Big O problem and Data Science</a></li>
+</ul>
+</div>
 
 <p>So to start it all, I learned about this question from the recommended youtube channel <a href="https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g">Clément Mihailescu</a> in his youtube video <a href="http://www.youtube.com/watch?v=3Q_oYDQ2whs" title="Video"><img src="http://img.youtube.com/vi/3Q_oYDQ2whs/0.jpg" /></a></p>
 <p>In this video both Clément and Tim from <a href="https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg">Tech with Tim</a> work together to solve this question:</p>
@@ -197,8 +212,8 @@ The in between minutes are found by looking for jumps between minutes using the 
 start_end_minutes</code></pre>
 <pre><code>## [1] 691 719 871 959</code></pre>
 </div>
-<div id="converting-it-minutes-back-into-readable-hours" class="section level1">
-<h1>Converting it minutes back into readable hours</h1>
+<div id="converting-minutes-back-into-readable-hours" class="section level1">
+<h1>Converting minutes back into readable hours</h1>
 <p>A simple function that undoes our transformation if you need to read <a href="http://rfunction.com/archives/1648">%/% explanation</a></p>
 <pre class="r"><code>turn_back_into_time &lt;- function(x) {
   x_hour &lt;- x %/% 60
