@@ -57,15 +57,12 @@ calculate_minutes splits the string ‘10:30’ into ‘10’ and ‘30’ and t
 &lt;/div&gt;
 &lt;div id=&#34;reframing-the-problem&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Reframing the problem&lt;/h1&gt;
-&lt;p&gt;While the first the may seem useless in both r and python since ‘14:30’ &amp;lt; “10:30” will return FALSE/False, this idea made me realize a really cool functional way to solve this problem&lt;/p&gt;
+&lt;p&gt;While at first the calculate_minutes may seem useless in both r and python since ‘14:30’ &amp;lt; “10:30” will return FALSE/False&lt;/p&gt;
 &lt;p&gt;We can reframe the focus on minutes overlapping of each appointment instead of time comparison like Tim used is his solution.&lt;/p&gt;
 &lt;p&gt;So based on this new idea, I created a function to convert the the strings we received into ranges of minutes, basically the interval of each appointment.&lt;/p&gt;
 &lt;p&gt;We will also need the interval of the full Day&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;full_day &amp;lt;- 1:(24*60) # 24 hours * 60 minutes -&amp;gt; range 1: to result&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here is the function that applies Step One and Two&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;calculate_interval &amp;lt;- . %&amp;gt;% 
-  map_depth(.depth = 2,calculate_minutes) %&amp;gt;% 
-  map(.,~ reduce(.,seq))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;calculate_interval &amp;lt;- . %&amp;gt;% 
   map(calculate_minutes) %&amp;gt;% 
   reduce(seq)&lt;/code&gt;&lt;/pre&gt;
@@ -139,7 +136,7 @@ allowed_time2_interval &amp;lt;- allowed_time2 %&amp;gt;%
 &lt;/div&gt;
 &lt;div id=&#34;calculating-occupied-and-available-minutes&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Calculating occupied and available minutes&lt;/h1&gt;
-&lt;p&gt;This is a simple step we simply need to collapse the lists in the result&lt;/p&gt;
+&lt;p&gt;This is a simple step we collapse the lists into one&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;schedule_1_occupied &amp;lt;- person1_interval &amp;lt;- person1_interval %&amp;gt;% reduce(c)
 schedule_1_avalaible &amp;lt;- allowed_time1_interval %&amp;gt;% reduce(c)
 
@@ -154,8 +151,8 @@ Here is an example of how to collapse a simple list&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering-lists&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Filtering lists&lt;/h1&gt;
-&lt;p&gt;Now finally to our last core functional language function (filter), in the tidyverse filter was split into two function discard and keep, mostly because the actual filter function is used in the core of the dplyr essential function.&lt;/p&gt;
-&lt;p&gt;We can start with the full_day and take away occupied minutes in this manner, and keep valid minutes.&lt;/p&gt;
+&lt;p&gt;Now finally to our last core functional language function (filter), in the tidyverse filter was split into two functions discard and keep, mostly because the actual filter function is used in dplyr&lt;/p&gt;
+&lt;p&gt;We can start with the full_day and take away occupied minutes and keep valid minutes, all using filter.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;possible_minutes &amp;lt;- full_day %&amp;gt;% 
   discard(~ .x %in% c(schedule_1_occupied,schedule_2_occupied)) %&amp;gt;%
   keep(~ .x %in% schedule_1_avalaible) %&amp;gt;% 
@@ -212,7 +209,7 @@ start_end_minutes&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;pairing-start-and-end-hours&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Pairing Start and End Hours&lt;/h1&gt;
-&lt;p&gt;I will over complicate the flagging of Even and odd numbers to show another really cool functional concept of currying, while currying is not encouraged by the tidyverse the partial functions does make it pretty easy to use (same as Python)&lt;/p&gt;
+&lt;p&gt;I will over complicate the flagging of even and odd numbers to show another really cool functional concept of currying, while currying is not encouraged by the tidyverse the partial functions does make it pretty easy to use (same as Python)&lt;/p&gt;
 &lt;p&gt;The other cool concept is that you can negate a function, in this case turning the results of is_even into is_odd&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;diviseble_by &amp;lt;- function(number_vector,divisor,quocient) {
   number_vector %% divisor == quocient
@@ -234,10 +231,13 @@ is_odd &amp;lt;- is_even %&amp;gt;% negate()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readable_time %&amp;gt;% pair_wise_combination&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;11:31 11:59&amp;quot; &amp;quot;14:31 15:59&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That is all folks.&lt;/p&gt;
-&lt;p&gt;My answer would solve for n individuals just fine&lt;/p&gt;
-&lt;p&gt;I failed because it 3 hours to get into this solution, and I would have blankly stared into the interviewer face for a while before admitting that I have no idea the Big O of this answer&lt;/p&gt;
+&lt;p&gt;My answer also works for n people&lt;/p&gt;
 &lt;p&gt;I can answer questions anywhere, please do share it if you have enjoyed it.&lt;/p&gt;
-&lt;p&gt;A disclaimer is that while I do understand big O notation and its importance, I am not a Software Engineer nor a Computer Scientist, and as such I have no idea how efficient my solution is, I know it is fast enough for me, but I understand that big O knowledge is a major difference while learning DS, rarely if ever people mention the Big O of our algorithms so I never deeply studied about the subject.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;big-o-problem-and-data-science&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Big O problem and Data Science&lt;/h1&gt;
+&lt;p&gt;I also failed because, I would have blankly stared into the interviewer face for a while before admitting that I have no idea the Big O of this answer is&lt;/p&gt;
+&lt;p&gt;While I do understand big O notation and its importance, I am not a Software Engineer nor a Computer Scientist, I have no idea how efficient my solution is, I know it is fast enough for me, but I understand that big O knowledge is a major difference while learning DS compared to the usual programming paths, rarely if ever people mention the Big O of our algorithms so I never deeply studied about the subject.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
