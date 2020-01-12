@@ -16,6 +16,18 @@
       <guid>/2020/01/12/google-interview-question-in-r/</guid>
       <description>
 
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#turning-strings-into-numbers&#34;&gt;Turning strings into numbers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reframing-the-problem&#34;&gt;Reframing the problem&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#calculating-occupied-and-available-minutes&#34;&gt;Calculating occupied and available minutes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#filtering-lists&#34;&gt;Filtering lists&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#calculating-start-and-end-minutes&#34;&gt;Calculating start and end minutes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#converting-minutes-back-into-readable-hours&#34;&gt;Converting minutes back into readable hours&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pairing-start-and-end-hours&#34;&gt;Pairing Start and End Hours&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#big-o-problem-and-data-science&#34;&gt;Big O problem and Data Science&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 
 &lt;p&gt;So to start it all, I learned about this question from the recommended youtube channel &lt;a href=&#34;https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g&#34;&gt;Clément Mihailescu&lt;/a&gt; in his youtube video &lt;a href=&#34;http://www.youtube.com/watch?v=3Q_oYDQ2whs&#34; title=&#34;Video&#34;&gt;&lt;img src=&#34;http://img.youtube.com/vi/3Q_oYDQ2whs/0.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;In this video both Clément and Tim from &lt;a href=&#34;https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg&#34;&gt;Tech with Tim&lt;/a&gt; work together to solve this question:&lt;/p&gt;
@@ -196,8 +208,8 @@ The in between minutes are found by looking for jumps between minutes using the 
 start_end_minutes&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 691 719 871 959&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;converting-it-minutes-back-into-readable-hours&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Converting it minutes back into readable hours&lt;/h1&gt;
+&lt;div id=&#34;converting-minutes-back-into-readable-hours&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Converting minutes back into readable hours&lt;/h1&gt;
 &lt;p&gt;A simple function that undoes our transformation if you need to read &lt;a href=&#34;http://rfunction.com/archives/1648&#34;&gt;%/% explanation&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;turn_back_into_time &amp;lt;- function(x) {
   x_hour &amp;lt;- x %/% 60

@@ -14,6 +14,9 @@ image:
   caption: ''
 subtitle: 'How I failed at solving a very hard question'
 summary: 'Google questions are hard'
+output:
+  blogdown::html_page:
+    toc: true # table of content true
 ---
 
 So to start it all, I learned about this question from the recommended youtube channel [Clément Mihailescu](https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g) in his youtube video [![](http://img.youtube.com/vi/3Q_oYDQ2whs/0.jpg)](http://www.youtube.com/watch?v=3Q_oYDQ2whs "Video")
@@ -237,7 +240,7 @@ start_end_minutes
 ```
 
 
-#  Converting it minutes back into readable hours
+#  Converting minutes back into readable hours
 
 A simple function that undoes our transformation if you need to read [%/% explanation](http://rfunction.com/archives/1648)
 
