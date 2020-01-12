@@ -1,0 +1,312 @@
+---
+title: Google interview question in R - Calendar
+author: ''
+date: '2020-01-12'
+slug: google-interview-question-in-r
+categories:
+  - r-project
+tags:
+  - tidyverse
+  - programming
+authors:
+  - admin
+image:
+  caption: ''
+subtitle: 'How I failed at solving a very hard question'
+summary: 'Google questions are hard'
+---
+
+So to start it all, I learned about this question from the recommended youtube channel [Clément Mihailescu](https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g) in his youtube video [![](http://img.youtube.com/vi/3Q_oYDQ2whs/0.jpg)](http://www.youtube.com/watch?v=3Q_oYDQ2whs "Video")
+
+
+In this video both Clément and Tim from [Tech with Tim](https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg) work together to solve this question:
+
+Suppose you have two People that want to Schedule a meeting, how would you schedule it, if each Person has already set up meetings in this day and that each Person has different working hours
+
+To help us understand it the problem provided us with this example data
+
+Person 1 has three meetings 9:00 to 10:30, 12:00 to 13:00 and 16:00 to 18:00, this Person works from 9:00 to 20:00
+
+Person 2 also has three meetings 10:00 to 11:30, 12:30 to 14:30 and 18:00 to 18:30 this Person works from 10:00 to 18:30
+
+For those just starting out with R and the tidyverse I will explain  each part in detail in the collapsible parts of the post.
+
+
+So coding this info in R we have
+
+```{r message=FALSE}
+library(tidyverse)
+```
+
+```{r}
+person1 <- list(list('9:00', '10:30'),
+                list('12:00', '13:00'),
+                list('16:00', '18:00'))
+
+allowed_time1 <- list(list('9:00','20:00'))
+
+
+person2 <- list(list('10:00', '11:30'),
+                list('12:30', '14:30'),
+                list('18:00', '18:30'))
+
+allowed_time2 <- list(list('10:00','18:30'))
+```
+
+
+If you see the video Tim was able to solve it in 45 minutes while having spent a good amount of the time talking back and forth with his interviewer and explaining his reasoning, that was impressive.
+
+Well I failed to finish this problem in 45 minutes, in fact it took close to 3 hours to stitch together the solution I am about to show, but I think my solution is something that I am proud of and that it follows most of what I love about functional programming.
+
+
+# Turning strings into numbers
+
+I saw that Tim created a function to compare time in his program
+
+Creating a function that calculates the amount of minutes in a string such as '10:30'
+
+
+```{r}
+calculate_minutes <- function(x) {
+  x <- str_split(x,pattern = ":")
+  as.integer(x[[1]][[1]]) * 60 + as.integer(x[[1]][[2]])
+}
+```
+
+```{r}
+calculate_minutes('10:30')
+```
+
+
+<details>
+  <summary>explanation on calculate minutes</summary>
+    calculate_minutes splits the string '10:30' into '10' and '30' and then multiples the left hand side by 60, because each hour has 60 minutes in it and then adds the right hand side the minutes to the result 630 = 10 * 60 + 30 minutes.
+
+</details> 
+
+# Reframing the problem
+
+While the first the may seem useless in both r and python since '14:30' < "10:30" will return FALSE/False, this idea made me realize a really cool functional way to solve this problem
+
+We can reframe the focus on minutes overlapping of each appointment instead of time comparison like Tim used is his solution.
+
+So based on this new idea, I created a function to convert the the strings we received into ranges of minutes, basically the interval of each appointment.
+
+We will also need the interval of the full Day
+
+```{r}
+full_day <- 1:(24*60) # 24 hours * 60 minutes -> range 1: to result
+```
+
+Here is the function that applies Step One and Two
+
+```{r}
+calculate_interval <- . %>% 
+  map_depth(.depth = 2,calculate_minutes) %>% 
+  map(.,~ reduce(.,seq))
+```
+
+```{r}
+calculate_interval <- . %>% 
+  map(calculate_minutes) %>% 
+  reduce(seq)
+```
+
+```{r}
+example_appointment <- list('10:30','10:40')
+example_appointment %>% calculate_interval
+```
+
+<details>
+  <summary>explanation on calculate_interval</summary>
+I use "." as a shortcut for function(x) {} it is really useful in function pipes like this one
+
+map is a function that applies another function to all elements of an list and returns ideally the same number of elements like this,
+```{r}
+example_list <- list(list('hi','johnny'),list('how','are','you'))
+map(example_list,.f = str_to_upper)
+```
+  I also use pipes (%>%), the pipes allow us to change the nested nature of function calls into a sequential one
+  for example
+```{r}
+example_list %>%
+  map(str_to_title)
+```
+  
+  And finally I use another core function of functional programming reduce, reduce works by applying the same function in a list until the is only one element left for example
+```{r}
+reduce(1:4,sum)
+```
+  
+</details> 
+
+We then need to use this function on all of our info
+
+```{r}
+person1_interval <- person1 %>%
+  map(calculate_interval)
+
+person2_interval <- person2 %>% 
+  map(calculate_interval)
+
+allowed_time1_interval <- allowed_time1 %>% 
+  map(calculate_interval)
+
+allowed_time2_interval <- allowed_time2 %>% 
+  map(calculate_interval)
+```
+
+<details>
+  <summary>example Person1</summary>
+```{r}
+person1 %>% 
+  map(calculate_interval)
+```
+</details> 
+
+
+
+# Calculating occupied and available minutes
+
+This is a simple step we simply need to collapse the lists in the result
+
+```{r}
+schedule_1_occupied <- person1_interval <- person1_interval %>% reduce(c)
+schedule_1_avalaible <- allowed_time1_interval %>% reduce(c)
+
+schedule_2_occupied <- person2_interval %>% reduce(c)
+schedule_2_avalaible <- allowed_time2_interval %>% reduce(c)
+```
+
+
+<details>
+  <summary>example reduce c</summary>
+  Here is an example of how to collapse a simple list
+```{r}
+list(c(1,3,4),c(2,5)) %>% reduce(c)
+```
+</details> 
+
+# Filtering lists
+
+Now finally to our last core functional language function (filter), in the tidyverse filter was split into two function discard and keep, mostly because the actual filter function is used in the core of the dplyr essential function.
+
+We can start with the full_day and take away occupied minutes in this manner, and keep valid minutes.
+
+```{r}
+possible_minutes <- full_day %>% 
+  discard(~ .x %in% c(schedule_1_occupied,schedule_2_occupied)) %>%
+  keep(~ .x %in% schedule_1_avalaible) %>% 
+  keep(~ .x %in% schedule_2_avalaible)
+possible_minutes
+```
+
+<details>
+  <summary>explanation filter</summary>
+  filter works by receiving an vector or list and return only elements that have passed or failed a test for example
+```{r}
+discard(1:10,  ~ . > 5)
+keep(1:10,  ~ . > 5)
+```
+  
+</details> 
+Keep in mind that while discarding we can evaluate everything together and the result stays the same, but when keeping it is important in this case to separate the call into two
+
+# Calculating start and end minutes
+
+This function solves the problem that we as human prefer to receive just the start and end minutes instead of the whole duration
+
+```{r}
+calculate_break_time <- function(intergers){
+  intergers <- sort(intergers)
+  end <- time <- which(diff(intergers) != 1)
+  begin <- end + 1
+  intergers[c(1,end,begin,length(intergers)) %>% sort()]
+}
+```
+
+<details>
+  <summary>explanation calculate_break_time</summary>
+  This is the function that I am least happy, but basically the two minutes that we know we will need are the smallest minute that will start the first appointment and the last minute which will end the last appointment
+  The in between minutes are found by looking for jumps between minutes using the diff function
+```{r}
+diff(c(1,3,4,5,9))
+```
+  If there is more than one minute of difference it is the end of an appointment and one minute later there will be the start of a new appointment
+  
+</details> 
+
+
+```{r}
+start_end_minutes <- possible_minutes %>% calculate_break_time()
+start_end_minutes
+```
+
+
+#  Converting it minutes back into readable hours
+
+A simple function that undoes our transformation if you need to read [%/% explanation](http://rfunction.com/archives/1648)
+
+```{r}
+turn_back_into_time <- function(x) {
+  x_hour <- x %/% 60
+  x_minute <- x %% 60
+  str_c(x_hour,x_minute,sep = ':')
+}
+```
+
+```{r}
+(readable_time <- start_end_minutes %>% turn_back_into_time)
+```
+
+# Pairing Start and End Hours
+
+I will over complicate the flagging of Even and odd numbers to show another really cool functional concept of currying, while currying is not encouraged by the tidyverse the partial functions does make it pretty easy to use (same as Python)
+
+The other cool concept is that you can negate a function, in this case turning the results of is_even into is_odd
+
+```{r}
+diviseble_by <- function(number_vector,divisor,quocient) {
+  number_vector %% divisor == quocient
+}
+
+is_even <- partial(diviseble_by,divisor = 2,quocient = 0)
+is_odd <- is_even %>% negate()
+```
+
+```{r}
+1:10 %>% is_even
+1:10 %>% is_odd
+```
+
+
+
+We then use these functions to unite our start and end minutes
+
+
+
+```{r}
+pair_wise_combination <- function(character_vector){
+  vector_i <- seq_along(character_vector)
+  ends <- vector_i %>% is_even
+  begins <- vector_i %>% is_odd
+  str_c(character_vector[begins],character_vector[ends],sep = " ")
+}
+```
+
+
+```{r}
+readable_time %>% pair_wise_combination
+```
+
+
+That is all folks.
+
+My answer would solve for n individuals just fine
+
+I failed because it 3 hours to get into this solution, and I would have blankly stared into the interviewer face for a while before admitting that I have no idea the Big O of this answer
+
+I can answer questions anywhere, please do share it if you have enjoyed it.
+
+A disclaimer is that while I do understand big O notation and its importance, I am not a Software Engineer nor a Computer Scientist, and as such I have no idea how efficient my solution is, I know it is fast enough for me, but I understand that big O knowledge is a major difference while learning DS, rarely if ever people mention the Big O of our algorithms so I never deeply studied about the subject.
+

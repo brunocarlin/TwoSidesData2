@@ -5,8 +5,242 @@
     <description>Recent content in programming on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jan 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/programming/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Google interview question in R - Calendar</title>
+      <link>/2020/01/12/google-interview-question-in-r/</link>
+      <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/01/12/google-interview-question-in-r/</guid>
+      <description>
+
+
+&lt;p&gt;So to start it all, I learned about this question from the recommended youtube channel &lt;a href=&#34;https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g&#34;&gt;Clément Mihailescu&lt;/a&gt; in his youtube video &lt;a href=&#34;http://www.youtube.com/watch?v=3Q_oYDQ2whs&#34; title=&#34;Video&#34;&gt;&lt;img src=&#34;http://img.youtube.com/vi/3Q_oYDQ2whs/0.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In this video both Clément and Tim from &lt;a href=&#34;https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg&#34;&gt;Tech with Tim&lt;/a&gt; work together to solve this question:&lt;/p&gt;
+&lt;p&gt;Suppose you have two People that want to Schedule a meeting, how would you schedule it, if each Person has already set up meetings in this day and that each Person has different working hours&lt;/p&gt;
+&lt;p&gt;To help us understand it the problem provided us with this example data&lt;/p&gt;
+&lt;p&gt;Person 1 has three meetings 9:00 to 10:30, 12:00 to 13:00 and 16:00 to 18:00, this Person works from 9:00 to 20:00&lt;/p&gt;
+&lt;p&gt;Person 2 also has three meetings 10:00 to 11:30, 12:30 to 14:30 and 18:00 to 18:30 this Person works from 10:00 to 18:30&lt;/p&gt;
+&lt;p&gt;For those just starting out with R and the tidyverse I will explain each part in detail in the collapsible parts of the post.&lt;/p&gt;
+&lt;p&gt;So coding this info in R we have&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;person1 &amp;lt;- list(list(&amp;#39;9:00&amp;#39;, &amp;#39;10:30&amp;#39;),
+                list(&amp;#39;12:00&amp;#39;, &amp;#39;13:00&amp;#39;),
+                list(&amp;#39;16:00&amp;#39;, &amp;#39;18:00&amp;#39;))
+
+allowed_time1 &amp;lt;- list(list(&amp;#39;9:00&amp;#39;,&amp;#39;20:00&amp;#39;))
+
+
+person2 &amp;lt;- list(list(&amp;#39;10:00&amp;#39;, &amp;#39;11:30&amp;#39;),
+                list(&amp;#39;12:30&amp;#39;, &amp;#39;14:30&amp;#39;),
+                list(&amp;#39;18:00&amp;#39;, &amp;#39;18:30&amp;#39;))
+
+allowed_time2 &amp;lt;- list(list(&amp;#39;10:00&amp;#39;,&amp;#39;18:30&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you see the video Tim was able to solve it in 45 minutes while having spent a good amount of the time talking back and forth with his interviewer and explaining his reasoning, that was impressive.&lt;/p&gt;
+&lt;p&gt;Well I failed to finish this problem in 45 minutes, in fact it took close to 3 hours to stitch together the solution I am about to show, but I think my solution is something that I am proud of and that it follows most of what I love about functional programming.&lt;/p&gt;
+&lt;div id=&#34;turning-strings-into-numbers&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Turning strings into numbers&lt;/h1&gt;
+&lt;p&gt;I saw that Tim created a function to compare time in his program&lt;/p&gt;
+&lt;p&gt;Creating a function that calculates the amount of minutes in a string such as ‘10:30’&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;calculate_minutes &amp;lt;- function(x) {
+  x &amp;lt;- str_split(x,pattern = &amp;quot;:&amp;quot;)
+  as.integer(x[[1]][[1]]) * 60 + as.integer(x[[1]][[2]])
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;calculate_minutes(&amp;#39;10:30&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 630&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;p&gt;&lt;summary&gt;explanation on calculate minutes&lt;/summary&gt;
+calculate_minutes splits the string ‘10:30’ into ‘10’ and ‘30’ and then multiples the left hand side by 60, because each hour has 60 minutes in it and then adds the right hand side the minutes to the result 630 = 10 * 60 + 30 minutes.&lt;/p&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reframing-the-problem&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reframing the problem&lt;/h1&gt;
+&lt;p&gt;While the first the may seem useless in both r and python since ‘14:30’ &amp;lt; “10:30” will return FALSE/False, this idea made me realize a really cool functional way to solve this problem&lt;/p&gt;
+&lt;p&gt;We can reframe the focus on minutes overlapping of each appointment instead of time comparison like Tim used is his solution.&lt;/p&gt;
+&lt;p&gt;So based on this new idea, I created a function to convert the the strings we received into ranges of minutes, basically the interval of each appointment.&lt;/p&gt;
+&lt;p&gt;We will also need the interval of the full Day&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;full_day &amp;lt;- 1:(24*60) # 24 hours * 60 minutes -&amp;gt; range 1: to result&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is the function that applies Step One and Two&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;calculate_interval &amp;lt;- . %&amp;gt;% 
+  map_depth(.depth = 2,calculate_minutes) %&amp;gt;% 
+  map(.,~ reduce(.,seq))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;calculate_interval &amp;lt;- . %&amp;gt;% 
+  map(calculate_minutes) %&amp;gt;% 
+  reduce(seq)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;example_appointment &amp;lt;- list(&amp;#39;10:30&amp;#39;,&amp;#39;10:40&amp;#39;)
+example_appointment %&amp;gt;% calculate_interval&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] 630 631 632 633 634 635 636 637 638 639 640&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;p&gt;&lt;summary&gt;explanation on calculate_interval&lt;/summary&gt;
+I use “.” as a shortcut for function(x) {} it is really useful in function pipes like this one&lt;/p&gt;
+&lt;p&gt;map is a function that applies another function to all elements of an list and returns ideally the same number of elements like this,&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;example_list &amp;lt;- list(list(&amp;#39;hi&amp;#39;,&amp;#39;johnny&amp;#39;),list(&amp;#39;how&amp;#39;,&amp;#39;are&amp;#39;,&amp;#39;you&amp;#39;))
+map(example_list,.f = str_to_upper)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;HI&amp;quot;     &amp;quot;JOHNNY&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;HOW&amp;quot; &amp;quot;ARE&amp;quot; &amp;quot;YOU&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I also use pipes (%&amp;gt;%), the pipes allow us to change the nested nature of function calls into a sequential one
+for example&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;example_list %&amp;gt;%
+  map(str_to_title)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] &amp;quot;Hi&amp;quot;     &amp;quot;Johnny&amp;quot;
+## 
+## [[2]]
+## [1] &amp;quot;How&amp;quot; &amp;quot;Are&amp;quot; &amp;quot;You&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And finally I use another core function of functional programming reduce, reduce works by applying the same function in a list until the is only one element left for example&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;reduce(1:4,sum)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 10&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+&lt;p&gt;We then need to use this function on all of our info&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;person1_interval &amp;lt;- person1 %&amp;gt;%
+  map(calculate_interval)
+
+person2_interval &amp;lt;- person2 %&amp;gt;% 
+  map(calculate_interval)
+
+allowed_time1_interval &amp;lt;- allowed_time1 %&amp;gt;% 
+  map(calculate_interval)
+
+allowed_time2_interval &amp;lt;- allowed_time2 %&amp;gt;% 
+  map(calculate_interval)&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;p&gt;&lt;summary&gt;example Person1&lt;/summary&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;person1 %&amp;gt;% 
+  map(calculate_interval)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+##  [1] 540 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558
+## [20] 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577
+## [39] 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596
+## [58] 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613 614 615
+## [77] 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630
+## 
+## [[2]]
+##  [1] 720 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738
+## [20] 739 740 741 742 743 744 745 746 747 748 749 750 751 752 753 754 755 756 757
+## [39] 758 759 760 761 762 763 764 765 766 767 768 769 770 771 772 773 774 775 776
+## [58] 777 778 779 780
+## 
+## [[3]]
+##   [1]  960  961  962  963  964  965  966  967  968  969  970  971  972  973  974
+##  [16]  975  976  977  978  979  980  981  982  983  984  985  986  987  988  989
+##  [31]  990  991  992  993  994  995  996  997  998  999 1000 1001 1002 1003 1004
+##  [46] 1005 1006 1007 1008 1009 1010 1011 1012 1013 1014 1015 1016 1017 1018 1019
+##  [61] 1020 1021 1022 1023 1024 1025 1026 1027 1028 1029 1030 1031 1032 1033 1034
+##  [76] 1035 1036 1037 1038 1039 1040 1041 1042 1043 1044 1045 1046 1047 1048 1049
+##  [91] 1050 1051 1052 1053 1054 1055 1056 1057 1058 1059 1060 1061 1062 1063 1064
+## [106] 1065 1066 1067 1068 1069 1070 1071 1072 1073 1074 1075 1076 1077 1078 1079
+## [121] 1080&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+&lt;div id=&#34;calculating-occupied-and-available-minutes&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Calculating occupied and available minutes&lt;/h1&gt;
+&lt;p&gt;This is a simple step we simply need to collapse the lists in the result&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;schedule_1_occupied &amp;lt;- person1_interval &amp;lt;- person1_interval %&amp;gt;% reduce(c)
+schedule_1_avalaible &amp;lt;- allowed_time1_interval %&amp;gt;% reduce(c)
+
+schedule_2_occupied &amp;lt;- person2_interval %&amp;gt;% reduce(c)
+schedule_2_avalaible &amp;lt;- allowed_time2_interval %&amp;gt;% reduce(c)&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;p&gt;&lt;summary&gt;example reduce c&lt;/summary&gt;
+Here is an example of how to collapse a simple list&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;list(c(1,3,4),c(2,5)) %&amp;gt;% reduce(c)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1 3 4 2 5&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filtering-lists&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Filtering lists&lt;/h1&gt;
+&lt;p&gt;Now finally to our last core functional language function (filter), in the tidyverse filter was split into two function discard and keep, mostly because the actual filter function is used in the core of the dplyr essential function.&lt;/p&gt;
+&lt;p&gt;We can start with the full_day and take away occupied minutes in this manner, and keep valid minutes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;possible_minutes &amp;lt;- full_day %&amp;gt;% 
+  discard(~ .x %in% c(schedule_1_occupied,schedule_2_occupied)) %&amp;gt;%
+  keep(~ .x %in% schedule_1_avalaible) %&amp;gt;% 
+  keep(~ .x %in% schedule_2_avalaible)
+possible_minutes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   [1] 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705 706 707 708
+##  [19] 709 710 711 712 713 714 715 716 717 718 719 871 872 873 874 875 876 877
+##  [37] 878 879 880 881 882 883 884 885 886 887 888 889 890 891 892 893 894 895
+##  [55] 896 897 898 899 900 901 902 903 904 905 906 907 908 909 910 911 912 913
+##  [73] 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929 930 931
+##  [91] 932 933 934 935 936 937 938 939 940 941 942 943 944 945 946 947 948 949
+## [109] 950 951 952 953 954 955 956 957 958 959&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;p&gt;&lt;summary&gt;explanation filter&lt;/summary&gt;
+filter works by receiving an vector or list and return only elements that have passed or failed a test for example&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;discard(1:10,  ~ . &amp;gt; 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1 2 3 4 5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;keep(1:10,  ~ . &amp;gt; 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  6  7  8  9 10&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+&lt;p&gt;Keep in mind that while discarding we can evaluate everything together and the result stays the same, but when keeping it is important in this case to separate the call into two&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;calculating-start-and-end-minutes&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Calculating start and end minutes&lt;/h1&gt;
+&lt;p&gt;This function solves the problem that we as human prefer to receive just the start and end minutes instead of the whole duration&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;calculate_break_time &amp;lt;- function(intergers){
+  intergers &amp;lt;- sort(intergers)
+  end &amp;lt;- time &amp;lt;- which(diff(intergers) != 1)
+  begin &amp;lt;- end + 1
+  intergers[c(1,end,begin,length(intergers)) %&amp;gt;% sort()]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;p&gt;&lt;summary&gt;explanation calculate_break_time&lt;/summary&gt;
+This is the function that I am least happy, but basically the two minutes that we know we will need are the smallest minute that will start the first appointment and the last minute which will end the last appointment
+The in between minutes are found by looking for jumps between minutes using the diff function&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;diff(c(1,3,4,5,9))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2 1 1 4&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If there is more than one minute of difference it is the end of an appointment and one minute later there will be the start of a new appointment&lt;/p&gt;
+&lt;/details&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;start_end_minutes &amp;lt;- possible_minutes %&amp;gt;% calculate_break_time()
+start_end_minutes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 691 719 871 959&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;converting-it-minutes-back-into-readable-hours&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Converting it minutes back into readable hours&lt;/h1&gt;
+&lt;p&gt;A simple function that undoes our transformation if you need to read &lt;a href=&#34;http://rfunction.com/archives/1648&#34;&gt;%/% explanation&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;turn_back_into_time &amp;lt;- function(x) {
+  x_hour &amp;lt;- x %/% 60
+  x_minute &amp;lt;- x %% 60
+  str_c(x_hour,x_minute,sep = &amp;#39;:&amp;#39;)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(readable_time &amp;lt;- start_end_minutes %&amp;gt;% turn_back_into_time)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;11:31&amp;quot; &amp;quot;11:59&amp;quot; &amp;quot;14:31&amp;quot; &amp;quot;15:59&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pairing-start-and-end-hours&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Pairing Start and End Hours&lt;/h1&gt;
+&lt;p&gt;I will over complicate the flagging of Even and odd numbers to show another really cool functional concept of currying, while currying is not encouraged by the tidyverse the partial functions does make it pretty easy to use (same as Python)&lt;/p&gt;
+&lt;p&gt;The other cool concept is that you can negate a function, in this case turning the results of is_even into is_odd&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;diviseble_by &amp;lt;- function(number_vector,divisor,quocient) {
+  number_vector %% divisor == quocient
+}
+
+is_even &amp;lt;- partial(diviseble_by,divisor = 2,quocient = 0)
+is_odd &amp;lt;- is_even %&amp;gt;% negate()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1:10 %&amp;gt;% is_even&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1:10 %&amp;gt;% is_odd&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We then use these functions to unite our start and end minutes&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pair_wise_combination &amp;lt;- function(character_vector){
+  vector_i &amp;lt;- seq_along(character_vector)
+  ends &amp;lt;- vector_i %&amp;gt;% is_even
+  begins &amp;lt;- vector_i %&amp;gt;% is_odd
+  str_c(character_vector[begins],character_vector[ends],sep = &amp;quot; &amp;quot;)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readable_time %&amp;gt;% pair_wise_combination&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;11:31 11:59&amp;quot; &amp;quot;14:31 15:59&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That is all folks.&lt;/p&gt;
+&lt;p&gt;My answer would solve for n individuals just fine&lt;/p&gt;
+&lt;p&gt;I failed because it 3 hours to get into this solution, and I would have blankly stared into the interviewer face for a while before admitting that I have no idea the Big O of this answer&lt;/p&gt;
+&lt;p&gt;I can answer questions anywhere, please do share it if you have enjoyed it.&lt;/p&gt;
+&lt;p&gt;A disclaimer is that while I do understand big O notation and its importance, I am not a Software Engineer nor a Computer Scientist, and as such I have no idea how efficient my solution is, I know it is fast enough for me, but I understand that big O knowledge is a major difference while learning DS, rarely if ever people mention the Big O of our algorithms so I never deeply studied about the subject.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>FizzBuzz in the tidyverse</title>
