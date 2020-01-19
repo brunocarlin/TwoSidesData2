@@ -4,12 +4,6 @@ authors:
 bio: Data Science learner
 education:
   courses:
-  - course: Data Science - Advanced Degree
-    institution: Insper
-    year: 2020 - currently enrolled
-  - course: Data Science
-    institution: Digital House
-    year: 2019
   - course: Economics
     institution: Insper
     year: 2018
@@ -27,10 +21,8 @@ interests:
 - Anime/Manga/LNs
 name: Bruno Carlin
 organizations:
-- name: Insper
-  url: "https://www.insper.edu.br/pos-graduacao/programas-avancados/programa-avancado-em-data-science-e-decisao/"
-- name: Bayer
-  url: "https://www.bayer.com.br/"
+- name: Digital House
+  url: "https://br.digitalhouse.com/curso/data-science/"
 role: Student
 social:
 - icon: envelope
@@ -53,6 +45,6 @@ user_groups:
 - Researchers
 - Visitors
 ---
-Bruno Testaguzza Carlin is an student of Data Science at Insper.  
-Experience using R and BI tools, improving Python skills.  
-Currently working at Bayer
+Bruno Testaguzza Carlin is an student of Data Science at Digital House, previous work experience as an finance intern for Bayer in the Risk Managment Area.  
+Experience using R and BI tools, improving Python skills.
+Currently working at EY FAAS Tech
