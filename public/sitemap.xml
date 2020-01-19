@@ -21,19 +21,67 @@
     <url>
     
       <loc>/authors/admin/</loc>
-      <lastmod>2020-01-12T00:00:00+00:00</lastmod>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
       <loc>/authors/</loc>
-      <lastmod>2020-01-12T00:00:00+00:00</lastmod>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
       <loc>/categories/</loc>
-      <lastmod>2020-01-12T00:00:00+00:00</lastmod>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/2020/01/19/exploratory-data-analysis-basics-part1/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/tags/pandas/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/post/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/categories/r-and-python/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/tags/r-markdown/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/categories/r-project/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/tags/reticulate/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/tags/</loc>
+      <lastmod>2020-01-19T00:00:00+00:00</lastmod>
     </url>
   
     <url>
@@ -44,25 +92,7 @@
   
     <url>
     
-      <loc>/post/</loc>
-      <lastmod>2020-01-12T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
       <loc>/tags/programming/</loc>
-      <lastmod>2020-01-12T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/categories/r-project/</loc>
-      <lastmod>2020-01-12T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/</loc>
       <lastmod>2020-01-12T00:00:00+00:00</lastmod>
     </url>
   
@@ -99,30 +129,6 @@
     <url>
     
       <loc>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</loc>
-      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/pandas/</loc>
-      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/categories/r-and-python/</loc>
-      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/r-markdown/</loc>
-      <lastmod>2019-04-05T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/reticulate/</loc>
       <lastmod>2019-04-05T00:00:00+00:00</lastmod>
     </url>
   
