@@ -783,15 +783,15 @@ fancy(1:30,mod2,mod3,mod5)&lt;/code&gt;&lt;/pre&gt;
       
       <guid>/2019/08/15/classification-knn/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;../../rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;../../rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;../../rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;../../rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;../../rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;../../rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;../../rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Breast Cancer problem.&lt;/p&gt;
@@ -1374,13 +1374,13 @@ library(DataExplorer)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Is a imho a prettier option with individual cool plots and a super powerfull(but slow) report creation tool when working outside of an Rmarkdownm document&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_intro()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_bar()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_correlation()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
 &lt;p&gt;There are much more amaziong tools such as the &lt;a href=&#34;https://www.data-imaginist.com/2019/a-flurry-of-facets/&#34;&gt;ggforce package&lt;/a&gt; , but I hope you get the gist of the exploration stage.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1543,9 +1543,9 @@ knn_search &amp;lt;- tune_bayes(knn_wflow,
 &lt;div id=&#34;visualizing-our-search&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Visualizing our search&lt;/h3&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;accuracy&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;roc_auc&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;seing-the-best-result&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Seing the best result&lt;/h3&gt;
@@ -1692,7 +1692,7 @@ DT::datatable(best_naive_metrics,options = list(pageLength = 5, scrollX=T))&lt;/
   geom_point() +
   ylim(.95,1)
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2229,7 +2229,7 @@ from pylab import *
 sales.plot(x=&amp;quot;InvoiceDate&amp;quot;, y=&amp;quot;Revenue&amp;quot;, kind=&amp;quot;line&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -2289,11 +2289,11 @@ CountryGroups.sort_values(by= &amp;quot;Revenue&amp;quot;, ascending=False)&lt;/
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.10&lt;/span&gt; Ploting an histogram&lt;/h3&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;CustomerID&amp;quot;] == 17850.0][&amp;quot;Revenue&amp;quot;].plot(kind=&amp;quot;hist&amp;quot;)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;another example.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;StockCode&amp;quot;] == &amp;#39;71053&amp;#39;][&amp;quot;Quantity&amp;quot;].hist()
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.11&lt;/span&gt; Handling Missing values&lt;/h3&gt;
@@ -2855,7 +2855,7 @@ raw_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% ggplot() +
   aes(x = InvoiceDate, y = Revenue) +
   geom_line()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -2943,14 +2943,14 @@ CountryGroups&lt;/code&gt;&lt;/pre&gt;
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Another example.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;%
   filter(StockCode == 71053) %&amp;gt;% 
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.11&lt;/span&gt; Handling Missing values in R&lt;/h3&gt;

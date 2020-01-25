@@ -15,15 +15,15 @@
       
       <guid>/2019/08/15/classification-knn/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;../../rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;../../rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;../../rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;../../rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;../../rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;../../rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;../../rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Breast Cancer problem.&lt;/p&gt;
@@ -606,13 +606,13 @@ library(DataExplorer)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Is a imho a prettier option with individual cool plots and a super powerfull(but slow) report creation tool when working outside of an Rmarkdownm document&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_intro()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_bar()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_correlation()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
 &lt;p&gt;There are much more amaziong tools such as the &lt;a href=&#34;https://www.data-imaginist.com/2019/a-flurry-of-facets/&#34;&gt;ggforce package&lt;/a&gt; , but I hope you get the gist of the exploration stage.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -775,9 +775,9 @@ knn_search &amp;lt;- tune_bayes(knn_wflow,
 &lt;div id=&#34;visualizing-our-search&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Visualizing our search&lt;/h3&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;accuracy&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;roc_auc&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;seing-the-best-result&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Seing the best result&lt;/h3&gt;
@@ -924,7 +924,7 @@ DT::datatable(best_naive_metrics,options = list(pageLength = 5, scrollX=T))&lt;/
   geom_point() +
   ylim(.95,1)
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

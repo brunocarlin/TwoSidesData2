@@ -1,0 +1,130 @@
+---
+title: 'exploratory data analysis: basics Python part 2'
+authors: 
+  - admin
+date: '2020-01-25'
+slug: exploratory-data-analysis-basics-part2
+categories:
+- R and Python
+- r-project
+tags:
+- R Markdown
+- reticulate
+- pandas
+subtitle: 'Python part 2'
+summary: 'Basics exploratory Data Analysis: Part 2 of 4'
+output:
+  blogdown::html_page:
+    toc: true # table of content true
+---
+I am currently doing exercises from [digital house brasil](https://github.com/sn3fru/datascience_course) 
+
+```{r,include = FALSE}
+file_path <- here::here()
+file_path_linux <- paste(file_path,"content","post","data",sep = "/")
+reticulate::use_python('/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/',required = TRUE)
+```
+
+Let's see what version of python this env is running.
+
+```{r}
+reticulate::py_config()
+```
+
+```{python exploratory_data1-5}
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import os
+```
+
+# Second Post
+
+## Objectives
+
+## Define the variables used in the conclusion
+
+In our case, we choose to use [salary ~ sex,region](#python_hypothesis_testing) region was added to test whether [Simpson's paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox) was at play.
+
+## Using masks or other methods to filter the data
+
+This objective was mostly done using the groupby function.
+
+## Visualizing the hypothesis
+
+[We were advised to use two histograms combined to get a preview of our answer.](#python_plot_histograms)
+
+## Conclusion
+
+Comment on our findings.
+
+
+## Before we start
+
+### Reservations
+
+This is an exercise where we were supposed to ask a relevant question using the data from the IBGE(Brazil's main data collector) database of 1970.
+
+Our group decided to ask whether women received less than man, we expanded the analysis hoping to avoid the Simpson's paradox.
+
+This is just an basic inference, and it's results are therefore only used for studying purposes I don't believe any finding would be relevant using just this approach but some basic operations can be used in a more impact full work.
+
+### Data Dictionary
+
+We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.
+
+<details><summary>Portuguese</summary>
+<p>
+
+Descrição do Registro de Indivíduos nos EUA.
+
+Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.
+
+Variável 1 – CHAVE DO INDIVÍDUO ? Formato N - Numérico ? Tamanho 11 dígitos (11 bytes) ? Descrição Sumária Identifica unicamente o indivíduo na amostra. 
+ 
+Variável 2 - IDADE CALCULADA EM ANOS ? Formato N - Numérico ? Tamanho 3 dígitos (3 bytes) ? Descrição Sumária Identifica a idade do morador em anos completos. 
+ 
+Variável 3 – SEXO ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 3 ? Descrição Sumária Identifica o sexo do morador. Categorias (1) homem, (2) mulher e (3) gestante. 
+ 
+Variável 4 – ANOS DE ESTUDO ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 11 ? Descrição Sumária Identifica o número de anos de estudo do morador. Categorias (05) Cinco ou menos, (06) Seis, (07) Sete, (08) Oito, (09) Nove, (10) Dez, (11) Onze, (12) Doze, (13) Treze, (14) Quatorze, (15) Quinze ou mais. 
+ 
+Variável 5 – COR OU RAÇA ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 6 ? Descrição Sumária Identifica a Cor ou Raça declarada pelo morador. Categorias (01) Branca, (02) Preta, (03) Amarela, (04) Parda, (05) Indígena e (09) Não Sabe. 
+ 
+Variável 6 – VALOR DO SALÁRIO (ANUALIZADO) ? Formato N - Numérico ? Tamanho 8 dígitos (8 bytes) ? Quantidade de Decimais 2 ? Descrição Sumária Identifica o valor resultante do salário anual do indivíduo. Categorias especiais (-1) indivíduo ausente na data da pesquisa e (999999) indivíduo não quis responder.  
+ 
+Variável 7 – ESTADO CIVIL ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 2 ? Descrição Sumária Dummy que identifica o estado civil declarado pelo morador. Categorias (1) Casado, (0) não casado. 
+ 
+Variável 8 – REGIÃO GEOGRÁFICA ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 5 ? Descrição Sumária Identifica a região geográfica do morador. Categorias (1) Norte, (2) Nordeste, (3) Sudeste, (4) Sul e (5) Centro-oeste.
+
+</p>
+</details>
+
+
+<details><summary>English</summary>
+<p>
+
+Description of the US Individual Registry.
+
+Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.
+
+Variable 1 - KEY OF THE INDIVIDUAL? Format N - Numeric? Size 11 digits (11 bytes)? Summary Description Uniquely identifies the individual in the sample.
+ 
+Variable 2 - AGE CALCULATED IN YEARS? Format N - Numeric? Size 3 digits (3 bytes)? Summary Description Identifies the age of the resident in full years.
+ 
+Variable 3 - SEX? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 3? Summary Description Identifies the gender of the resident. Categories (1) men, (2) women and (3) pregnant women.
+ 
+Variable 4 - YEARS OF STUDY? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 11? Summary Description Identifies the number of years of study of the resident. Categories (05) Five or less, (06) Six, (07) Seven, (08) Eight, (09) Nine, (10) Dec, (11) Eleven, (12) Twelve, (13) Thirteen, (14 ) Fourteen, (15) Fifteen or more.
+ 
+Variable 5 - COLOR OR RACE? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 6? Summary Description Identifies the Color or Race declared by the resident. Categories (01) White, (02) Black, (03) Yellow, (04) Brown, (05) Indigenous and (09) Don't know.
+ 
+Variable 6 - WAGE VALUE (ANNUALIZED)? Format N - Numeric? Size 8 digits (8 bytes)? Number of decimals 2? Summary Description Identifies the amount resulting from the individual's annual salary. Special categories (-1) individual absent on the survey date and (999999) individual did not want to answer.
+ 
+Variable 7 - CIVIL STATE? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 2? Summary Description Dummy that identifies the marital status declared by the resident. Categories (1) Married, (0) Not married.
+ 
+Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 5? Summary Description Identifies the resident's geographic region. Categories (1) North, (2) Northeast, (3) Southeast, (4) South and (5) Midwest.
+
+</p>
+</details>
+
+# Python

@@ -5,8 +5,121 @@
     <description>Recent content in R and Python on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jan 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="/categories/r-and-python/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>exploratory data analysis: basics Python part 2</title>
+      <link>/2020/01/25/exploratory-data-analysis-basics-part2/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/01/25/exploratory-data-analysis-basics-part2/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#second-post&#34;&gt;Second Post&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#objectives&#34;&gt;Objectives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#define-the-variables-used-in-the-conclusion&#34;&gt;Define the variables used in the conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#using-masks-or-other-methods-to-filter-the-data&#34;&gt;Using masks or other methods to filter the data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#visualizing-the-hypothesis&#34;&gt;Visualizing the hypothesis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#before-we-start&#34;&gt;Before we start&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#reservations&#34;&gt;Reservations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-dictionary&#34;&gt;Data Dictionary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I am currently doing exercises from &lt;a href=&#34;https://github.com/sn3fru/datascience_course&#34;&gt;digital house brasil&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;reticulate::py_config()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## python:         /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/python
+## libpython:      /opt/python/3.7/lib/libpython3.7m.so
+## pythonhome:     /opt/python/3.7:/opt/python/3.7
+## virtualenv:     /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/activate_this.py
+## version:        3.7.4 (default, Aug 13 2019, 20:35:49)  [GCC 7.3.0]
+## numpy:          /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/numpy
+## numpy_version:  1.18.1
+## 
+## NOTE: Python version was forced by use_python function&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import os&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;second-post&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Second Post&lt;/h1&gt;
+&lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Objectives&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;define-the-variables-used-in-the-conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Define the variables used in the conclusion&lt;/h2&gt;
+&lt;p&gt;In our case, we choose to use &lt;a href=&#34;#python_hypothesis_testing&#34;&gt;salary ~ sex,region&lt;/a&gt; region was added to test whether &lt;a href=&#34;https://en.wikipedia.org/wiki/Simpson%27s_paradox&#34;&gt;Simpson’s paradox&lt;/a&gt; was at play.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-masks-or-other-methods-to-filter-the-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using masks or other methods to filter the data&lt;/h2&gt;
+&lt;p&gt;This objective was mostly done using the groupby function.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualizing-the-hypothesis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualizing the hypothesis&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#python_plot_histograms&#34;&gt;We were advised to use two histograms combined to get a preview of our answer.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Comment on our findings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;before-we-start&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Before we start&lt;/h2&gt;
+&lt;div id=&#34;reservations&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reservations&lt;/h3&gt;
+&lt;p&gt;This is an exercise where we were supposed to ask a relevant question using the data from the IBGE(Brazil’s main data collector) database of 1970.&lt;/p&gt;
+&lt;p&gt;Our group decided to ask whether women received less than man, we expanded the analysis hoping to avoid the Simpson’s paradox.&lt;/p&gt;
+&lt;p&gt;This is just an basic inference, and it’s results are therefore only used for studying purposes I don’t believe any finding would be relevant using just this approach but some basic operations can be used in a more impact full work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-dictionary&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Data Dictionary&lt;/h3&gt;
+&lt;p&gt;We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Portuguese&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Descrição do Registro de Indivíduos nos EUA.&lt;/p&gt;
+&lt;p&gt;Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.&lt;/p&gt;
+&lt;p&gt;Variável 1 – CHAVE DO INDIVÍDUO ? Formato N - Numérico ? Tamanho 11 dígitos (11 bytes) ? Descrição Sumária Identifica unicamente o indivíduo na amostra.&lt;/p&gt;
+&lt;p&gt;Variável 2 - IDADE CALCULADA EM ANOS ? Formato N - Numérico ? Tamanho 3 dígitos (3 bytes) ? Descrição Sumária Identifica a idade do morador em anos completos.&lt;/p&gt;
+&lt;p&gt;Variável 3 – SEXO ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 3 ? Descrição Sumária Identifica o sexo do morador. Categorias (1) homem, (2) mulher e (3) gestante.&lt;/p&gt;
+&lt;p&gt;Variável 4 – ANOS DE ESTUDO ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 11 ? Descrição Sumária Identifica o número de anos de estudo do morador. Categorias (05) Cinco ou menos, (06) Seis, (07) Sete, (08) Oito, (09) Nove, (10) Dez, (11) Onze, (12) Doze, (13) Treze, (14) Quatorze, (15) Quinze ou mais.&lt;/p&gt;
+&lt;p&gt;Variável 5 – COR OU RAÇA ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 6 ? Descrição Sumária Identifica a Cor ou Raça declarada pelo morador. Categorias (01) Branca, (02) Preta, (03) Amarela, (04) Parda, (05) Indígena e (09) Não Sabe.&lt;/p&gt;
+&lt;p&gt;Variável 6 – VALOR DO SALÁRIO (ANUALIZADO) ? Formato N - Numérico ? Tamanho 8 dígitos (8 bytes) ? Quantidade de Decimais 2 ? Descrição Sumária Identifica o valor resultante do salário anual do indivíduo. Categorias especiais (-1) indivíduo ausente na data da pesquisa e (999999) indivíduo não quis responder.&lt;/p&gt;
+&lt;p&gt;Variável 7 – ESTADO CIVIL ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 2 ? Descrição Sumária Dummy que identifica o estado civil declarado pelo morador. Categorias (1) Casado, (0) não casado.&lt;/p&gt;
+&lt;p&gt;Variável 8 – REGIÃO GEOGRÁFICA ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 5 ? Descrição Sumária Identifica a região geográfica do morador. Categorias (1) Norte, (2) Nordeste, (3) Sudeste, (4) Sul e (5) Centro-oeste.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;English&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Description of the US Individual Registry.&lt;/p&gt;
+&lt;p&gt;Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.&lt;/p&gt;
+&lt;p&gt;Variable 1 - KEY OF THE INDIVIDUAL? Format N - Numeric? Size 11 digits (11 bytes)? Summary Description Uniquely identifies the individual in the sample.&lt;/p&gt;
+&lt;p&gt;Variable 2 - AGE CALCULATED IN YEARS? Format N - Numeric? Size 3 digits (3 bytes)? Summary Description Identifies the age of the resident in full years.&lt;/p&gt;
+&lt;p&gt;Variable 3 - SEX? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 3? Summary Description Identifies the gender of the resident. Categories (1) men, (2) women and (3) pregnant women.&lt;/p&gt;
+&lt;p&gt;Variable 4 - YEARS OF STUDY? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 11? Summary Description Identifies the number of years of study of the resident. Categories (05) Five or less, (06) Six, (07) Seven, (08) Eight, (09) Nine, (10) Dec, (11) Eleven, (12) Twelve, (13) Thirteen, (14 ) Fourteen, (15) Fifteen or more.&lt;/p&gt;
+&lt;p&gt;Variable 5 - COLOR OR RACE? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 6? Summary Description Identifies the Color or Race declared by the resident. Categories (01) White, (02) Black, (03) Yellow, (04) Brown, (05) Indigenous and (09) Don’t know.&lt;/p&gt;
+&lt;p&gt;Variable 6 - WAGE VALUE (ANNUALIZED)? Format N - Numeric? Size 8 digits (8 bytes)? Number of decimals 2? Summary Description Identifies the amount resulting from the individual’s annual salary. Special categories (-1) individual absent on the survey date and (999999) individual did not want to answer.&lt;/p&gt;
+&lt;p&gt;Variable 7 - CIVIL STATE? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 2? Summary Description Dummy that identifies the marital status declared by the resident. Categories (1) Married, (0) Not married.&lt;/p&gt;
+&lt;p&gt;Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 5? Summary Description Identifies the resident’s geographic region. Categories (1) North, (2) Northeast, (3) Southeast, (4) South and (5) Midwest.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Python&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>exploratory data analysis: basics Python part 1</title>
@@ -543,13 +656,13 @@ df.civil_status.head()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can use a colored barplot to see the interaction of these Categorical Variables with our Hypothesis.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;region&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;594&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;594&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;civil_status&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;609&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;609&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;color_race&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cleaning-numerical-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Cleaning numerical data&lt;/h3&gt;
@@ -560,13 +673,13 @@ plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In order to know what to “clean” in numerical data I like to use plot such as a histogram&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.salary.hist(bins = 10)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Here we can see that the data may have a few outliers at 1000000 and that most of the salary data has a large Positive skew meaning that most data point are left to the mean of the dataset we can see that better using an density plot instead&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.salary.plot.kde()
 plot_density.set_xlim(0,100000)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## (0, 100000)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; width=&#34;600&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; width=&#34;600&#34; /&gt;
 #### Replacing variables {#python_custom_function_2}&lt;/p&gt;
 &lt;p&gt;If we go back to our &lt;a href=&#34;#python_custom_function_1&#34;&gt;custom function&lt;/a&gt; we can find that the values -1 and 999999 are unusually common after consulting the dictionary we decided to replace these values with the mean of the group.&lt;/p&gt;
 &lt;p&gt;This operation would be wrong for machine learning purposes since the mean of our train group would leak information from the test set as well but here in exploratory data analysis it is mostly fine also you need to replace the values with the numpy nan or else this operation doesn’t work as expected.&lt;/p&gt;
@@ -614,17 +727,17 @@ df.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
 plot_density.set_xlim(0,15)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## (0, 15)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-44-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-44-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is now a usefull feature for most simple linear models&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;other-numerical-columns&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Other numerical columns&lt;/h4&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.age.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-45-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-45-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.age.plot.kde()
 plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.age))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Column age with int64 data type 
 ##      counts  percentages  cum_percentages
@@ -667,7 +780,7 @@ plot_density&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Checking on year_study&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-51-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/01/19/index_files/figure-html/unnamed-chunk-51-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Let’s convert it back into a Category&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;category&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -718,6 +831,725 @@ plt.show()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you then need to delete these files you can do it inside python&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;os.remove(&amp;#39;finished_work.csv&amp;#39;)
 os.remove(&amp;#39;sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;next-post&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Next post&lt;/h1&gt;
+&lt;p&gt;In the next post I will show the end of the analysis and the “answer” to our hypothesis.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>exploratory data analysis: basics Python part 1</title>
+      <link>/2020/01/19/exploratory-data-analysis-basics-part1/</link>
+      <pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/01/19/exploratory-data-analysis-basics-part1/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#libraries&#34;&gt;Libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#the-exercise&#34;&gt;The Exercise&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#before-we-get-into-it&#34;&gt;Before we get into it&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#objectives&#34;&gt;Objectives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reservations&#34;&gt;Reservations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-dictionary&#34;&gt;Data Dictionary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python_pre_processing&#34;&gt;Pre-processing&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python_read_data&#34;&gt;Reading Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#analyzing-some-basic-stuff-about-our-data-frame&#34;&gt;Analyzing some basic stuff about our data frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#replacing-columns-names&#34;&gt;Replacing columns names&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cleaning-categorical-data&#34;&gt;Cleaning categorical data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python_plots_categorical&#34;&gt;Seeing the effects of categorical Variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cleaning-numerical-data&#34;&gt;Cleaning numerical data&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#saving-our-work-for-later&#34;&gt;Saving our work for later&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#next-post&#34;&gt;Next post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I am currently doing exercises from &lt;a href=&#34;https://github.com/sn3fru/datascience_course&#34;&gt;digital house brasil&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;libraries&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Libraries&lt;/h1&gt;
+&lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import platform
+print(platform.python_version())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 3.7.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import os&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-exercise&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The Exercise&lt;/h1&gt;
+&lt;div id=&#34;before-we-get-into-it&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Before we get into it&lt;/h2&gt;
+&lt;div id=&#34;objectives&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Objectives&lt;/h3&gt;
+&lt;div id=&#34;open-and-read-a-dataframe-using-pandas&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Open and read a DataFrame using pandas&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;#python_read_data&#34;&gt;Simple stuff right?&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic-analysis-of-each-column-using-value-counts.&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Basic analysis of each column using value counts.&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;#python_custom_funtion_1&#34;&gt;I improved a bit on the base python capabilities&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-hypothesis-that-we-care-about&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Creating a hypothesis that we care about&lt;/h4&gt;
+&lt;p&gt;In our case the hypothesis is simple do women earn on average less than men?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-preprocessing&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Data preprocessing&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;#python_pre_processing&#34;&gt;We need to clean the data removing outliers, biases or any other factors that could in theory compromise our hypothesis testing.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualize-all-the-variables&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Visualize all the variables&lt;/h4&gt;
+&lt;p&gt;We were free to apply any technique.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#python_plots_categorical&#34;&gt;Categorical Data&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;to-do-in-the-second-post&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;To do in the second post&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div id=&#34;define-the-variables-used-in-the-conclusion&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Define the variables used in the conclusion&lt;/h4&gt;
+&lt;p&gt;In our case, we choose to use &lt;a href=&#34;#python_hypothesis_testing&#34;&gt;salary ~ sex,region&lt;/a&gt; region was added to test whether &lt;a href=&#34;https://en.wikipedia.org/wiki/Simpson%27s_paradox&#34;&gt;Simpson’s paradox&lt;/a&gt; was at play.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-masks-or-other-methods-to-filter-the-data&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Using masks or other methods to filter the data&lt;/h4&gt;
+&lt;p&gt;This objective was mostly done using the groupby function.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualizing-the-hypothesis&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Visualizing the hypothesis&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;#python_plot_histograms&#34;&gt;We were advised to use two histograms combined to get a preview of our answer.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+&lt;p&gt;Comment on our findings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reservations&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reservations&lt;/h3&gt;
+&lt;p&gt;This is an exercise where we were supposed to ask a relevant question using the data from the IBGE(Brazil’s main data collector) database of 1970.&lt;/p&gt;
+&lt;p&gt;Our group decided to ask whether women received less than man, we expanded the analysis hoping to avoid the Simpson’s paradox.&lt;/p&gt;
+&lt;p&gt;This is just an basic inference, and it’s results are therefore only used for studying purposes I don’t believe any finding would be relevant using just this approach but some basic operations can be used in a more impact full work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-dictionary&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Data Dictionary&lt;/h3&gt;
+&lt;p&gt;We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Portuguese&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Descrição do Registro de Indivíduos nos EUA.&lt;/p&gt;
+&lt;p&gt;Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.&lt;/p&gt;
+&lt;p&gt;Variável 1 – CHAVE DO INDIVÍDUO ? Formato N - Numérico ? Tamanho 11 dígitos (11 bytes) ? Descrição Sumária Identifica unicamente o indivíduo na amostra.&lt;/p&gt;
+&lt;p&gt;Variável 2 - IDADE CALCULADA EM ANOS ? Formato N - Numérico ? Tamanho 3 dígitos (3 bytes) ? Descrição Sumária Identifica a idade do morador em anos completos.&lt;/p&gt;
+&lt;p&gt;Variável 3 – SEXO ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 3 ? Descrição Sumária Identifica o sexo do morador. Categorias (1) homem, (2) mulher e (3) gestante.&lt;/p&gt;
+&lt;p&gt;Variável 4 – ANOS DE ESTUDO ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 11 ? Descrição Sumária Identifica o número de anos de estudo do morador. Categorias (05) Cinco ou menos, (06) Seis, (07) Sete, (08) Oito, (09) Nove, (10) Dez, (11) Onze, (12) Doze, (13) Treze, (14) Quatorze, (15) Quinze ou mais.&lt;/p&gt;
+&lt;p&gt;Variável 5 – COR OU RAÇA ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 6 ? Descrição Sumária Identifica a Cor ou Raça declarada pelo morador. Categorias (01) Branca, (02) Preta, (03) Amarela, (04) Parda, (05) Indígena e (09) Não Sabe.&lt;/p&gt;
+&lt;p&gt;Variável 6 – VALOR DO SALÁRIO (ANUALIZADO) ? Formato N - Numérico ? Tamanho 8 dígitos (8 bytes) ? Quantidade de Decimais 2 ? Descrição Sumária Identifica o valor resultante do salário anual do indivíduo. Categorias especiais (-1) indivíduo ausente na data da pesquisa e (999999) indivíduo não quis responder.&lt;/p&gt;
+&lt;p&gt;Variável 7 – ESTADO CIVIL ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 2 ? Descrição Sumária Dummy que identifica o estado civil declarado pelo morador. Categorias (1) Casado, (0) não casado.&lt;/p&gt;
+&lt;p&gt;Variável 8 – REGIÃO GEOGRÁFICA ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 5 ? Descrição Sumária Identifica a região geográfica do morador. Categorias (1) Norte, (2) Nordeste, (3) Sudeste, (4) Sul e (5) Centro-oeste.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;English&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Description of the US Individual Registry.&lt;/p&gt;
+&lt;p&gt;Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.&lt;/p&gt;
+&lt;p&gt;Variable 1 - KEY OF THE INDIVIDUAL? Format N - Numeric? Size 11 digits (11 bytes)? Summary Description Uniquely identifies the individual in the sample.&lt;/p&gt;
+&lt;p&gt;Variable 2 - AGE CALCULATED IN YEARS? Format N - Numeric? Size 3 digits (3 bytes)? Summary Description Identifies the age of the resident in full years.&lt;/p&gt;
+&lt;p&gt;Variable 3 - SEX? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 3? Summary Description Identifies the gender of the resident. Categories (1) men, (2) women and (3) pregnant women.&lt;/p&gt;
+&lt;p&gt;Variable 4 - YEARS OF STUDY? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 11? Summary Description Identifies the number of years of study of the resident. Categories (05) Five or less, (06) Six, (07) Seven, (08) Eight, (09) Nine, (10) Dec, (11) Eleven, (12) Twelve, (13) Thirteen, (14 ) Fourteen, (15) Fifteen or more.&lt;/p&gt;
+&lt;p&gt;Variable 5 - COLOR OR RACE? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 6? Summary Description Identifies the Color or Race declared by the resident. Categories (01) White, (02) Black, (03) Yellow, (04) Brown, (05) Indigenous and (09) Don’t know.&lt;/p&gt;
+&lt;p&gt;Variable 6 - WAGE VALUE (ANNUALIZED)? Format N - Numeric? Size 8 digits (8 bytes)? Number of decimals 2? Summary Description Identifies the amount resulting from the individual’s annual salary. Special categories (-1) individual absent on the survey date and (999999) individual did not want to answer.&lt;/p&gt;
+&lt;p&gt;Variable 7 - CIVIL STATE? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 2? Summary Description Dummy that identifies the marital status declared by the resident. Categories (1) Married, (0) Not married.&lt;/p&gt;
+&lt;p&gt;Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 5? Summary Description Identifies the resident’s geographic region. Categories (1) North, (2) Northeast, (3) Southeast, (4) South and (5) Midwest.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Python&lt;/h1&gt;
+&lt;div id=&#34;python_pre_processing&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pre-processing&lt;/h2&gt;
+&lt;div id=&#34;python_read_data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reading Data&lt;/h3&gt;
+&lt;p&gt;The path is specific for my computer but it is easy to adapt&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Abertura e leitura dos dados em um DeteFrame em Pandas
+path = r.file_path_linux
+df = pd.read_csv(path + &amp;#39;/stata_data_1970.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;analyzing-some-basic-stuff-about-our-data-frame&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Analyzing some basic stuff about our data frame&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;#Análise básica dos conteúdos de cada coluna com contagem de valores
+df.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## RangeIndex: 66470 entries, 0 to 66469
+## Data columns (total 9 columns):
+## Unnamed: 0      66470 non-null int64
+## id              66470 non-null float64
+## idade           66470 non-null int64
+## sexo            66470 non-null object
+## anos_estudo     66036 non-null float64
+## cor/raca        66228 non-null object
+## salario         47878 non-null float64
+## estado_civil    66470 non-null float64
+## regiao          66470 non-null object
+## dtypes: float64(4), int64(2), object(3)
+## memory usage: 4.6+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I do enjoy python’s base value_counts but when used in a loop it can create some ugly outputs, in order to fix I created a function that adds some flavor text to the print output and generates new information about the accumulated percentage of the data being displayed.&lt;/p&gt;
+&lt;div id=&#34;custom-count_values&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Custom count_values()&lt;/h4&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;def pretty_value_counts(data_frame,
+                        number_of_rows = 5,
+                        cum_perc = True):
+  
+  for col in data_frame:
+    counts = data_frame[col].value_counts(dropna=False)
+    percentages = data_frame[col].value_counts(dropna=False, normalize=True)
+    
+    if cum_perc == True:
+      cum_percentages = percentages.cumsum()
+      tb = pd.concat([counts,
+                      percentages,
+                      cum_percentages],
+                     axis=1,
+                     keys=[&amp;#39;counts&amp;#39;,
+                           &amp;#39;percentages&amp;#39;,
+                           &amp;quot;cum_percentages&amp;quot;]
+                    ).head(number_of_rows)
+      
+    else:
+      tb = pd.concat([counts,
+                      percentages],
+                     axis=1,
+                     keys=[&amp;#39;counts&amp;#39;,
+                           &amp;#39;percentages&amp;#39;]).head(number_of_rows)
+      
+    print(&amp;quot;Column %s with %s data type&amp;quot; % (col,data_frame[col].dtype),
+          &amp;quot;\n&amp;quot;,
+          tb,
+          &amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can apply our new function.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python_custom_function_1&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Using a custom function&lt;/h4&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(df)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Column Unnamed: 0 with int64 data type 
+##         counts  percentages  cum_percentages
+## 2047        1     0.000015         0.000015
+## 41601       1     0.000015         0.000030
+## 21151       1     0.000015         0.000045
+## 23198       1     0.000015         0.000060
+## 17053       1     0.000015         0.000075 
+## 
+## Column id with float64 data type 
+##                counts  percentages  cum_percentages
+## 1.100351e+10       2     0.000030         0.000030
+## 3.132701e+10       1     0.000015         0.000045
+## 1.501501e+10       1     0.000015         0.000060
+## 3.230631e+10       1     0.000015         0.000075
+## 5.003991e+10       1     0.000015         0.000090 
+## 
+## Column idade with int64 data type 
+##      counts  percentages  cum_percentages
+## 20    2104     0.031653         0.031653
+## 28    2056     0.030931         0.062585
+## 26    2040     0.030691         0.093275
+## 22    2034     0.030600         0.123875
+## 27    2017     0.030345         0.154220 
+## 
+## Column sexo with object data type 
+##            counts  percentages  cum_percentages
+## mulher     33607     0.505597         0.505597
+## homem      32791     0.493320         0.998917
+## gestante      72     0.001083         1.000000 
+## 
+## Column anos_estudo with float64 data type 
+##        counts  percentages  cum_percentages
+## 5.0    23349     0.351271         0.351271
+## 11.0   16790     0.252595         0.603866
+## 15.0    5636     0.084790         0.688657
+## 8.0     5017     0.075478         0.764134
+## 10.0    2704     0.040680         0.804814 
+## 
+## Column cor/raca with object data type 
+##            counts  percentages  cum_percentages
+## Branca     31689     0.476741         0.476741
+## Parda      28370     0.426809         0.903550
+## Preta       5249     0.078968         0.982518
+## Indigena     597     0.008981         0.991500
+## Amarela      323     0.004859         0.996359 
+## 
+## Column salario with float64 data type 
+##             counts  percentages  cum_percentages
+##  NaN        18592     0.279705         0.279705
+##  0.0         1841     0.027697         0.307402
+## -1.0         1101     0.016564         0.323966
+##  999999.0     367     0.005521         0.329487
+##  5229.0       277     0.004167         0.333654 
+## 
+## Column estado_civil with float64 data type 
+##       counts  percentages  cum_percentages
+## 1.0   39066     0.587724         0.587724
+## 0.0   27404     0.412276         1.000000 
+## 
+## Column regiao with object data type 
+##                counts  percentages  cum_percentages
+## sudeste        25220     0.379419         0.379419
+## centro-oeste   14702     0.221182         0.600602
+## norte          14653     0.220445         0.821047
+## sul            11890     0.178878         0.999925
+## nordeste           5     0.000075         1.000000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Just for comparison lets look how we could do the same thing without the function.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;
+for col in df:
+  df[col].value_counts(dropna=False).head(5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 2047     1
+## 41601    1
+## 21151    1
+## 23198    1
+## 17053    1
+## Name: Unnamed: 0, dtype: int64
+## 1.100351e+10    2
+## 3.132701e+10    1
+## 1.501501e+10    1
+## 3.230631e+10    1
+## 5.003991e+10    1
+## Name: id, dtype: int64
+## 20    2104
+## 28    2056
+## 26    2040
+## 22    2034
+## 27    2017
+## Name: idade, dtype: int64
+## mulher      33607
+## homem       32791
+## gestante       72
+## Name: sexo, dtype: int64
+## 5.0     23349
+## 11.0    16790
+## 15.0     5636
+## 8.0      5017
+## 10.0     2704
+## Name: anos_estudo, dtype: int64
+## Branca      31689
+## Parda       28370
+## Preta        5249
+## Indigena      597
+## Amarela       323
+## Name: cor/raca, dtype: int64
+##  NaN         18592
+##  0.0          1841
+## -1.0          1101
+##  999999.0      367
+##  5229.0        277
+## Name: salario, dtype: int64
+## 1.0    39066
+## 0.0    27404
+## Name: estado_civil, dtype: int64
+## sudeste         25220
+## centro-oeste    14702
+## norte           14653
+## sul             11890
+## nordeste            5
+## Name: regiao, dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replacing-columns-names&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Replacing columns names&lt;/h3&gt;
+&lt;p&gt;The columns are named in Portuguese we can replace their names for English equivalents in a lot of different ways&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Index([&amp;#39;Unnamed: 0&amp;#39;, &amp;#39;id&amp;#39;, &amp;#39;idade&amp;#39;, &amp;#39;sexo&amp;#39;, &amp;#39;anos_estudo&amp;#39;, &amp;#39;cor/raca&amp;#39;,
+##        &amp;#39;salario&amp;#39;, &amp;#39;estado_civil&amp;#39;, &amp;#39;regiao&amp;#39;],
+##       dtype=&amp;#39;object&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;My favorite way of doing this sort of trades is using a dictionary defined outside the replace method, the cool thing about replace is that if we liked some of the column names previously defined we can simply omit them, for example, both “Unnamed: 0” and “id” are useless but since their names are already in English I don’t need to mess with them right now&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Translation discussion on race&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;There is some valid discussion on whether to translate “cor/raca” into ethnic_group or color_race, but I am personally on the opinion that the ones making this data frame in 1970 were probably under other standards of naming conventions and racism accusations so I will keep their naming scheme, I apologize if anyone feels offended by the use of these terms&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;dict_cols = {&amp;quot;idade&amp;quot; : &amp;quot;age&amp;quot;,
+                &amp;quot;sexo&amp;quot; : &amp;quot;sex&amp;quot;,
+                &amp;quot;anos_estudo&amp;quot; : &amp;quot;years_study&amp;quot;,
+                &amp;quot;cor/raca&amp;quot; : &amp;quot;color_race&amp;quot;,
+                &amp;quot;salario&amp;quot; : &amp;quot;salary&amp;quot;,
+                &amp;quot;estado_civil&amp;quot; : &amp;quot;civil_status&amp;quot;,
+                &amp;quot;regiao&amp;quot; : &amp;quot;region&amp;quot;
+                }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.rename(columns = dict_cols, inplace = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s see what changed&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Index([&amp;#39;Unnamed: 0&amp;#39;, &amp;#39;id&amp;#39;, &amp;#39;age&amp;#39;, &amp;#39;sex&amp;#39;, &amp;#39;years_study&amp;#39;, &amp;#39;color_race&amp;#39;, &amp;#39;salary&amp;#39;,
+##        &amp;#39;civil_status&amp;#39;, &amp;#39;region&amp;#39;],
+##       dtype=&amp;#39;object&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It look fine now we can translate some of our main features&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cleaning-categorical-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Cleaning categorical data&lt;/h3&gt;
+&lt;p&gt;First we need to know the categories present in each of our columns a simple loop would fails us when we reached a numeric variable, the simplest way to solve that would be using an if statement, another alternative is using conditional execution, I personally don’t know a simple way of doing that in python but I will show it in the R post&lt;/p&gt;
+&lt;p&gt;To discover the numeric and “categorical” variables, know that sometimes you will have to change some elements of these lists but looking at my outputs I think I got all the relevant ones&lt;/p&gt;
+&lt;div id=&#34;finding-which-columns-are-categorical&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Finding which columns are categorical&lt;/h4&gt;
+&lt;p&gt;These are the numerical variables&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.select_dtypes(include=[np.number]).columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Index([&amp;#39;Unnamed: 0&amp;#39;, &amp;#39;id&amp;#39;, &amp;#39;age&amp;#39;, &amp;#39;years_study&amp;#39;, &amp;#39;salary&amp;#39;, &amp;#39;civil_status&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And these are the Categorical variables&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;list_cat = df.select_dtypes(exclude=[np.number]).columns&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can run a simple loop&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;for col in list_cat:
+    df[col].unique()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([&amp;#39;homem&amp;#39;, &amp;#39;mulher&amp;#39;, &amp;#39;gestante&amp;#39;], dtype=object)
+## array([&amp;#39;Parda&amp;#39;, &amp;#39;Amarela&amp;#39;, &amp;#39;Indigena&amp;#39;, &amp;#39;Branca&amp;#39;, &amp;#39;Preta&amp;#39;, nan],
+##       dtype=object)
+## array([&amp;#39;norte&amp;#39;, &amp;#39;nordeste&amp;#39;, &amp;#39;sudeste&amp;#39;, &amp;#39;sul&amp;#39;, &amp;#39;centro-oeste&amp;#39;],
+##       dtype=object)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The simpler method is comparing the dtype in each column to the desired output, but this would be harder if we needed the np.numeric&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;for col in df:
+  if df[col].dtype == &amp;quot;O&amp;quot;:
+    df[col].unique()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([&amp;#39;homem&amp;#39;, &amp;#39;mulher&amp;#39;, &amp;#39;gestante&amp;#39;], dtype=object)
+## array([&amp;#39;Parda&amp;#39;, &amp;#39;Amarela&amp;#39;, &amp;#39;Indigena&amp;#39;, &amp;#39;Branca&amp;#39;, &amp;#39;Preta&amp;#39;, nan],
+##       dtype=object)
+## array([&amp;#39;norte&amp;#39;, &amp;#39;nordeste&amp;#39;, &amp;#39;sudeste&amp;#39;, &amp;#39;sul&amp;#39;, &amp;#39;centro-oeste&amp;#39;],
+##       dtype=object)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The problem with the simpler approach is that sometimes you have columns that are categories and not objects so the simpler approach would fail when the more complex one would not, let’s convert sex to a category to prove my point&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.sex =df.sex.astype(&amp;quot;category&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.dtypes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Unnamed: 0         int64
+## id               float64
+## age                int64
+## sex             category
+## years_study      float64
+## color_race        object
+## salary           float64
+## civil_status     float64
+## region            object
+## dtype: object&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;for col in df:
+  if df[col].dtype == &amp;quot;O&amp;quot;:
+    df[col].unique()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([&amp;#39;Parda&amp;#39;, &amp;#39;Amarela&amp;#39;, &amp;#39;Indigena&amp;#39;, &amp;#39;Branca&amp;#39;, &amp;#39;Preta&amp;#39;, nan],
+##       dtype=object)
+## array([&amp;#39;norte&amp;#39;, &amp;#39;nordeste&amp;#39;, &amp;#39;sudeste&amp;#39;, &amp;#39;sul&amp;#39;, &amp;#39;centro-oeste&amp;#39;],
+##       dtype=object)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It does not work anymore, of course you can still solve this “problem” with the simpler approach by including a “and” clause on your if statement but at that point you might as well use the more extensible appoach&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replacing-values-with-an-dictionary-1-column&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Replacing values with an dictionary: 1 column&lt;/h4&gt;
+&lt;p&gt;After looking into the categories I can create a dictionary for each column if I want to be safe on repeating terms or I can pass a master dictionary for the whole data frame, I think the column by column approach is tidier but for each their own&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;dict_sex = {&amp;quot;mulher&amp;quot;   : &amp;quot;woman&amp;quot;,
+            &amp;quot;homem&amp;quot;    : &amp;quot;man&amp;quot;,
+            &amp;quot;gestante&amp;quot; : &amp;quot;woman&amp;quot;} # pregnant&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is one strange data frame, it probably made sense to split women into pregnant and not pregnant but I think it will only complicate the otherwise simple analyses so I will group both into “woman”&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.sex.replace(dict_sex,inplace = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Showing the new amounts of women/mean&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.sex.value_counts()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## woman    33679
+## man      32791
+## Name: sex, dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.sex.unique()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([&amp;#39;man&amp;#39;, &amp;#39;woman&amp;#39;], dtype=object)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This fails&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(df.sex)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in py_call_impl(callable, dots$args, dots$keywords): KeyError: &amp;#39;man&amp;#39;
+## 
+## Detailed traceback: 
+##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 6, in pretty_value_counts
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/series.py&amp;quot;, line 1071, in __getitem__
+##     result = self.index.get_value(self, key)
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/indexes/base.py&amp;quot;, line 4730, in get_value
+##     return self._engine.get_value(s, k, tz=getattr(series.dtype, &amp;quot;tz&amp;quot;, None))
+##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 80, in pandas._libs.index.IndexEngine.get_value
+##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 88, in pandas._libs.index.IndexEngine.get_value
+##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 128, in pandas._libs.index.IndexEngine.get_loc
+##   File &amp;quot;pandas/_libs/index_class_helper.pxi&amp;quot;, line 91, in pandas._libs.index.Int64Engine._check_type&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is actually a example on why I don’t personally enjoy Pandas conversion of data, the function that we created pretty_value_counts is not gonna work in this example because Pandas converts a single column to an Series object, so we would have to write a pretty_value_counts for Series as well or we would have to mess with the Pandas method or we could convert the series back into a DataFrame like this&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(data=  df.sex))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Column sex with object data type 
+##         counts  percentages  cum_percentages
+## woman   33679      0.50668          0.50668
+## man     32791      0.49332          1.00000&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replacing-values-with-an-dictionary-multiple-columns&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Replacing values with an dictionary: multiple columns&lt;/h4&gt;
+&lt;details&gt;
+&lt;summary&gt;Translation discussion on race part 2&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Again there is relevant discussion on whether I should translate “Parda” as brown but basically Brazil’s population sometimes answers that their skin color is “Parda” = brown when asked about for many reasons I will propose two, “Preta” black can be used as an racist term so some people prefer to be called “brown”, the second explanation is that most of the population is actually pretty well integrated meaning that there a lot of biracial couples in this case we see something like “Preta” parent + “Branca” parent = “Parda” = in English “brown”.&lt;/p&gt;
+&lt;p&gt;There is also the case for the English equivalent of brown skin we simply use “Indiano” = “Indian”.&lt;/p&gt;
+&lt;p&gt;Curiously the term “Negra” =~ &amp;quot;N*gger&amp;quot; is often preferred in Brazil, that may cause some confusion between Portuguese and English speakers.&lt;/p&gt;
+&lt;p&gt;I will use brown but do notice that there were multiple sensible approaches here.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;p&gt;This is a good opportunity to show failures in the master dictionary approach, realize that if I were to replace “nan” as no_answer or something like that python could thrown me an error because there are “nan” in some numerical columns such as salary but instead I get silence conversion of a numerical columns into object columns a dangerous feature.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;for col in list_cat:
+  df[col].unique()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([&amp;#39;man&amp;#39;, &amp;#39;woman&amp;#39;], dtype=object)
+## array([&amp;#39;Parda&amp;#39;, &amp;#39;Amarela&amp;#39;, &amp;#39;Indigena&amp;#39;, &amp;#39;Branca&amp;#39;, &amp;#39;Preta&amp;#39;, nan],
+##       dtype=object)
+## array([&amp;#39;norte&amp;#39;, &amp;#39;nordeste&amp;#39;, &amp;#39;sudeste&amp;#39;, &amp;#39;sul&amp;#39;, &amp;#39;centro-oeste&amp;#39;],
+##       dtype=object)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;dict_all = {&amp;quot;Parda&amp;quot;    : &amp;quot;brown&amp;quot;,
+            &amp;quot;Amarela&amp;quot;  : &amp;quot;yellow&amp;quot;,
+            &amp;quot;Indigena&amp;quot; : &amp;quot;indigenous&amp;quot;,
+            &amp;quot;Branca&amp;quot;   : &amp;quot;white&amp;quot;,
+            &amp;quot;Preta&amp;quot;    : &amp;quot;black&amp;quot;,
+            np.nan      : &amp;quot;no_answer&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.replace(dict_all).salary.dtype&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## dtype(&amp;#39;O&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;dict_all = {&amp;quot;Parda&amp;quot;    : &amp;quot;brown&amp;quot;, #col color_race
+            &amp;quot;Amarela&amp;quot;  : &amp;quot;yellow&amp;quot;,
+            &amp;quot;Indigena&amp;quot; : &amp;quot;indigenous&amp;quot;,
+            &amp;quot;Branca&amp;quot;   : &amp;quot;white&amp;quot;,
+            &amp;quot;Preta&amp;quot;    : &amp;quot;black&amp;quot;,
+            &amp;quot;norte&amp;quot;    : &amp;quot;north&amp;quot;, # col region 
+            &amp;quot;nordeste&amp;quot; : &amp;quot;northeast&amp;quot;,
+            &amp;quot;sudeste&amp;quot;  : &amp;quot;southeast&amp;quot;,
+            &amp;quot;sul&amp;quot;      : &amp;quot;south&amp;quot;,
+        &amp;quot;centro-oeste&amp;quot; : &amp;quot;midwest&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s pray that we don’t have this problem and use this shared dictionary&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.replace(dict_all, inplace = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;did-we-correctly-clean-the-categorical-variables&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Did we correctly clean the Categorical Variables?&lt;/h4&gt;
+&lt;div id=&#34;conversion-of-types&#34; class=&#34;section level5&#34;&gt;
+&lt;h5&gt;Conversion of types&lt;/h5&gt;
+&lt;p&gt;Well not really I would argue that year_study is an categorical variable as well
+so let’s convert it.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;category&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study.unique()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [5.0, 8.0, 11.0, 15.0, 13.0, ..., 9.0, 10.0, 14.0, 12.0, NaN]
+## Length: 12
+## Categories (11, float64): [5.0, 8.0, 11.0, 15.0, ..., 9.0, 10.0, 14.0, 12.0]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Some nan but otherwise this is could be a useful feature, I will convert it back into a numerical column so that if we can easily impute the NaN’s based on a mathematical method such as the mean of the column.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;interger&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in py_call_impl(callable, dots$args, dots$keywords): TypeError: data type &amp;#39;interger&amp;#39; not understood
+## 
+## Detailed traceback: 
+##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/generic.py&amp;quot;, line 5882, in astype
+##     dtype=dtype, copy=copy, errors=errors, **kwargs
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 581, in astype
+##     return self.apply(&amp;quot;astype&amp;quot;, dtype=dtype, **kwargs)
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 438, in apply
+##     applied = getattr(b, f)(**kwargs)
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 559, in astype
+##     return self._astype(dtype, copy=copy, errors=errors, values=values, **kwargs)
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 614, in _astype
+##     dtype = pandas_dtype(dtype)
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/dtypes/common.py&amp;quot;, line 2055, in pandas_dtype
+##     raise TypeError(&amp;quot;data type &amp;#39;{}&amp;#39; not understood&amp;quot;.format(dtype))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Another numpy quirk you can’t use integers because there are NaN values.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;float&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Converting civil_status into a category.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.civil_status.unique()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([1., 0.])&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To know what 1 or 0 mean, so we need to check the dictionary&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;dict_civil_status = { 0. : &amp;quot;not_married&amp;quot;,
+                      1. : &amp;quot;married&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.civil_status = df.civil_status.replace(dict_civil_status)
+df.civil_status.head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 0        married
+## 1        married
+## 2    not_married
+## 3        married
+## 4        married
+## Name: civil_status, dtype: object&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Before we deal with numerical variables I will get rid of ‘Unnamed: 0’ and ‘id’ features because they are useless in this case.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.drop(columns=[&amp;#39;Unnamed: 0&amp;#39;, &amp;#39;id&amp;#39;],inplace=True)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python_plots_categorical&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Seeing the effects of categorical Variables&lt;/h3&gt;
+&lt;p&gt;We can use a colored barplot to see the interaction of these Categorical Variables with our Hypothesis.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;region&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
+plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;civil_status&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
+plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;color_race&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
+plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cleaning-numerical-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Cleaning numerical data&lt;/h3&gt;
+&lt;p&gt;If we pull back the code that we used here are the numerical features of this dataset&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.select_dtypes(include=[np.number]).columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Index([&amp;#39;age&amp;#39;, &amp;#39;years_study&amp;#39;, &amp;#39;salary&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is very common to reuse these kind of codes in Data Science scripts, so you shouldn’t fell as bad about repeating yourself as you do in other endeavors such in normal software engendering and you call always clean your analysis latter.&lt;/p&gt;
+&lt;p&gt;In order to know what to “clean” in numerical data I like to use plot such as a histogram&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.salary.hist(bins = 10)
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Here we can see that the data may have a few outliers at 1000000 and that most of the salary data has a large Positive skew meaning that most data point are left to the mean of the dataset we can see that better using an density plot instead&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.salary.plot.kde()
+plot_density.set_xlim(0,100000)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (0, 100000)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; /&gt;&lt;!-- --&gt;
+#### Replacing variables {#python_custom_function_2}&lt;/p&gt;
+&lt;p&gt;If we go back to our &lt;a href=&#34;#python_custom_function_1&#34;&gt;custom function&lt;/a&gt; we can find that the values -1 and 999999 are unusually common after consulting the dictionary we decided to replace these values with the mean of the group.&lt;/p&gt;
+&lt;p&gt;This operation would be wrong for machine learning purposes since the mean of our train group would leak information from the test set as well but here in exploratory data analysis it is mostly fine also you need to replace the values with the numpy nan or else this operation doesn’t work as expected.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_copy = df.copy()
+df_copy.salary.replace({-1: &amp;quot;NaN&amp;quot;,999999:&amp;#39;NaN&amp;#39;},inplace = True)
+df_copy.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df_copy.salary))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Column salary with object data type 
+##                      counts  percentages  cum_percentages
+## 19706.790323432902   18592     0.279705         0.279705
+## 0.0                   1841     0.027697         0.307402
+## NaN                   1468     0.022085         0.329487
+## 5229.0                 277     0.004167         0.333654
+## 7200.0                 260     0.003912         0.337566&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Create the new na values
+
+
+
+df.salary.replace({-1:np.nan,999999:np.nan},inplace = True)
+
+df.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.salary))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Column salary with float64 data type 
+##               counts  percentages  cum_percentages
+## 12422.39119   20060     0.301790         0.301790
+## 0.00000        1841     0.027697         0.329487
+## 5229.00000      277     0.004167         0.333654
+## 7200.00000      260     0.003912         0.337566
+## 7560.00000      244     0.003671         0.341237&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And that is the magic of mutable Data Structures no extra assignments are required, quite useful, but be careful there is no going back if you haven’t saved a copy of your data.&lt;/p&gt;
+&lt;div id=&#34;log-of-numerical-data&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Log of numerical data&lt;/h4&gt;
+&lt;p&gt;There is also a statisticall solution for the Positive skew in our Data we can take the log of the salary column, but we will have to add one to all values since log of 0 goes to -Inf&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.log_salary = np.log1p(df.salary)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/activate_this.py:1: UserWarning: Pandas doesn&amp;#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+##   &amp;quot;&amp;quot;&amp;quot;Activate virtualenv for current interpreter:&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.log_salary))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Column salary with float64 data type 
+##            counts  percentages  cum_percentages
+## 9.427336   20060     0.301790         0.301790
+## 0.000000    1841     0.027697         0.329487
+## 8.562167     277     0.004167         0.333654
+## 8.881975     260     0.003912         0.337566
+## 8.930759     244     0.003671         0.341237&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.log_salary.plot.kde(bw_method= 0.5)
+plot_density.set_xlim(0,15)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (0, 15)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-44-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;It is now a usefull feature for most simple linear models&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;other-numerical-columns&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Other numerical columns&lt;/h4&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.age.hist(bins = 20)
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-45-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.age.plot.kde()
+plot_density&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-46-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.age))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Column age with int64 data type 
+##      counts  percentages  cum_percentages
+## 20    2104     0.031653         0.031653
+## 28    2056     0.030931         0.062585
+## 26    2040     0.030691         0.093275
+## 22    2034     0.030600         0.123875
+## 27    2017     0.030345         0.154220&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Age seems fine&lt;/p&gt;
+&lt;p&gt;Remember from the the categorical variables we passed years_study here so that we could impute its missing values&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## RangeIndex: 66470 entries, 0 to 66469
+## Data columns (total 7 columns):
+## age             66470 non-null int64
+## sex             66470 non-null object
+## years_study     66036 non-null float64
+## color_race      66228 non-null object
+## salary          66470 non-null float64
+## civil_status    66470 non-null object
+## region          66470 non-null object
+## dtypes: float64(2), int64(1), object(4)
+## memory usage: 3.6+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are missing 66470 - 66036 = 434 observation, this is a small enough number that we decided to drop these rows&lt;/p&gt;
+&lt;p&gt;While we are droping missing values lets drop the color_race missing observations as well&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.dropna(subset = [&amp;quot;years_study&amp;quot;,&amp;quot;color_race&amp;quot;],inplace= True)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## Int64Index: 65795 entries, 0 to 66469
+## Data columns (total 7 columns):
+## age             65795 non-null int64
+## sex             65795 non-null object
+## years_study     65795 non-null float64
+## color_race      65795 non-null object
+## salary          65795 non-null float64
+## civil_status    65795 non-null object
+## region          65795 non-null object
+## dtypes: float64(2), int64(1), object(4)
+## memory usage: 4.0+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Checking on year_study&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study.hist(bins = 20)
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2020/19/index_files/figure-html/unnamed-chunk-51-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Let’s convert it back into a Category&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;category&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;saving-our-work-for-later&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Saving our work for later&lt;/h1&gt;
+&lt;p&gt;Here we have many options we can for example run this script later or save this modified df as a csv, both options are okay but I will promote the usage of an Data format that keeps the mindful choices of encoding that we made into consideration, there are many alternatives in this case as well but I will use feather.&lt;/p&gt;
+&lt;p&gt;It is also always a good idea to separate the Data from the script if you want reproducible work, that is where Excel mostly fails for me.&lt;/p&gt;
+&lt;p&gt;So showing our Data Types&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.dtypes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## age                int64
+## sex               object
+## years_study     category
+## color_race        object
+## salary           float64
+## civil_status      object
+## region            object
+## dtype: object&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using csv will may lose some Data Types&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.to_csv(&amp;#39;finished_work.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pd.read_csv(&amp;#39;finished_work.csv&amp;#39;).dtypes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Unnamed: 0        int64
+## age               int64
+## sex              object
+## years_study     float64
+## color_race       object
+## salary          float64
+## civil_status     object
+## region           object
+## dtype: object&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We lost our encoding of years_study and when writing a csv we made this useless to us Unnamed: 0 column&lt;/p&gt;
+&lt;p&gt;a better way is using the feather file format, you need to pip install pyarrow beforehand&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.reset_index().to_feather(&amp;#39;sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pd.read_feather(&amp;#39;sex_thesis_assignment.feather&amp;#39;).dtypes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## index              int64
+## age                int64
+## sex               object
+## years_study     category
+## color_race        object
+## salary           float64
+## civil_status      object
+## region            object
+## dtype: object&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Feather does keep the years study dtype, but feather is still in a experimental phase so be carefull with it, parquet unfortunally fails to keep the dtypes I don’t know why.&lt;/p&gt;
+&lt;p&gt;It is also a good idea to keep good file names so that you can easily identify your datasets and scripts.&lt;/p&gt;
+&lt;p&gt;If you then need to delete these files you can do it inside python&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# os.remove(&amp;#39;finished_work.csv&amp;#39;)
+# os.remove(&amp;#39;sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;next-post&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Next post&lt;/h1&gt;
@@ -1229,7 +2061,7 @@ from pylab import *
 sales.plot(x=&amp;quot;InvoiceDate&amp;quot;, y=&amp;quot;Revenue&amp;quot;, kind=&amp;quot;line&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -1289,11 +2121,11 @@ CountryGroups.sort_values(by= &amp;quot;Revenue&amp;quot;, ascending=False)&lt;/
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.10&lt;/span&gt; Ploting an histogram&lt;/h3&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;CustomerID&amp;quot;] == 17850.0][&amp;quot;Revenue&amp;quot;].plot(kind=&amp;quot;hist&amp;quot;)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;another example.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;StockCode&amp;quot;] == &amp;#39;71053&amp;#39;][&amp;quot;Quantity&amp;quot;].hist()
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.11&lt;/span&gt; Handling Missing values&lt;/h3&gt;
@@ -1855,7 +2687,7 @@ raw_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% ggplot() +
   aes(x = InvoiceDate, y = Revenue) +
   geom_line()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -1943,14 +2775,14 @@ CountryGroups&lt;/code&gt;&lt;/pre&gt;
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Another example.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;%
   filter(StockCode == 71053) %&amp;gt;% 
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.11&lt;/span&gt; Handling Missing values in R&lt;/h3&gt;
