@@ -20,9 +20,10 @@ output:
 I am currently doing exercises from [digital house brasil](https://github.com/sn3fru/datascience_course) 
 
 ```{r,include = FALSE}
+library(reticulate)
+use_python('/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/python',required = TRUE)
 file_path <- here::here()
 file_path_linux <- paste(file_path,"content","post","data",sep = "/")
-reticulate::use_python('/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/',required = TRUE)
 ```
 
 Let's see what version of python this env is running.
@@ -128,3 +129,96 @@ Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Num
 </details>
 
 # Python
+
+
+## Importing the dataset from part 1
+
+```{python}
+
+```
+
+```{python}
+df_sex_thesis =pd.read_feather(r.file_path_linux + '/sex_thesis_assignment.feather')
+```
+
+```{python}
+df_sex_thesis.info()
+```
+
+Let's get going first we need to define which variables we will add to the hypothesis to isolate the factor of salary ~ sex, a simple way of doing that is that if we consider that our sample of individuals is random in nature we could simple compare the means of the individuals given their sex and see if there is a significant difference in their means, we can calculate that by using the standard deviation of the calculated means.
+
+A good graphic to get an idea if these effects would be significant was the bar plots we used in part 1.
+
+But if we are working with Categorical variable we can use a groupby aproach to glimpse at the difference in means
+
+```{python}
+df_sex_thesis.groupby('sex').mean().salary
+```
+
+<details><summary>Group by explanation</summary>
+<p>
+
+Group by in pandas is a method that accepts a list of elements in this case just 'sex' and applies consequent operation in each group, in this case we applied the mean method from a pandas DataFrame, we used .salary to return just the mean for the salary variable.
+
+</p>
+</details>
+
+```{python}
+df_sex_thesis.groupby(['sex','region']).mean().salary
+```
+
+Adding standard deviations
+
+```{python}
+df_sex_thesis.groupby(['sex']).std().salary
+```
+
+These are really big Standard deviations! Remembering from stats that +2 SD's gives about a 95% confidence interval we are not even close.
+
+To add both togheter we can use pandas agg method
+
+```{python}
+df_sex_thesis.groupby(['sex']).agg(['mean','std']).salary
+```
+
+Now we can calculate boundaries
+
+
+```{python}
+df_agg =df_sex_thesis.groupby(['sex']).agg(['mean','std']).salary
+```
+
+```{python}
+df_agg
+```
+
+```{python}
+df_agg['lower_bound'] = df_agg['mean'] - df_agg['std'] * 2
+df_agg['upper_bound'] = df_agg['mean'] + df_agg['std'] * 2
+```
+
+```{python}
+df_agg
+```
+
+Cool but to verbose to be repeated we can easily make this series of operation into a function
+
+```{python}
+def groupby_bound(df,groupby_variables,value_variables):
+  df_agg =  df.groupby(groupby_variables).agg(['mean','std'])[value_variables]
+  df_agg['lower_bound'] = df_agg['mean'] - df_agg['std'] * 2
+  df_agg['upper_bound'] = df_agg['mean'] + df_agg['std'] * 2
+  return df_agg
+```
+
+```{python}
+groupby_bound(df=df_sex_thesis,groupby_variables='sex',value_variables='salary')
+```
+
+Now that we have a working function let's see if we can find a difference in salary on some strata of the population
+
+
+```{python}
+groupby_bound(df=df_sex_thesis,groupby_variables=['sex','region'],value_variables='salary')
+```
+

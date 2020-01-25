@@ -29,7 +29,9 @@
 &lt;li&gt;&lt;a href=&#34;#data-dictionary&#34;&gt;Data Dictionary&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#importing-the-dataset-from-part-1&#34;&gt;Importing the dataset from part 1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -117,6 +119,101 @@ import os&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;python&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Python&lt;/h1&gt;
+&lt;div id=&#34;importing-the-dataset-from-part-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Importing the dataset from part 1&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis =pd.read_feather(r.file_path_linux + &amp;#39;/sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## RangeIndex: 65795 entries, 0 to 65794
+## Data columns (total 8 columns):
+## index           65795 non-null int64
+## age             65795 non-null int64
+## sex             65795 non-null object
+## years_study     65795 non-null category
+## color_race      65795 non-null object
+## salary          65795 non-null float64
+## civil_status    65795 non-null object
+## region          65795 non-null object
+## dtypes: category(1), float64(1), int64(2), object(4)
+## memory usage: 3.6+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s get going first we need to define which variables we will add to the hypothesis to isolate the factor of salary ~ sex, a simple way of doing that is that if we consider that our sample of individuals is random in nature we could simple compare the means of the individuals given their sex and see if there is a significant difference in their means, we can calculate that by using the standard deviation of the calculated means.&lt;/p&gt;
+&lt;p&gt;A good graphic to get an idea if these effects would be significant was the bar plots we used in part 1.&lt;/p&gt;
+&lt;p&gt;But if we are working with Categorical variable we can use a groupby aproach to glimpse at the difference in means&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.groupby(&amp;#39;sex&amp;#39;).mean().salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## sex
+## man      14302.491879
+## woman    10642.502734
+## Name: salary, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;summary&gt;Group by explanation&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Group by in pandas is a method that accepts a list of elements in this case just ‘sex’ and applies consequent operation in each group, in this case we applied the mean method from a pandas DataFrame, we used .salary to return just the mean for the salary variable.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.groupby([&amp;#39;sex&amp;#39;,&amp;#39;region&amp;#39;]).mean().salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## sex    region   
+## man    midwest      15263.832776
+##        north        11645.335382
+##        south        15507.600528
+##        southeast    14755.538089
+## woman  midwest      11394.125688
+##        north         9932.078329
+##        northeast    24737.436554
+##        south        10159.399214
+##        southeast    10826.777483
+## Name: salary, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Adding standard deviations&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.groupby([&amp;#39;sex&amp;#39;]).std().salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## sex
+## man      21832.256493
+## woman    11949.880892
+## Name: salary, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These are really big Standard deviations! Remembering from stats that +2 SD’s gives about a 95% confidence interval we are not even close.&lt;/p&gt;
+&lt;p&gt;To add both togheter we can use pandas agg method&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.groupby([&amp;#39;sex&amp;#39;]).agg([&amp;#39;mean&amp;#39;,&amp;#39;std&amp;#39;]).salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                mean           std
+## sex                              
+## man    14302.491879  21832.256493
+## woman  10642.502734  11949.880892&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can calculate boundaries&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg =df_sex_thesis.groupby([&amp;#39;sex&amp;#39;]).agg([&amp;#39;mean&amp;#39;,&amp;#39;std&amp;#39;]).salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                mean           std
+## sex                              
+## man    14302.491879  21832.256493
+## woman  10642.502734  11949.880892&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg[&amp;#39;lower_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] - df_agg[&amp;#39;std&amp;#39;] * 2
+df_agg[&amp;#39;upper_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] + df_agg[&amp;#39;std&amp;#39;] * 2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                mean           std   lower_bound   upper_bound
+## sex                                                          
+## man    14302.491879  21832.256493 -29362.021106  57967.004865
+## woman  10642.502734  11949.880892 -13257.259050  34542.264519&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cool but to verbose to be repeated we can easily make this series of operation into a function&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;def groupby_bound(df,groupby_variables,value_variables):
+  df_agg =  df.groupby(groupby_variables).agg([&amp;#39;mean&amp;#39;,&amp;#39;std&amp;#39;])[value_variables]
+  df_agg[&amp;#39;lower_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] - df_agg[&amp;#39;std&amp;#39;] * 2
+  df_agg[&amp;#39;upper_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] + df_agg[&amp;#39;std&amp;#39;] * 2
+  return df_agg&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=&amp;#39;sex&amp;#39;,value_variables=&amp;#39;salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                mean           std   lower_bound   upper_bound
+## sex                                                          
+## man    14302.491879  21832.256493 -29362.021106  57967.004865
+## woman  10642.502734  11949.880892 -13257.259050  34542.264519&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we have a working function let’s see if we can find a difference in salary on some strata of the population&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=[&amp;#39;sex&amp;#39;,&amp;#39;region&amp;#39;],value_variables=&amp;#39;salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                          mean           std   lower_bound   upper_bound
+## sex   region                                                           
+## man   midwest    15263.832776  22365.162600 -29466.492424  59994.157975
+##       north      11645.335382  17755.179348 -23865.023315  47155.694079
+##       south      15507.600528  24077.013334 -32646.426140  63661.627196
+##       southeast  14755.538089  22471.956377 -30188.374664  59699.450842
+## woman midwest    11394.125688  14039.268041 -16684.410394  39472.661770
+##       north       9932.078329  10366.150119 -10800.221908  30664.378567
+##       northeast  24737.436554  35861.738868 -46986.041182  96460.914290
+##       south      10159.399214  10274.792359 -10390.185505  30708.983932
+##       southeast  10826.777483  12140.616504 -13454.455526  35108.010491&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -160,7 +257,7 @@ import os&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import platform
 print(platform.python_version())&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 3.7.3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 3.7.4&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -546,13 +643,13 @@ for col in df:
 ## Detailed traceback: 
 ##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
 ##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 6, in pretty_value_counts
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/series.py&amp;quot;, line 868, in __getitem__
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/series.py&amp;quot;, line 1071, in __getitem__
 ##     result = self.index.get_value(self, key)
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/indexes/base.py&amp;quot;, line 4375, in get_value
-##     tz=getattr(series.dtype, &amp;#39;tz&amp;#39;, None))
-##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 81, in pandas._libs.index.IndexEngine.get_value
-##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 89, in pandas._libs.index.IndexEngine.get_value
-##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 129, in pandas._libs.index.IndexEngine.get_loc
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/indexes/base.py&amp;quot;, line 4730, in get_value
+##     return self._engine.get_value(s, k, tz=getattr(series.dtype, &amp;quot;tz&amp;quot;, None))
+##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 80, in pandas._libs.index.IndexEngine.get_value
+##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 88, in pandas._libs.index.IndexEngine.get_value
+##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 128, in pandas._libs.index.IndexEngine.get_loc
 ##   File &amp;quot;pandas/_libs/index_class_helper.pxi&amp;quot;, line 91, in pandas._libs.index.Int64Engine._check_type&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here is actually a example on why I don’t personally enjoy Pandas conversion of data, the function that we created pretty_value_counts is not gonna work in this example because Pandas converts a single column to an Series object, so we would have to write a pretty_value_counts for Series as well or we would have to mess with the Pandas method or we could convert the series back into a DataFrame like this&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(data=  df.sex))&lt;/code&gt;&lt;/pre&gt;
@@ -618,18 +715,18 @@ so let’s convert it.&lt;/p&gt;
 ## 
 ## Detailed traceback: 
 ##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/generic.py&amp;quot;, line 5691, in astype
-##     **kwargs)
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 531, in astype
-##     return self.apply(&amp;#39;astype&amp;#39;, dtype=dtype, **kwargs)
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 395, in apply
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/generic.py&amp;quot;, line 5882, in astype
+##     dtype=dtype, copy=copy, errors=errors, **kwargs
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 581, in astype
+##     return self.apply(&amp;quot;astype&amp;quot;, dtype=dtype, **kwargs)
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 438, in apply
 ##     applied = getattr(b, f)(**kwargs)
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 534, in astype
-##     **kwargs)
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 595, in _astype
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 559, in astype
+##     return self._astype(dtype, copy=copy, errors=errors, values=values, **kwargs)
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 614, in _astype
 ##     dtype = pandas_dtype(dtype)
-##   File &amp;quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/dtypes/common.py&amp;quot;, line 2017, in pandas_dtype
-##     dtype))&lt;/code&gt;&lt;/pre&gt;
+##   File &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/dtypes/common.py&amp;quot;, line 2055, in pandas_dtype
+##     raise TypeError(&amp;quot;data type &amp;#39;{}&amp;#39; not understood&amp;quot;.format(dtype))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Another numpy quirk you can’t use integers because there are NaN values.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;float&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Converting civil_status into a category.&lt;/p&gt;
@@ -656,13 +753,13 @@ df.civil_status.head()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can use a colored barplot to see the interaction of these Categorical Variables with our Hypothesis.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;region&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;594&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;civil_status&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;609&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;color_race&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cleaning-numerical-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Cleaning numerical data&lt;/h3&gt;
@@ -673,13 +770,13 @@ plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In order to know what to “clean” in numerical data I like to use plot such as a histogram&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.salary.hist(bins = 10)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Here we can see that the data may have a few outliers at 1000000 and that most of the salary data has a large Positive skew meaning that most data point are left to the mean of the dataset we can see that better using an density plot instead&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.salary.plot.kde()
 plot_density.set_xlim(0,100000)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## (0, 100000)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; width=&#34;600&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; /&gt;&lt;!-- --&gt;
 #### Replacing variables {#python_custom_function_2}&lt;/p&gt;
 &lt;p&gt;If we go back to our &lt;a href=&#34;#python_custom_function_1&#34;&gt;custom function&lt;/a&gt; we can find that the values -1 and 999999 are unusually common after consulting the dictionary we decided to replace these values with the mean of the group.&lt;/p&gt;
 &lt;p&gt;This operation would be wrong for machine learning purposes since the mean of our train group would leak information from the test set as well but here in exploratory data analysis it is mostly fine also you need to replace the values with the numpy nan or else this operation doesn’t work as expected.&lt;/p&gt;
@@ -714,7 +811,38 @@ df.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
 &lt;h4&gt;Log of numerical data&lt;/h4&gt;
 &lt;p&gt;There is also a statisticall solution for the Positive skew in our Data we can take the log of the salary column, but we will have to add one to all values since log of 0 goes to -Inf&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.log_salary = np.log1p(df.salary)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## /opt/python/3.7.3/bin/python3:1: UserWarning: Pandas doesn&amp;#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/activate_this.py:1: UserWarning: Pandas doesn&amp;#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+##   &amp;quot;&amp;quot;&amp;quot;Activate virtualenv for current interpreter:&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But be carefull you can’t assign in pandas using the . you need to use the “[” operator&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.log_salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 0        11.060384
+## 1         9.427336
+## 2         8.378713
+## 3        11.478344
+## 4        11.969090
+##            ...    
+## 66465     9.427336
+## 66466     7.793999
+## 66467     7.793999
+## 66468     8.617075
+## 66469     6.134157
+## Name: salary, Length: 66470, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## RangeIndex: 66470 entries, 0 to 66469
+## Data columns (total 7 columns):
+## age             66470 non-null int64
+## sex             66470 non-null object
+## years_study     66036 non-null float64
+## color_race      66228 non-null object
+## salary          66470 non-null float64
+## civil_status    66470 non-null object
+## region          66470 non-null object
+## dtypes: float64(2), int64(1), object(4)
+## memory usage: 3.6+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It simply is gone&lt;/p&gt;
+&lt;p&gt;The right way&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df[&amp;#39;log_salary&amp;#39;] = np.log1p(df.salary)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.log_salary))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Column salary with float64 data type 
 ##            counts  percentages  cum_percentages
@@ -727,17 +855,17 @@ df.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
 plot_density.set_xlim(0,15)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## (0, 15)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-44-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-47-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;It is now a usefull feature for most simple linear models&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;other-numerical-columns&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Other numerical columns&lt;/h4&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.age.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-45-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-48-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.age.plot.kde()
 plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-49-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.age))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Column age with int64 data type 
 ##      counts  percentages  cum_percentages
@@ -751,7 +879,7 @@ plot_density&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.info()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## RangeIndex: 66470 entries, 0 to 66469
-## Data columns (total 7 columns):
+## Data columns (total 8 columns):
 ## age             66470 non-null int64
 ## sex             66470 non-null object
 ## years_study     66036 non-null float64
@@ -759,15 +887,16 @@ plot_density&lt;/code&gt;&lt;/pre&gt;
 ## salary          66470 non-null float64
 ## civil_status    66470 non-null object
 ## region          66470 non-null object
-## dtypes: float64(2), int64(1), object(4)
-## memory usage: 3.5+ MB&lt;/code&gt;&lt;/pre&gt;
+## log_salary      66470 non-null float64
+## dtypes: float64(3), int64(1), object(4)
+## memory usage: 4.1+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We are missing 66470 - 66036 = 434 observation, this is a small enough number that we decided to drop these rows&lt;/p&gt;
 &lt;p&gt;While we are droping missing values lets drop the color_race missing observations as well&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.dropna(subset = [&amp;quot;years_study&amp;quot;,&amp;quot;color_race&amp;quot;],inplace= True)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.info()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## Int64Index: 65795 entries, 0 to 66469
-## Data columns (total 7 columns):
+## Data columns (total 8 columns):
 ## age             65795 non-null int64
 ## sex             65795 non-null object
 ## years_study     65795 non-null float64
@@ -775,12 +904,13 @@ plot_density&lt;/code&gt;&lt;/pre&gt;
 ## salary          65795 non-null float64
 ## civil_status    65795 non-null object
 ## region          65795 non-null object
-## dtypes: float64(2), int64(1), object(4)
-## memory usage: 4.0+ MB&lt;/code&gt;&lt;/pre&gt;
+## log_salary      65795 non-null float64
+## dtypes: float64(3), int64(1), object(4)
+## memory usage: 4.5+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Checking on year_study&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/01/19/index_files/figure-html/unnamed-chunk-51-1.png&#34; width=&#34;600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-54-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Let’s convert it back into a Category&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;category&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -800,10 +930,11 @@ plt.show()&lt;/code&gt;&lt;/pre&gt;
 ## salary           float64
 ## civil_status      object
 ## region            object
+## log_salary       float64
 ## dtype: object&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Using csv will may lose some Data Types&lt;/p&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.to_csv(&amp;#39;finished_work.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pd.read_csv(&amp;#39;finished_work.csv&amp;#39;).dtypes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.to_csv(r.file_path_linux + &amp;#39;/finished_work.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pd.read_csv(r.file_path_linux + &amp;#39;/finished_work.csv&amp;#39;).dtypes&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Unnamed: 0        int64
 ## age               int64
 ## sex              object
@@ -812,11 +943,16 @@ plt.show()&lt;/code&gt;&lt;/pre&gt;
 ## salary          float64
 ## civil_status     object
 ## region           object
+## log_salary      float64
 ## dtype: object&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We lost our encoding of years_study and when writing a csv we made this useless to us Unnamed: 0 column&lt;/p&gt;
 &lt;p&gt;a better way is using the feather file format, you need to pip install pyarrow beforehand&lt;/p&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.reset_index().to_feather(&amp;#39;sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pd.read_feather(&amp;#39;sex_thesis_assignment.feather&amp;#39;).dtypes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;r.file_path_linux&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;#39;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/content/post/data&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.reset_index().to_feather(r.file_path_linux + &amp;#39;/sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;here::here()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pd.read_feather(r.file_path_linux + &amp;#39;/sex_thesis_assignment.feather&amp;#39;).dtypes&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## index              int64
 ## age                int64
 ## sex               object
@@ -825,12 +961,13 @@ plt.show()&lt;/code&gt;&lt;/pre&gt;
 ## salary           float64
 ## civil_status      object
 ## region            object
+## log_salary       float64
 ## dtype: object&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Feather does keep the years study dtype, but feather is still in a experimental phase so be carefull with it, parquet unfortunally fails to keep the dtypes I don’t know why.&lt;/p&gt;
 &lt;p&gt;It is also a good idea to keep good file names so that you can easily identify your datasets and scripts.&lt;/p&gt;
 &lt;p&gt;If you then need to delete these files you can do it inside python&lt;/p&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;os.remove(&amp;#39;finished_work.csv&amp;#39;)
-os.remove(&amp;#39;sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;os.remove(r.file_path_linux + &amp;#39;/finished_work.csv&amp;#39;)
+#os.remove(r.file_path_linux + &amp;#39;/sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;next-post&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Next post&lt;/h1&gt;
@@ -1374,13 +1511,13 @@ df.civil_status.head()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can use a colored barplot to see the interaction of these Categorical Variables with our Hypothesis.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;region&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;civil_status&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;color_race&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cleaning-numerical-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Cleaning numerical data&lt;/h3&gt;
@@ -1391,13 +1528,13 @@ plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In order to know what to “clean” in numerical data I like to use plot such as a histogram&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.salary.hist(bins = 10)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Here we can see that the data may have a few outliers at 1000000 and that most of the salary data has a large Positive skew meaning that most data point are left to the mean of the dataset we can see that better using an density plot instead&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.salary.plot.kde()
 plot_density.set_xlim(0,100000)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## (0, 100000)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; /&gt;&lt;!-- --&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; /&gt;&lt;!-- --&gt;
 #### Replacing variables {#python_custom_function_2}&lt;/p&gt;
 &lt;p&gt;If we go back to our &lt;a href=&#34;#python_custom_function_1&#34;&gt;custom function&lt;/a&gt; we can find that the values -1 and 999999 are unusually common after consulting the dictionary we decided to replace these values with the mean of the group.&lt;/p&gt;
 &lt;p&gt;This operation would be wrong for machine learning purposes since the mean of our train group would leak information from the test set as well but here in exploratory data analysis it is mostly fine also you need to replace the values with the numpy nan or else this operation doesn’t work as expected.&lt;/p&gt;
@@ -1446,17 +1583,17 @@ df.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
 plot_density.set_xlim(0,15)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## (0, 15)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-44-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-44-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;It is now a usefull feature for most simple linear models&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;other-numerical-columns&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Other numerical columns&lt;/h4&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.age.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-45-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-45-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.age.plot.kde()
 plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-46-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-46-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.age))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Column age with int64 data type 
 ##      counts  percentages  cum_percentages
@@ -1499,7 +1636,7 @@ plot_density&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Checking on year_study&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2020/19/index_files/figure-html/unnamed-chunk-51-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/19/index_files/figure-html/unnamed-chunk-51-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Let’s convert it back into a Category&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;category&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -2333,15 +2470,15 @@ fancy(1:30,mod2,mod3,mod5)&lt;/code&gt;&lt;/pre&gt;
       
       <guid>/2019/08/15/classification-knn/</guid>
       <description>
-&lt;script src=&#34;../rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;../rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;../rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;../rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;../rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;../rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;../rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;../rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;../rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Breast Cancer problem.&lt;/p&gt;
@@ -2924,13 +3061,13 @@ library(DataExplorer)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Is a imho a prettier option with individual cool plots and a super powerfull(but slow) report creation tool when working outside of an Rmarkdownm document&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_intro()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_bar()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_correlation()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
 &lt;p&gt;There are much more amaziong tools such as the &lt;a href=&#34;https://www.data-imaginist.com/2019/a-flurry-of-facets/&#34;&gt;ggforce package&lt;/a&gt; , but I hope you get the gist of the exploration stage.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3093,9 +3230,9 @@ knn_search &amp;lt;- tune_bayes(knn_wflow,
 &lt;div id=&#34;visualizing-our-search&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Visualizing our search&lt;/h3&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;accuracy&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;roc_auc&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;seing-the-best-result&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Seing the best result&lt;/h3&gt;
@@ -3242,7 +3379,7 @@ DT::datatable(best_naive_metrics,options = list(pageLength = 5, scrollX=T))&lt;/
   geom_point() +
   ylim(.95,1)
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3779,7 +3916,7 @@ from pylab import *
 sales.plot(x=&amp;quot;InvoiceDate&amp;quot;, y=&amp;quot;Revenue&amp;quot;, kind=&amp;quot;line&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -3839,11 +3976,11 @@ CountryGroups.sort_values(by= &amp;quot;Revenue&amp;quot;, ascending=False)&lt;/
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.10&lt;/span&gt; Ploting an histogram&lt;/h3&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;CustomerID&amp;quot;] == 17850.0][&amp;quot;Revenue&amp;quot;].plot(kind=&amp;quot;hist&amp;quot;)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;another example.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;StockCode&amp;quot;] == &amp;#39;71053&amp;#39;][&amp;quot;Quantity&amp;quot;].hist()
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.11&lt;/span&gt; Handling Missing values&lt;/h3&gt;
@@ -4405,7 +4542,7 @@ raw_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% ggplot() +
   aes(x = InvoiceDate, y = Revenue) +
   geom_line()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -4493,14 +4630,14 @@ CountryGroups&lt;/code&gt;&lt;/pre&gt;
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Another example.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;%
   filter(StockCode == 71053) %&amp;gt;% 
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.11&lt;/span&gt; Handling Missing values in R&lt;/h3&gt;

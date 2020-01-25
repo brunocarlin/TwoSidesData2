@@ -50,7 +50,7 @@ output:
 <p>Let’s see what version of python this env is running.</p>
 <pre class="python"><code>import platform
 print(platform.python_version())</code></pre>
-<pre><code>## 3.7.3</code></pre>
+<pre><code>## 3.7.4</code></pre>
 <pre class="python"><code>import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -436,13 +436,13 @@ for col in df:
 ## Detailed traceback: 
 ##   File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
 ##   File &quot;&lt;string&gt;&quot;, line 6, in pretty_value_counts
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/series.py&quot;, line 868, in __getitem__
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/series.py&quot;, line 1071, in __getitem__
 ##     result = self.index.get_value(self, key)
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/indexes/base.py&quot;, line 4375, in get_value
-##     tz=getattr(series.dtype, &#39;tz&#39;, None))
-##   File &quot;pandas/_libs/index.pyx&quot;, line 81, in pandas._libs.index.IndexEngine.get_value
-##   File &quot;pandas/_libs/index.pyx&quot;, line 89, in pandas._libs.index.IndexEngine.get_value
-##   File &quot;pandas/_libs/index.pyx&quot;, line 129, in pandas._libs.index.IndexEngine.get_loc
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/indexes/base.py&quot;, line 4730, in get_value
+##     return self._engine.get_value(s, k, tz=getattr(series.dtype, &quot;tz&quot;, None))
+##   File &quot;pandas/_libs/index.pyx&quot;, line 80, in pandas._libs.index.IndexEngine.get_value
+##   File &quot;pandas/_libs/index.pyx&quot;, line 88, in pandas._libs.index.IndexEngine.get_value
+##   File &quot;pandas/_libs/index.pyx&quot;, line 128, in pandas._libs.index.IndexEngine.get_loc
 ##   File &quot;pandas/_libs/index_class_helper.pxi&quot;, line 91, in pandas._libs.index.Int64Engine._check_type</code></pre>
 <p>Here is actually a example on why I don’t personally enjoy Pandas conversion of data, the function that we created pretty_value_counts is not gonna work in this example because Pandas converts a single column to an Series object, so we would have to write a pretty_value_counts for Series as well or we would have to mess with the Pandas method or we could convert the series back into a DataFrame like this</p>
 <pre class="python"><code>pretty_value_counts(pd.DataFrame(data=  df.sex))</code></pre>
@@ -508,18 +508,18 @@ so let’s convert it.</p>
 ## 
 ## Detailed traceback: 
 ##   File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/generic.py&quot;, line 5691, in astype
-##     **kwargs)
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/managers.py&quot;, line 531, in astype
-##     return self.apply(&#39;astype&#39;, dtype=dtype, **kwargs)
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/managers.py&quot;, line 395, in apply
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/generic.py&quot;, line 5882, in astype
+##     dtype=dtype, copy=copy, errors=errors, **kwargs
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/managers.py&quot;, line 581, in astype
+##     return self.apply(&quot;astype&quot;, dtype=dtype, **kwargs)
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/managers.py&quot;, line 438, in apply
 ##     applied = getattr(b, f)(**kwargs)
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/blocks.py&quot;, line 534, in astype
-##     **kwargs)
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/internals/blocks.py&quot;, line 595, in _astype
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/blocks.py&quot;, line 559, in astype
+##     return self._astype(dtype, copy=copy, errors=errors, values=values, **kwargs)
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/internals/blocks.py&quot;, line 614, in _astype
 ##     dtype = pandas_dtype(dtype)
-##   File &quot;/opt/python/3.7.3/lib/python3.7/site-packages/pandas/core/dtypes/common.py&quot;, line 2017, in pandas_dtype
-##     dtype))</code></pre>
+##   File &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/pandas/core/dtypes/common.py&quot;, line 2055, in pandas_dtype
+##     raise TypeError(&quot;data type &#39;{}&#39; not understood&quot;.format(dtype))</code></pre>
 <p>Another numpy quirk you can’t use integers because there are NaN values.</p>
 <pre class="python"><code>df.years_study = df.years_study.astype(&#39;float&#39;)</code></pre>
 <p>Converting civil_status into a category.</p>
@@ -546,13 +546,13 @@ df.civil_status.head()</code></pre>
 <p>We can use a colored barplot to see the interaction of these Categorical Variables with our Hypothesis.</p>
 <pre class="python"><code>sns_plot = sns.catplot(x=&quot;sex&quot;, y=&quot;salary&quot;, hue=&quot;region&quot;, kind=&quot;bar&quot;, data=df)
 plt.show(sns_plot)</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-32-1.png" width="594" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-32-1.png" /><!-- --></p>
 <pre class="python"><code>sns_plot = sns.catplot(x=&quot;sex&quot;, y=&quot;salary&quot;, hue=&quot;civil_status&quot;, kind=&quot;bar&quot;, data=df)
 plt.show(sns_plot)</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-33-1.png" width="609" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-33-1.png" /><!-- --></p>
 <pre class="python"><code>sns_plot = sns.catplot(x=&quot;sex&quot;, y=&quot;salary&quot;, hue=&quot;color_race&quot;, kind=&quot;bar&quot;, data=df)
 plt.show(sns_plot)</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-34-1.png" width="600" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-34-1.png" /><!-- --></p>
 </div>
 <div id="cleaning-numerical-data" class="section level3">
 <h3>Cleaning numerical data</h3>
@@ -563,13 +563,13 @@ plt.show(sns_plot)</code></pre>
 <p>In order to know what to “clean” in numerical data I like to use plot such as a histogram</p>
 <pre class="python"><code>df.salary.hist(bins = 10)
 plt.show()</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-36-1.png" width="600" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-36-1.png" /><!-- --></p>
 <p>Here we can see that the data may have a few outliers at 1000000 and that most of the salary data has a large Positive skew meaning that most data point are left to the mean of the dataset we can see that better using an density plot instead</p>
 <pre class="python"><code>plot_density = df.salary.plot.kde()
 plot_density.set_xlim(0,100000)</code></pre>
 <pre><code>## (0, 100000)</code></pre>
 <pre class="python"><code>plot_density</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-37-1.png" width="600" />
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-37-1.png" /><!-- -->
 #### Replacing variables {#python_custom_function_2}</p>
 <p>If we go back to our <a href="#python_custom_function_1">custom function</a> we can find that the values -1 and 999999 are unusually common after consulting the dictionary we decided to replace these values with the mean of the group.</p>
 <p>This operation would be wrong for machine learning purposes since the mean of our train group would leak information from the test set as well but here in exploratory data analysis it is mostly fine also you need to replace the values with the numpy nan or else this operation doesn’t work as expected.</p>
@@ -604,7 +604,38 @@ df.salary.fillna(df.salary.mean(),inplace= True)</code></pre>
 <h4>Log of numerical data</h4>
 <p>There is also a statisticall solution for the Positive skew in our Data we can take the log of the salary column, but we will have to add one to all values since log of 0 goes to -Inf</p>
 <pre class="python"><code>df.log_salary = np.log1p(df.salary)</code></pre>
-<pre><code>## /opt/python/3.7.3/bin/python3:1: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access</code></pre>
+<pre><code>## /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/activate_this.py:1: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+##   &quot;&quot;&quot;Activate virtualenv for current interpreter:</code></pre>
+<p>But be carefull you can’t assign in pandas using the . you need to use the “[” operator</p>
+<pre class="python"><code>df.log_salary</code></pre>
+<pre><code>## 0        11.060384
+## 1         9.427336
+## 2         8.378713
+## 3        11.478344
+## 4        11.969090
+##            ...    
+## 66465     9.427336
+## 66466     7.793999
+## 66467     7.793999
+## 66468     8.617075
+## 66469     6.134157
+## Name: salary, Length: 66470, dtype: float64</code></pre>
+<pre class="python"><code>df.info()</code></pre>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 66470 entries, 0 to 66469
+## Data columns (total 7 columns):
+## age             66470 non-null int64
+## sex             66470 non-null object
+## years_study     66036 non-null float64
+## color_race      66228 non-null object
+## salary          66470 non-null float64
+## civil_status    66470 non-null object
+## region          66470 non-null object
+## dtypes: float64(2), int64(1), object(4)
+## memory usage: 3.6+ MB</code></pre>
+<p>It simply is gone</p>
+<p>The right way</p>
+<pre class="python"><code>df[&#39;log_salary&#39;] = np.log1p(df.salary)</code></pre>
 <pre class="python"><code>pretty_value_counts(pd.DataFrame(df.log_salary))</code></pre>
 <pre><code>## Column salary with float64 data type 
 ##            counts  percentages  cum_percentages
@@ -617,17 +648,17 @@ df.salary.fillna(df.salary.mean(),inplace= True)</code></pre>
 plot_density.set_xlim(0,15)</code></pre>
 <pre><code>## (0, 15)</code></pre>
 <pre class="python"><code>plot_density</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-44-1.png" width="600" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-47-1.png" /><!-- --></p>
 <p>It is now a usefull feature for most simple linear models</p>
 </div>
 <div id="other-numerical-columns" class="section level4">
 <h4>Other numerical columns</h4>
 <pre class="python"><code>df.age.hist(bins = 20)
 plt.show()</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-45-1.png" width="600" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-48-1.png" /><!-- --></p>
 <pre class="python"><code>plot_density = df.age.plot.kde()
 plot_density</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-46-1.png" width="600" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-49-1.png" /><!-- --></p>
 <pre class="python"><code>pretty_value_counts(pd.DataFrame(df.age))</code></pre>
 <pre><code>## Column age with int64 data type 
 ##      counts  percentages  cum_percentages
@@ -641,7 +672,7 @@ plot_density</code></pre>
 <pre class="python"><code>df.info()</code></pre>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## RangeIndex: 66470 entries, 0 to 66469
-## Data columns (total 7 columns):
+## Data columns (total 8 columns):
 ## age             66470 non-null int64
 ## sex             66470 non-null object
 ## years_study     66036 non-null float64
@@ -649,15 +680,16 @@ plot_density</code></pre>
 ## salary          66470 non-null float64
 ## civil_status    66470 non-null object
 ## region          66470 non-null object
-## dtypes: float64(2), int64(1), object(4)
-## memory usage: 3.5+ MB</code></pre>
+## log_salary      66470 non-null float64
+## dtypes: float64(3), int64(1), object(4)
+## memory usage: 4.1+ MB</code></pre>
 <p>We are missing 66470 - 66036 = 434 observation, this is a small enough number that we decided to drop these rows</p>
 <p>While we are droping missing values lets drop the color_race missing observations as well</p>
 <pre class="python"><code>df.dropna(subset = [&quot;years_study&quot;,&quot;color_race&quot;],inplace= True)</code></pre>
 <pre class="python"><code>df.info()</code></pre>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## Int64Index: 65795 entries, 0 to 66469
-## Data columns (total 7 columns):
+## Data columns (total 8 columns):
 ## age             65795 non-null int64
 ## sex             65795 non-null object
 ## years_study     65795 non-null float64
@@ -665,12 +697,13 @@ plot_density</code></pre>
 ## salary          65795 non-null float64
 ## civil_status    65795 non-null object
 ## region          65795 non-null object
-## dtypes: float64(2), int64(1), object(4)
-## memory usage: 4.0+ MB</code></pre>
+## log_salary      65795 non-null float64
+## dtypes: float64(3), int64(1), object(4)
+## memory usage: 4.5+ MB</code></pre>
 <p>Checking on year_study</p>
 <pre class="python"><code>df.years_study.hist(bins = 20)
 plt.show()</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-51-1.png" width="600" /></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-54-1.png" /><!-- --></p>
 <p>Let’s convert it back into a Category</p>
 <pre class="python"><code>df.years_study = df.years_study.astype(&#39;category&#39;)</code></pre>
 </div>
@@ -690,10 +723,11 @@ plt.show()</code></pre>
 ## salary           float64
 ## civil_status      object
 ## region            object
+## log_salary       float64
 ## dtype: object</code></pre>
 <p>Using csv will may lose some Data Types</p>
-<pre class="python"><code>df.to_csv(&#39;finished_work.csv&#39;)</code></pre>
-<pre class="python"><code>pd.read_csv(&#39;finished_work.csv&#39;).dtypes</code></pre>
+<pre class="python"><code>df.to_csv(r.file_path_linux + &#39;/finished_work.csv&#39;)</code></pre>
+<pre class="python"><code>pd.read_csv(r.file_path_linux + &#39;/finished_work.csv&#39;).dtypes</code></pre>
 <pre><code>## Unnamed: 0        int64
 ## age               int64
 ## sex              object
@@ -702,11 +736,16 @@ plt.show()</code></pre>
 ## salary          float64
 ## civil_status     object
 ## region           object
+## log_salary      float64
 ## dtype: object</code></pre>
 <p>We lost our encoding of years_study and when writing a csv we made this useless to us Unnamed: 0 column</p>
 <p>a better way is using the feather file format, you need to pip install pyarrow beforehand</p>
-<pre class="python"><code>df.reset_index().to_feather(&#39;sex_thesis_assignment.feather&#39;)</code></pre>
-<pre class="python"><code>pd.read_feather(&#39;sex_thesis_assignment.feather&#39;).dtypes</code></pre>
+<pre class="python"><code>r.file_path_linux</code></pre>
+<pre><code>## &#39;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/content/post/data&#39;</code></pre>
+<pre class="python"><code>df.reset_index().to_feather(r.file_path_linux + &#39;/sex_thesis_assignment.feather&#39;)</code></pre>
+<pre class="r"><code>here::here()</code></pre>
+<pre><code>## [1] &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2&quot;</code></pre>
+<pre class="python"><code>pd.read_feather(r.file_path_linux + &#39;/sex_thesis_assignment.feather&#39;).dtypes</code></pre>
 <pre><code>## index              int64
 ## age                int64
 ## sex               object
@@ -715,12 +754,13 @@ plt.show()</code></pre>
 ## salary           float64
 ## civil_status      object
 ## region            object
+## log_salary       float64
 ## dtype: object</code></pre>
 <p>Feather does keep the years study dtype, but feather is still in a experimental phase so be carefull with it, parquet unfortunally fails to keep the dtypes I don’t know why.</p>
 <p>It is also a good idea to keep good file names so that you can easily identify your datasets and scripts.</p>
 <p>If you then need to delete these files you can do it inside python</p>
-<pre class="python"><code>os.remove(&#39;finished_work.csv&#39;)
-os.remove(&#39;sex_thesis_assignment.feather&#39;)</code></pre>
+<pre class="python"><code>os.remove(r.file_path_linux + &#39;/finished_work.csv&#39;)
+#os.remove(r.file_path_linux + &#39;/sex_thesis_assignment.feather&#39;)</code></pre>
 </div>
 <div id="next-post" class="section level1">
 <h1>Next post</h1>
