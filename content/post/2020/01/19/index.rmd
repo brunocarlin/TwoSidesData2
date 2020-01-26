@@ -20,6 +20,7 @@ output:
 I am currently doing exercises from [digital house brasil](https://github.com/sn3fru/datascience_course) 
 
 ```{r,include = FALSE}
+library(reticulate)
 file_path <- here::here()
 file_path_linux <- paste(file_path,"content","post","data",sep = "/")
 ```
@@ -39,6 +40,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import os
+file_path_linux = r.file_path_linux
 ```
 
 # The Exercise
@@ -162,6 +164,8 @@ Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Num
 ### Reading Data {#python_read_data}
 
 The path is specific for my computer but it is easy to adapt
+
+You can also dowload it from the [github page from this blog](https://github.com/brunocarlin/TwoSidesData2/tree/master/content/post/data)
 
 ```{python python_read_data}
 # Abertura e leitura dos dados em um DeteFrame em Pandas
@@ -632,11 +636,11 @@ df.dtypes
 
 Using csv will may lose some Data Types
 ```{python}
-df.to_csv('finished_work.csv')
+df.to_csv(file_path_linux + '/finished_work.csv')
 ```
 
 ```{python}
-pd.read_csv('finished_work.csv').dtypes
+pd.read_csv(file_path_linux + '/finished_work.csv').dtypes
 ```
 
 We lost our encoding of years_study and when writing a csv we made this useless to us Unnamed: 0 column
@@ -644,11 +648,11 @@ We lost our encoding of years_study and when writing a csv we made this useless 
 a better way is using the feather file format, you need to pip install pyarrow beforehand
 
 ```{python}
-df.reset_index().to_feather('sex_thesis_assignment.feather')
+df.reset_index().to_feather(file_path_linux + '/sex_thesis_assignment.feather')
 ```
 
 ```{python}
-pd.read_feather('sex_thesis_assignment.feather').dtypes
+pd.read_feather(file_path_linux + '/sex_thesis_assignment.feather').dtypes
 ```
 
 Feather does keep the years study dtype, but feather is still in a experimental phase so be carefull with it, parquet unfortunally fails to keep the dtypes I don't know why.
@@ -658,8 +662,8 @@ It is also a good idea to keep good file names so that you can easily identify y
 If you then need to delete these files you can do it inside python
 
 ```{python}
-os.remove('finished_work.csv')
-os.remove('sex_thesis_assignment.feather')
+#os.remove(file_path_linux +'/finished_work.csv')
+os.remove(file_path_linux + '/sex_thesis_assignment.feather')
 ```
 
 # Next post
