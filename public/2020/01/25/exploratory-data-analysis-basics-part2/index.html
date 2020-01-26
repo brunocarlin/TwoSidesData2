@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.63.1" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Bruno Carlin">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Basics exploratory Data Analysis: Part 2 of 4">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/2020/01/25/exploratory-data-analysis-basics-part2/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-136744370-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="TwoSidesData">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="TwoSidesData">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/2020/01/25/exploratory-data-analysis-basics-part2/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="TwoSidesData">
+  <meta property="og:url" content="/2020/01/25/exploratory-data-analysis-basics-part2/">
+  <meta property="og:title" content="exploratory data analysis: basics Python part 2 | TwoSidesData">
+  <meta property="og:description" content="Basics exploratory Data Analysis: Part 2 of 4"><meta property="og:image" content="/2020/01/25/exploratory-data-analysis-basics-part2/featured.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-01-25T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2020-01-25T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>exploratory data analysis: basics Python part 2 | TwoSidesData</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">TwoSidesData</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/files/cv_en.pdf">
+            
+            <span>CV English</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/files/cv_pt.pdf">
+            
+            <span>CV Portuguese</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-header d-xl-none">
+  <div class="featured-image" style="background-image: url('/2020/01/25/exploratory-data-analysis-basics-part2/featured_huc02bda9ab77409653a6fde25a9b76daf_76159_800x0_resize_lanczos_2.png');"></div>
+  
+</div>
+
+
+<div class="container-fluid split-header d-none d-xl-block">
+  <div class="row">
+    <div class="col-6">
+      <div class="split-header-content">
+        <h1 itemprop="name">exploratory data analysis: basics Python part 2</h1>
+
+        
+        <p class="page-subtitle">Python part 2</p>
+        
+
+        
+
+
+
+<meta content="2020-01-25 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-01-25 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      
+        <a href="/authors/admin/">Bruno Carlin</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jan 25, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    21 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/2020/01/25/exploratory-data-analysis-basics-part2/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="">R and Python</a>
+    
+  </span>
+  
+  
+
+  
+
+</div>
+
+
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=exploratory%20data%20analysis%3a%20basics%20Python%20part%202&amp;url=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f&amp;title=exploratory%20data%20analysis%3a%20basics%20Python%20part%202"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f&amp;title=exploratory%20data%20analysis%3a%20basics%20Python%20part%202"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=exploratory%20data%20analysis%3a%20basics%20Python%20part%202&amp;body=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="split-header-image">
+        <img src="/2020/01/25/exploratory-data-analysis-basics-part2/featured_huc02bda9ab77409653a6fde25a9b76daf_76159_680x500_fill_q90_lanczos_smart1_2.png" itemprop="image" alt="">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-container d-xl-none">
+  <h1 itemprop="name">exploratory data analysis: basics Python part 2</h1>
+
+  
+  <p class="page-subtitle">Python part 2</p>
+  
+
+  
+
+
+
+<meta content="2020-01-25 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-01-25 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      
+        <a href="/authors/admin/">Bruno Carlin</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jan 25, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    21 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/2020/01/25/exploratory-data-analysis-basics-part2/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="">R and Python</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=exploratory%20data%20analysis%3a%20basics%20Python%20part%202&amp;url=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f&amp;title=exploratory%20data%20analysis%3a%20basics%20Python%20part%202"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f&amp;title=exploratory%20data%20analysis%3a%20basics%20Python%20part%202"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=exploratory%20data%20analysis%3a%20basics%20Python%20part%202&amp;body=%2f2020%2f01%2f25%2fexploratory-data-analysis-basics-part2%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<div id="TOC">
+<ul>
+<li><a href="#libraries">Libraries</a></li>
+<li><a href="#second-post">Second Post</a><ul>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#define-the-variables-used-in-the-conclusion">Define the variables used in the conclusion</a></li>
+<li><a href="#using-masks-or-other-methods-to-filter-the-data">Using masks or other methods to filter the data</a></li>
+<li><a href="#visualizing-the-hypothesis">Visualizing the hypothesis</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#before-we-start">Before we start</a><ul>
+<li><a href="#reservations">Reservations</a></li>
+<li><a href="#data-dictionary">Data Dictionary</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#python">Python</a><ul>
+<li><a href="#importing-the-dataset-from-part-1">Importing the dataset from part 1</a></li>
+<li><a href="#python_hypothesis_testing1">Difference in means</a></li>
+<li><a href="#linear-regression">Linear Regression</a><ul>
+<li><a href="#masks">Linearity</a></li>
+<li><a href="#random">Random</a></li>
+<li><a href="#non-collinearity">Non-Collinearity</a></li>
+<li><a href="#exogeneity">Exogeneity</a></li>
+<li><a href="#homoscedasticity-homogeneity-of-variance-assumption-of-equal-variance">Homoscedasticity / Homogeneity of Variance/ Assumption of Equal Variance</a></li>
+</ul></li>
+<li><a href="#python_hypothesis_testing2">Fitting the linear regression</a><ul>
+<li><a href="#linear-regression-plots">Linear Regression plots</a></li>
+<li><a href="#qq-plot">QQ plot</a></li>
+<li><a href="#scale-location-plot">Scale-Location Plot</a></li>
+<li><a href="#leverage-plot">Leverage plot</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#final-remarks">Final Remarks</a><ul>
+<li><a href="#next-post">Next post</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="libraries" class="section level1">
+<h1>Libraries</h1>
+<p>Let’s see what version of python this env is running.</p>
+<pre class="r"><code>reticulate::py_config()</code></pre>
+<pre><code>## python:         /opt/python/3.7/bin/python3
+## libpython:      /opt/python/3.7/lib/libpython3.7m.so
+## pythonhome:     /opt/python/3.7:/opt/python/3.7
+## version:        3.7.4 (default, Aug 13 2019, 20:35:49)  [GCC 7.3.0]
+## numpy:          /opt/python/3.7/lib/python3.7/site-packages/numpy
+## numpy_version:  1.17.2
+## 
+## python versions found: 
+##  /opt/python/3.7/bin/python3
+##  /usr/bin/python3
+##  /usr/bin/python</code></pre>
+<pre class="python"><code>import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import scipy.stats as ss
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import os
+from statsmodels.graphics.gofplots import ProbPlot</code></pre>
+</div>
+<div id="second-post" class="section level1">
+<h1>Second Post</h1>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
+</div>
+<div id="define-the-variables-used-in-the-conclusion" class="section level2">
+<h2>Define the variables used in the conclusion</h2>
+<p>In our case, we initially choose to use <a href="#python_hypothesis_testing1">salary ~ sex,region</a> region was added to test whether <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Simpson’s paradox</a> was at play.</p>
+<p>But then I augmented our analysis with a <a href="#python_hypothesis_testing2">simple linear regression</a>.</p>
+</div>
+<div id="using-masks-or-other-methods-to-filter-the-data" class="section level2">
+<h2>Using masks or other methods to filter the data</h2>
+<p><a href="#masks">We used it once</a>.</p>
+</div>
+<div id="visualizing-the-hypothesis" class="section level2">
+<h2>Visualizing the hypothesis</h2>
+<p><a href="#python_plot_histograms">We were advised to use two histograms combined to get a preview of our answer.</a></p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Comment on our findings.</p>
+</div>
+<div id="before-we-start" class="section level2">
+<h2>Before we start</h2>
+<div id="reservations" class="section level3">
+<h3>Reservations</h3>
+<p>This is an exercise where we were supposed to ask a relevant question using the data from the IBGE(Brazil’s main data collector) database of 1970.</p>
+<p>Our group decided to ask whether women received less than man, we expanded the analysis hoping to avoid the Simpson’s paradox.</p>
+<p>This is just an basic inference, and it’s results are therefore only used for studying purposes I don’t believe any finding would be relevant using just this approach but some basic operations can be used in a more impact full work.</p>
+</div>
+<div id="data-dictionary" class="section level3">
+<h3>Data Dictionary</h3>
+<p>We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.</p>
+<details>
+<summary>Portuguese</summary>
+<p>
+<p>Descrição do Registro de Indivíduos nos EUA.</p>
+<p>Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.</p>
+<p>Variável 1 – CHAVE DO INDIVÍDUO ? Formato N - Numérico ? Tamanho 11 dígitos (11 bytes) ? Descrição Sumária Identifica unicamente o indivíduo na amostra.</p>
+<p>Variável 2 - IDADE CALCULADA EM ANOS ? Formato N - Numérico ? Tamanho 3 dígitos (3 bytes) ? Descrição Sumária Identifica a idade do morador em anos completos.</p>
+<p>Variável 3 – SEXO ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 3 ? Descrição Sumária Identifica o sexo do morador. Categorias (1) homem, (2) mulher e (3) gestante.</p>
+<p>Variável 4 – ANOS DE ESTUDO ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 11 ? Descrição Sumária Identifica o número de anos de estudo do morador. Categorias (05) Cinco ou menos, (06) Seis, (07) Sete, (08) Oito, (09) Nove, (10) Dez, (11) Onze, (12) Doze, (13) Treze, (14) Quatorze, (15) Quinze ou mais.</p>
+<p>Variável 5 – COR OU RAÇA ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 6 ? Descrição Sumária Identifica a Cor ou Raça declarada pelo morador. Categorias (01) Branca, (02) Preta, (03) Amarela, (04) Parda, (05) Indígena e (09) Não Sabe.</p>
+<p>Variável 6 – VALOR DO SALÁRIO (ANUALIZADO) ? Formato N - Numérico ? Tamanho 8 dígitos (8 bytes) ? Quantidade de Decimais 2 ? Descrição Sumária Identifica o valor resultante do salário anual do indivíduo. Categorias especiais (-1) indivíduo ausente na data da pesquisa e (999999) indivíduo não quis responder.</p>
+<p>Variável 7 – ESTADO CIVIL ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 2 ? Descrição Sumária Dummy que identifica o estado civil declarado pelo morador. Categorias (1) Casado, (0) não casado.</p>
+<p>Variável 8 – REGIÃO GEOGRÁFICA ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 5 ? Descrição Sumária Identifica a região geográfica do morador. Categorias (1) Norte, (2) Nordeste, (3) Sudeste, (4) Sul e (5) Centro-oeste.</p>
+</p>
+</details>
+<details>
+<summary>English</summary>
+<p>
+<p>Description of the US Individual Registry.</p>
+<p>Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.</p>
+<p>Variable 1 - KEY OF THE INDIVIDUAL? Format N - Numeric? Size 11 digits (11 bytes)? Summary Description Uniquely identifies the individual in the sample.</p>
+<p>Variable 2 - AGE CALCULATED IN YEARS? Format N - Numeric? Size 3 digits (3 bytes)? Summary Description Identifies the age of the resident in full years.</p>
+<p>Variable 3 - SEX? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 3? Summary Description Identifies the gender of the resident. Categories (1) men, (2) women and (3) pregnant women.</p>
+<p>Variable 4 - YEARS OF STUDY? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 11? Summary Description Identifies the number of years of study of the resident. Categories (05) Five or less, (06) Six, (07) Seven, (08) Eight, (09) Nine, (10) Dec, (11) Eleven, (12) Twelve, (13) Thirteen, (14 ) Fourteen, (15) Fifteen or more.</p>
+<p>Variable 5 - COLOR OR RACE? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 6? Summary Description Identifies the Color or Race declared by the resident. Categories (01) White, (02) Black, (03) Yellow, (04) Brown, (05) Indigenous and (09) Don’t know.</p>
+<p>Variable 6 - WAGE VALUE (ANNUALIZED)? Format N - Numeric? Size 8 digits (8 bytes)? Number of decimals 2? Summary Description Identifies the amount resulting from the individual’s annual salary. Special categories (-1) individual absent on the survey date and (999999) individual did not want to answer.</p>
+<p>Variable 7 - CIVIL STATE? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 2? Summary Description Dummy that identifies the marital status declared by the resident. Categories (1) Married, (0) Not married.</p>
+<p>Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 5? Summary Description Identifies the resident’s geographic region. Categories (1) North, (2) Northeast, (3) Southeast, (4) South and (5) Midwest.</p>
+</p>
+</details>
+</div>
+</div>
+</div>
+<div id="python" class="section level1">
+<h1>Python</h1>
+<div id="importing-the-dataset-from-part-1" class="section level2">
+<h2>Importing the dataset from part 1</h2>
+<p>You can also dowload it from the <a href="https://github.com/brunocarlin/TwoSidesData2/tree/master/content/post/data">github page from this blog</a></p>
+<pre class="python"><code>df_sex_thesis =pd.read_feather(r.file_path_linux + &#39;/sex_thesis_assignment.feather&#39;)</code></pre>
+<pre class="python"><code>df_sex_thesis.info()</code></pre>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 65795 entries, 0 to 65794
+## Data columns (total 9 columns):
+## index           65795 non-null int64
+## age             65795 non-null int64
+## sex             65795 non-null object
+## years_study     65795 non-null category
+## color_race      65795 non-null object
+## salary          65795 non-null float64
+## civil_status    65795 non-null object
+## region          65795 non-null object
+## log_salary      65795 non-null float64
+## dtypes: category(1), float64(2), int64(2), object(4)
+## memory usage: 4.1+ MB</code></pre>
+<p>Let’s get going first define which variables to add to the hypothesis, to isolate the factor of salary ~ sex, if we consider that our sample of individuals is random in nature comparing the means of the individuals given their sex and seeing if there is a significant difference in their means.</p>
+<p>A good graphic to get an idea if these effects would be significant was the bar plots used in part 1.</p>
+<p>When working with Categorical variable it is possible to use a groupby approach to glimpse at the difference in means.</p>
+</div>
+<div id="python_hypothesis_testing1" class="section level2">
+<h2>Difference in means</h2>
+<p>Using the log salary feature from post 1.</p>
+<pre class="python"><code>df_agg1 = df_sex_thesis.groupby(&#39;sex&#39;).mean().log_salary
+df_agg1</code></pre>
+<pre><code>## sex
+## man      9.026607
+## woman    8.607023
+## Name: log_salary, dtype: float64</code></pre>
+<p>Remember that in order to transform back our log variables you can do e^variable like this e ^ 9.03 is 8321.57 but the log of the mean is not the same as the mean of the log.</p>
+<pre class="python"><code>df_agg2 = df_sex_thesis.groupby(&#39;sex&#39;).mean().salary
+df_agg2</code></pre>
+<pre><code>## sex
+## man      14302.491879
+## woman    10642.502734
+## Name: salary, dtype: float64</code></pre>
+<p>9.03 is not the same as 9.57</p>
+<p>Therefore which one should be done first log or mean?</p>
+<p>The most common order is log then mean, because it is the order that reduces variance the most, you can read more about this <a href="http://rpubs.com/hrlai/meanlog_logmean">here</a></p>
+<details>
+<summary>Group by explanation</summary>
+<p>
+<p>Group by in pandas is a method that accepts a list of elements in this case just ‘sex’ and applies consequent operation in each group, in this case the mean method from a pandas DataFrame, .salary returns just the mean for the salary variable.</p>
+</p>
+</details>
+<pre class="python"><code>df_sex_thesis.groupby([&#39;sex&#39;,&#39;region&#39;]).mean().log_salary</code></pre>
+<pre><code>## sex    region   
+## man    midwest      9.155421
+##        north        8.678263
+##        south        9.123554
+##        southeast    9.113084
+## woman  midwest      8.847172
+##        north        8.291580
+##        northeast    9.462870
+##        south        8.345867
+##        southeast    8.766985
+## Name: log_salary, dtype: float64</code></pre>
+<p>Adding standard deviations</p>
+<pre class="python"><code>df_sex_thesis.groupby([&#39;sex&#39;]).std().log_salary</code></pre>
+<pre><code>## sex
+## man      1.397496
+## woman    2.009225
+## Name: log_salary, dtype: float64</code></pre>
+<p>These are really big Standard deviations! Remembering from stats that +2 SD’s gives about a 95% confidence interval we are not even close.</p>
+<p>Combining mean and std using pandas agg method.</p>
+<pre class="python"><code>df_agg =df_sex_thesis.groupby([&#39;sex&#39;]).agg([&#39;mean&#39;,&#39;std&#39;]).log_salary</code></pre>
+<p>Calculating boundaries</p>
+<pre class="python"><code>df_agg[&#39;lower_bound&#39;] = df_agg[&#39;mean&#39;] - df_agg[&#39;std&#39;] * 2
+df_agg[&#39;upper_bound&#39;] = df_agg[&#39;mean&#39;] + df_agg[&#39;std&#39;] * 2</code></pre>
+<pre class="python"><code>df_agg</code></pre>
+<pre><code>##            mean       std  lower_bound  upper_bound
+## sex                                                
+## man    9.026607  1.397496     6.231615    11.821599
+## woman  8.607023  2.009225     4.588573    12.625473</code></pre>
+<p>Cool, but to verbose to be repeated multiple times, it is better to convert this series of operations into a function.</p>
+<pre class="python"><code>def groupby_bound(df,groupby_variables,value_variables):
+  df_agg =  df.groupby(groupby_variables).agg([&#39;mean&#39;,&#39;std&#39;])[value_variables]
+  df_agg[&#39;lower_bound&#39;] = df_agg[&#39;mean&#39;] - df_agg[&#39;std&#39;] * 2
+  df_agg[&#39;upper_bound&#39;] = df_agg[&#39;mean&#39;] + df_agg[&#39;std&#39;] * 2
+  return df_agg</code></pre>
+<pre class="python"><code>groupby_bound(df=df_sex_thesis,groupby_variables=&#39;sex&#39;,value_variables=&#39;log_salary&#39;)</code></pre>
+<pre><code>##            mean       std  lower_bound  upper_bound
+## sex                                                
+## man    9.026607  1.397496     6.231615    11.821599
+## woman  8.607023  2.009225     4.588573    12.625473</code></pre>
+<p>Let’s try to find the difference in salary on some strata of the population.</p>
+<pre class="python"><code>groupby_bound(df=df_sex_thesis,groupby_variables=[&#39;sex&#39;,&#39;region&#39;],value_variables=&#39;log_salary&#39;)</code></pre>
+<pre><code>##                      mean       std  lower_bound  upper_bound
+## sex   region                                                 
+## man   midwest    9.155421  1.192631     6.770160    11.540683
+##       north      8.678263  1.733378     5.211507    12.145019
+##       south      9.123554  1.426591     6.270371    11.976736
+##       southeast  9.113084  1.226845     6.659395    11.566773
+## woman midwest    8.847172  1.575228     5.696717    11.997627
+##       north      8.291580  2.470543     3.350495    13.232665
+##       northeast  9.462870  1.172049     7.118773    11.806968
+##       south      8.345867  2.461307     3.423253    13.268482
+##       southeast  8.766985  1.639338     5.488309    12.045660</code></pre>
+<p>No.</p>
+<pre class="python"><code>groupby_bound(df=df_sex_thesis,groupby_variables=[&#39;sex&#39;,&#39;civil_status&#39;],value_variables=&#39;log_salary&#39;)</code></pre>
+<pre><code>##                         mean       std  lower_bound  upper_bound
+## sex   civil_status                                              
+## man   married       9.173335  1.247871     6.677593    11.669077
+##       not_married   8.810261  1.567870     5.674521    11.946001
+## woman married       8.487709  2.263061     3.961586    13.013831
+##       not_married   8.771966  1.578347     5.615272    11.928659</code></pre>
+<p>No.</p>
+<pre class="python"><code>groupby_bound(df=df_sex_thesis,groupby_variables=[&#39;sex&#39;,&#39;civil_status&#39;],value_variables=&#39;log_salary&#39;)</code></pre>
+<pre><code>##                         mean       std  lower_bound  upper_bound
+## sex   civil_status                                              
+## man   married       9.173335  1.247871     6.677593    11.669077
+##       not_married   8.810261  1.567870     5.674521    11.946001
+## woman married       8.487709  2.263061     3.961586    13.013831
+##       not_married   8.771966  1.578347     5.615272    11.928659</code></pre>
+<p>No.</p>
+<pre class="python"><code>groupby_bound(df=df_sex_thesis,groupby_variables=[&#39;sex&#39;,&#39;color_race&#39;],value_variables=&#39;log_salary&#39;)</code></pre>
+<pre><code>##                       mean       std  lower_bound  upper_bound
+## sex   color_race                                              
+## man   black       8.885541  1.215289     6.454962    11.316119
+##       brown       8.878127  1.348974     6.180179    11.576076
+##       indigenous  7.480596  3.328801     0.822994    14.138197
+##       white       9.215328  1.369700     6.475927    11.954728
+##       yellow      9.503222  1.398690     6.705843    12.300601
+## woman black       8.617966  1.683712     5.250543    11.985389
+##       brown       8.518060  2.025707     4.466647    12.569473
+##       indigenous  7.623917  3.342682     0.938553    14.309282
+##       white       8.696991  2.001864     4.693263    12.700718
+##       yellow      8.904886  1.877233     5.150420    12.659351</code></pre>
+<p>No.</p>
+<pre class="python"><code>groupby_bound(df=df_sex_thesis,groupby_variables=[&#39;sex&#39;,&#39;years_study&#39;],value_variables=&#39;log_salary&#39;)</code></pre>
+<pre><code>##                         mean       std  lower_bound  upper_bound
+## sex   years_study                                               
+## man   5.0           8.702990  1.495661     5.711668    11.694312
+##       6.0           8.836372  1.285517     6.265338    11.407407
+##       7.0           8.883292  1.302857     6.277578    11.489006
+##       8.0           8.939945  1.342110     6.255724    11.624166
+##       9.0           8.873640  1.292672     6.288296    11.458984
+##       10.0          9.064804  1.122187     6.820430    11.309177
+##       11.0          9.182335  1.163925     6.854486    11.510184
+##       12.0          9.274507  1.187977     6.898553    11.650462
+##       13.0          9.308213  1.651300     6.005613    12.610812
+##       14.0          9.563542  1.295638     6.972267    12.154817
+##       15.0         10.083954  1.334792     7.414369    12.753538
+## woman 5.0           8.150536  2.574328     3.001881    13.299191
+##       6.0           8.577851  1.854171     4.869508    12.286194
+##       7.0           8.572043  1.743439     5.085165    12.058921
+##       8.0           8.480459  1.952266     4.575927    12.384991
+##       9.0           8.609875  1.583736     5.442403    11.777346
+##       10.0          8.735525  1.403048     5.929428    11.541622
+##       11.0          8.755282  1.518318     5.718647    11.791918
+##       12.0          8.906622  1.505541     5.895540    11.917705
+##       13.0          8.963868  1.555327     5.853213    12.074523
+##       14.0          9.146458  1.263748     6.618962    11.673954
+##       15.0          9.572653  1.228241     7.116171    12.029134</code></pre>
+<p>Also no.</p>
+<p>Does that mean that there were no Gender pay differences in Brazil in 1970?</p>
+<p>No, it just means that there were no signs of this difference when looking at the whole population combined with one extra factor, but what if we combine all factors and isolate each influence in the salary? This would be a way to analyse the Ceteris Paribus(all else equal) effect of each feature in the salary, here is where Linear Regression comes in.</p>
+</div>
+<div id="linear-regression" class="section level2">
+<h2>Linear Regression</h2>
+<p>But what is Linear Regression? you might ask, wasn’t it just one method for prediction? Not really, Linear Regression coefficients are really useful for hypothesis testing, meaning that tossing everything at it and then interpreting the results that come out without having to individually compare each feature pair, while also capturing the effect that all features have simultaneously.</p>
+<p>Is Linear Regression always perfect? No. In fact most of the time the results are a little biased or a underestimate the variance or are just flat out wrong.</p>
+<p>To understand the kinds of errors we might face when doing a linear regression we can use the Gauss Markov Theorem.</p>
+<p>Terminology:</p>
+<p>Predictor/Independent Variable: Theses are the features e.g sex,years_study, region we can have p predictors where p = n -1 and n is the numbers of rows our dataset possesses in this case 65795 rows are present.</p>
+<p>Predicted/Dependent variable: This is the single “column” also called ‘target’ that we are modeling in this case we can use either log_salary or salary.</p>
+<p>for a more in depth read this great <a href="https://www.statisticshowto.datasciencecentral.com/gauss-markov-theorem-assumptions/">blog post</a> and for a more <a href="https://towardsdatascience.com/verifying-the-assumptions-of-linear-regression-in-python-and-r-f4cd2907d4c0">in depth usage in R and Python</a></p>
+<div id="masks" class="section level3">
+<h3>Linearity</h3>
+<p>To get good results using Linear Regression the relationship of the Predictors and the Predicted variable has to be a linear relationship, to check for Linearity it is possible to use a simple line plot, and look for patterns like a parabola that would indicate that the Predictor has a quadratic relationship with the Dependent variable, there are ways of fixing non-linear relationships like we did with log_salary or by taking the power of the Predictor.</p>
+<p>Linearity can easily be tested for numerical Predictors, categorical predictors are harder to test, so in our case we only checked the age feature.</p>
+<p>Now it is time to flex these matplotlib graphs…</p>
+<pre class="python"><code>x = df_sex_thesis[&#39;age&#39;]
+y = df_sex_thesis[&#39;log_salary&#39;]
+plt.scatter(x, y)
+
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x,p(x),&quot;r--&quot;)
+
+plt.show()</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-19-1.png" /><!-- --></p>
+<p>It seems age is not a great fit let’s try to also log age as well.</p>
+<pre class="python"><code>x = np.log(df_sex_thesis[&#39;age&#39;])
+y = df_sex_thesis[&#39;log_salary&#39;]
+plt.scatter(x, y)
+
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x,p(x),&quot;r--&quot;)
+
+plt.show()</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-20-1.png" /><!-- --></p>
+<p>Better but still close to no impact, maybe if we filter our sample to just the earning population, we can improve on it, we can call theses filters ‘masks’ in pandas.</p>
+<pre class="python"><code>df_filter = df_sex_thesis[df_sex_thesis[&#39;log_salary&#39;]&gt; 2]</code></pre>
+<pre class="python"><code>df_filter</code></pre>
+<pre><code>##        index  age    sex  ... civil_status     region  log_salary
+## 0          0   53    man  ...      married      north   11.060384
+## 1          1   49  woman  ...      married      north    9.427336
+## 2          2   22  woman  ...  not_married  northeast    8.378713
+## 3          3   55    man  ...      married      north   11.478344
+## 4          4   56  woman  ...      married      north   11.969090
+## ...      ...  ...    ...  ...          ...        ...         ...
+## 65790  66465   34  woman  ...      married    midwest    9.427336
+## 65791  66466   40    man  ...      married    midwest    7.793999
+## 65792  66467   36  woman  ...      married    midwest    7.793999
+## 65793  66468   27  woman  ...      married    midwest    8.617075
+## 65794  66469   37    man  ...      married    midwest    6.134157
+## 
+## [63973 rows x 9 columns]</code></pre>
+<pre class="python"><code>x = df_filter[&#39;age&#39;]
+y = df_filter[&#39;log_salary&#39;]
+plt.scatter(x, y)
+
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x,p(x),&quot;r--&quot;)
+
+plt.show()</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-23-1.png" /><!-- --></p>
+<p>There is some slight improvement, it is a good question whether to filter otherwise sane values, the point is that the entire analysis would change, changing to salary ~ sex in the earning population in 1970 in Brazil instead of the salary ~ sex for the whole population in 1970 in Brazil.</p>
+<p>I think in both cases analyzing the Gender Pay Gap would be interesting it is even possible to split the hypothesis in two, analysing if Men and Women earn the same, and if Men and Women are have the same employment rate.</p>
+<p>So for here on out We are analyzing just the Gender Pay Difference of employed people.</p>
+</div>
+<div id="random" class="section level3">
+<h3>Random</h3>
+<p>This is a vital hypotheses it means that the observations(rows) were chosen at random for the entire Brazilian population, in this case We choose to trust that IBGE did a good job, if IBGE failed to correctly sample the population or if we mess to much with our filters we risk invalidating the whole process, yes that is right, if you don’t respect this hypothesis everything you have analysed is worthless.</p>
+</div>
+<div id="non-collinearity" class="section level3">
+<h3>Non-Collinearity</h3>
+<p>The effect of each Predictors is reduced when you introduce Colinear predictors, you are spliting the effect between the Predictors whenever a new predictor is added, meaning that you are in the worst case only calculating half of the coefficient, Collinearity always happens, Women live more so age is related to Sex, therefore age ‘steals’ part of the calculated effect from Sex, the more variables you introduce to your Linear Regression model the more that Collinearity plagues your estimations, everything is correlated.</p>
+<p>So be careful when doing Linear Regression for estimating Ceteris Paribus effects so that you don’t introduce too many features or features that are too correlated with you hypothesis, remember that our hypothesis is Salary ~ Sex.</p>
+<p>A good way too know if you are introducing too much Collinearity is looking at the heatmap.</p>
+<pre class="python"><code>corr = pd.get_dummies(df_sex_thesis[[&#39;sex&#39;,&#39;age&#39;]]).corr()
+sns.heatmap(corr)</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-24-1.png" /><!-- --></p>
+<p>This is quite cloudy let’s get rid of the Sex interaction with itself.</p>
+<p>We are using a really cool pandas operation inspired this <a href="https://stackoverflow.com/a/36567174">stack overflow answer</a>, and combining it with the negate operator ‘~’ effectively selecting just the columns that don’t start with sex.</p>
+<pre class="python"><code>new_corr = corr.loc[:,~corr.columns.str.startswith(&#39;sex&#39;)]
+sns.heatmap(new_corr)</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-25-1.png" /><!-- --></p>
+<p>Very little correlation, we are fine.</p>
+<p>Once again we don’t usually calculate the correlation between Categorical Variables.</p>
+</div>
+<div id="exogeneity" class="section level3">
+<h3>Exogeneity</h3>
+<p>If violated this hypothesis blasts your study into oblivion, Exogeneity is a one way road, your Independent Variables influence your Dependent Variable, and that is it.</p>
+<p>Discussion on whether we are violating this assumption creates really cool intellectual pursuits, Nobel’s were won discovering if there was some violation to this assumption see <a href="https://en.wikipedia.org/wiki/Trygve_Haavelmo">Trygve_Haavelmo</a>.</p>
+<p>In our case let’s hypothesize for all variables</p>
+<p>Sex ~ Salary - Maybe people that get richer/poorer change Sex, probably not.<br />
+Age ~ Salary - You can’t buy year with money .
+Years Study ~ Salary - Possible but this probably only happen to the latter years of education, still worth considering.
+Color/Race ~ Salary -
+No. Civil Status ~ Salary - Yes I can see that, taking this feature out.<br />
+Region ~ Salary - Do richer people migrate to richer regions? I think so, taking this feature out.</p>
+<p>It is also nice to notice that this may be reason why we call the Predicted Variable the Independent Variable.</p>
+</div>
+<div id="homoscedasticity-homogeneity-of-variance-assumption-of-equal-variance" class="section level3">
+<h3>Homoscedasticity / Homogeneity of Variance/ Assumption of Equal Variance</h3>
+<p>Assumption of Equal Variance of predicted values means that for any value for the whole distribution of the Dependent Variable the estimated values remain equally distributted, meaning that we are as sure on our predictions for 1000 moneys as for 100000 moneys this assumption is really hard to adhere.</p>
+<p>If broken the variance of the coefficients may be under or over estimated, meaning that we may fail to consider relevant features or consider wrongly irrelevant features, there are many formal statistical tests for this assumption let’s use scipy’s Bartlett’s test for homogeneity of variances where Ho is Homoscedasticity confirmation meaning we hope for p-values &lt; 0.05.</p>
+<p>We used a significance level of 5% for this assignment.</p>
+<pre class="python"><code>ss.bartlett(df_filter[&#39;log_salary&#39;],df_filter[&#39;age&#39;])</code></pre>
+<pre><code>## BartlettResult(statistic=232468.57113475894, pvalue=0.0)</code></pre>
+<p>Don’t reject H0 -&gt; ok</p>
+<p>Another way to check this assumption is using tests called Breusch-Pagan and Goldfeld-Quandt post fitting the linear model.</p>
+</div>
+</div>
+<div id="python_hypothesis_testing2" class="section level2">
+<h2>Fitting the linear regression</h2>
+<p>Fitting the linear regression using yet another library called statsmodels.</p>
+<pre class="python"><code>mod = smf.ols(formula=&#39;log_salary ~ sex + age + years_study + color_race&#39;, data=df_filter)
+model_fit = mod.fit()
+print(model_fit.summary())</code></pre>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:             log_salary   R-squared:                       0.133
+## Model:                            OLS   Adj. R-squared:                  0.133
+## Method:                 Least Squares   F-statistic:                     613.6
+## Date:                sáb, 25 jan 2020   Prob (F-statistic):               0.00
+## Time:                        22:26:08   Log-Likelihood:                -81546.
+## No. Observations:               63973   AIC:                         1.631e+05
+## Df Residuals:                   63956   BIC:                         1.633e+05
+## Df Model:                          16                                         
+## Covariance Type:            nonrobust                                         
+## ============================================================================================
+##                                coef    std err          t      P&gt;|t|      [0.025      0.975]
+## --------------------------------------------------------------------------------------------
+## Intercept                    8.3200      0.019    440.777      0.000       8.283       8.357
+## sex[T.woman]                -0.2125      0.007    -30.970      0.000      -0.226      -0.199
+## years_study[T.6.0]           0.1520      0.020      7.756      0.000       0.114       0.190
+## years_study[T.7.0]           0.1728      0.018      9.441      0.000       0.137       0.209
+## years_study[T.8.0]           0.1721      0.014     12.391      0.000       0.145       0.199
+## years_study[T.9.0]           0.1395      0.019      7.449      0.000       0.103       0.176
+## years_study[T.10.0]          0.2414      0.018     13.444      0.000       0.206       0.277
+## years_study[T.11.0]          0.3314      0.009     35.414      0.000       0.313       0.350
+## years_study[T.12.0]          0.3826      0.018     21.100      0.000       0.347       0.418
+## years_study[T.13.0]          0.5989      0.025     24.032      0.000       0.550       0.648
+## years_study[T.14.0]          0.6619      0.025     25.988      0.000       0.612       0.712
+## years_study[T.15.0]          1.0396      0.013     78.438      0.000       1.014       1.066
+## color_race[T.brown]          0.0487      0.013      3.696      0.000       0.023       0.075
+## color_race[T.indigenous]     0.0587      0.040      1.451      0.147      -0.021       0.138
+## color_race[T.white]          0.1805      0.013     13.736      0.000       0.155       0.206
+## color_race[T.yellow]         0.2401      0.050      4.776      0.000       0.142       0.339
+## age                          0.0129      0.000     40.197      0.000       0.012       0.014
+## ==============================================================================
+## Omnibus:                    14771.140   Durbin-Watson:                   1.806
+## Prob(Omnibus):                  0.000   Jarque-Bera (JB):            45603.025
+## Skew:                          -1.188   Prob(JB):                         0.00
+## Kurtosis:                       6.386   Cond. No.                         584.
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+<p>Looking at the results, it is possible that there isGender Pay Gap, calculating the difference in estimated salaries done by</p>
+<ul>
+<li>plus intercept + e ^ beta_variable = 5077,12</li>
+<li>minus intercept 4105,16<br />
+</li>
+<li>equals 971,96.</li>
+</ul>
+<p>There is a 971,96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7,59% of the mean salary at the time.</p>
+<div id="linear-regression-plots" class="section level3">
+<h3>Linear Regression plots</h3>
+<p>Using the code from this excellent <a href="https://medium.com/@emredjan/emulating-r-regression-plots-in-python-43741952c034">post</a> and combining it with the understanding from this <a href="https://data.library.virginia.edu/diagnostic-plots/">post</a>.</p>
+<pre class="python"><code># fitted values (need a constant term for intercept)
+model_fitted_y = model_fit.fittedvalues
+
+# model residuals
+model_residuals = model_fit.resid
+
+# normalized residuals
+model_norm_residuals = model_fit.get_influence().resid_studentized_internal
+
+# absolute squared normalized residuals
+model_norm_residuals_abs_sqrt = np.sqrt(np.abs(model_norm_residuals))
+
+# absolute residuals
+model_abs_resid = np.abs(model_residuals)
+
+# leverage, from statsmodels internals
+model_leverage = model_fit.get_influence().hat_matrix_diag
+
+# cook&#39;s distance, from statsmodels internals
+model_cooks = model_fit.get_influence().cooks_distance[0]</code></pre>
+<p>Initializing some variables.
+### Residual plot</p>
+<pre class="python"><code>plot_lm_1 = plt.figure(1)
+
+plot_lm_1.axes[0] = sns.residplot(model_fitted_y, &#39;log_salary&#39;, data=df_filter,
+                                  lowess=True,
+                                  scatter_kws={&#39;alpha&#39;: 0.5},
+                                  line_kws={&#39;color&#39;: &#39;red&#39;, &#39;lw&#39;: 1, &#39;alpha&#39;: 0.8})
+
+plot_lm_1.axes[0].set_title(&#39;Residuals vs Fitted&#39;)
+plot_lm_1.axes[0].set_xlabel(&#39;Fitted values&#39;)
+plot_lm_1.axes[0].set_ylabel(&#39;Residuals&#39;)
+
+
+# annotations
+abs_resid = model_abs_resid.sort_values(ascending=False)
+abs_resid_top_3 = abs_resid[:3]
+
+for i in abs_resid_top_3.index:
+    plot_lm_1.axes[0].annotate(i, 
+                               xy=(model_fitted_y[i], 
+                                   model_residuals[i]));</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-29-1.png" /><!-- --></p>
+<p>Here we are looking for the red line to get as close to the doted black line meaning that our Predictors would have a perfectly linear relationship with our Dependent variable following the assumption of linearity.</p>
+<p>I think we are close enough.</p>
+</div>
+<div id="qq-plot" class="section level3">
+<h3>QQ plot</h3>
+<pre class="python"><code>QQ = ProbPlot(model_norm_residuals)
+plot_lm_2 = QQ.qqplot(line=&#39;45&#39;, alpha=0.5, color=&#39;#4C72B0&#39;, lw=1)
+
+plot_lm_2.axes[0].set_title(&#39;Normal Q-Q&#39;)
+plot_lm_2.axes[0].set_xlabel(&#39;Theoretical Quantiles&#39;)
+plot_lm_2.axes[0].set_ylabel(&#39;Standardized Residuals&#39;);
+
+# annotations
+abs_norm_resid = np.flip(np.argsort(np.abs(model_norm_residuals)), 0)
+abs_norm_resid_top_3 = abs_norm_resid[:3]
+
+for r, i in enumerate(abs_norm_resid_top_3):
+    plot_lm_2.axes[0].annotate(i, 
+                               xy=(np.flip(QQ.theoretical_quantiles, 0)[r],
+                                   model_norm_residuals[i]));</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-30-1.png" /><!-- --></p>
+<p>Here we are looking for the circles to get as close to the red line as possible meaning that our variables follow a normal distribution and therefore our p-values are not biased.</p>
+<p>I think we have two problems the extremes may be a bit too distant and there are three concerning outliers.</p>
+</div>
+<div id="scale-location-plot" class="section level3">
+<h3>Scale-Location Plot</h3>
+<pre class="python"><code>plot_lm_3 = plt.figure(3)
+
+plt.scatter(model_fitted_y, model_norm_residuals_abs_sqrt, alpha=0.5)
+sns.regplot(model_fitted_y, model_norm_residuals_abs_sqrt, 
+            scatter=False, 
+            ci=False, 
+            lowess=True,
+            line_kws={&#39;color&#39;: &#39;red&#39;, &#39;lw&#39;: 1, &#39;alpha&#39;: 0.8})
+
+plot_lm_3.axes[0].set_title(&#39;Scale-Location&#39;)
+plot_lm_3.axes[0].set_xlabel(&#39;Fitted values&#39;)
+plot_lm_3.axes[0].set_ylabel(&#39;$\sqrt{|Standardized Residuals|}$&#39;);
+
+# annotations
+abs_sq_norm_resid = np.flip(np.argsort(model_norm_residuals_abs_sqrt), 0)
+abs_sq_norm_resid_top_3 = abs_sq_norm_resid[:3]
+
+for i in abs_norm_resid_top_3:
+    plot_lm_3.axes[0].annotate(i, 
+                               xy=(model_fitted_y[i], 
+                                   model_norm_residuals_abs_sqrt[i]));</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-31-1.png" /><!-- --></p>
+<p>This is the graph where we check the homoscedasticity assumption, we want the red line to be as straight as possible meaning that our Predictor variance is constant among the Dependent Variable values.</p>
+<p>I think it is fine.</p>
+</div>
+<div id="leverage-plot" class="section level3">
+<h3>Leverage plot</h3>
+<pre class="python"><code>plot_lm_4 = plt.figure(4)
+
+plt.scatter(model_leverage, model_norm_residuals, alpha=0.5)
+sns.regplot(model_leverage, model_norm_residuals, 
+            scatter=False, 
+            ci=False, 
+            lowess=True,
+            line_kws={&#39;color&#39;: &#39;red&#39;, &#39;lw&#39;: 1, &#39;alpha&#39;: 0.8})
+
+plot_lm_4.axes[0].set_xlim(0, 0.005)</code></pre>
+<pre><code>## (0, 0.005)</code></pre>
+<pre class="python"><code>plot_lm_4.axes[0].set_ylim(-3, 5)</code></pre>
+<pre><code>## (-3, 5)</code></pre>
+<pre class="python"><code>plot_lm_4.axes[0].set_title(&#39;Residuals vs Leverage&#39;)
+plot_lm_4.axes[0].set_xlabel(&#39;Leverage&#39;)
+plot_lm_4.axes[0].set_ylabel(&#39;Standardized Residuals&#39;)
+
+# annotations
+leverage_top_3 = np.flip(np.argsort(model_cooks), 0)[:3]
+
+for i in leverage_top_3:
+    plot_lm_4.axes[0].annotate(i, 
+                               xy=(model_leverage[i], 
+                                   model_norm_residuals[i]))
+    
+# shenanigans for cook&#39;s distance contours
+def graph(formula, x_range, label=None):
+    x = x_range
+    y = formula(x)
+    plt.plot(x, y, label=label, lw=1, ls=&#39;--&#39;, color=&#39;red&#39;)
+
+p = len(model_fit.params) # number of model parameters
+
+graph(lambda x: np.sqrt((0.5 * p * (1 - x)) / x), 
+      np.linspace(0.000, 0.005, 50), 
+      &#39;Cook\&#39;s distance&#39;) # 0.5 line</code></pre>
+<pre><code>## /opt/python/3.7/bin/python3:1: RuntimeWarning: divide by zero encountered in true_divide</code></pre>
+<pre class="python"><code>graph(lambda x: np.sqrt((1 * p * (1 - x)) / x), 
+      np.linspace(0.000, 0.005, 50)) # 1 line
+
+plt.legend(loc=&#39;upper right&#39;);</code></pre>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-32-1.png" /><!-- --></p>
+<p>Finally in this plot we are looking for outliers, it failed on the Python version, but it should show if the outliers plague the betas enough to the point where it may be worth studying removing them.</p>
+<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>We want the Red line to be as close as possible to the dotted line.</p>
+<p>Looking at the R plot We can say it is fine.</p>
+<p>At the end I am comfortable not denying our Hypothesis that Salary ~ Sex in 1970 Brazil working population.</p>
+<p>And that is it, Statistical analysis with almost no R! .</p>
+</div>
+</div>
+</div>
+<div id="final-remarks" class="section level1">
+<h1>Final Remarks</h1>
+<p>I guess my opinion is important in this post, this was really hard, Python may be an excellent Prediction based language but it lacks so much on my normal Economist features that I have easily available even when using Stata/E-Views/SAS, like look at how much code for a simple linear regression plot!</p>
+<p>I don’t have much hope that this will improve with time, normal statistics just doesn’t get as much hype as Deep Learning and stuff I feel sorry for whoever has to learn stats alongside Python, you guys deserve a Medal! Also I applaud the guys that Developed statsmodels.formula.api it really helps!</p>
+<p>Whoever develops with matplotlib deserves two medals, you guys make me feel dumber than when I read my first Time Series paper and that was a really low point in my self esteem, the graphs turned out great in my honest opinion.</p>
+<p>If you liked it please share it.</p>
+<div id="next-post" class="section level2">
+<h2>Next post</h2>
+<p>In the next part we repeat everything from part 1 with a few twists in R using the tidyverse!</p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="">R Markdown</a>
+  
+  <a class="badge badge-light" href="/tags/reticulate/">reticulate</a>
+  
+  <a class="badge badge-light" href="/tags/pandas/">pandas</a>
+  
+  <a class="badge badge-light" href="/tags/scipy/">scipy</a>
+  
+  <a class="badge badge-light" href="/tags/statsmodels/">statsmodels</a>
+  
+</div>
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/author/admin/avatar_hud572cb50654477d7dfb45121741e5f89_141766_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/authors/admin">Bruno Carlin</a></h5>
+    <h6 class="card-subtitle">Student</h6>
+    <p class="card-text" itemprop="description">Data Science learner</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/brunotestaguzza" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://scholar.google.com.br/scholar?hl=pt-BR&amp;as_sdt=0%2C5&amp;q=bruno&#43;testaguzza&#43;carlin&#43;&amp;btnG=" target="_blank" rel="noopener">
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/brunocarlin" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.linkedin.com/in/bruno-carlin-451007172/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/2019/04/05/exploratory-data-analysis-basic-statistical-inference/">exploratory data analysis: basic statistical inference</a></li>
+          
+          <li><a href="/2020/01/19/exploratory-data-analysis-basics-part1/">exploratory data analysis: basics Python part 1</a></li>
+          
+          <li><a href="/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/">exploratory data analysis: basic pandas and dplyr</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+    <div class="article-widget">
+      <div class="post-nav">
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/2020/01/19/exploratory-data-analysis-basics-part1/" rel="prev">exploratory data analysis: basics Python part 1</a>
+  </div>
+  
+</div>
+
+    </div>
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "twosidesdata" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//twosidesdata.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.1846cc5c27f3006b56814095ec02281f.js"></script>
+
+  </body>
+</html>
+

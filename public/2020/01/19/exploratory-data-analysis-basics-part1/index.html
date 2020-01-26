@@ -421,7 +421,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    21 min read
+    22 min read
   </span>
   
 
@@ -438,9 +438,7 @@
   <span class="article-categories">
     <i class="fas fa-folder"></i>
     
-    <a href="">R and Python</a>, 
-    
-    <a href="/categories/r-project/">r-project</a>
+    <a href="">R and Python</a>
     
   </span>
   
@@ -578,7 +576,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    21 min read
+    22 min read
   </span>
   
 
@@ -595,9 +593,7 @@
   <span class="article-categories">
     <i class="fas fa-folder"></i>
     
-    <a href="">R and Python</a>, 
-    
-    <a href="/categories/r-project/">r-project</a>
+    <a href="">R and Python</a>
     
   </span>
   
@@ -1272,31 +1268,7 @@ df.salary.fillna(df.salary.mean(),inplace= True)</code></pre>
 ## 8.562167     277     0.004167         0.333654
 ## 8.881975     260     0.003912         0.337566
 ## 8.930759     244     0.003671         0.341237</code></pre>
-<pre class="python"><code>plot_density = df.log_salary.plot.kde(bw_method= 0.5)
-plot_density.set_xlim(0,15)</code></pre>
-<pre><code>## (0, 15)</code></pre>
-<pre class="python"><code>plot_density</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-44-1.png" /><!-- --></p>
-<p>It is now a usefull feature for most simple linear models</p>
-</div>
-<div id="other-numerical-columns" class="section level4">
-<h4>Other numerical columns</h4>
-<pre class="python"><code>df.age.hist(bins = 20)
-plt.show()</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-45-1.png" /><!-- --></p>
-<pre class="python"><code>plot_density = df.age.plot.kde()
-plot_density</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-46-1.png" /><!-- --></p>
-<pre class="python"><code>pretty_value_counts(pd.DataFrame(df.age))</code></pre>
-<pre><code>## Column age with int64 data type 
-##      counts  percentages  cum_percentages
-## 20    2104     0.031653         0.031653
-## 28    2056     0.030931         0.062585
-## 26    2040     0.030691         0.093275
-## 22    2034     0.030600         0.123875
-## 27    2017     0.030345         0.154220</code></pre>
-<p>Age seems fine</p>
-<p>Remember from the the categorical variables we passed years_study here so that we could impute its missing values</p>
+<p>But then it is gonne</p>
 <pre class="python"><code>df.info()</code></pre>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## RangeIndex: 66470 entries, 0 to 66469
@@ -1310,13 +1282,54 @@ plot_density</code></pre>
 ## region          66470 non-null object
 ## dtypes: float64(2), int64(1), object(4)
 ## memory usage: 3.6+ MB</code></pre>
+<p>You are better off using the <code>[</code> notation</p>
+<pre class="python"><code>df[&#39;log_salary&#39;] = np.log1p(df.salary)</code></pre>
+<pre class="python"><code>plot_density = df.log_salary.plot.kde(bw_method= 0.5)
+plot_density.set_xlim(0,15)</code></pre>
+<pre><code>## (0, 15)</code></pre>
+<pre class="python"><code>plot_density</code></pre>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-46-1.png" /><!-- --></p>
+<p>It is now a usefull feature for most simple linear models</p>
+</div>
+<div id="other-numerical-columns" class="section level4">
+<h4>Other numerical columns</h4>
+<pre class="python"><code>df.age.hist(bins = 20)
+plt.show()</code></pre>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-47-1.png" /><!-- --></p>
+<pre class="python"><code>plot_density = df.age.plot.kde()
+plot_density</code></pre>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-48-1.png" /><!-- --></p>
+<pre class="python"><code>pretty_value_counts(pd.DataFrame(df.age))</code></pre>
+<pre><code>## Column age with int64 data type 
+##      counts  percentages  cum_percentages
+## 20    2104     0.031653         0.031653
+## 28    2056     0.030931         0.062585
+## 26    2040     0.030691         0.093275
+## 22    2034     0.030600         0.123875
+## 27    2017     0.030345         0.154220</code></pre>
+<p>Age seems fine</p>
+<p>Remember from the the categorical variables we passed years_study here so that we could impute its missing values</p>
+<pre class="python"><code>df.info()</code></pre>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 66470 entries, 0 to 66469
+## Data columns (total 8 columns):
+## age             66470 non-null int64
+## sex             66470 non-null object
+## years_study     66036 non-null float64
+## color_race      66228 non-null object
+## salary          66470 non-null float64
+## civil_status    66470 non-null object
+## region          66470 non-null object
+## log_salary      66470 non-null float64
+## dtypes: float64(3), int64(1), object(4)
+## memory usage: 4.1+ MB</code></pre>
 <p>We are missing 66470 - 66036 = 434 observation, this is a small enough number that we decided to drop these rows</p>
 <p>While we are droping missing values lets drop the color_race missing observations as well</p>
 <pre class="python"><code>df.dropna(subset = [&quot;years_study&quot;,&quot;color_race&quot;],inplace= True)</code></pre>
 <pre class="python"><code>df.info()</code></pre>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## Int64Index: 65795 entries, 0 to 66469
-## Data columns (total 7 columns):
+## Data columns (total 8 columns):
 ## age             65795 non-null int64
 ## sex             65795 non-null object
 ## years_study     65795 non-null float64
@@ -1324,12 +1337,13 @@ plot_density</code></pre>
 ## salary          65795 non-null float64
 ## civil_status    65795 non-null object
 ## region          65795 non-null object
-## dtypes: float64(2), int64(1), object(4)
-## memory usage: 4.0+ MB</code></pre>
+## log_salary      65795 non-null float64
+## dtypes: float64(3), int64(1), object(4)
+## memory usage: 4.5+ MB</code></pre>
 <p>Checking on year_study</p>
 <pre class="python"><code>df.years_study.hist(bins = 20)
 plt.show()</code></pre>
-<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-51-1.png" /><!-- --></p>
+<p><img src="/post/2020/01/19/index_files/figure-html/unnamed-chunk-53-1.png" /><!-- --></p>
 <p>Let’s convert it back into a Category</p>
 <pre class="python"><code>df.years_study = df.years_study.astype(&#39;category&#39;)</code></pre>
 </div>
@@ -1349,6 +1363,7 @@ plt.show()</code></pre>
 ## salary           float64
 ## civil_status      object
 ## region            object
+## log_salary       float64
 ## dtype: object</code></pre>
 <p>Using csv will may lose some Data Types</p>
 <pre class="python"><code>df.to_csv(file_path_linux + &#39;/finished_work.csv&#39;)</code></pre>
@@ -1361,6 +1376,7 @@ plt.show()</code></pre>
 ## salary          float64
 ## civil_status     object
 ## region           object
+## log_salary      float64
 ## dtype: object</code></pre>
 <p>We lost our encoding of years_study and when writing a csv we made this useless to us Unnamed: 0 column</p>
 <p>a better way is using the feather file format, you need to pip install pyarrow beforehand</p>
@@ -1374,12 +1390,13 @@ plt.show()</code></pre>
 ## salary           float64
 ## civil_status      object
 ## region            object
+## log_salary       float64
 ## dtype: object</code></pre>
 <p>Feather does keep the years study dtype, but feather is still in a experimental phase so be carefull with it, parquet unfortunally fails to keep the dtypes I don’t know why.</p>
 <p>It is also a good idea to keep good file names so that you can easily identify your datasets and scripts.</p>
 <p>If you then need to delete these files you can do it inside python</p>
-<pre class="python"><code>#os.remove(file_path_linux +&#39;/finished_work.csv&#39;)
-os.remove(file_path_linux + &#39;/sex_thesis_assignment.feather&#39;)</code></pre>
+<pre class="python"><code>os.remove(file_path_linux +&#39;/finished_work.csv&#39;)
+#os.remove(file_path_linux + &#39;/sex_thesis_assignment.feather&#39;)</code></pre>
 </div>
 <div id="next-post" class="section level1">
 <h1>Next post</h1>
@@ -1544,6 +1561,11 @@ os.remove(file_path_linux + &#39;/sex_thesis_assignment.feather&#39;)</code></pr
     
     <div class="article-widget">
       <div class="post-nav">
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/2020/01/25/exploratory-data-analysis-basics-part2/" rel="next">exploratory data analysis: basics Python part 2</a>
+  </div>
   
   
   <div class="post-nav-item">
