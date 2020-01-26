@@ -153,6 +153,7 @@ import os</code></pre>
 <div id="python_read_data" class="section level3">
 <h3>Reading Data</h3>
 <p>The path is specific for my computer but it is easy to adapt</p>
+<p>You can also dowload it from the <a href="https://github.com/brunocarlin/TwoSidesData2/tree/master/content/post/data">github page from this blog</a></p>
 <pre class="python"><code># Abertura e leitura dos dados em um DeteFrame em Pandas
 path = r.file_path_linux
 df = pd.read_csv(path + &#39;/stata_data_1970.csv&#39;)</code></pre>
@@ -743,8 +744,8 @@ plt.show()</code></pre>
 <pre class="python"><code>r.file_path_linux</code></pre>
 <pre><code>## &#39;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/content/post/data&#39;</code></pre>
 <pre class="python"><code>df.reset_index().to_feather(r.file_path_linux + &#39;/sex_thesis_assignment.feather&#39;)</code></pre>
-<pre class="r"><code>here::here()</code></pre>
-<pre><code>## [1] &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2&quot;</code></pre>
+<pre class="r"><code>file_path_linux</code></pre>
+<pre><code>## [1] &quot;/home/bruno-carlin/Documents/GIthub/TwoSidesData2/content/post/data&quot;</code></pre>
 <pre class="python"><code>pd.read_feather(r.file_path_linux + &#39;/sex_thesis_assignment.feather&#39;).dtypes</code></pre>
 <pre><code>## index              int64
 ## age                int64

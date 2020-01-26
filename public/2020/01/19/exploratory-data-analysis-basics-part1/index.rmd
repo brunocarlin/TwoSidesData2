@@ -165,6 +165,8 @@ Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Num
 
 The path is specific for my computer but it is easy to adapt
 
+You can also dowload it from the [github page from this blog](https://github.com/brunocarlin/TwoSidesData2/tree/master/content/post/data)
+
 ```{python python_read_data}
 # Abertura e leitura dos dados em um DeteFrame em Pandas
 path = r.file_path_linux
@@ -673,7 +675,7 @@ df.reset_index().to_feather(r.file_path_linux + '/sex_thesis_assignment.feather'
 ```
 
 ```{r}
-here::here()
+file_path_linux
 ```
 
 ```{python}

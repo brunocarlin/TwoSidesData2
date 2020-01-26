@@ -1,0 +1,566 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={exploratory data analysis: basics Python part 2},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+
+\title{exploratory data analysis: basics Python part 2}
+\providecommand{\subtitle}[1]{}
+\subtitle{Python part 2}
+\author{}
+\date{\vspace{-2.5em}2020-01-25}
+
+\begin{document}
+\maketitle
+
+Let's see what version of python this env is running.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reticulate}\OperatorTok{::}\KeywordTok{py_config}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## python:         /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/python
+## libpython:      /opt/python/3.7/lib/libpython3.7m.so
+## pythonhome:     /opt/python/3.7:/opt/python/3.7
+## virtualenv:     /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/bin/activate_this.py
+## version:        3.7.4 (default, Aug 13 2019, 20:35:49)  [GCC 7.3.0]
+## numpy:          /home/bruno-carlin/Documents/GIthub/TwoSidesData2/.venv/lib/python3.7/site-packages/numpy
+## numpy_version:  1.18.1
+## 
+## NOTE: Python version was forced by use_python function
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ os}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{second-post}{%
+\section{Second Post}\label{second-post}}
+
+\hypertarget{objectives}{%
+\subsection{Objectives}\label{objectives}}
+
+\hypertarget{define-the-variables-used-in-the-conclusion}{%
+\subsection{Define the variables used in the
+conclusion}\label{define-the-variables-used-in-the-conclusion}}
+
+In our case, we choose to use
+\protect\hyperlink{python_hypothesis_testing}{salary \textasciitilde{}
+sex,region} region was added to test whether
+\href{https://en.wikipedia.org/wiki/Simpson\%27s_paradox}{Simpson's
+paradox} was at play.
+
+\hypertarget{using-masks-or-other-methods-to-filter-the-data}{%
+\subsection{Using masks or other methods to filter the
+data}\label{using-masks-or-other-methods-to-filter-the-data}}
+
+This objective was mostly done using the groupby function.
+
+\hypertarget{visualizing-the-hypothesis}{%
+\subsection{Visualizing the
+hypothesis}\label{visualizing-the-hypothesis}}
+
+\protect\hyperlink{python_plot_histograms}{We were advised to use two
+histograms combined to get a preview of our answer.}
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
+
+Comment on our findings.
+
+\hypertarget{before-we-start}{%
+\subsection{Before we start}\label{before-we-start}}
+
+\hypertarget{reservations}{%
+\subsubsection{Reservations}\label{reservations}}
+
+This is an exercise where we were supposed to ask a relevant question
+using the data from the IBGE(Brazil's main data collector) database of
+1970.
+
+Our group decided to ask whether women received less than man, we
+expanded the analysis hoping to avoid the Simpson's paradox.
+
+This is just an basic inference, and it's results are therefore only
+used for studying purposes I don't believe any finding would be relevant
+using just this approach but some basic operations can be used in a more
+impact full work.
+
+\hypertarget{data-dictionary}{%
+\subsubsection{Data Dictionary}\label{data-dictionary}}
+
+We got a Data Dictionary that will be very useful for our Analysis, it
+contains all the required information about the encoding of the columns
+and the intended format that the folks at STATA desired.
+
+Portuguese
+
+Descrição do Registro de Indivíduos nos EUA.
+
+Dataset do software STATA (pago), vamos abri-lo com o pandas e
+transforma-lo em DataFrame.
+
+Variável 1 -- CHAVE DO INDIVÍDUO ? Formato N - Numérico ? Tamanho 11
+dígitos (11 bytes) ? Descrição Sumária Identifica unicamente o indivíduo
+na amostra.
+
+Variável 2 - IDADE CALCULADA EM ANOS ? Formato N - Numérico ? Tamanho 3
+dígitos (3 bytes) ? Descrição Sumária Identifica a idade do morador em
+anos completos.
+
+Variável 3 -- SEXO ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ?
+Quantidade de Categorias 3 ? Descrição Sumária Identifica o sexo do
+morador. Categorias (1) homem, (2) mulher e (3) gestante.
+
+Variável 4 -- ANOS DE ESTUDO ? Formato N - Numérico ? Tamanho 2 dígitos
+(2 bytes) ? Quantidade de Categorias 11 ? Descrição Sumária Identifica o
+número de anos de estudo do morador. Categorias (05) Cinco ou menos,
+(06) Seis, (07) Sete, (08) Oito, (09) Nove, (10) Dez, (11) Onze, (12)
+Doze, (13) Treze, (14) Quatorze, (15) Quinze ou mais.
+
+Variável 5 -- COR OU RAÇA ? Formato N - Numérico ? Tamanho 2 dígitos (2
+bytes) ? Quantidade de Categorias 6 ? Descrição Sumária Identifica a Cor
+ou Raça declarada pelo morador. Categorias (01) Branca, (02) Preta, (03)
+Amarela, (04) Parda, (05) Indígena e (09) Não Sabe.
+
+Variável 6 -- VALOR DO SALÁRIO (ANUALIZADO) ? Formato N - Numérico ?
+Tamanho 8 dígitos (8 bytes) ? Quantidade de Decimais 2 ? Descrição
+Sumária Identifica o valor resultante do salário anual do indivíduo.
+Categorias especiais (-1) indivíduo ausente na data da pesquisa e
+(999999) indivíduo não quis responder.
+
+Variável 7 -- ESTADO CIVIL ? Formato N - Numérico ? Tamanho 1 dígito (1
+byte) ? Quantidade de Categorias 2 ? Descrição Sumária Dummy que
+identifica o estado civil declarado pelo morador. Categorias (1) Casado,
+(0) não casado.
+
+Variável 8 -- REGIÃO GEOGRÁFICA ? Formato N - Numérico ? Tamanho 1
+dígito (1 byte) ? Quantidade de Categorias 5 ? Descrição Sumária
+Identifica a região geográfica do morador. Categorias (1) Norte, (2)
+Nordeste, (3) Sudeste, (4) Sul e (5) Centro-oeste.
+
+English
+
+Description of the US Individual Registry.
+
+Dataset of the STATA software (paid), we will open it with pandas and
+turn it into DataFrame.
+
+Variable 1 - KEY OF THE INDIVIDUAL? Format N - Numeric? Size 11 digits
+(11 bytes)? Summary Description Uniquely identifies the individual in
+the sample.
+
+Variable 2 - AGE CALCULATED IN YEARS? Format N - Numeric? Size 3 digits
+(3 bytes)? Summary Description Identifies the age of the resident in
+full years.
+
+Variable 3 - SEX? Format N - Numeric? Size 1 digit (1 byte)? Number of
+Categories 3? Summary Description Identifies the gender of the resident.
+Categories (1) men, (2) women and (3) pregnant women.
+
+Variable 4 - YEARS OF STUDY? Format N - Numeric? Size 2 digits (2
+bytes)? Number of Categories 11? Summary Description Identifies the
+number of years of study of the resident. Categories (05) Five or less,
+(06) Six, (07) Seven, (08) Eight, (09) Nine, (10) Dec, (11) Eleven, (12)
+Twelve, (13) Thirteen, (14 ) Fourteen, (15) Fifteen or more.
+
+Variable 5 - COLOR OR RACE? Format N - Numeric? Size 2 digits (2 bytes)?
+Number of Categories 6? Summary Description Identifies the Color or Race
+declared by the resident. Categories (01) White, (02) Black, (03)
+Yellow, (04) Brown, (05) Indigenous and (09) Don't know.
+
+Variable 6 - WAGE VALUE (ANNUALIZED)? Format N - Numeric? Size 8 digits
+(8 bytes)? Number of decimals 2? Summary Description Identifies the
+amount resulting from the individual's annual salary. Special categories
+(-1) individual absent on the survey date and (999999) individual did
+not want to answer.
+
+Variable 7 - CIVIL STATE? Format N - Numeric? Size 1 digit (1 byte)?
+Number of Categories 2? Summary Description Dummy that identifies the
+marital status declared by the resident. Categories (1) Married, (0) Not
+married.
+
+Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1
+byte)? Number of Categories 5? Summary Description Identifies the
+resident's geographic region. Categories (1) North, (2) Northeast, (3)
+Southeast, (4) South and (5) Midwest.
+
+\hypertarget{python}{%
+\section{Python}\label{python}}
+
+\hypertarget{importing-the-dataset-from-part-1}{%
+\subsection{Importing the dataset from part
+1}\label{importing-the-dataset-from-part-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_sex_thesis }\OperatorTok{=}\NormalTok{pd.read_feather(r.file_path_linux }\OperatorTok{+} \StringTok{'/sex_thesis_assignment.feather'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_sex_thesis.info()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <class 'pandas.core.frame.DataFrame'>
+## RangeIndex: 65795 entries, 0 to 65794
+## Data columns (total 9 columns):
+## index           65795 non-null int64
+## age             65795 non-null int64
+## sex             65795 non-null object
+## years_study     65795 non-null category
+## color_race      65795 non-null object
+## salary          65795 non-null float64
+## civil_status    65795 non-null object
+## region          65795 non-null object
+## log_salary      65795 non-null float64
+## dtypes: category(1), float64(2), int64(2), object(4)
+## memory usage: 4.1+ MB
+\end{verbatim}
+
+Let's get going first we need to define which variables we will add to
+the hypothesis to isolate the factor of salary \textasciitilde{} sex, a
+simple way of doing that is that if we consider that our sample of
+individuals is random in nature we could simple compare the means of the
+individuals given their sex and see if there is a significant difference
+in their means, we can calculate that by using the standard deviation of
+the calculated means.
+
+A good graphic to get an idea if these effects would be significant was
+the bar plots we used in part 1.
+
+But if we are working with Categorical variable we can use a groupby
+aproach to glimpse at the difference in means
+
+I am using the log salary feature from the post 1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_sex_thesis.groupby(}\StringTok{'sex'}\NormalTok{).mean().log_salary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## sex
+## man      9.026607
+## woman    8.607023
+## Name: log_salary, dtype: float64
+\end{verbatim}
+
+Remember that in order to transform back our log variables you can do
+\(a^2 + b^2 = c^2 + D\) for our example 4 ok
+
+\[\text{softmax}(z)_j = \frac{e^{z_j}}{\sum_i^{\text{dim}(z)}e^{z_i}}\]
+
+Group by explanation
+
+Group by in pandas is a method that accepts a list of elements in this
+case just `sex' and applies consequent operation in each group, in this
+case we applied the mean method from a pandas DataFrame, we used .salary
+to return just the mean for the salary variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_sex_thesis.groupby([}\StringTok{'sex'}\NormalTok{,}\StringTok{'region'}\NormalTok{]).mean().salary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## sex    region   
+## man    midwest      15263.832776
+##        north        11645.335382
+##        south        15507.600528
+##        southeast    14755.538089
+## woman  midwest      11394.125688
+##        north         9932.078329
+##        northeast    24737.436554
+##        south        10159.399214
+##        southeast    10826.777483
+## Name: salary, dtype: float64
+\end{verbatim}
+
+Adding standard deviations
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_sex_thesis.groupby([}\StringTok{'sex'}\NormalTok{]).std().salary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## sex
+## man      21832.256493
+## woman    11949.880892
+## Name: salary, dtype: float64
+\end{verbatim}
+
+These are really big Standard deviations! Remembering from stats that +2
+SD's gives about a 95\% confidence interval we are not even close.
+
+To add both togheter we can use pandas agg method
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_sex_thesis.groupby([}\StringTok{'sex'}\NormalTok{]).agg([}\StringTok{'mean'}\NormalTok{,}\StringTok{'std'}\NormalTok{]).salary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                mean           std
+## sex                              
+## man    14302.491879  21832.256493
+## woman  10642.502734  11949.880892
+\end{verbatim}
+
+Now we can calculate boundaries
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_agg }\OperatorTok{=}\NormalTok{df_sex_thesis.groupby([}\StringTok{'sex'}\NormalTok{]).agg([}\StringTok{'mean'}\NormalTok{,}\StringTok{'std'}\NormalTok{]).salary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_agg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                mean           std
+## sex                              
+## man    14302.491879  21832.256493
+## woman  10642.502734  11949.880892
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_agg[}\StringTok{'lower_bound'}\NormalTok{] }\OperatorTok{=}\NormalTok{ df_agg[}\StringTok{'mean'}\NormalTok{] }\OperatorTok{-}\NormalTok{ df_agg[}\StringTok{'std'}\NormalTok{] }\OperatorTok{*} \DecValTok{2}
+\NormalTok{df_agg[}\StringTok{'upper_bound'}\NormalTok{] }\OperatorTok{=}\NormalTok{ df_agg[}\StringTok{'mean'}\NormalTok{] }\OperatorTok{+}\NormalTok{ df_agg[}\StringTok{'std'}\NormalTok{] }\OperatorTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_agg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                mean           std   lower_bound   upper_bound
+## sex                                                          
+## man    14302.491879  21832.256493 -29362.021106  57967.004865
+## woman  10642.502734  11949.880892 -13257.259050  34542.264519
+\end{verbatim}
+
+Cool but to verbose to be repeated we can easily make this series of
+operation into a function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ groupby_bound(df,groupby_variables,value_variables):}
+\NormalTok{  df_agg }\OperatorTok{=}\NormalTok{  df.groupby(groupby_variables).agg([}\StringTok{'mean'}\NormalTok{,}\StringTok{'std'}\NormalTok{])[value_variables]}
+\NormalTok{  df_agg[}\StringTok{'lower_bound'}\NormalTok{] }\OperatorTok{=}\NormalTok{ df_agg[}\StringTok{'mean'}\NormalTok{] }\OperatorTok{-}\NormalTok{ df_agg[}\StringTok{'std'}\NormalTok{] }\OperatorTok{*} \DecValTok{2}
+\NormalTok{  df_agg[}\StringTok{'upper_bound'}\NormalTok{] }\OperatorTok{=}\NormalTok{ df_agg[}\StringTok{'mean'}\NormalTok{] }\OperatorTok{+}\NormalTok{ df_agg[}\StringTok{'std'}\NormalTok{] }\OperatorTok{*} \DecValTok{2}
+  \ControlFlowTok{return}\NormalTok{ df_agg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groupby_bound(df}\OperatorTok{=}\NormalTok{df_sex_thesis,groupby_variables}\OperatorTok{=}\StringTok{'sex'}\NormalTok{,value_variables}\OperatorTok{=}\StringTok{'salary'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                mean           std   lower_bound   upper_bound
+## sex                                                          
+## man    14302.491879  21832.256493 -29362.021106  57967.004865
+## woman  10642.502734  11949.880892 -13257.259050  34542.264519
+\end{verbatim}
+
+Now that we have a working function let's see if we can find a
+difference in salary on some strata of the population
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groupby_bound(df}\OperatorTok{=}\NormalTok{df_sex_thesis,groupby_variables}\OperatorTok{=}\NormalTok{[}\StringTok{'sex'}\NormalTok{,}\StringTok{'region'}\NormalTok{],value_variables}\OperatorTok{=}\StringTok{'salary'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                          mean           std   lower_bound   upper_bound
+## sex   region                                                           
+## man   midwest    15263.832776  22365.162600 -29466.492424  59994.157975
+##       north      11645.335382  17755.179348 -23865.023315  47155.694079
+##       south      15507.600528  24077.013334 -32646.426140  63661.627196
+##       southeast  14755.538089  22471.956377 -30188.374664  59699.450842
+## woman midwest    11394.125688  14039.268041 -16684.410394  39472.661770
+##       north       9932.078329  10366.150119 -10800.221908  30664.378567
+##       northeast  24737.436554  35861.738868 -46986.041182  96460.914290
+##       south      10159.399214  10274.792359 -10390.185505  30708.983932
+##       southeast  10826.777483  12140.616504 -13454.455526  35108.010491
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_sex_thesis}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        index  age    sex  ... civil_status     region  log_salary
+## 0          0   53    man  ...      married      north   11.060384
+## 1          1   49  woman  ...      married      north    9.427336
+## 2          2   22  woman  ...  not_married  northeast    8.378713
+## 3          3   55    man  ...      married      north   11.478344
+## 4          4   56  woman  ...      married      north   11.969090
+## ...      ...  ...    ...  ...          ...        ...         ...
+## 65790  66465   34  woman  ...      married    midwest    9.427336
+## 65791  66466   40    man  ...      married    midwest    7.793999
+## 65792  66467   36  woman  ...      married    midwest    7.793999
+## 65793  66468   27  woman  ...      married    midwest    8.617075
+## 65794  66469   37    man  ...      married    midwest    6.134157
+## 
+## [65795 rows x 9 columns]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groupby_bound(df}\OperatorTok{=}\NormalTok{df_sex_thesis,groupby_variables}\OperatorTok{=}\NormalTok{[}\StringTok{'sex'}\NormalTok{,}\StringTok{'civil_status'}\NormalTok{],value_variables}\OperatorTok{=}\StringTok{'salary'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             mean           std   lower_bound   upper_bound
+## sex   civil_status                                                        
+## man   married       16308.034145  25141.741878 -33975.449611  66591.517900
+##       not_married   11345.387068  15257.186617 -19168.986167  41859.760303
+## woman married       10600.663252  12113.322047 -13625.980842  34827.307346
+##       not_married   10700.342305  11720.369433 -12740.396562  34141.081171
+\end{verbatim}
+
+\[f(k;p\_0^\*) = \begin{cases} p\_0^\* & \text{if }k=1, \\\\\\
+1-p\_0^\* & \text {if }k=0.\end{cases}\]
+
+Hi This is inline:
+\(\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\)
+
+\end{document}
