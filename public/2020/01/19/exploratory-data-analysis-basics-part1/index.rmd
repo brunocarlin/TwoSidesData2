@@ -6,7 +6,6 @@ date: '2020-01-19'
 slug: exploratory-data-analysis-basics-part1
 categories:
 - R and Python
-- r-project
 tags:
 - R Markdown
 - reticulate
@@ -557,8 +556,21 @@ There is also a statisticall solution for the Positive skew in our Data we can t
 df.log_salary = np.log1p(df.salary)
 ```
 
+
 ```{python}
 pretty_value_counts(pd.DataFrame(df.log_salary))
+```
+
+But then it is gonne
+
+```{python}
+df.info()
+```
+
+You are better off using the `[` notation
+
+```{python}
+df['log_salary'] = np.log1p(df.salary)
 ```
 
 ```{python}
@@ -662,8 +674,8 @@ It is also a good idea to keep good file names so that you can easily identify y
 If you then need to delete these files you can do it inside python
 
 ```{python}
-#os.remove(file_path_linux +'/finished_work.csv')
-os.remove(file_path_linux + '/sex_thesis_assignment.feather')
+os.remove(file_path_linux +'/finished_work.csv')
+#os.remove(file_path_linux + '/sex_thesis_assignment.feather')
 ```
 
 # Next post

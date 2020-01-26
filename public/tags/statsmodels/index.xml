@@ -1,0 +1,639 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>statsmodels on TwoSidesData</title>
+    <link>/tags/statsmodels/</link>
+    <description>Recent content in statsmodels on TwoSidesData</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/statsmodels/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>exploratory data analysis: basics Python part 2</title>
+      <link>/2020/01/25/exploratory-data-analysis-basics-part2/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/01/25/exploratory-data-analysis-basics-part2/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#libraries&#34;&gt;Libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#second-post&#34;&gt;Second Post&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#objectives&#34;&gt;Objectives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#define-the-variables-used-in-the-conclusion&#34;&gt;Define the variables used in the conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#using-masks-or-other-methods-to-filter-the-data&#34;&gt;Using masks or other methods to filter the data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#visualizing-the-hypothesis&#34;&gt;Visualizing the hypothesis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#before-we-start&#34;&gt;Before we start&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#reservations&#34;&gt;Reservations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-dictionary&#34;&gt;Data Dictionary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#importing-the-dataset-from-part-1&#34;&gt;Importing the dataset from part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing1&#34;&gt;Difference in means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#masks&#34;&gt;Linearity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#random&#34;&gt;Random&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#non-collinearity&#34;&gt;Non-Collinearity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#exogeneity&#34;&gt;Exogeneity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#homoscedasticity-homogeneity-of-variance-assumption-of-equal-variance&#34;&gt;Homoscedasticity / Homogeneity of Variance/ Assumption of Equal Variance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing2&#34;&gt;Fitting the linear regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#linear-regression-plots&#34;&gt;Linear Regression plots&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#qq-plot&#34;&gt;QQ plot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#scale-location-plot&#34;&gt;Scale-Location Plot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#leverage-plot&#34;&gt;Leverage plot&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#final-remarks&#34;&gt;Final Remarks&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#next-post&#34;&gt;Next post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;libraries&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Libraries&lt;/h1&gt;
+&lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;reticulate::py_config()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## python:         /opt/python/3.7/bin/python3
+## libpython:      /opt/python/3.7/lib/libpython3.7m.so
+## pythonhome:     /opt/python/3.7:/opt/python/3.7
+## version:        3.7.4 (default, Aug 13 2019, 20:35:49)  [GCC 7.3.0]
+## numpy:          /opt/python/3.7/lib/python3.7/site-packages/numpy
+## numpy_version:  1.17.2
+## 
+## python versions found: 
+##  /opt/python/3.7/bin/python3
+##  /usr/bin/python3
+##  /usr/bin/python&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import scipy.stats as ss
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import os
+from statsmodels.graphics.gofplots import ProbPlot&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;second-post&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Second Post&lt;/h1&gt;
+&lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Objectives&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;define-the-variables-used-in-the-conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Define the variables used in the conclusion&lt;/h2&gt;
+&lt;p&gt;In our case, we initially choose to use &lt;a href=&#34;#python_hypothesis_testing1&#34;&gt;salary ~ sex,region&lt;/a&gt; region was added to test whether &lt;a href=&#34;https://en.wikipedia.org/wiki/Simpson%27s_paradox&#34;&gt;Simpson’s paradox&lt;/a&gt; was at play.&lt;/p&gt;
+&lt;p&gt;But then I augmented our analysis with a &lt;a href=&#34;#python_hypothesis_testing2&#34;&gt;simple linear regression&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-masks-or-other-methods-to-filter-the-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using masks or other methods to filter the data&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#masks&#34;&gt;We used it once&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualizing-the-hypothesis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualizing the hypothesis&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#python_plot_histograms&#34;&gt;We were advised to use two histograms combined to get a preview of our answer.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Comment on our findings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;before-we-start&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Before we start&lt;/h2&gt;
+&lt;div id=&#34;reservations&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reservations&lt;/h3&gt;
+&lt;p&gt;This is an exercise where we were supposed to ask a relevant question using the data from the IBGE(Brazil’s main data collector) database of 1970.&lt;/p&gt;
+&lt;p&gt;Our group decided to ask whether women received less than man, we expanded the analysis hoping to avoid the Simpson’s paradox.&lt;/p&gt;
+&lt;p&gt;This is just an basic inference, and it’s results are therefore only used for studying purposes I don’t believe any finding would be relevant using just this approach but some basic operations can be used in a more impact full work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-dictionary&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Data Dictionary&lt;/h3&gt;
+&lt;p&gt;We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Portuguese&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Descrição do Registro de Indivíduos nos EUA.&lt;/p&gt;
+&lt;p&gt;Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.&lt;/p&gt;
+&lt;p&gt;Variável 1 – CHAVE DO INDIVÍDUO ? Formato N - Numérico ? Tamanho 11 dígitos (11 bytes) ? Descrição Sumária Identifica unicamente o indivíduo na amostra.&lt;/p&gt;
+&lt;p&gt;Variável 2 - IDADE CALCULADA EM ANOS ? Formato N - Numérico ? Tamanho 3 dígitos (3 bytes) ? Descrição Sumária Identifica a idade do morador em anos completos.&lt;/p&gt;
+&lt;p&gt;Variável 3 – SEXO ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 3 ? Descrição Sumária Identifica o sexo do morador. Categorias (1) homem, (2) mulher e (3) gestante.&lt;/p&gt;
+&lt;p&gt;Variável 4 – ANOS DE ESTUDO ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 11 ? Descrição Sumária Identifica o número de anos de estudo do morador. Categorias (05) Cinco ou menos, (06) Seis, (07) Sete, (08) Oito, (09) Nove, (10) Dez, (11) Onze, (12) Doze, (13) Treze, (14) Quatorze, (15) Quinze ou mais.&lt;/p&gt;
+&lt;p&gt;Variável 5 – COR OU RAÇA ? Formato N - Numérico ? Tamanho 2 dígitos (2 bytes) ? Quantidade de Categorias 6 ? Descrição Sumária Identifica a Cor ou Raça declarada pelo morador. Categorias (01) Branca, (02) Preta, (03) Amarela, (04) Parda, (05) Indígena e (09) Não Sabe.&lt;/p&gt;
+&lt;p&gt;Variável 6 – VALOR DO SALÁRIO (ANUALIZADO) ? Formato N - Numérico ? Tamanho 8 dígitos (8 bytes) ? Quantidade de Decimais 2 ? Descrição Sumária Identifica o valor resultante do salário anual do indivíduo. Categorias especiais (-1) indivíduo ausente na data da pesquisa e (999999) indivíduo não quis responder.&lt;/p&gt;
+&lt;p&gt;Variável 7 – ESTADO CIVIL ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 2 ? Descrição Sumária Dummy que identifica o estado civil declarado pelo morador. Categorias (1) Casado, (0) não casado.&lt;/p&gt;
+&lt;p&gt;Variável 8 – REGIÃO GEOGRÁFICA ? Formato N - Numérico ? Tamanho 1 dígito (1 byte) ? Quantidade de Categorias 5 ? Descrição Sumária Identifica a região geográfica do morador. Categorias (1) Norte, (2) Nordeste, (3) Sudeste, (4) Sul e (5) Centro-oeste.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;English&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Description of the US Individual Registry.&lt;/p&gt;
+&lt;p&gt;Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.&lt;/p&gt;
+&lt;p&gt;Variable 1 - KEY OF THE INDIVIDUAL? Format N - Numeric? Size 11 digits (11 bytes)? Summary Description Uniquely identifies the individual in the sample.&lt;/p&gt;
+&lt;p&gt;Variable 2 - AGE CALCULATED IN YEARS? Format N - Numeric? Size 3 digits (3 bytes)? Summary Description Identifies the age of the resident in full years.&lt;/p&gt;
+&lt;p&gt;Variable 3 - SEX? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 3? Summary Description Identifies the gender of the resident. Categories (1) men, (2) women and (3) pregnant women.&lt;/p&gt;
+&lt;p&gt;Variable 4 - YEARS OF STUDY? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 11? Summary Description Identifies the number of years of study of the resident. Categories (05) Five or less, (06) Six, (07) Seven, (08) Eight, (09) Nine, (10) Dec, (11) Eleven, (12) Twelve, (13) Thirteen, (14 ) Fourteen, (15) Fifteen or more.&lt;/p&gt;
+&lt;p&gt;Variable 5 - COLOR OR RACE? Format N - Numeric? Size 2 digits (2 bytes)? Number of Categories 6? Summary Description Identifies the Color or Race declared by the resident. Categories (01) White, (02) Black, (03) Yellow, (04) Brown, (05) Indigenous and (09) Don’t know.&lt;/p&gt;
+&lt;p&gt;Variable 6 - WAGE VALUE (ANNUALIZED)? Format N - Numeric? Size 8 digits (8 bytes)? Number of decimals 2? Summary Description Identifies the amount resulting from the individual’s annual salary. Special categories (-1) individual absent on the survey date and (999999) individual did not want to answer.&lt;/p&gt;
+&lt;p&gt;Variable 7 - CIVIL STATE? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 2? Summary Description Dummy that identifies the marital status declared by the resident. Categories (1) Married, (0) Not married.&lt;/p&gt;
+&lt;p&gt;Variable 8 - GEOGRAPHICAL REGION? Format N - Numeric? Size 1 digit (1 byte)? Number of Categories 5? Summary Description Identifies the resident’s geographic region. Categories (1) North, (2) Northeast, (3) Southeast, (4) South and (5) Midwest.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Python&lt;/h1&gt;
+&lt;div id=&#34;importing-the-dataset-from-part-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Importing the dataset from part 1&lt;/h2&gt;
+&lt;p&gt;You can also dowload it from the &lt;a href=&#34;https://github.com/brunocarlin/TwoSidesData2/tree/master/content/post/data&#34;&gt;github page from this blog&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis =pd.read_feather(r.file_path_linux + &amp;#39;/sex_thesis_assignment.feather&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.info()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
+## RangeIndex: 65795 entries, 0 to 65794
+## Data columns (total 9 columns):
+## index           65795 non-null int64
+## age             65795 non-null int64
+## sex             65795 non-null object
+## years_study     65795 non-null category
+## color_race      65795 non-null object
+## salary          65795 non-null float64
+## civil_status    65795 non-null object
+## region          65795 non-null object
+## log_salary      65795 non-null float64
+## dtypes: category(1), float64(2), int64(2), object(4)
+## memory usage: 4.1+ MB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s get going first define which variables to add to the hypothesis, to isolate the factor of salary ~ sex, if we consider that our sample of individuals is random in nature comparing the means of the individuals given their sex and seeing if there is a significant difference in their means.&lt;/p&gt;
+&lt;p&gt;A good graphic to get an idea if these effects would be significant was the bar plots used in part 1.&lt;/p&gt;
+&lt;p&gt;When working with Categorical variable it is possible to use a groupby approach to glimpse at the difference in means.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python_hypothesis_testing1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Difference in means&lt;/h2&gt;
+&lt;p&gt;Using the log salary feature from post 1.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg1 = df_sex_thesis.groupby(&amp;#39;sex&amp;#39;).mean().log_salary
+df_agg1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## sex
+## man      9.026607
+## woman    8.607023
+## Name: log_salary, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Remember that in order to transform back our log variables you can do e^variable like this e ^ 9.03 is 8321.57 but the log of the mean is not the same as the mean of the log.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg2 = df_sex_thesis.groupby(&amp;#39;sex&amp;#39;).mean().salary
+df_agg2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## sex
+## man      14302.491879
+## woman    10642.502734
+## Name: salary, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;9.03 is not the same as 9.57&lt;/p&gt;
+&lt;p&gt;Therefore which one should be done first log or mean?&lt;/p&gt;
+&lt;p&gt;The most common order is log then mean, because it is the order that reduces variance the most, you can read more about this &lt;a href=&#34;http://rpubs.com/hrlai/meanlog_logmean&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Group by explanation&lt;/summary&gt;
+&lt;p&gt;
+&lt;p&gt;Group by in pandas is a method that accepts a list of elements in this case just ‘sex’ and applies consequent operation in each group, in this case the mean method from a pandas DataFrame, .salary returns just the mean for the salary variable.&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.groupby([&amp;#39;sex&amp;#39;,&amp;#39;region&amp;#39;]).mean().log_salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## sex    region   
+## man    midwest      9.155421
+##        north        8.678263
+##        south        9.123554
+##        southeast    9.113084
+## woman  midwest      8.847172
+##        north        8.291580
+##        northeast    9.462870
+##        south        8.345867
+##        southeast    8.766985
+## Name: log_salary, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Adding standard deviations&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_sex_thesis.groupby([&amp;#39;sex&amp;#39;]).std().log_salary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## sex
+## man      1.397496
+## woman    2.009225
+## Name: log_salary, dtype: float64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These are really big Standard deviations! Remembering from stats that +2 SD’s gives about a 95% confidence interval we are not even close.&lt;/p&gt;
+&lt;p&gt;Combining mean and std using pandas agg method.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg =df_sex_thesis.groupby([&amp;#39;sex&amp;#39;]).agg([&amp;#39;mean&amp;#39;,&amp;#39;std&amp;#39;]).log_salary&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Calculating boundaries&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg[&amp;#39;lower_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] - df_agg[&amp;#39;std&amp;#39;] * 2
+df_agg[&amp;#39;upper_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] + df_agg[&amp;#39;std&amp;#39;] * 2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_agg&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            mean       std  lower_bound  upper_bound
+## sex                                                
+## man    9.026607  1.397496     6.231615    11.821599
+## woman  8.607023  2.009225     4.588573    12.625473&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cool, but to verbose to be repeated multiple times, it is better to convert this series of operations into a function.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;def groupby_bound(df,groupby_variables,value_variables):
+  df_agg =  df.groupby(groupby_variables).agg([&amp;#39;mean&amp;#39;,&amp;#39;std&amp;#39;])[value_variables]
+  df_agg[&amp;#39;lower_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] - df_agg[&amp;#39;std&amp;#39;] * 2
+  df_agg[&amp;#39;upper_bound&amp;#39;] = df_agg[&amp;#39;mean&amp;#39;] + df_agg[&amp;#39;std&amp;#39;] * 2
+  return df_agg&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=&amp;#39;sex&amp;#39;,value_variables=&amp;#39;log_salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            mean       std  lower_bound  upper_bound
+## sex                                                
+## man    9.026607  1.397496     6.231615    11.821599
+## woman  8.607023  2.009225     4.588573    12.625473&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s try to find the difference in salary on some strata of the population.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=[&amp;#39;sex&amp;#39;,&amp;#39;region&amp;#39;],value_variables=&amp;#39;log_salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                      mean       std  lower_bound  upper_bound
+## sex   region                                                 
+## man   midwest    9.155421  1.192631     6.770160    11.540683
+##       north      8.678263  1.733378     5.211507    12.145019
+##       south      9.123554  1.426591     6.270371    11.976736
+##       southeast  9.113084  1.226845     6.659395    11.566773
+## woman midwest    8.847172  1.575228     5.696717    11.997627
+##       north      8.291580  2.470543     3.350495    13.232665
+##       northeast  9.462870  1.172049     7.118773    11.806968
+##       south      8.345867  2.461307     3.423253    13.268482
+##       southeast  8.766985  1.639338     5.488309    12.045660&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=[&amp;#39;sex&amp;#39;,&amp;#39;civil_status&amp;#39;],value_variables=&amp;#39;log_salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                         mean       std  lower_bound  upper_bound
+## sex   civil_status                                              
+## man   married       9.173335  1.247871     6.677593    11.669077
+##       not_married   8.810261  1.567870     5.674521    11.946001
+## woman married       8.487709  2.263061     3.961586    13.013831
+##       not_married   8.771966  1.578347     5.615272    11.928659&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=[&amp;#39;sex&amp;#39;,&amp;#39;civil_status&amp;#39;],value_variables=&amp;#39;log_salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                         mean       std  lower_bound  upper_bound
+## sex   civil_status                                              
+## man   married       9.173335  1.247871     6.677593    11.669077
+##       not_married   8.810261  1.567870     5.674521    11.946001
+## woman married       8.487709  2.263061     3.961586    13.013831
+##       not_married   8.771966  1.578347     5.615272    11.928659&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=[&amp;#39;sex&amp;#39;,&amp;#39;color_race&amp;#39;],value_variables=&amp;#39;log_salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                       mean       std  lower_bound  upper_bound
+## sex   color_race                                              
+## man   black       8.885541  1.215289     6.454962    11.316119
+##       brown       8.878127  1.348974     6.180179    11.576076
+##       indigenous  7.480596  3.328801     0.822994    14.138197
+##       white       9.215328  1.369700     6.475927    11.954728
+##       yellow      9.503222  1.398690     6.705843    12.300601
+## woman black       8.617966  1.683712     5.250543    11.985389
+##       brown       8.518060  2.025707     4.466647    12.569473
+##       indigenous  7.623917  3.342682     0.938553    14.309282
+##       white       8.696991  2.001864     4.693263    12.700718
+##       yellow      8.904886  1.877233     5.150420    12.659351&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;groupby_bound(df=df_sex_thesis,groupby_variables=[&amp;#39;sex&amp;#39;,&amp;#39;years_study&amp;#39;],value_variables=&amp;#39;log_salary&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                         mean       std  lower_bound  upper_bound
+## sex   years_study                                               
+## man   5.0           8.702990  1.495661     5.711668    11.694312
+##       6.0           8.836372  1.285517     6.265338    11.407407
+##       7.0           8.883292  1.302857     6.277578    11.489006
+##       8.0           8.939945  1.342110     6.255724    11.624166
+##       9.0           8.873640  1.292672     6.288296    11.458984
+##       10.0          9.064804  1.122187     6.820430    11.309177
+##       11.0          9.182335  1.163925     6.854486    11.510184
+##       12.0          9.274507  1.187977     6.898553    11.650462
+##       13.0          9.308213  1.651300     6.005613    12.610812
+##       14.0          9.563542  1.295638     6.972267    12.154817
+##       15.0         10.083954  1.334792     7.414369    12.753538
+## woman 5.0           8.150536  2.574328     3.001881    13.299191
+##       6.0           8.577851  1.854171     4.869508    12.286194
+##       7.0           8.572043  1.743439     5.085165    12.058921
+##       8.0           8.480459  1.952266     4.575927    12.384991
+##       9.0           8.609875  1.583736     5.442403    11.777346
+##       10.0          8.735525  1.403048     5.929428    11.541622
+##       11.0          8.755282  1.518318     5.718647    11.791918
+##       12.0          8.906622  1.505541     5.895540    11.917705
+##       13.0          8.963868  1.555327     5.853213    12.074523
+##       14.0          9.146458  1.263748     6.618962    11.673954
+##       15.0          9.572653  1.228241     7.116171    12.029134&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also no.&lt;/p&gt;
+&lt;p&gt;Does that mean that there were no Gender pay differences in Brazil in 1970?&lt;/p&gt;
+&lt;p&gt;No, it just means that there were no signs of this difference when looking at the whole population combined with one extra factor, but what if we combine all factors and isolate each influence in the salary? This would be a way to analyse the Ceteris Paribus(all else equal) effect of each feature in the salary, here is where Linear Regression comes in.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;linear-regression&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Linear Regression&lt;/h2&gt;
+&lt;p&gt;But what is Linear Regression? you might ask, wasn’t it just one method for prediction? Not really, Linear Regression coefficients are really useful for hypothesis testing, meaning that tossing everything at it and then interpreting the results that come out without having to individually compare each feature pair, while also capturing the effect that all features have simultaneously.&lt;/p&gt;
+&lt;p&gt;Is Linear Regression always perfect? No. In fact most of the time the results are a little biased or a underestimate the variance or are just flat out wrong.&lt;/p&gt;
+&lt;p&gt;To understand the kinds of errors we might face when doing a linear regression we can use the Gauss Markov Theorem.&lt;/p&gt;
+&lt;p&gt;Terminology:&lt;/p&gt;
+&lt;p&gt;Predictor/Independent Variable: Theses are the features e.g sex,years_study, region we can have p predictors where p = n -1 and n is the numbers of rows our dataset possesses in this case 65795 rows are present.&lt;/p&gt;
+&lt;p&gt;Predicted/Dependent variable: This is the single “column” also called ‘target’ that we are modeling in this case we can use either log_salary or salary.&lt;/p&gt;
+&lt;p&gt;for a more in depth read this great &lt;a href=&#34;https://www.statisticshowto.datasciencecentral.com/gauss-markov-theorem-assumptions/&#34;&gt;blog post&lt;/a&gt; and for a more &lt;a href=&#34;https://towardsdatascience.com/verifying-the-assumptions-of-linear-regression-in-python-and-r-f4cd2907d4c0&#34;&gt;in depth usage in R and Python&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;masks&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Linearity&lt;/h3&gt;
+&lt;p&gt;To get good results using Linear Regression the relationship of the Predictors and the Predicted variable has to be a linear relationship, to check for Linearity it is possible to use a simple line plot, and look for patterns like a parabola that would indicate that the Predictor has a quadratic relationship with the Dependent variable, there are ways of fixing non-linear relationships like we did with log_salary or by taking the power of the Predictor.&lt;/p&gt;
+&lt;p&gt;Linearity can easily be tested for numerical Predictors, categorical predictors are harder to test, so in our case we only checked the age feature.&lt;/p&gt;
+&lt;p&gt;Now it is time to flex these matplotlib graphs…&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;x = df_sex_thesis[&amp;#39;age&amp;#39;]
+y = df_sex_thesis[&amp;#39;log_salary&amp;#39;]
+plt.scatter(x, y)
+
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
+
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-19-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;It seems age is not a great fit let’s try to also log age as well.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;x = np.log(df_sex_thesis[&amp;#39;age&amp;#39;])
+y = df_sex_thesis[&amp;#39;log_salary&amp;#39;]
+plt.scatter(x, y)
+
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
+
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-20-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Better but still close to no impact, maybe if we filter our sample to just the earning population, we can improve on it, we can call theses filters ‘masks’ in pandas.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_filter = df_sex_thesis[df_sex_thesis[&amp;#39;log_salary&amp;#39;]&amp;gt; 2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_filter&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        index  age    sex  ... civil_status     region  log_salary
+## 0          0   53    man  ...      married      north   11.060384
+## 1          1   49  woman  ...      married      north    9.427336
+## 2          2   22  woman  ...  not_married  northeast    8.378713
+## 3          3   55    man  ...      married      north   11.478344
+## 4          4   56  woman  ...      married      north   11.969090
+## ...      ...  ...    ...  ...          ...        ...         ...
+## 65790  66465   34  woman  ...      married    midwest    9.427336
+## 65791  66466   40    man  ...      married    midwest    7.793999
+## 65792  66467   36  woman  ...      married    midwest    7.793999
+## 65793  66468   27  woman  ...      married    midwest    8.617075
+## 65794  66469   37    man  ...      married    midwest    6.134157
+## 
+## [63973 rows x 9 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;x = df_filter[&amp;#39;age&amp;#39;]
+y = df_filter[&amp;#39;log_salary&amp;#39;]
+plt.scatter(x, y)
+
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
+
+plt.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-23-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;There is some slight improvement, it is a good question whether to filter otherwise sane values, the point is that the entire analysis would change, changing to salary ~ sex in the earning population in 1970 in Brazil instead of the salary ~ sex for the whole population in 1970 in Brazil.&lt;/p&gt;
+&lt;p&gt;I think in both cases analyzing the Gender Pay Gap would be interesting it is even possible to split the hypothesis in two, analysing if Men and Women earn the same, and if Men and Women are have the same employment rate.&lt;/p&gt;
+&lt;p&gt;So for here on out We are analyzing just the Gender Pay Difference of employed people.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;random&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Random&lt;/h3&gt;
+&lt;p&gt;This is a vital hypotheses it means that the observations(rows) were chosen at random for the entire Brazilian population, in this case We choose to trust that IBGE did a good job, if IBGE failed to correctly sample the population or if we mess to much with our filters we risk invalidating the whole process, yes that is right, if you don’t respect this hypothesis everything you have analysed is worthless.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;non-collinearity&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Non-Collinearity&lt;/h3&gt;
+&lt;p&gt;The effect of each Predictors is reduced when you introduce Colinear predictors, you are spliting the effect between the Predictors whenever a new predictor is added, meaning that you are in the worst case only calculating half of the coefficient, Collinearity always happens, Women live more so age is related to Sex, therefore age ‘steals’ part of the calculated effect from Sex, the more variables you introduce to your Linear Regression model the more that Collinearity plagues your estimations, everything is correlated.&lt;/p&gt;
+&lt;p&gt;So be careful when doing Linear Regression for estimating Ceteris Paribus effects so that you don’t introduce too many features or features that are too correlated with you hypothesis, remember that our hypothesis is Salary ~ Sex.&lt;/p&gt;
+&lt;p&gt;A good way too know if you are introducing too much Collinearity is looking at the heatmap.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;corr = pd.get_dummies(df_sex_thesis[[&amp;#39;sex&amp;#39;,&amp;#39;age&amp;#39;]]).corr()
+sns.heatmap(corr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-24-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;This is quite cloudy let’s get rid of the Sex interaction with itself.&lt;/p&gt;
+&lt;p&gt;We are using a really cool pandas operation inspired this &lt;a href=&#34;https://stackoverflow.com/a/36567174&#34;&gt;stack overflow answer&lt;/a&gt;, and combining it with the negate operator ‘~’ effectively selecting just the columns that don’t start with sex.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;new_corr = corr.loc[:,~corr.columns.str.startswith(&amp;#39;sex&amp;#39;)]
+sns.heatmap(new_corr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-25-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Very little correlation, we are fine.&lt;/p&gt;
+&lt;p&gt;Once again we don’t usually calculate the correlation between Categorical Variables.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exogeneity&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Exogeneity&lt;/h3&gt;
+&lt;p&gt;If violated this hypothesis blasts your study into oblivion, Exogeneity is a one way road, your Independent Variables influence your Dependent Variable, and that is it.&lt;/p&gt;
+&lt;p&gt;Discussion on whether we are violating this assumption creates really cool intellectual pursuits, Nobel’s were won discovering if there was some violation to this assumption see &lt;a href=&#34;https://en.wikipedia.org/wiki/Trygve_Haavelmo&#34;&gt;Trygve_Haavelmo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In our case let’s hypothesize for all variables&lt;/p&gt;
+&lt;p&gt;Sex ~ Salary - Maybe people that get richer/poorer change Sex, probably not.&lt;br /&gt;
+Age ~ Salary - You can’t buy year with money .
+Years Study ~ Salary - Possible but this probably only happen to the latter years of education, still worth considering.
+Color/Race ~ Salary -
+No. Civil Status ~ Salary - Yes I can see that, taking this feature out.&lt;br /&gt;
+Region ~ Salary - Do richer people migrate to richer regions? I think so, taking this feature out.&lt;/p&gt;
+&lt;p&gt;It is also nice to notice that this may be reason why we call the Predicted Variable the Independent Variable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;homoscedasticity-homogeneity-of-variance-assumption-of-equal-variance&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Homoscedasticity / Homogeneity of Variance/ Assumption of Equal Variance&lt;/h3&gt;
+&lt;p&gt;Assumption of Equal Variance of predicted values means that for any value for the whole distribution of the Dependent Variable the estimated values remain equally distributted, meaning that we are as sure on our predictions for 1000 moneys as for 100000 moneys this assumption is really hard to adhere.&lt;/p&gt;
+&lt;p&gt;If broken the variance of the coefficients may be under or over estimated, meaning that we may fail to consider relevant features or consider wrongly irrelevant features, there are many formal statistical tests for this assumption let’s use scipy’s Bartlett’s test for homogeneity of variances where Ho is Homoscedasticity confirmation meaning we hope for p-values &amp;lt; 0.05.&lt;/p&gt;
+&lt;p&gt;We used a significance level of 5% for this assignment.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;ss.bartlett(df_filter[&amp;#39;log_salary&amp;#39;],df_filter[&amp;#39;age&amp;#39;])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## BartlettResult(statistic=232468.57113475894, pvalue=0.0)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Don’t reject H0 -&amp;gt; ok&lt;/p&gt;
+&lt;p&gt;Another way to check this assumption is using tests called Breusch-Pagan and Goldfeld-Quandt post fitting the linear model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python_hypothesis_testing2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Fitting the linear regression&lt;/h2&gt;
+&lt;p&gt;Fitting the linear regression using yet another library called statsmodels.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;mod = smf.ols(formula=&amp;#39;log_salary ~ sex + age + years_study + color_race&amp;#39;, data=df_filter)
+model_fit = mod.fit()
+print(model_fit.summary())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:             log_salary   R-squared:                       0.133
+## Model:                            OLS   Adj. R-squared:                  0.133
+## Method:                 Least Squares   F-statistic:                     613.6
+## Date:                sáb, 25 jan 2020   Prob (F-statistic):               0.00
+## Time:                        22:26:08   Log-Likelihood:                -81546.
+## No. Observations:               63973   AIC:                         1.631e+05
+## Df Residuals:                   63956   BIC:                         1.633e+05
+## Df Model:                          16                                         
+## Covariance Type:            nonrobust                                         
+## ============================================================================================
+##                                coef    std err          t      P&amp;gt;|t|      [0.025      0.975]
+## --------------------------------------------------------------------------------------------
+## Intercept                    8.3200      0.019    440.777      0.000       8.283       8.357
+## sex[T.woman]                -0.2125      0.007    -30.970      0.000      -0.226      -0.199
+## years_study[T.6.0]           0.1520      0.020      7.756      0.000       0.114       0.190
+## years_study[T.7.0]           0.1728      0.018      9.441      0.000       0.137       0.209
+## years_study[T.8.0]           0.1721      0.014     12.391      0.000       0.145       0.199
+## years_study[T.9.0]           0.1395      0.019      7.449      0.000       0.103       0.176
+## years_study[T.10.0]          0.2414      0.018     13.444      0.000       0.206       0.277
+## years_study[T.11.0]          0.3314      0.009     35.414      0.000       0.313       0.350
+## years_study[T.12.0]          0.3826      0.018     21.100      0.000       0.347       0.418
+## years_study[T.13.0]          0.5989      0.025     24.032      0.000       0.550       0.648
+## years_study[T.14.0]          0.6619      0.025     25.988      0.000       0.612       0.712
+## years_study[T.15.0]          1.0396      0.013     78.438      0.000       1.014       1.066
+## color_race[T.brown]          0.0487      0.013      3.696      0.000       0.023       0.075
+## color_race[T.indigenous]     0.0587      0.040      1.451      0.147      -0.021       0.138
+## color_race[T.white]          0.1805      0.013     13.736      0.000       0.155       0.206
+## color_race[T.yellow]         0.2401      0.050      4.776      0.000       0.142       0.339
+## age                          0.0129      0.000     40.197      0.000       0.012       0.014
+## ==============================================================================
+## Omnibus:                    14771.140   Durbin-Watson:                   1.806
+## Prob(Omnibus):                  0.000   Jarque-Bera (JB):            45603.025
+## Skew:                          -1.188   Prob(JB):                         0.00
+## Kurtosis:                       6.386   Cond. No.                         584.
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looking at the results, it is possible that there isGender Pay Gap, calculating the difference in estimated salaries done by&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;plus intercept + e ^ beta_variable = 5077,12&lt;/li&gt;
+&lt;li&gt;minus intercept 4105,16&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;equals 971,96.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is a 971,96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7,59% of the mean salary at the time.&lt;/p&gt;
+&lt;div id=&#34;linear-regression-plots&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Linear Regression plots&lt;/h3&gt;
+&lt;p&gt;Using the code from this excellent &lt;a href=&#34;https://medium.com/@emredjan/emulating-r-regression-plots-in-python-43741952c034&#34;&gt;post&lt;/a&gt; and combining it with the understanding from this &lt;a href=&#34;https://data.library.virginia.edu/diagnostic-plots/&#34;&gt;post&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# fitted values (need a constant term for intercept)
+model_fitted_y = model_fit.fittedvalues
+
+# model residuals
+model_residuals = model_fit.resid
+
+# normalized residuals
+model_norm_residuals = model_fit.get_influence().resid_studentized_internal
+
+# absolute squared normalized residuals
+model_norm_residuals_abs_sqrt = np.sqrt(np.abs(model_norm_residuals))
+
+# absolute residuals
+model_abs_resid = np.abs(model_residuals)
+
+# leverage, from statsmodels internals
+model_leverage = model_fit.get_influence().hat_matrix_diag
+
+# cook&amp;#39;s distance, from statsmodels internals
+model_cooks = model_fit.get_influence().cooks_distance[0]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Initializing some variables.
+### Residual plot&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_1 = plt.figure(1)
+
+plot_lm_1.axes[0] = sns.residplot(model_fitted_y, &amp;#39;log_salary&amp;#39;, data=df_filter,
+                                  lowess=True,
+                                  scatter_kws={&amp;#39;alpha&amp;#39;: 0.5},
+                                  line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})
+
+plot_lm_1.axes[0].set_title(&amp;#39;Residuals vs Fitted&amp;#39;)
+plot_lm_1.axes[0].set_xlabel(&amp;#39;Fitted values&amp;#39;)
+plot_lm_1.axes[0].set_ylabel(&amp;#39;Residuals&amp;#39;)
+
+
+# annotations
+abs_resid = model_abs_resid.sort_values(ascending=False)
+abs_resid_top_3 = abs_resid[:3]
+
+for i in abs_resid_top_3.index:
+    plot_lm_1.axes[0].annotate(i, 
+                               xy=(model_fitted_y[i], 
+                                   model_residuals[i]));&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-29-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Here we are looking for the red line to get as close to the doted black line meaning that our Predictors would have a perfectly linear relationship with our Dependent variable following the assumption of linearity.&lt;/p&gt;
+&lt;p&gt;I think we are close enough.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;qq-plot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;QQ plot&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;QQ = ProbPlot(model_norm_residuals)
+plot_lm_2 = QQ.qqplot(line=&amp;#39;45&amp;#39;, alpha=0.5, color=&amp;#39;#4C72B0&amp;#39;, lw=1)
+
+plot_lm_2.axes[0].set_title(&amp;#39;Normal Q-Q&amp;#39;)
+plot_lm_2.axes[0].set_xlabel(&amp;#39;Theoretical Quantiles&amp;#39;)
+plot_lm_2.axes[0].set_ylabel(&amp;#39;Standardized Residuals&amp;#39;);
+
+# annotations
+abs_norm_resid = np.flip(np.argsort(np.abs(model_norm_residuals)), 0)
+abs_norm_resid_top_3 = abs_norm_resid[:3]
+
+for r, i in enumerate(abs_norm_resid_top_3):
+    plot_lm_2.axes[0].annotate(i, 
+                               xy=(np.flip(QQ.theoretical_quantiles, 0)[r],
+                                   model_norm_residuals[i]));&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-30-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Here we are looking for the circles to get as close to the red line as possible meaning that our variables follow a normal distribution and therefore our p-values are not biased.&lt;/p&gt;
+&lt;p&gt;I think we have two problems the extremes may be a bit too distant and there are three concerning outliers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;scale-location-plot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Scale-Location Plot&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_3 = plt.figure(3)
+
+plt.scatter(model_fitted_y, model_norm_residuals_abs_sqrt, alpha=0.5)
+sns.regplot(model_fitted_y, model_norm_residuals_abs_sqrt, 
+            scatter=False, 
+            ci=False, 
+            lowess=True,
+            line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})
+
+plot_lm_3.axes[0].set_title(&amp;#39;Scale-Location&amp;#39;)
+plot_lm_3.axes[0].set_xlabel(&amp;#39;Fitted values&amp;#39;)
+plot_lm_3.axes[0].set_ylabel(&amp;#39;$\sqrt{|Standardized Residuals|}$&amp;#39;);
+
+# annotations
+abs_sq_norm_resid = np.flip(np.argsort(model_norm_residuals_abs_sqrt), 0)
+abs_sq_norm_resid_top_3 = abs_sq_norm_resid[:3]
+
+for i in abs_norm_resid_top_3:
+    plot_lm_3.axes[0].annotate(i, 
+                               xy=(model_fitted_y[i], 
+                                   model_norm_residuals_abs_sqrt[i]));&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-31-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;This is the graph where we check the homoscedasticity assumption, we want the red line to be as straight as possible meaning that our Predictor variance is constant among the Dependent Variable values.&lt;/p&gt;
+&lt;p&gt;I think it is fine.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;leverage-plot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Leverage plot&lt;/h3&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_4 = plt.figure(4)
+
+plt.scatter(model_leverage, model_norm_residuals, alpha=0.5)
+sns.regplot(model_leverage, model_norm_residuals, 
+            scatter=False, 
+            ci=False, 
+            lowess=True,
+            line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})
+
+plot_lm_4.axes[0].set_xlim(0, 0.005)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (0, 0.005)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_4.axes[0].set_ylim(-3, 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (-3, 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_4.axes[0].set_title(&amp;#39;Residuals vs Leverage&amp;#39;)
+plot_lm_4.axes[0].set_xlabel(&amp;#39;Leverage&amp;#39;)
+plot_lm_4.axes[0].set_ylabel(&amp;#39;Standardized Residuals&amp;#39;)
+
+# annotations
+leverage_top_3 = np.flip(np.argsort(model_cooks), 0)[:3]
+
+for i in leverage_top_3:
+    plot_lm_4.axes[0].annotate(i, 
+                               xy=(model_leverage[i], 
+                                   model_norm_residuals[i]))
+    
+# shenanigans for cook&amp;#39;s distance contours
+def graph(formula, x_range, label=None):
+    x = x_range
+    y = formula(x)
+    plt.plot(x, y, label=label, lw=1, ls=&amp;#39;--&amp;#39;, color=&amp;#39;red&amp;#39;)
+
+p = len(model_fit.params) # number of model parameters
+
+graph(lambda x: np.sqrt((0.5 * p * (1 - x)) / x), 
+      np.linspace(0.000, 0.005, 50), 
+      &amp;#39;Cook\&amp;#39;s distance&amp;#39;) # 0.5 line&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## /opt/python/3.7/bin/python3:1: RuntimeWarning: divide by zero encountered in true_divide&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;graph(lambda x: np.sqrt((1 * p * (1 - x)) / x), 
+      np.linspace(0.000, 0.005, 50)) # 1 line
+
+plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Finally in this plot we are looking for outliers, it failed on the Python version, but it should show if the outliers plague the betas enough to the point where it may be worth studying removing them.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We want the Red line to be as close as possible to the dotted line.&lt;/p&gt;
+&lt;p&gt;Looking at the R plot We can say it is fine.&lt;/p&gt;
+&lt;p&gt;At the end I am comfortable not denying our Hypothesis that Salary ~ Sex in 1970 Brazil working population.&lt;/p&gt;
+&lt;p&gt;And that is it, Statistical analysis with almost no R! .&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;final-remarks&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Final Remarks&lt;/h1&gt;
+&lt;p&gt;I guess my opinion is important in this post, this was really hard, Python may be an excellent Prediction based language but it lacks so much on my normal Economist features that I have easily available even when using Stata/E-Views/SAS, like look at how much code for a simple linear regression plot!&lt;/p&gt;
+&lt;p&gt;I don’t have much hope that this will improve with time, normal statistics just doesn’t get as much hype as Deep Learning and stuff I feel sorry for whoever has to learn stats alongside Python, you guys deserve a Medal! Also I applaud the guys that Developed statsmodels.formula.api it really helps!&lt;/p&gt;
+&lt;p&gt;Whoever develops with matplotlib deserves two medals, you guys make me feel dumber than when I read my first Time Series paper and that was a really low point in my self esteem, the graphs turned out great in my honest opinion.&lt;/p&gt;
+&lt;p&gt;If you liked it please share it.&lt;/p&gt;
+&lt;div id=&#34;next-post&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Next post&lt;/h2&gt;
+&lt;p&gt;In the next part we repeat everything from part 1 with a few twists in R using the tidyverse!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
