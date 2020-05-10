@@ -1,0 +1,22 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shinny on TwoSidesData</title>
+    <link>/tags/shinny/</link>
+    <description>Recent content in shinny on TwoSidesData</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 May 2020 00:00:00 -0300</lastBuildDate>
+    <atom:link href="/tags/shinny/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Shinny OLIST</title>
+      <link>/project/integrated_activity/</link>
+      <pubDate>Sun, 10 May 2020 00:00:00 -0300</pubDate>
+      
+      <guid>/project/integrated_activity/</guid>
+      <description>&lt;p&gt;#&lt;code&gt;external_link&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

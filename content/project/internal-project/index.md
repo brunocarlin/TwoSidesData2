@@ -20,5 +20,5 @@ url_slides: ""
 url_video: ""
 ---
 
-Creating this website and updating it weekly is my personal task for 2019.  
-Content includes blogpost, eduction, accomplishments, my TCC and more.
+Creating this website and updating it weekly is my hobby.  
+Content includes blogposts, eduction posts, accomplishments and more.

@@ -14,8 +14,32 @@
   
     <url>
     
-      <loc>/</loc>
-      <lastmod>2030-06-01T13:00:00-03:00</lastmod>
+      <loc>/tags/portuguese/</loc>
+      <lastmod>2020-05-10T00:00:00-03:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/project/</loc>
+      <lastmod>2020-05-10T00:00:00-03:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/tags/shinny/</loc>
+      <lastmod>2020-05-10T00:00:00-03:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/project/integrated_activity/</loc>
+      <lastmod>2020-05-10T00:00:00-03:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>/tags/</loc>
+      <lastmod>2020-05-10T00:00:00-03:00</lastmod>
     </url>
   
     <url>
@@ -81,12 +105,6 @@
     <url>
     
       <loc>/tags/statsmodels/</loc>
-      <lastmod>2020-01-25T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/</loc>
       <lastmod>2020-01-25T00:00:00+00:00</lastmod>
     </url>
   
@@ -176,6 +194,12 @@
   
     <url>
     
+      <loc>/</loc>
+      <lastmod>2018-06-28T00:00:00-03:00</lastmod>
+    </url>
+  
+    <url>
+    
       <loc>/tags/forecast/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
@@ -195,12 +219,6 @@
     <url>
     
       <loc>/tags/personal-website/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/project/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
   
@@ -256,12 +274,6 @@
     
       <loc>/authors/ms-nixon/</loc>
       <lastmod>2013-07-01T00:00:00-03:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/author/admin/6-bruno-carlin/</loc>
-      <priority>0</priority>
     </url>
   
     <url>
