@@ -4,11 +4,11 @@ external_link:  https://carlin.shinyapps.io/projeto_integrador_3/
 image:
   caption: Photo by Toa Heftiba on Unsplash
   focal_point: Smart
-summary: A r shinny app to analyse data from OLIST, done in a group for Insper Advanced Degree
+summary: A r shiny app to analyse data from OLIST, done in a group for Insper Advanced Degree
 tags:
-- shinny
+- shiny
 - portuguese
-title: Shinny OLIST
+title: Shiny OLIST
 ---
 
 #`external_link`.
