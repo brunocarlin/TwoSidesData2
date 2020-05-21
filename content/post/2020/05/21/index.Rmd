@@ -1,0 +1,628 @@
+---
+title: 'Presentation Data Science and Decision Making 1'
+authors: 
+  - admin
+date: '2020-05-21'
+slug: exploratory-data-analysis-basics-part2
+categories:
+- R and Python
+tags:
+- R Markdown
+- reticulate
+- pandas
+- dplyr
+- modeling
+
+subtitle: 'Using multiple packages from R and Python'
+summary: 'Part of our gradution grading exercises'
+output:
+  blogdown::html_page:
+    toc: true # table of content true
+---
+
+
+# Goal
+
+Read data from Brazil's cell phone companies and predict customer satisfaction
+
+```{r}
+library(reticulate)
+use_miniconda("r-reticulate",required = TRUE)
+```
+
+```{r}
+file_path <- here::here()
+file_path_linux <- paste(file_path,"content","post","data",sep = "/")
+```
+
+
+
+# Python
+
+## Import libraries
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+## Read feather data frame
+
+```{python}
+df1 = pd.read_feather(r.file_path_linux + "/BD_PRE.feather")
+```
+
+## Describe the dataframe
+
+```{python}
+df1.describe()
+```
+
+## Drop features
+
+My group read the data dictionary and glanced at the data to decido to drop of multipe features with for low variance or too high cardinality
+
+```{python}
+df1=df1.drop(["IDTNS","TIPO","DATA","H0","Q1","Q2","Q3","Q4","Q6","Q7"],axis=1)
+
+df1.head()
+```
+
+## Rename target
+
+```{python}
+df1 = df1.rename(columns = {'J1':'Target'})
+```
+
+
+## NA enconding
+
+The dictionary defined 99 as missing in multiple features 
+
+```{python}
+df2 =  df1.copy()
+```
+
+```{python}
+df2['B1_1'].replace([99], np.NaN,inplace = True)
+df2['B1_2'].replace([99], np.NaN,inplace = True)
+df2['C1_1'].replace([99], np.NaN,inplace = True)
+df2['C1_2'].replace([99], np.NaN,inplace = True)
+df2['D2_1'].replace([99], np.NaN,inplace = True)
+df2['D2_2'].replace([99], np.NaN,inplace = True)
+df2['D2_3'].replace([99], np.NaN,inplace = True)
+df2['F5'].replace([99], np.NaN,inplace = True)
+df2['F4'].replace([99], np.NaN,inplace = True)
+df2['F2'].replace([99], np.NaN,inplace = True)
+df2['A5'].replace([99], np.NaN,inplace = True)
+df2['A4'].replace([99], np.NaN,inplace = True)
+df2['A3'].replace([99], np.NaN,inplace = True)
+df2['A2_1'].replace([99], np.NaN,inplace = True)
+df2['A2_2'].replace([99], np.NaN,inplace = True)
+df2['A2_3'].replace([99], np.NaN,inplace = True)
+df2['E1_1'].replace([99], np.NaN,inplace = True)
+df2['E1_2'].replace([99], np.NaN,inplace = True)
+df2['E1_3'].replace([99], np.NaN,inplace = True)
+df2['F4'].replace([99], np.NaN,inplace = True)
+df2['F5'].replace([99], np.NaN,inplace = True)
+df2['F6'].replace([99], np.NaN,inplace = True)
+```
+
+Sometimes variations of missing like didn't want to answer were also enconded as numbers so we encoded those ase missing as well
+
+```{python}
+df2['Q8'].replace([999999], np.NaN,inplace = True)
+df2['H1'].replace([99,99999], np.NaN,inplace = True)
+df2['H2'].replace([99997,99998,99999,100000,999998,999999], np.NaN,inplace = True)
+```
+
+## Feature Engeniring
+
+Droped H2a for now in order to code it as categories
+
+```{python}
+df2.drop(["H2a"],inplace = True,axis = 1)
+```
+
+```{python}
+df3 = df2.copy()
+```
+
+```{python}
+df3.loc[(df3["H2"] >=0) & (df3["H2"] <1000), "RIQUEZA"]=1
+df3.loc[(df3["H2"] >=1000) & (df3["H2"] <3000), "RIQUEZA"]=2
+df3.loc[(df3["H2"] >=3000) & (df3["H2"] <6000), "RIQUEZA"]=3
+df3.loc[(df3["H2"] >=6000) & (df3["H2"] <10000), "RIQUEZA"]=4
+df3.loc[(df3["H2"] >=10000) & (df3["H2"] <15000), "RIQUEZA"]=5
+df3.loc[(df3["H2"] >=15000) & (df3["H2"] <20000), "RIQUEZA"]=6
+df3.loc[(df3["H2"] >=20000), "RIQUEZA"]=7
+```
+
+```{python}
+df3.RIQUEZA.value_counts(dropna =False)
+```
+
+## Target Variable
+
+We decided with an nps system that scores above 8 were good scores, and encoded these cases as 1 and the rest as 0.
+
+```{python}
+df3['Target'].replace([99], np.NaN,inplace = True)
+
+df3.loc[(df3["Target"] <8) ,"Target2"]= 0
+df3.loc[(df3["Target"] >=8 ) ,"Target2"]= 1
+
+
+df3.dropna(subset=['Target'],inplace = True)
+
+```
+
+
+Variaveis Categoricas Moda
+Estado  
+Operadora  
+RIQUEZA  
+Q9  
+I1 
+D1     
+Q5    
+F1
+F3  
+F5  
+G1
+
+Variaveis Categoricas Missing Explicito
+A1_x
+
+## NA imputing 
+
+We decided that these numeric features would be imputted with 0s a more robust approach could be taken but the main idea was for to create a simple model
+
+```{python}
+df3["A1_1"].fillna(0,inplace = True)
+df3["A1_2"].fillna(0,inplace = True)
+df3["A1_3"].fillna(0,inplace = True)
+df3["A1_4"].fillna(0,inplace = True)
+df3["F1"].fillna(0,inplace = True)
+df3["F3"].fillna(0,inplace = True)
+df3["F5"].fillna(0,inplace = True)
+```
+
+## Feature encoding
+
+We originally hand encoded all the features in python, this would help to automate the predictions latter down the pipe
+unfortunally when replicating the code it seems I have a bug on reticulate so I will do that in r instead
+
+```{python}
+# df3 = df3.astype({'Q9': 'category'})
+# df3 = df3.astype({'I1': 'category'})
+# df3 = df3.astype({'D1': 'category'})
+# df3 = df3.astype({'Q5': 'category'})
+# df3 = df3.astype({'F1': 'category'})
+# df3 = df3.astype({'F3': 'category'})
+# df3 = df3.astype({'F5': 'category'})
+# df3 = df3.astype({'G1': 'category'})
+# df3 = df3.astype({'A1_1': 'category'})
+# df3 = df3.astype({'A1_2': 'category'})
+# df3 = df3.astype({'A1_3': 'category'})
+# df3 = df3.astype({'A1_4': 'category'})
+# df3 = df3.astype({'RIQUEZA': 'category'})
+# df3 = df3.astype({'Target2': 'category'})
+```
+
+
+```{python}
+df3.dtypes
+```
+
+## Prepare df to export to r
+
+
+```{python}
+df4=df3.loc[:,['Q5','Q8','Q8a','Q9','B1_1','B1_2','C1_1','C1_2','D1','D2_1','D2_2','D2_3','E1_1','E1_2','E1_3','A1_1','A1_2','A1_3','A1_4','F1','F3','F5','G1','H1','I1','PESO','RIQUEZA',"Target2"]]
+```
+
+
+
+#  R
+
+## Import df from python
+
+```{r}
+df_r <- py$df4
+```
+
+## Import libraries
+
+
+```{r,results='hide'}
+library(DataExplorer)
+library(tidyverse)
+library(tidymodels)
+library(furrr)
+library(h2o)
+library(DALEX)
+library(DALEXtra)
+library(iBreakDown)
+library(ingredients)
+library(probably)
+```
+
+## Encode types
+
+
+```{r}
+df_r %>% glimpse()
+```
+
+```{r}
+category_pipe <- . %>% 
+  as.character() %>% 
+  if_else(. == "NaN",NA_character_,.) %>% 
+  as_factor()
+```
+
+```{r}
+df_r <- df_r %>% 
+  mutate_at(vars(Q9,I1,D1,Q5,F1,F3,F5,G1,starts_with("A1"),RIQUEZA,Target2),.funs = category_pipe)
+```
+
+
+## Explore in r with data explorer
+
+```{r}
+DataExplorer::introduce(df_r)
+```
+
+```{r}
+DataExplorer::plot_intro(df_r)
+```
+
+```{r}
+plot_missing(df_r)
+```
+## Drop features
+
+
+```{r}
+df_r <- df_r %>% 
+  select(-starts_with("D2"))
+```
+
+```{r}
+plot_missing(df_r)
+```
+## Encode response in r
+
+```{r}
+  df_r <- df_r %>% 
+  rename(response = Target2) %>% 
+  select(-PESO)
+```
+
+
+
+## More exploration
+
+```{r}
+df_r %>%
+  mutate(response = response %>% fct_recode(bad = "0",good ="1")) %>% 
+  count(response) %>%
+  ggplot(aes(response, n, fill = response)) + 
+  geom_col(width = .5, show.legend = FALSE) + 
+  scale_y_continuous(labels = scales::comma) +
+  scale_fill_manual(values = c("red","blue")) +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Distribution of cases"
+  )
+  
+```
+# Modeling
+
+## Train test split
+
+```{r}
+telefone_initial_split <- df_r %>% rsample::initial_split(prop = 0.9)
+telefone_initial_split
+```
+
+```{r}
+train_data <- training(telefone_initial_split)
+test_data <- testing(telefone_initial_split)
+```
+
+
+## Recipe for models
+
+```{r}
+recipe_telefone <- 
+  recipe(response ~.,data = train_data) %>%
+  #step_upsample(response,skip = TRUE) %>% 
+  step_modeimpute(all_predictors(),-all_numeric()) %>% 
+  step_medianimpute(all_predictors(),-all_nominal()) %>% 
+  step_normalize(all_numeric()) %>% 
+  step_rm(RIQUEZA)
+  #step_dummy(all_predictors(),-all_numeric())
+```
+
+## Prep Data
+
+```{r}
+simple_model_recipe <- recipe_telefone %>%
+  prep(retain = TRUE)
+
+simple_train <- simple_model_recipe %>% juice()
+
+simple_test <- simple_model_recipe %>% bake(test_data)
+
+```
+
+
+## Logistic Regression
+
+```{r,results='hide'}
+
+
+logistic_regression <- 
+  logistic_reg(mode = "classification",penalty = 0) %>%
+  set_engine("glmnet") %>% 
+  fit(response ~.,data = simple_train)
+
+metrics_log_reg <- logistic_regression %>% 
+  predict(simple_test) %>% 
+  bind_cols(simple_test %>% select(response)) %>% 
+  metrics(truth = response,estimate = .pred_class)
+
+metrics_roc_auc <- logistic_regression %>% 
+  predict(simple_test,type = "prob") %>% 
+  bind_cols(simple_test %>% select(response)) %>% 
+  roc_auc(truth = response,predictor =.pred_0)
+```
+
+### Metrics Logistic
+
+```{r}
+metrics_log_reg
+```
+
+```{r}
+metrics_roc_auc
+```
+
+I am going to keep using roc from now on
+## Lasso
+
+```{r}
+lasso_regression <- logistic_reg(mode = "classification",mixture = 0) %>% 
+  set_engine("glmnet") %>% 
+  fit(response~ .,data = simple_train)
+
+lasso_roc_auc_cv <- lasso_regression %>% 
+  multi_predict(new_data = simple_test,type = "prob") %>% 
+  bind_cols(simple_test) %>%
+  unnest() %>% 
+  group_by(penalty) %>% 
+  do(ok = roc_auc(.,truth = response,predictor = .pred_0)) %>% 
+  unnest() %>%
+  spread(key = .metric,value = .estimate) %>%
+  arrange(roc_auc %>% desc)
+```
+
+### Metrics Lasso 
+
+```{r}
+lasso_roc_auc_cv
+```
+
+
+## Ridge
+
+```{r}
+ridge_regression <- logistic_reg(mode = "classification",mixture = 1) %>% 
+  set_engine("glmnet") %>% 
+  fit(response~ .,data = simple_train)
+
+ridge_results_cv <- ridge_regression %>% 
+  multi_predict(new_data = simple_test,type = "prob") %>% 
+  bind_cols(simple_test) %>%
+  unnest() %>% 
+  group_by(penalty) %>% 
+  do(ok = roc_auc(.,truth = response,predictor = .pred_0)) %>% 
+  unnest() %>%
+  spread(key = .metric,value = .estimate) %>%
+  arrange(roc_auc %>% desc)
+```
+
+### Metrics Ridge
+
+```{r}
+ridge_results_cv
+```
+
+## Random Forest
+
+```{r}
+  random_forest <- rand_forest(mode = "classification",trees = 100) %>% 
+  set_engine("ranger") %>% 
+  fit(response~ .,data = simple_train)
+```
+
+### Metrics Random forest
+
+The best model currently
+
+```{r}
+random_forest %>% 
+  predict(simple_test,type = "prob") %>% 
+  bind_cols(simple_test %>% select(response)) %>% 
+  roc_auc(truth = response,predictor =.pred_0)
+```
+
+## h2o
+
+h2o is usually very fast but not fast enough for this blogpost but here is the code for it
+
+### Start CLuster
+
+
+```{r eval=FALSE, include=FALSE}
+# number_cores <- parallel::detectCores()/2
+# h2o.init(nthreads = number_cores)
+```
+
+
+### Upload df's
+
+```{r}
+# simple_train_hex <-  as.h2o(simple_train)
+# simple_test_hex = as.h2o(simple_test)
+# simple_y_hex <- simple_train %>% select(response) %>% pull %>% as.numeric()
+# simple_x_hex <- simple_train %>% select(-response)
+```
+
+### Fit auto ml
+
+With a 2 minutes timer
+
+```{r,results='hide'}
+# h2o.no_progress()
+# 
+# aml <- h2o.automl(y = "response",
+#                   training_frame = simple_train_hex,
+#                   max_runtime_secs = 120,
+#                   seed = 1)
+# 
+```
+
+### Model results
+
+
+```{r,results='hide'}
+# pred <- h2o.predict(aml, simple_test_hex)
+```
+
+
+
+```{r}
+# aml@leaderboard
+```
+
+```{r}
+# model_ids <- as.data.frame(aml@leaderboard$model_id)[,1]
+# model_ids
+```
+
+### Using a stacked model
+
+```{r}
+# best_h2o <- h2o.getModel(model_ids[model_ids %>% str_detect("StackedEnsemble_BestOfFamily_AutoML")])
+```
+
+### Performance
+
+```{r,results='hide'}
+# result_predictions <- predict(best_h2o,simple_test_hex)
+```
+
+```{r}
+# result_predictions %>% 
+#   as_tibble() %>% 
+#   bind_cols(simple_test) %>% 
+#   roc_auc(truth = response,predictor = p0)
+```
+
+
+# DALEX - Are machinge learning models Black Boxes?
+
+Code based from [Dalex page](https://github.com/ModelOriented/DALEX)
+
+## Dalex X e Y
+
+```{r}
+x_dalex <- simple_test %>% select(-response)
+y_dalex <- simple_test %>%
+  transmute(response = response %>%
+              as.numeric()) %>% 
+  mutate(response = if_else(response == 1,
+                            0,
+                            1)) %>% as.data.frame()
+y_dalex <- y_dalex[,1]
+```
+
+## Model Explainer
+
+```{r,results='hide'}
+explainer_log_reg <- DALEX::explain(logistic_regression, data=x_dalex, y=y_dalex, label="logistic_reg")
+explainer_rf <- explain(random_forest,x_dalex,y_dalex,label ="random_forest")
+```
+## Feature Importance
+
+```{r}
+mp_log_reg <- model_parts(explainer_log_reg)
+mp_rf <- model_parts(explainer_rf)
+```
+
+```{r}
+plot(mp_log_reg,mp_rf)
+```
+
+
+## Variable explanation
+
+### Accumulated Local Effects Profiles aka ALEPlots
+
+B1_2: Note in regards to how well the company has delivered on its publicity.
+
+```{r,results='hide'}
+adp_log_reg <- accumulated_dependence(explainer_log_reg,variables = "B1_2")
+adp_rf <- accumulated_dependence(explainer_rf,variables = "B1_2")
+```
+
+```{r}
+plot(adp_log_reg,adp_rf)
+```
+
+
+### Factor explanation
+
+G1: Does another company exist that is serving the same area:
+
+1. Yes
+2. No
+3. Don't know
+
+
+```{r,results='hide'}
+expl_log_reg <- accumulated_dependence(explainer_log_reg,variables = "G1", variable_type = "categorical")
+expl_rf<- accumulated_dependence(explainer_rf,variables = "G1", variable_type = "categorical")
+```
+
+```{r}
+plot(expl_log_reg,expl_rf)
+```
+
+
+## Single prediction explanation 
+
+Only the first case 
+
+
+```{r,results='hide'}
+bd_log_reg <- predict_parts(explainer_log_reg, x_dalex[1,])
+bd_rf <- predict_parts(explainer_rf, x_dalex[1,])
+```
+
+
+Logistic Regression
+```{r}
+plot(bd_log_reg)
+```
+Random Forest
+
+```{r}
+plot(bd_rf)
+```
+
+Not the coolest graph since unfortunately we use a normalization process, maybe in the future with the workflows package we can see better graphs
