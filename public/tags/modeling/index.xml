@@ -1,0 +1,722 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>modeling on TwoSidesData</title>
+    <link>/tags/modeling/</link>
+    <description>Recent content in modeling on TwoSidesData</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 May 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/modeling/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Presentation Data Science and Decision Making 1</title>
+      <link>/2020/05/21/exploratory-data-analysis-basics-part2/</link>
+      <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#goal&#34;&gt;Goal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#import-libraries&#34;&gt;Import libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#read-feather-data-frame&#34;&gt;Read feather data frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#describe-the-dataframe&#34;&gt;Describe the dataframe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#drop-features&#34;&gt;Drop features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rename-target&#34;&gt;Rename target&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#na-enconding&#34;&gt;NA enconding&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#feature-engeniring&#34;&gt;Feature Engeniring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#target-variable&#34;&gt;Target Variable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#na-imputing&#34;&gt;NA imputing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#feature-encoding&#34;&gt;Feature encoding&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#prepare-df-to-export-to-r&#34;&gt;Prepare df to export to r&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#r&#34;&gt;R&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#import-df-from-python&#34;&gt;Import df from python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#import-libraries-1&#34;&gt;Import libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#encode-types&#34;&gt;Encode types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#explore-in-r-with-data-explorer&#34;&gt;Explore in r with data explorer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#more-exploration&#34;&gt;More exploration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#train-test-split&#34;&gt;Train test split&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#recipe-for-models&#34;&gt;Recipe for models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#prep-data&#34;&gt;Prep Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#logistic-regression&#34;&gt;Logistic Regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#metrics-logistic&#34;&gt;Metrics Logistic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#metrics-lasso&#34;&gt;Metrics Lasso&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ridge&#34;&gt;Ridge&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#metrics-ridge&#34;&gt;Metrics Ridge&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#random-forest&#34;&gt;Random Forest&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#metrics-random-forest&#34;&gt;Metrics Random forest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#h2o&#34;&gt;h2o&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#start-cluster&#34;&gt;Start CLuster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#upload-dfs&#34;&gt;Upload df’s&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#fit-auto-ml&#34;&gt;Fit auto ml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-results&#34;&gt;Model results&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#using-a-stacked-model&#34;&gt;Using a stacked model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#performance&#34;&gt;Performance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#dalex---are-machinge-learning-models-black-boxes&#34;&gt;DALEX - Are machinge learning models Black Boxes?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#dalex-x-e-y&#34;&gt;Dalex X e Y&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-explainer&#34;&gt;Model Explainer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#feature-importance&#34;&gt;Feature Importance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#variable-explanation&#34;&gt;Variable explanation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#accumulated-local-effects-profiles-aka-aleplots&#34;&gt;Accumulated Local Effects Profiles aka ALEPlots&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#factor-explanation&#34;&gt;Factor explanation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#single-prediction-explanation&#34;&gt;Single prediction explanation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;goal&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Goal&lt;/h1&gt;
+&lt;p&gt;Read data from Brazil’s cell phone companies and predict customer satisfaction&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)
+use_miniconda(&amp;quot;r-reticulate&amp;quot;,required = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_path &amp;lt;- here::here()
+file_path_linux &amp;lt;- paste(file_path,&amp;quot;content&amp;quot;,&amp;quot;post&amp;quot;,&amp;quot;data&amp;quot;,sep = &amp;quot;/&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Python&lt;/h1&gt;
+&lt;div id=&#34;import-libraries&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import libraries&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import pandas as pd
+import numpy as np&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;read-feather-data-frame&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Read feather data frame&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df1 = pd.read_feather(r.file_path_linux + &amp;quot;/BD_PRE.feather&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;describe-the-dataframe&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Describe the dataframe&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df1.describe()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##               IDTNS       ANO_BASE  ...           PESO            I2
+## count  1.284110e+05  128411.000000  ...  128411.000000  84441.000000
+## mean   2.062114e+07    2016.269774  ...       0.999992      1.179806
+## std    2.192746e+07       1.120365  ...       1.315625      0.384028
+## min    3.780000e+02    2015.000000  ...       0.015936      1.000000
+## 25%    6.160118e+06    2015.000000  ...       0.180556      1.000000
+## 50%    6.804225e+06    2016.000000  ...       0.601990      1.000000
+## 75%    4.105798e+07    2017.000000  ...       1.348837      1.000000
+## max    6.203986e+07    2018.000000  ...      10.965368      2.000000
+## 
+## [8 rows x 47 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;drop-features&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Drop features&lt;/h2&gt;
+&lt;p&gt;My group read the data dictionary and glanced at the data to decido to drop of multipe features with for low variance or too high cardinality&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df1=df1.drop([&amp;quot;IDTNS&amp;quot;,&amp;quot;TIPO&amp;quot;,&amp;quot;DATA&amp;quot;,&amp;quot;H0&amp;quot;,&amp;quot;Q1&amp;quot;,&amp;quot;Q2&amp;quot;,&amp;quot;Q3&amp;quot;,&amp;quot;Q4&amp;quot;,&amp;quot;Q6&amp;quot;,&amp;quot;Q7&amp;quot;],axis=1)
+
+df1.head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   OPERADORA ESTADO  ANO_BASE  Q5  Q8  ...      H2  H2a  I1      PESO   I2
+## 0        OI     RJ      2018   1  44  ...  999998    1   2  1.165414  2.0
+## 1        OI     BA      2018   1  50  ...  999998    6   1  1.911877  1.0
+## 2      VIVO     ES      2018   1  37  ...    1000    1   1  0.695489  1.0
+## 3     CLARO     RR      2018   1  19  ...  999998    2   1  0.054054  1.0
+## 4        OI     ES      2018   1  39  ...  999998    7   1  0.111111  1.0
+## 
+## [5 rows x 42 columns]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rename-target&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Rename target&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df1 = df1.rename(columns = {&amp;#39;J1&amp;#39;:&amp;#39;Target&amp;#39;})&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;na-enconding&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;NA enconding&lt;/h2&gt;
+&lt;p&gt;The dictionary defined 99 as missing in multiple features&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df2 =  df1.copy()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df2[&amp;#39;B1_1&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;B1_2&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;C1_1&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;C1_2&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;D2_1&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;D2_2&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;D2_3&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;F5&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;F4&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;F2&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;A5&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;A4&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;A3&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;A2_1&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;A2_2&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;A2_3&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;E1_1&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;E1_2&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;E1_3&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;F4&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;F5&amp;#39;].replace([99], np.NaN,inplace = True)
+df2[&amp;#39;F6&amp;#39;].replace([99], np.NaN,inplace = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sometimes variations of missing like didn’t want to answer were also enconded as numbers so we encoded those ase missing as well&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df2[&amp;#39;Q8&amp;#39;].replace([999999], np.NaN,inplace = True)
+df2[&amp;#39;H1&amp;#39;].replace([99,99999], np.NaN,inplace = True)
+df2[&amp;#39;H2&amp;#39;].replace([99997,99998,99999,100000,999998,999999], np.NaN,inplace = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-engeniring&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Feature Engeniring&lt;/h2&gt;
+&lt;p&gt;Droped H2a for now in order to code it as categories&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df2.drop([&amp;quot;H2a&amp;quot;],inplace = True,axis = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df3 = df2.copy()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df3.loc[(df3[&amp;quot;H2&amp;quot;] &amp;gt;=0) &amp;amp; (df3[&amp;quot;H2&amp;quot;] &amp;lt;1000), &amp;quot;RIQUEZA&amp;quot;]=1
+df3.loc[(df3[&amp;quot;H2&amp;quot;] &amp;gt;=1000) &amp;amp; (df3[&amp;quot;H2&amp;quot;] &amp;lt;3000), &amp;quot;RIQUEZA&amp;quot;]=2
+df3.loc[(df3[&amp;quot;H2&amp;quot;] &amp;gt;=3000) &amp;amp; (df3[&amp;quot;H2&amp;quot;] &amp;lt;6000), &amp;quot;RIQUEZA&amp;quot;]=3
+df3.loc[(df3[&amp;quot;H2&amp;quot;] &amp;gt;=6000) &amp;amp; (df3[&amp;quot;H2&amp;quot;] &amp;lt;10000), &amp;quot;RIQUEZA&amp;quot;]=4
+df3.loc[(df3[&amp;quot;H2&amp;quot;] &amp;gt;=10000) &amp;amp; (df3[&amp;quot;H2&amp;quot;] &amp;lt;15000), &amp;quot;RIQUEZA&amp;quot;]=5
+df3.loc[(df3[&amp;quot;H2&amp;quot;] &amp;gt;=15000) &amp;amp; (df3[&amp;quot;H2&amp;quot;] &amp;lt;20000), &amp;quot;RIQUEZA&amp;quot;]=6
+df3.loc[(df3[&amp;quot;H2&amp;quot;] &amp;gt;=20000), &amp;quot;RIQUEZA&amp;quot;]=7&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df3.RIQUEZA.value_counts(dropna =False)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 2.0    48387
+## 1.0    33554
+## NaN    29784
+## 3.0    12543
+## 4.0     2704
+## 5.0      850
+## 7.0      315
+## 6.0      274
+## Name: RIQUEZA, dtype: int64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;target-variable&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Target Variable&lt;/h2&gt;
+&lt;p&gt;We decided with an nps system that scores above 8 were good scores, and encoded these cases as 1 and the rest as 0.&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df3[&amp;#39;Target&amp;#39;].replace([99], np.NaN,inplace = True)
+
+df3.loc[(df3[&amp;quot;Target&amp;quot;] &amp;lt;8) ,&amp;quot;Target2&amp;quot;]= 0
+df3.loc[(df3[&amp;quot;Target&amp;quot;] &amp;gt;=8 ) ,&amp;quot;Target2&amp;quot;]= 1
+
+
+df3.dropna(subset=[&amp;#39;Target&amp;#39;],inplace = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Variaveis Categoricas Moda
+Estado&lt;br /&gt;
+Operadora&lt;br /&gt;
+RIQUEZA&lt;br /&gt;
+Q9&lt;br /&gt;
+I1
+D1&lt;br /&gt;
+Q5&lt;br /&gt;
+F1
+F3&lt;br /&gt;
+F5&lt;br /&gt;
+G1&lt;/p&gt;
+&lt;p&gt;Variaveis Categoricas Missing Explicito
+A1_x&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;na-imputing&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;NA imputing&lt;/h2&gt;
+&lt;p&gt;We decided that these numeric features would be imputted with 0s a more robust approach could be taken but the main idea was for to create a simple model&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df3[&amp;quot;A1_1&amp;quot;].fillna(0,inplace = True)
+df3[&amp;quot;A1_2&amp;quot;].fillna(0,inplace = True)
+df3[&amp;quot;A1_3&amp;quot;].fillna(0,inplace = True)
+df3[&amp;quot;A1_4&amp;quot;].fillna(0,inplace = True)
+df3[&amp;quot;F1&amp;quot;].fillna(0,inplace = True)
+df3[&amp;quot;F3&amp;quot;].fillna(0,inplace = True)
+df3[&amp;quot;F5&amp;quot;].fillna(0,inplace = True)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-encoding&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Feature encoding&lt;/h2&gt;
+&lt;p&gt;We originally hand encoded all the features in python, this would help to automate the predictions latter down the pipe
+unfortunally when replicating the code it seems I have a bug on reticulate so I will do that in r instead&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# df3 = df3.astype({&amp;#39;Q9&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;I1&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;D1&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;Q5&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;F1&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;F3&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;F5&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;G1&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;A1_1&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;A1_2&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;A1_3&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;A1_4&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;RIQUEZA&amp;#39;: &amp;#39;category&amp;#39;})
+# df3 = df3.astype({&amp;#39;Target2&amp;#39;: &amp;#39;category&amp;#39;})&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df3.dtypes&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## OPERADORA     object
+## ESTADO        object
+## ANO_BASE       int64
+## Q5             int64
+## Q8           float64
+## Q8a            int64
+## Q9             int64
+## Target       float64
+## B1_1         float64
+## B1_2         float64
+## C1_1         float64
+## C1_2         float64
+## D1             int64
+## D2_1         float64
+## D2_2         float64
+## D2_3         float64
+## E1_1         float64
+## E1_2         float64
+## E1_3         float64
+## A1_1         float64
+## A1_2         float64
+## A1_3         float64
+## A1_4         float64
+## A2_1         float64
+## A2_2         float64
+## A2_3         float64
+## A3           float64
+## A4           float64
+## A5           float64
+## F1             int64
+## F2           float64
+## F3             int64
+## F4           float64
+## F5           float64
+## F6           float64
+## G1             int64
+## H1           float64
+## H2           float64
+## I1             int64
+## PESO         float64
+## I2           float64
+## RIQUEZA      float64
+## Target2      float64
+## dtype: object&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;prepare-df-to-export-to-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Prepare df to export to r&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df4=df3.loc[:,[&amp;#39;Q5&amp;#39;,&amp;#39;Q8&amp;#39;,&amp;#39;Q8a&amp;#39;,&amp;#39;Q9&amp;#39;,&amp;#39;B1_1&amp;#39;,&amp;#39;B1_2&amp;#39;,&amp;#39;C1_1&amp;#39;,&amp;#39;C1_2&amp;#39;,&amp;#39;D1&amp;#39;,&amp;#39;D2_1&amp;#39;,&amp;#39;D2_2&amp;#39;,&amp;#39;D2_3&amp;#39;,&amp;#39;E1_1&amp;#39;,&amp;#39;E1_2&amp;#39;,&amp;#39;E1_3&amp;#39;,&amp;#39;A1_1&amp;#39;,&amp;#39;A1_2&amp;#39;,&amp;#39;A1_3&amp;#39;,&amp;#39;A1_4&amp;#39;,&amp;#39;F1&amp;#39;,&amp;#39;F3&amp;#39;,&amp;#39;F5&amp;#39;,&amp;#39;G1&amp;#39;,&amp;#39;H1&amp;#39;,&amp;#39;I1&amp;#39;,&amp;#39;PESO&amp;#39;,&amp;#39;RIQUEZA&amp;#39;,&amp;quot;Target2&amp;quot;]]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R&lt;/h1&gt;
+&lt;div id=&#34;import-df-from-python&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import df from python&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r &amp;lt;- py$df4&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;import-libraries-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import libraries&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DataExplorer)
+library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ----------------------------------------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.0     v purrr   0.3.3
+## v tibble  3.0.0     v dplyr   0.8.5
+## v tidyr   1.0.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts -------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidymodels)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------------------------------------------------------------------- tidymodels 0.1.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v broom     0.5.5      v rsample   0.0.6 
+## v dials     0.0.6      v tune      0.1.0 
+## v infer     0.5.1      v workflows 0.1.1 
+## v parsnip   0.1.1      v yardstick 0.0.6 
+## v recipes   0.1.12&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------------------------------------------------- tidymodels_conflicts() --
+## x scales::discard() masks purrr::discard()
+## x dplyr::filter()   masks stats::filter()
+## x recipes::fixed()  masks stringr::fixed()
+## x dplyr::lag()      masks stats::lag()
+## x dials::margin()   masks ggplot2::margin()
+## x yardstick::spec() masks readr::spec()
+## x recipes::step()   masks stats::step()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(furrr)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: future&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(h2o)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ----------------------------------------------------------------------
+## 
+## Your next step is to start H2O:
+##     &amp;gt; h2o.init()
+## 
+## For H2O package documentation, ask for help:
+##     &amp;gt; ??h2o
+## 
+## After starting H2O, you can use the Web UI at http://localhost:54321
+## For more information visit http://docs.h2o.ai
+## 
+## ----------------------------------------------------------------------&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;h2o&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     cor, sd, var&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     %*%, %in%, &amp;amp;&amp;amp;, ||, apply, as.factor, as.numeric, colnames,
+##     colnames&amp;lt;-, ifelse, is.character, is.factor, is.numeric, log,
+##     log10, log1p, log2, round, signif, trunc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DALEX)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Welcome to DALEX (version: 1.2.1).
+## Find examples and detailed introduction at: https://pbiecek.github.io/ema/
+## Additional features will be available after installation of: ggpubr.
+## Use &amp;#39;install_dependencies()&amp;#39; to get all suggested dependencies&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;DALEX&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     explain&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DALEXtra)
+library(iBreakDown)
+library(ingredients)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ingredients&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:iBreakDown&amp;#39;:
+## 
+##     describe, plotD3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:DALEX&amp;#39;:
+## 
+##     feature_importance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(probably)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;probably&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:h2o&amp;#39;:
+## 
+##     as.factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     as.factor, as.ordered&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;encode-types&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Encode types&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r %&amp;gt;% glimpse()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 128,198
+## Columns: 28
+## $ Q5      &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1,...
+## $ Q8      &amp;lt;dbl&amp;gt; 44, 50, 37, 19, 39, 38, NaN, 19, 22, 27, 24, 47, 29, 21, 40...
+## $ Q8a     &amp;lt;dbl&amp;gt; 7, 7, 6, 3, 6, 6, 7, 3, 3, 4, 3, 7, 4, 3, 6, 3, 4, 8, 7, 6,...
+## $ Q9      &amp;lt;dbl&amp;gt; 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 2, 2,...
+## $ B1_1    &amp;lt;dbl&amp;gt; 7, 4, 9, 5, 10, 10, 8, 8, 10, 4, 0, 8, 5, 5, 10, 5, 7, 10, ...
+## $ B1_2    &amp;lt;dbl&amp;gt; 9, 3, 10, 6, NaN, 10, 8, 6, 9, 6, 5, 8, 5, 3, 10, 10, 5, 10...
+## $ C1_1    &amp;lt;dbl&amp;gt; 10, 3, 10, 8, 10, 8, 7, 10, 10, 8, 7, 10, 10, 8, 10, 2, 7, ...
+## $ C1_2    &amp;lt;dbl&amp;gt; 10, 4, 10, 9, 10, 9, 6, 10, 5, 9, 0, 8, 10, 2, 10, 9, 8, 10...
+## $ D1      &amp;lt;dbl&amp;gt; 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 2, 2, 1,...
+## $ D2_1    &amp;lt;dbl&amp;gt; 8, NaN, 9, 4, 7, 10, NaN, 1, 10, 5, NaN, 6, NaN, 2, 8, 9, N...
+## $ D2_2    &amp;lt;dbl&amp;gt; 7, NaN, 7, 3, 5, 10, NaN, 1, 9, 7, NaN, 8, NaN, 0, 8, 7, Na...
+## $ D2_3    &amp;lt;dbl&amp;gt; 7, NaN, 7, 5, 5, 10, NaN, 1, 10, 6, NaN, 6, NaN, 0, 8, 8, N...
+## $ E1_1    &amp;lt;dbl&amp;gt; 8, 2, 9, 7, 8, 10, 7, 3, 9, 8, 0, 5, 7, 0, 10, 7, 7, 10, 10...
+## $ E1_2    &amp;lt;dbl&amp;gt; 8, 2, 9, 9, 10, 10, 7, 8, 9, 5, 0, 6, 5, 0, 10, 6, 7, 10, 1...
+## $ E1_3    &amp;lt;dbl&amp;gt; 10, 5, 9, 10, 8, 10, 8, 10, 10, 8, 0, 8, 5, 5, 10, 6, 8, 10...
+## $ A1_1    &amp;lt;dbl&amp;gt; 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1,...
+## $ A1_2    &amp;lt;dbl&amp;gt; 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0,...
+## $ A1_3    &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0,...
+## $ A1_4    &amp;lt;dbl&amp;gt; 97, 0, 0, 0, 97, 0, 0, 97, 0, 0, 97, 97, 97, 0, 0, 0, 0, 0,...
+## $ F1      &amp;lt;dbl&amp;gt; 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1,...
+## $ F3      &amp;lt;dbl&amp;gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2,...
+## $ F5      &amp;lt;dbl&amp;gt; 2, 0, 2, 1, 2, 2, 0, 1, 2, 1, 0, 2, 0, 2, 1, 2, 0, 0, 0, 2,...
+## $ G1      &amp;lt;dbl&amp;gt; 1, 1, 2, 2, 1, 2, 3, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+## $ H1      &amp;lt;dbl&amp;gt; 3, NaN, 1, 3, 1, 5, 1, 2, 2, 1, 1, 1, 1, 4, 2, 2, 1, 2, 2, ...
+## $ I1      &amp;lt;dbl&amp;gt; 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2,...
+## $ PESO    &amp;lt;dbl&amp;gt; 1.1654135, 1.9118774, 0.6954887, 0.0540541, 0.1111111, 0.11...
+## $ RIQUEZA &amp;lt;dbl&amp;gt; NaN, NaN, 2, NaN, NaN, 1, NaN, NaN, 2, 2, 1, NaN, 2, NaN, 2...
+## $ Target2 &amp;lt;dbl&amp;gt; 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1,...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;category_pipe &amp;lt;- . %&amp;gt;% 
+  as.character() %&amp;gt;% 
+  if_else(. == &amp;quot;NaN&amp;quot;,NA_character_,.) %&amp;gt;% 
+  as_factor()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r &amp;lt;- df_r %&amp;gt;% 
+  mutate_at(vars(Q9,I1,D1,Q5,F1,F3,F5,G1,starts_with(&amp;quot;A1&amp;quot;),RIQUEZA,Target2),.funs = category_pipe)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;explore-in-r-with-data-explorer&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Explore in r with data explorer&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DataExplorer::introduce(df_r)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     rows columns discrete_columns continuous_columns all_missing_columns
+## 1 128198      28               14                 14                   0
+##   total_missing_values complete_rows total_observations memory_usage
+## 1               218989         51924            3589544     21551024&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DataExplorer::plot_intro(df_r)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
+## Drop features&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r &amp;lt;- df_r %&amp;gt;% 
+  select(-starts_with(&amp;quot;D2&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
+## Encode response in r&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  df_r &amp;lt;- df_r %&amp;gt;% 
+  rename(response = Target2) %&amp;gt;% 
+  select(-PESO)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;more-exploration&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;More exploration&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r %&amp;gt;%
+  mutate(response = response %&amp;gt;% fct_recode(bad = &amp;quot;0&amp;quot;,good =&amp;quot;1&amp;quot;)) %&amp;gt;% 
+  count(response) %&amp;gt;%
+  ggplot(aes(response, n, fill = response)) + 
+  geom_col(width = .5, show.legend = FALSE) + 
+  scale_y_continuous(labels = scales::comma) +
+  scale_fill_manual(values = c(&amp;quot;red&amp;quot;,&amp;quot;blue&amp;quot;)) +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = &amp;quot;Distribution of cases&amp;quot;
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+# Modeling&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;train-test-split&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Train test split&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;telefone_initial_split &amp;lt;- df_r %&amp;gt;% rsample::initial_split(prop = 0.9)
+telefone_initial_split&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;Training/Validation/Total&amp;gt;
+## &amp;lt;115379/12819/128198&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;train_data &amp;lt;- training(telefone_initial_split)
+test_data &amp;lt;- testing(telefone_initial_split)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;recipe-for-models&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Recipe for models&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;recipe_telefone &amp;lt;- 
+  recipe(response ~.,data = train_data) %&amp;gt;%
+  #step_upsample(response,skip = TRUE) %&amp;gt;% 
+  step_modeimpute(all_predictors(),-all_numeric()) %&amp;gt;% 
+  step_medianimpute(all_predictors(),-all_nominal()) %&amp;gt;% 
+  step_normalize(all_numeric()) %&amp;gt;% 
+  step_rm(RIQUEZA)
+  #step_dummy(all_predictors(),-all_numeric())&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;prep-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Prep Data&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;simple_model_recipe &amp;lt;- recipe_telefone %&amp;gt;%
+  prep(retain = TRUE)
+
+simple_train &amp;lt;- simple_model_recipe %&amp;gt;% juice()
+
+simple_test &amp;lt;- simple_model_recipe %&amp;gt;% bake(test_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;logistic-regression&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Logistic Regression&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;logistic_regression &amp;lt;- 
+  logistic_reg(mode = &amp;quot;classification&amp;quot;,penalty = 0) %&amp;gt;%
+  set_engine(&amp;quot;glmnet&amp;quot;) %&amp;gt;% 
+  fit(response ~.,data = simple_train)
+
+metrics_log_reg &amp;lt;- logistic_regression %&amp;gt;% 
+  predict(simple_test) %&amp;gt;% 
+  bind_cols(simple_test %&amp;gt;% select(response)) %&amp;gt;% 
+  metrics(truth = response,estimate = .pred_class)
+
+metrics_roc_auc &amp;lt;- logistic_regression %&amp;gt;% 
+  predict(simple_test,type = &amp;quot;prob&amp;quot;) %&amp;gt;% 
+  bind_cols(simple_test %&amp;gt;% select(response)) %&amp;gt;% 
+  roc_auc(truth = response,predictor =.pred_0)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;metrics-logistic&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Metrics Logistic&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;metrics_log_reg&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 accuracy binary         0.804
+## 2 kap      binary         0.608&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;metrics_roc_auc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 roc_auc binary         0.885&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I am going to keep using roc from now on
+## Lasso&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lasso_regression &amp;lt;- logistic_reg(mode = &amp;quot;classification&amp;quot;,mixture = 0) %&amp;gt;% 
+  set_engine(&amp;quot;glmnet&amp;quot;) %&amp;gt;% 
+  fit(response~ .,data = simple_train)
+
+lasso_roc_auc_cv &amp;lt;- lasso_regression %&amp;gt;% 
+  multi_predict(new_data = simple_test,type = &amp;quot;prob&amp;quot;) %&amp;gt;% 
+  bind_cols(simple_test) %&amp;gt;%
+  unnest() %&amp;gt;% 
+  group_by(penalty) %&amp;gt;% 
+  do(ok = roc_auc(.,truth = response,predictor = .pred_0)) %&amp;gt;% 
+  unnest() %&amp;gt;%
+  spread(key = .metric,value = .estimate) %&amp;gt;%
+  arrange(roc_auc %&amp;gt;% desc)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+## Please use `cols = c(.pred)`&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+## Please use `cols = c(ok)`&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;metrics-lasso&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Metrics Lasso&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lasso_roc_auc_cv&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 100 x 3
+##    penalty .estimator roc_auc
+##      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1  0.0273 binary       0.884
+##  2  0.0300 binary       0.884
+##  3  0.0329 binary       0.884
+##  4  0.0361 binary       0.884
+##  5  0.0396 binary       0.884
+##  6  0.0435 binary       0.884
+##  7  0.0477 binary       0.884
+##  8  0.0523 binary       0.884
+##  9  0.0575 binary       0.884
+## 10  0.0631 binary       0.884
+## # ... with 90 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ridge&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Ridge&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ridge_regression &amp;lt;- logistic_reg(mode = &amp;quot;classification&amp;quot;,mixture = 1) %&amp;gt;% 
+  set_engine(&amp;quot;glmnet&amp;quot;) %&amp;gt;% 
+  fit(response~ .,data = simple_train)
+
+ridge_results_cv &amp;lt;- ridge_regression %&amp;gt;% 
+  multi_predict(new_data = simple_test,type = &amp;quot;prob&amp;quot;) %&amp;gt;% 
+  bind_cols(simple_test) %&amp;gt;%
+  unnest() %&amp;gt;% 
+  group_by(penalty) %&amp;gt;% 
+  do(ok = roc_auc(.,truth = response,predictor = .pred_0)) %&amp;gt;% 
+  unnest() %&amp;gt;%
+  spread(key = .metric,value = .estimate) %&amp;gt;%
+  arrange(roc_auc %&amp;gt;% desc)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+## Please use `cols = c(.pred)`&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+## Please use `cols = c(ok)`&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;metrics-ridge&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Metrics Ridge&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ridge_results_cv&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 65 x 3
+##     penalty .estimator roc_auc
+##       &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1 0.00136  binary       0.885
+##  2 0.00149  binary       0.885
+##  3 0.00164  binary       0.885
+##  4 0.00124  binary       0.885
+##  5 0.00180  binary       0.885
+##  6 0.00103  binary       0.885
+##  7 0.00113  binary       0.885
+##  8 0.000936 binary       0.885
+##  9 0.000777 binary       0.885
+## 10 0.000708 binary       0.885
+## # ... with 55 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;random-forest&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Random Forest&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  random_forest &amp;lt;- rand_forest(mode = &amp;quot;classification&amp;quot;,trees = 100) %&amp;gt;% 
+  set_engine(&amp;quot;ranger&amp;quot;) %&amp;gt;% 
+  fit(response~ .,data = simple_train)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;metrics-random-forest&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Metrics Random forest&lt;/h3&gt;
+&lt;p&gt;The best model currently&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;random_forest %&amp;gt;% 
+  predict(simple_test,type = &amp;quot;prob&amp;quot;) %&amp;gt;% 
+  bind_cols(simple_test %&amp;gt;% select(response)) %&amp;gt;% 
+  roc_auc(truth = response,predictor =.pred_0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
+## 1 roc_auc binary         0.889&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;h2o&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;h2o&lt;/h2&gt;
+&lt;p&gt;h2o is usually very fast but not fast enough for this blogpost but here is the code for it&lt;/p&gt;
+&lt;div id=&#34;start-cluster&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Start CLuster&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;upload-dfs&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Upload df’s&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# simple_train_hex &amp;lt;-  as.h2o(simple_train)
+# simple_test_hex = as.h2o(simple_test)
+# simple_y_hex &amp;lt;- simple_train %&amp;gt;% select(response) %&amp;gt;% pull %&amp;gt;% as.numeric()
+# simple_x_hex &amp;lt;- simple_train %&amp;gt;% select(-response)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fit-auto-ml&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Fit auto ml&lt;/h3&gt;
+&lt;p&gt;With a 2 minutes timer&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# h2o.no_progress()
+# 
+# aml &amp;lt;- h2o.automl(y = &amp;quot;response&amp;quot;,
+#                   training_frame = simple_train_hex,
+#                   max_runtime_secs = 120,
+#                   seed = 1)
+# &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;model-results&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Model results&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# pred &amp;lt;- h2o.predict(aml, simple_test_hex)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# aml@leaderboard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# model_ids &amp;lt;- as.data.frame(aml@leaderboard$model_id)[,1]
+# model_ids&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-a-stacked-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Using a stacked model&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# best_h2o &amp;lt;- h2o.getModel(model_ids[model_ids %&amp;gt;% str_detect(&amp;quot;StackedEnsemble_BestOfFamily_AutoML&amp;quot;)])&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;performance&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Performance&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# result_predictions &amp;lt;- predict(best_h2o,simple_test_hex)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# result_predictions %&amp;gt;% 
+#   as_tibble() %&amp;gt;% 
+#   bind_cols(simple_test) %&amp;gt;% 
+#   roc_auc(truth = response,predictor = p0)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dalex---are-machinge-learning-models-black-boxes&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;DALEX - Are machinge learning models Black Boxes?&lt;/h1&gt;
+&lt;p&gt;Code based from &lt;a href=&#34;https://github.com/ModelOriented/DALEX&#34;&gt;Dalex page&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;dalex-x-e-y&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Dalex X e Y&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x_dalex &amp;lt;- simple_test %&amp;gt;% select(-response)
+y_dalex &amp;lt;- simple_test %&amp;gt;%
+  transmute(response = response %&amp;gt;%
+              as.numeric()) %&amp;gt;% 
+  mutate(response = if_else(response == 1,
+                            0,
+                            1)) %&amp;gt;% as.data.frame()
+y_dalex &amp;lt;- y_dalex[,1]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;model-explainer&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Model Explainer&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;explainer_log_reg &amp;lt;- DALEX::explain(logistic_regression, data=x_dalex, y=y_dalex, label=&amp;quot;logistic_reg&amp;quot;)
+explainer_rf &amp;lt;- explain(random_forest,x_dalex,y_dalex,label =&amp;quot;random_forest&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-importance&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Feature Importance&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mp_log_reg &amp;lt;- model_parts(explainer_log_reg)
+mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(mp_log_reg,mp_rf)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variable-explanation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Variable explanation&lt;/h2&gt;
+&lt;div id=&#34;accumulated-local-effects-profiles-aka-aleplots&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Accumulated Local Effects Profiles aka ALEPlots&lt;/h3&gt;
+&lt;p&gt;B1_2: Note in regards to how well the company has delivered on its publicity.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adp_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;B1_2&amp;quot;)
+adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(adp_log_reg,adp_rf)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;factor-explanation&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Factor explanation&lt;/h3&gt;
+&lt;p&gt;G1: Does another company exist that is serving the same area:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Yes&lt;/li&gt;
+&lt;li&gt;No&lt;/li&gt;
+&lt;li&gt;Don’t know&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;expl_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)
+expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(expl_log_reg,expl_rf)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;single-prediction-explanation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Single prediction explanation&lt;/h2&gt;
+&lt;p&gt;Only the first case&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bd_log_reg &amp;lt;- predict_parts(explainer_log_reg, x_dalex[1,])
+bd_rf &amp;lt;- predict_parts(explainer_rf, x_dalex[1,])&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Logistic Regression&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_log_reg)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
+Random Forest&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_rf)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Not the coolest graph since unfortunately we use a normalization process, maybe in the future with the workflows package we can see better graphs&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
