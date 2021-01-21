@@ -49,5 +49,6 @@
 [[main]]
   name = "CV Portuguese"
   url = "files/cv_pt.pdf"
-  weight = 70
+  weight = 80
+
 

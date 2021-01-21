@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GA Cushen on TwoSidesData</title>
-    <link>/authors/ga-cushen/</link>
+    <link>https://twosidesdata.netlify.com/authors/ga-cushen/</link>
     <description>Recent content in GA Cushen on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,20 +10,20 @@
     
     <item>
       <title>A Person Re-Identification System For Mobile Devices</title>
-      <link>/publication/person-re-id/</link>
+      <link>https://twosidesdata.netlify.com/publication/person-re-id/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 -0300</pubDate>
       
-      <guid>/publication/person-re-id/</guid>
+      <guid>https://twosidesdata.netlify.com/publication/person-re-id/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Mobile visual clothing search</title>
-      <link>/publication/clothing-search/</link>
+      <link>https://twosidesdata.netlify.com/publication/clothing-search/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 -0300</pubDate>
       
-      <guid>/publication/clothing-search/</guid>
+      <guid>https://twosidesdata.netlify.com/publication/clothing-search/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>

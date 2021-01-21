@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on TwoSidesData</title>
-    <link>/categories/</link>
+    <link>https://twosidesdata.netlify.com/categories/</link>
     <description>Recent content in Categories on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,19 +10,19 @@
     
     <item>
       <title>R and Python</title>
-      <link>/categories/r-and-python/</link>
+      <link>https://twosidesdata.netlify.com/categories/r-and-python/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/categories/r-and-python/</guid>
+      <guid>https://twosidesdata.netlify.com/categories/r-and-python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>r-project</title>
-      <link>/categories/r-project/</link>
+      <link>https://twosidesdata.netlify.com/categories/r-project/</link>
       <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/categories/r-project/</guid>
+      <guid>https://twosidesdata.netlify.com/categories/r-project/</guid>
       <description></description>
     </item>
     

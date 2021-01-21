@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>modeling on TwoSidesData</title>
-    <link>/tags/modeling/</link>
+    <link>https://twosidesdata.netlify.com/tags/modeling/</link>
     <description>Recent content in modeling on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Presentation Data Science and Decision Making 1</title>
-      <link>/2020/05/21/exploratory-data-analysis-basics-part2/</link>
+      <link>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -423,14 +423,14 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
 ##   total_missing_values complete_rows total_observations memory_usage
 ## 1               218989         51924            3589544     21551024&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DataExplorer::plot_intro(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
 ## Drop features&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r &amp;lt;- df_r %&amp;gt;% 
   select(-starts_with(&amp;quot;D2&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
 ## Encode response in r&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  df_r &amp;lt;- df_r %&amp;gt;% 
   rename(response = Target2) %&amp;gt;% 
@@ -450,7 +450,7 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
     y = NULL,
     title = &amp;quot;Distribution of cases&amp;quot;
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
 # Modeling&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;train-test-split&#34; class=&#34;section level2&#34;&gt;
@@ -675,7 +675,7 @@ explainer_rf &amp;lt;- explain(random_forest,x_dalex,y_dalex,label =&amp;quot;ra
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mp_log_reg &amp;lt;- model_parts(explainer_log_reg)
 mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(mp_log_reg,mp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;variable-explanation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Variable explanation&lt;/h2&gt;
@@ -685,7 +685,7 @@ mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adp_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;B1_2&amp;quot;)
 adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(adp_log_reg,adp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;factor-explanation&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Factor explanation&lt;/h3&gt;
@@ -698,7 +698,7 @@ adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;expl_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)
 expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(expl_log_reg,expl_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;single-prediction-explanation&#34; class=&#34;section level2&#34;&gt;
@@ -708,10 +708,10 @@ expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&am
 bd_rf &amp;lt;- predict_parts(explainer_rf, x_dalex[1,])&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Logistic Regression&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_log_reg)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
 Random Forest&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Not the coolest graph since unfortunately we use a normalization process, maybe in the future with the workflows package we can see better graphs&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

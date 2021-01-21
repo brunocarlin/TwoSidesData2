@@ -15,52 +15,96 @@ output: vitae::awesomecv
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
+library(tibble)
 ```
+
 
 # Educação
 
-## Insper
+```{r Educação}
+tribble(
+  ~ degree, ~ uni, ~ loc, ~ dates,
+  "Pós-graduação Data Science e decisão", "Insper", "São Paulo, Brasil", "Jun. 2019 - Jun. 2021",
+  "Curso em Data Science", "Digital House", "São Paulo, Brasil", "Feb. 2019 - May. 2019",
+  "Bacharelado em Economia", "Insper", "São Paulo, Brasil", "Jan. 2014 - Dec. 2018",
+  "Curso Técnico - Comércio Exterior", "Porto Seguro", "São Paulo, Brasil", "Jan. 2011 - Dec. 2013",
+) %>% 
+  detailed_entries(degree, dates, uni, loc)
+```
 
-[Pós-graduação Data Science e decisão](https://www.insper.edu.br/pos-graduacao/programas-avancados/programa-avancado-em-data-science-e-decisao/)
+<!-- [Pós-graduação Data Science e decisão](https://www.insper.edu.br/pos-graduacao/programas-avancados/programa-avancado-em-data-science-e-decisao/) -->
+<!-- [Bacharelado em Economia](https://www.insper.edu.br/graduacao/economia/) -->
+<!-- [Cursando Data Science](https://br.digitalhouse.com/curso/data-science/) -->
+<!-- [Curso Técnico - Comércio Exterior](https://www.portoseguro.org.br/conteudo/detalhe/currculo-brasileiro/ensino-mdio-comrcio-exterior) -->
 
-2019-2020.
-
-[Bacharelado em Economia](https://www.insper.edu.br/graduacao/economia/)
-
-2014-2018.
-
-## Digital House
-
-[Cursando Data Science](https://br.digitalhouse.com/curso/data-science/)
-
-## Porto Seguro
-
-[Curso Técnico - Comércio Exterior](https://www.portoseguro.org.br/conteudo/detalhe/currculo-brasileiro/ensino-mdio-comrcio-exterior)
-
-Finalizado 2013
 
 # Experiência
 
-## Bayer
+```{r experience}
+tribble(
+  ~ role, ~ company, ~ loc, ~ dates, ~ details,
+  
+  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Desenvolver os modelos de Ciência de dados para o time de finanças latam",
+  
+  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Lider de projeto ou participante representando o negócio nos projetos de finanças latam",
 
-Começo esse ano em uma nova área da Empresa chamada, Contas a Receber Análise de Dados, vou trabalhar com modelos de Ciência de dados e criação de procedimentos de dados em toda a América latina.
+  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Desenvolvimento e manutenção de reports para finanças latam",
 
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Soluções de programação para o time de finanças latam",
+  
+  "Analista de dados - Contas à Receber Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
+  "Desenvolvimento do novo modelo de crédito",
 
-Trabalhei 3 meses como analista de Crédito, fazendo analises de crédito dos clientes e desenvolvendo scripts para automação de tarefas diárias em R.
+  "Analista de dados - Contas à Receber Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
+  "Responsável por múltiplas soluções adhoc, entregando rápidos resultados para a àrea usando de scripts de forma eficiente e confiável",
+  
+  "Analista de dados - Contas à Receber Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
+  "Análise de dados do contas à receber e receitas, implementando pipelines da extração dos dados até os dashboards",
 
-## Driven Consulting
+  "Analista de dados - Contas à Receber", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
+  "Participação crítica em projetos das mais diversas áreas, por exemplo, o DataGis da área de crédito e a Ferramenta de pagamentos Online da empresa",
 
-Trabalho como Consultor de Ciência de Dados na área de BI resolvendo problemas como o estoque futuro nos clientes.
+  "Analista de crédito", "Bayer", "São Paulo, Brasil", "Set. 2019 - Dec. 2020",
+  "Análise financeira do risco de crédito dos clientes",
+  
+  
+  "Analista de crédito", "Bayer", "São Paulo, Brasil", "Set. 2019 - Dec. 2020",
+  "Adhoc scripts para análise de dados",
+  
+  
+  "Analista de crédito", "Bayer", "São Paulo, Brasil", "Set. 2019 - Dec. 2020",
+  "Inicio do projeto do primeiro modelo de crédito baseado em machine learning do país",
+  
+  "Data Science Consultant", "Driven Consultant", "São Paulo, Brasil", "Jul. 2019 - Set. 2019",
+  "Desenvolvimento de um modelo de séries temporais para o cálculo de dias de estoque do cliente.",
+  
+  "Data Science Consultant", "Driven Consultant", "São Paulo, Brasil", "Jul. 2019 - Set. 2019",
+  "SQL queries para a contrução de modelos, análise adhoc e dashboards",
+  
+  "Trainee", "EY", "São Paulo, Brasil", "Apr. 2019 - Jun. 2019",
+  "Automação de projetos de contabilidade em larga escala",
+  
+  "Trainee", "EY", "São Paulo, Brasil", "Apr. 2019 - Jun. 2019",
+  "Documentação e análise the todo o código SQL",
+  
+  "Estagiário Risk Management- Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
+  "Creação, automação e manutenção de diversos reports de crédito e cash flow",
 
-## [Ernst & Young](https://www.ey.com/br/pt/services/assurance/financial-accounting-advisory-services)
-
-Trabalhei como Trainee resolvendo problemas contábeis em grande escala, também realizei a análise e documentação de sistemas já implementados.
-
-## Bayer
-
-Tenho um ano de experiencia de trabalho como estagiário de finanças da área de Risk Managment na Bayer. Fui responsável pela criação, automação e manutenção de relatórios para a área de crédito e tesouraria. Meu principal diferencial nessas tarefas foi a busca por novas maneiras de melhorar nossos processos, usando ferramentas como o VBA, power query e power pivot.
-
-Executei um projeto de previsões usando o meu próprio algoritmo escrito na linguagem R, a ideia do projeto foi melhorar nossas previsões de forma automática.
+  "Estagiário Risk Management- Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
+  "Creação e aprimoramento de Dashboards",
+  
+  "Estagiário Risk Management- Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
+  "Projeto de previsão, usando meu próprio modelo de metódes de agregação de séries temporais hierárquicas"
+  
+  
+  
+) %>% 
+  detailed_entries(role, dates, company, loc, details)
+```
 
 # Idiomas
 
@@ -80,6 +124,42 @@ Certificação B1, pórem não pratico desde o Colégio.
 
 Básico
 
-# Interesses profissionais
 
-Ciência de dados, finanças e economia.
+# Habilidade como Cientista de dados
+
+
+Sempre aprendendo mais ciência de dados, seguindo blogs, lendo livros, realizando cursos online e presenciais, assistindo vídeos e mais.
+
+Acostumdo a usar o tidyverse para ciência de dados e inferência estatística
+
+Múltiplos projetos realizando previsões de séries temporais
+
+Experiência em projetos usando modelos preditivos tradicionais (machine learning)
+
+Já Trabalhei com SQL
+
+Criação de Dashboards usando Shiny e Tableau
+
+Conhecimento funcional do Git workflow
+
+Você pode ver meu trabalho open source no meu Blog de Ciência de Dados [twosidesdata](twosidesdata.netlify.com).
+
+
+# Tecnologias
+
+## Linguagens de programação
+
+* R
+* SQL
+* Python
+
+## Criação de Dashboards
+
+* Shiny
+* Tableau
+* Power BI
+
+## Office Stack
+
+* Excel
+* Power Point

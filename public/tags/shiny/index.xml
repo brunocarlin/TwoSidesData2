@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>shiny on TwoSidesData</title>
-    <link>/tags/shiny/</link>
+    <link>https://twosidesdata.netlify.com/tags/shiny/</link>
     <description>Recent content in shiny on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Shiny OLIST</title>
-      <link>/project/integrate-activity/</link>
+      <link>https://twosidesdata.netlify.com/project/integrate-activity/</link>
       <pubDate>Sun, 10 May 2020 00:00:00 -0300</pubDate>
       
-      <guid>/project/integrate-activity/</guid>
+      <guid>https://twosidesdata.netlify.com/project/integrate-activity/</guid>
       <description>&lt;p&gt;#&lt;code&gt;external_link&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>

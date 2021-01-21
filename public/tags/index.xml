@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on TwoSidesData</title>
-    <link>/tags/</link>
+    <link>https://twosidesdata.netlify.com/tags/</link>
     <description>Recent content in Tags on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,136 +10,136 @@
     
     <item>
       <title>dplyr</title>
-      <link>/tags/dplyr/</link>
+      <link>https://twosidesdata.netlify.com/tags/dplyr/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dplyr/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/dplyr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>modeling</title>
-      <link>/tags/modeling/</link>
+      <link>https://twosidesdata.netlify.com/tags/modeling/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/modeling/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/modeling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pandas</title>
-      <link>/tags/pandas/</link>
+      <link>https://twosidesdata.netlify.com/tags/pandas/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/pandas/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/pandas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>/tags/r-markdown/</link>
+      <link>https://twosidesdata.netlify.com/tags/r-markdown/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r-markdown/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>reticulate</title>
-      <link>/tags/reticulate/</link>
+      <link>https://twosidesdata.netlify.com/tags/reticulate/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/reticulate/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/reticulate/</guid>
       <description></description>
     </item>
     
     <item>
       <title>portuguese</title>
-      <link>/tags/portuguese/</link>
+      <link>https://twosidesdata.netlify.com/tags/portuguese/</link>
       <pubDate>Sun, 10 May 2020 00:00:00 -0300</pubDate>
       
-      <guid>/tags/portuguese/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/portuguese/</guid>
       <description></description>
     </item>
     
     <item>
       <title>shiny</title>
-      <link>/tags/shiny/</link>
+      <link>https://twosidesdata.netlify.com/tags/shiny/</link>
       <pubDate>Sun, 10 May 2020 00:00:00 -0300</pubDate>
       
-      <guid>/tags/shiny/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/shiny/</guid>
       <description></description>
     </item>
     
     <item>
       <title>scipy</title>
-      <link>/tags/scipy/</link>
+      <link>https://twosidesdata.netlify.com/tags/scipy/</link>
       <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/scipy/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/scipy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>statsmodels</title>
-      <link>/tags/statsmodels/</link>
+      <link>https://twosidesdata.netlify.com/tags/statsmodels/</link>
       <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/statsmodels/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/statsmodels/</guid>
       <description></description>
     </item>
     
     <item>
       <title>programming</title>
-      <link>/tags/programming/</link>
+      <link>https://twosidesdata.netlify.com/tags/programming/</link>
       <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/programming/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
+      <link>https://twosidesdata.netlify.com/tags/tidyverse/</link>
       <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/tidyverse/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/tidyverse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidymodels</title>
-      <link>/tags/tidymodels/</link>
+      <link>https://twosidesdata.netlify.com/tags/tidymodels/</link>
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/tidymodels/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/tidymodels/</guid>
       <description></description>
     </item>
     
     <item>
       <title>forecast</title>
-      <link>/tags/forecast/</link>
+      <link>https://twosidesdata.netlify.com/tags/forecast/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/forecast/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/forecast/</guid>
       <description></description>
     </item>
     
     <item>
       <title>libraries</title>
-      <link>/tags/libraries/</link>
+      <link>https://twosidesdata.netlify.com/tags/libraries/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/libraries/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/libraries/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Personal Website</title>
-      <link>/tags/personal-website/</link>
+      <link>https://twosidesdata.netlify.com/tags/personal-website/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/personal-website/</guid>
+      <guid>https://twosidesdata.netlify.com/tags/personal-website/</guid>
       <description></description>
     </item>
     

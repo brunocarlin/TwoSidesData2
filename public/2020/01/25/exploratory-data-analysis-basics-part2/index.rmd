@@ -24,6 +24,8 @@ output:
 library(reticulate)
 file_path <- here::here()
 file_path_linux <- paste(file_path,"content","post","data",sep = "/")
+py_run_string('import os')
+py_run_string("os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/Library/plugins/platforms'")
 ```
 
 Let's see what version of python this env is running.
