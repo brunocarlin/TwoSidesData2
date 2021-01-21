@@ -19,39 +19,46 @@ output:
     toc: true # table of content true
 ---
 
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
 <li><a href="#libraries">Libraries</a></li>
-<li><a href="#second-post">Second Post</a><ul>
+<li><a href="#second-post">Second Post</a>
+<ul>
 <li><a href="#objectives">Objectives</a></li>
 <li><a href="#define-the-variables-used-in-the-conclusion">Define the variables used in the conclusion</a></li>
 <li><a href="#using-masks-or-other-methods-to-filter-the-data">Using masks or other methods to filter the data</a></li>
 <li><a href="#visualizing-the-hypothesis">Visualizing the hypothesis</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
-<li><a href="#before-we-start">Before we start</a><ul>
+<li><a href="#before-we-start">Before we start</a>
+<ul>
 <li><a href="#reservations">Reservations</a></li>
 <li><a href="#data-dictionary">Data Dictionary</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#python">Python</a><ul>
+<li><a href="#python">Python</a>
+<ul>
 <li><a href="#importing-the-dataset-from-part-1">Importing the dataset from part 1</a></li>
 <li><a href="#python_hypothesis_testing1">Difference in means</a></li>
-<li><a href="#linear-regression">Linear Regression</a><ul>
+<li><a href="#linear-regression">Linear Regression</a>
+<ul>
 <li><a href="#masks">Linearity</a></li>
 <li><a href="#random">Random</a></li>
 <li><a href="#non-collinearity">Non-Collinearity</a></li>
 <li><a href="#exogeneity">Exogeneity</a></li>
 <li><a href="#homoscedasticity-homogeneity-of-variance-assumption-of-equal-variance">Homoscedasticity / Homogeneity of Variance/ Assumption of Equal Variance</a></li>
 </ul></li>
-<li><a href="#python_hypothesis_testing2">Fitting the linear regression</a><ul>
+<li><a href="#python_hypothesis_testing2">Fitting the linear regression</a>
+<ul>
 <li><a href="#linear-regression-plots">Linear Regression plots</a></li>
 <li><a href="#qq-plot">QQ plot</a></li>
 <li><a href="#scale-location-plot">Scale-Location Plot</a></li>
 <li><a href="#leverage-plot">Leverage plot</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#final-remarks">Final Remarks</a><ul>
+<li><a href="#final-remarks">Final Remarks</a>
+<ul>
 <li><a href="#next-post">Next post</a></li>
 </ul></li>
 </ul>
@@ -61,17 +68,13 @@ output:
 <h1>Libraries</h1>
 <p>Let’s see what version of python this env is running.</p>
 <pre class="r"><code>reticulate::py_config()</code></pre>
-<pre><code>## python:         /opt/python/3.7/bin/python3
-## libpython:      /opt/python/3.7/lib/libpython3.7m.so
-## pythonhome:     /opt/python/3.7:/opt/python/3.7
-## version:        3.7.4 (default, Aug 13 2019, 20:35:49)  [GCC 7.3.0]
-## numpy:          /opt/python/3.7/lib/python3.7/site-packages/numpy
-## numpy_version:  1.17.2
-## 
-## python versions found: 
-##  /opt/python/3.7/bin/python3
-##  /usr/bin/python3
-##  /usr/bin/python</code></pre>
+<pre><code>## python:         C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe
+## libpython:      C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python36.dll
+## pythonhome:     C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate
+## version:        3.6.12 (default, Dec  9 2020, 00:11:44) [MSC v.1916 64 bit (AMD64)]
+## Architecture:   64bit
+## numpy:          C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/Lib/site-packages/numpy
+## numpy_version:  1.19.5</code></pre>
 <pre class="python"><code>import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -116,7 +119,9 @@ from statsmodels.graphics.gofplots import ProbPlot</code></pre>
 <h3>Data Dictionary</h3>
 <p>We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.</p>
 <details>
-<summary>Portuguese</summary>
+<summary>
+Portuguese
+</summary>
 <p>
 <p>Descrição do Registro de Indivíduos nos EUA.</p>
 <p>Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.</p>
@@ -131,7 +136,9 @@ from statsmodels.graphics.gofplots import ProbPlot</code></pre>
 </p>
 </details>
 <details>
-<summary>English</summary>
+<summary>
+English
+</summary>
 <p>
 <p>Description of the US Individual Registry.</p>
 <p>Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.</p>
@@ -158,15 +165,17 @@ from statsmodels.graphics.gofplots import ProbPlot</code></pre>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## RangeIndex: 65795 entries, 0 to 65794
 ## Data columns (total 9 columns):
-## index           65795 non-null int64
-## age             65795 non-null int64
-## sex             65795 non-null object
-## years_study     65795 non-null category
-## color_race      65795 non-null object
-## salary          65795 non-null float64
-## civil_status    65795 non-null object
-## region          65795 non-null object
-## log_salary      65795 non-null float64
+##  #   Column        Non-Null Count  Dtype   
+## ---  ------        --------------  -----   
+##  0   index         65795 non-null  int64   
+##  1   age           65795 non-null  int64   
+##  2   sex           65795 non-null  object  
+##  3   years_study   65795 non-null  category
+##  4   color_race    65795 non-null  object  
+##  5   salary        65795 non-null  float64 
+##  6   civil_status  65795 non-null  object  
+##  7   region        65795 non-null  object  
+##  8   log_salary    65795 non-null  float64 
 ## dtypes: category(1), float64(2), int64(2), object(4)
 ## memory usage: 4.1+ MB</code></pre>
 <p>Let’s get going first define which variables to add to the hypothesis, to isolate the factor of salary ~ sex, if we consider that our sample of individuals is random in nature comparing the means of the individuals given their sex and seeing if there is a significant difference in their means.</p>
@@ -193,7 +202,9 @@ df_agg2</code></pre>
 <p>Therefore which one should be done first log or mean?</p>
 <p>The most common order is log then mean, because it is the order that reduces variance the most, you can read more about this <a href="http://rpubs.com/hrlai/meanlog_logmean">here</a></p>
 <details>
-<summary>Group by explanation</summary>
+<summary>
+Group by explanation
+</summary>
 <p>
 <p>Group by in pandas is a method that accepts a list of elements in this case just ‘sex’ and applies consequent operation in each group, in this case the mean method from a pandas DataFrame, .salary returns just the mean for the salary variable.</p>
 </p>
@@ -334,7 +345,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&quot;r--&quot;)
 
 plt.show()</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-19-1.png" /><!-- --></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" /><!-- --></p>
 <p>It seems age is not a great fit let’s try to also log age as well.</p>
 <pre class="python"><code>x = np.log(df_sex_thesis[&#39;age&#39;])
 y = df_sex_thesis[&#39;log_salary&#39;]
@@ -345,7 +356,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&quot;r--&quot;)
 
 plt.show()</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-20-1.png" /><!-- --></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" /><!-- --></p>
 <p>Better but still close to no impact, maybe if we filter our sample to just the earning population, we can improve on it, we can call theses filters ‘masks’ in pandas.</p>
 <pre class="python"><code>df_filter = df_sex_thesis[df_sex_thesis[&#39;log_salary&#39;]&gt; 2]</code></pre>
 <pre class="python"><code>df_filter</code></pre>
@@ -372,7 +383,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&quot;r--&quot;)
 
 plt.show()</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-23-1.png" /><!-- --></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" /><!-- --></p>
 <p>There is some slight improvement, it is a good question whether to filter otherwise sane values, the point is that the entire analysis would change, changing to salary ~ sex in the earning population in 1970 in Brazil instead of the salary ~ sex for the whole population in 1970 in Brazil.</p>
 <p>I think in both cases analyzing the Gender Pay Gap would be interesting it is even possible to split the hypothesis in two, analysing if Men and Women earn the same, and if Men and Women are have the same employment rate.</p>
 <p>So for here on out We are analyzing just the Gender Pay Difference of employed people.</p>
@@ -388,12 +399,12 @@ plt.show()</code></pre>
 <p>A good way too know if you are introducing too much Collinearity is looking at the heatmap.</p>
 <pre class="python"><code>corr = pd.get_dummies(df_sex_thesis[[&#39;sex&#39;,&#39;age&#39;]]).corr()
 sns.heatmap(corr)</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-24-1.png" /><!-- --></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" /><!-- --></p>
 <p>This is quite cloudy let’s get rid of the Sex interaction with itself.</p>
 <p>We are using a really cool pandas operation inspired this <a href="https://stackoverflow.com/a/36567174">stack overflow answer</a>, and combining it with the negate operator ‘~’ effectively selecting just the columns that don’t start with sex.</p>
 <pre class="python"><code>new_corr = corr.loc[:,~corr.columns.str.startswith(&#39;sex&#39;)]
 sns.heatmap(new_corr)</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-25-1.png" /><!-- --></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" /><!-- --></p>
 <p>Very little correlation, we are fine.</p>
 <p>Once again we don’t usually calculate the correlation between Categorical Variables.</p>
 </div>
@@ -405,8 +416,8 @@ sns.heatmap(new_corr)</code></pre>
 <p>Sex ~ Salary - Maybe people that get richer/poorer change Sex, probably not.<br />
 Age ~ Salary - You can’t buy year with money .
 Years Study ~ Salary - Possible but this probably only happen to the latter years of education, still worth considering.
-Color/Race ~ Salary -
-No. Civil Status ~ Salary - Yes I can see that, taking this feature out.<br />
+Color/Race ~ Salary - No.
+Civil Status ~ Salary - Yes I can see that, taking this feature out.<br />
 Region ~ Salary - Do richer people migrate to richer regions? I think so, taking this feature out.</p>
 <p>It is also nice to notice that this may be reason why we call the Predicted Variable the Independent Variable.</p>
 </div>
@@ -416,7 +427,7 @@ Region ~ Salary - Do richer people migrate to richer regions? I think so, taking
 <p>If broken the variance of the coefficients may be under or over estimated, meaning that we may fail to consider relevant features or consider wrongly irrelevant features, there are many formal statistical tests for this assumption let’s use scipy’s Bartlett’s test for homogeneity of variances where Ho is Homoscedasticity confirmation meaning we hope for p-values &lt; 0.05.</p>
 <p>We used a significance level of 5% for this assignment.</p>
 <pre class="python"><code>ss.bartlett(df_filter[&#39;log_salary&#39;],df_filter[&#39;age&#39;])</code></pre>
-<pre><code>## BartlettResult(statistic=232468.57113475894, pvalue=0.0)</code></pre>
+<pre><code>## BartlettResult(statistic=232468.57113474328, pvalue=0.0)</code></pre>
 <p>Don’t reject H0 -&gt; ok</p>
 <p>Another way to check this assumption is using tests called Breusch-Pagan and Goldfeld-Quandt post fitting the linear model.</p>
 </div>
@@ -432,8 +443,8 @@ print(model_fit.summary())</code></pre>
 ## Dep. Variable:             log_salary   R-squared:                       0.133
 ## Model:                            OLS   Adj. R-squared:                  0.133
 ## Method:                 Least Squares   F-statistic:                     613.6
-## Date:                sáb, 25 jan 2020   Prob (F-statistic):               0.00
-## Time:                        22:26:08   Log-Likelihood:                -81546.
+## Date:                Thu, 21 Jan 2021   Prob (F-statistic):               0.00
+## Time:                        01:05:49   Log-Likelihood:                -81546.
 ## No. Observations:               63973   AIC:                         1.631e+05
 ## Df Residuals:                   63956   BIC:                         1.633e+05
 ## Df Model:                          16                                         
@@ -465,16 +476,16 @@ print(model_fit.summary())</code></pre>
 ## Kurtosis:                       6.386   Cond. No.                         584.
 ## ==============================================================================
 ## 
-## Warnings:
+## Notes:
 ## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
 <p>Looking at the results, it is possible that there isGender Pay Gap, calculating the difference in estimated salaries done by</p>
 <ul>
-<li>plus intercept + e ^ beta_variable = 5077,12</li>
-<li>minus intercept 4105,16<br />
+<li>plus intercept + e ^ beta_variable = 5077.12</li>
+<li>minus intercept 4105.16<br />
 </li>
-<li>equals 971,96.</li>
+<li>equals 971.96.</li>
 </ul>
-<p>There is a 971,96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7,59% of the mean salary at the time.</p>
+<p>There is a 971.96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7.59% of the mean salary at the time.</p>
 <div id="linear-regression-plots" class="section level3">
 <h3>Linear Regression plots</h3>
 <p>Using the code from this excellent <a href="https://medium.com/@emredjan/emulating-r-regression-plots-in-python-43741952c034">post</a> and combining it with the understanding from this <a href="https://data.library.virginia.edu/diagnostic-plots/">post</a>.</p>
@@ -505,9 +516,10 @@ model_cooks = model_fit.get_influence().cooks_distance[0]</code></pre>
 plot_lm_1.axes[0] = sns.residplot(model_fitted_y, &#39;log_salary&#39;, data=df_filter,
                                   lowess=True,
                                   scatter_kws={&#39;alpha&#39;: 0.5},
-                                  line_kws={&#39;color&#39;: &#39;red&#39;, &#39;lw&#39;: 1, &#39;alpha&#39;: 0.8})
-
-plot_lm_1.axes[0].set_title(&#39;Residuals vs Fitted&#39;)
+                                  line_kws={&#39;color&#39;: &#39;red&#39;, &#39;lw&#39;: 1, &#39;alpha&#39;: 0.8})</code></pre>
+<pre><code>## C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\seaborn\_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+##   FutureWarning</code></pre>
+<pre class="python"><code>plot_lm_1.axes[0].set_title(&#39;Residuals vs Fitted&#39;)
 plot_lm_1.axes[0].set_xlabel(&#39;Fitted values&#39;)
 plot_lm_1.axes[0].set_ylabel(&#39;Residuals&#39;)
 
@@ -520,7 +532,6 @@ for i in abs_resid_top_3.index:
     plot_lm_1.axes[0].annotate(i, 
                                xy=(model_fitted_y[i], 
                                    model_residuals[i]));</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-29-1.png" /><!-- --></p>
 <p>Here we are looking for the red line to get as close to the doted black line meaning that our Predictors would have a perfectly linear relationship with our Dependent variable following the assumption of linearity.</p>
 <p>I think we are close enough.</p>
 </div>
@@ -541,7 +552,6 @@ for r, i in enumerate(abs_norm_resid_top_3):
     plot_lm_2.axes[0].annotate(i, 
                                xy=(np.flip(QQ.theoretical_quantiles, 0)[r],
                                    model_norm_residuals[i]));</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-30-1.png" /><!-- --></p>
 <p>Here we are looking for the circles to get as close to the red line as possible meaning that our variables follow a normal distribution and therefore our p-values are not biased.</p>
 <p>I think we have two problems the extremes may be a bit too distant and there are three concerning outliers.</p>
 </div>
@@ -568,7 +578,6 @@ for i in abs_norm_resid_top_3:
     plot_lm_3.axes[0].annotate(i, 
                                xy=(model_fitted_y[i], 
                                    model_norm_residuals_abs_sqrt[i]));</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-31-1.png" /><!-- --></p>
 <p>This is the graph where we check the homoscedasticity assumption, we want the red line to be as straight as possible meaning that our Predictor variance is constant among the Dependent Variable values.</p>
 <p>I think it is fine.</p>
 </div>
@@ -584,9 +593,9 @@ sns.regplot(model_leverage, model_norm_residuals,
             line_kws={&#39;color&#39;: &#39;red&#39;, &#39;lw&#39;: 1, &#39;alpha&#39;: 0.8})
 
 plot_lm_4.axes[0].set_xlim(0, 0.005)</code></pre>
-<pre><code>## (0, 0.005)</code></pre>
+<pre><code>## (0.0, 0.005)</code></pre>
 <pre class="python"><code>plot_lm_4.axes[0].set_ylim(-3, 5)</code></pre>
-<pre><code>## (-3, 5)</code></pre>
+<pre><code>## (-3.0, 5.0)</code></pre>
 <pre class="python"><code>plot_lm_4.axes[0].set_title(&#39;Residuals vs Leverage&#39;)
 plot_lm_4.axes[0].set_xlabel(&#39;Leverage&#39;)
 plot_lm_4.axes[0].set_ylabel(&#39;Standardized Residuals&#39;)
@@ -610,14 +619,13 @@ p = len(model_fit.params) # number of model parameters
 graph(lambda x: np.sqrt((0.5 * p * (1 - x)) / x), 
       np.linspace(0.000, 0.005, 50), 
       &#39;Cook\&#39;s distance&#39;) # 0.5 line</code></pre>
-<pre><code>## /opt/python/3.7/bin/python3:1: RuntimeWarning: divide by zero encountered in true_divide</code></pre>
+<pre><code>## C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:1: RuntimeWarning: divide by zero encountered in true_divide</code></pre>
 <pre class="python"><code>graph(lambda x: np.sqrt((1 * p * (1 - x)) / x), 
-      np.linspace(0.000, 0.005, 50)) # 1 line
-
-plt.legend(loc=&#39;upper right&#39;);</code></pre>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-32-1.png" /><!-- --></p>
+      np.linspace(0.000, 0.005, 50)) # 1 line</code></pre>
+<pre><code>## C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:1: RuntimeWarning: divide by zero encountered in true_divide</code></pre>
+<pre class="python"><code>plt.legend(loc=&#39;upper right&#39;);</code></pre>
 <p>Finally in this plot we are looking for outliers, it failed on the Python version, but it should show if the outliers plague the betas enough to the point where it may be worth studying removing them.</p>
-<p><img src="/post/2020/01/25/index_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>We want the Red line to be as close as possible to the dotted line.</p>
 <p>Looking at the R plot We can say it is fine.</p>
 <p>At the end I am comfortable not denying our Hypothesis that Salary ~ Sex in 1970 Brazil working population.</p>

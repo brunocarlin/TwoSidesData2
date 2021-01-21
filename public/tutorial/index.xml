@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Overview on TwoSidesData</title>
-    <link>/tutorial/</link>
+    <link>https://twosidesdata.netlify.com/tutorial/</link>
     <description>Recent content in Overview on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Example Page</title>
-      <link>/tutorial/example/</link>
+      <link>https://twosidesdata.netlify.com/tutorial/example/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
       
-      <guid>/tutorial/example/</guid>
+      <guid>https://twosidesdata.netlify.com/tutorial/example/</guid>
       <description>&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
 &lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
 &lt;p&gt;&amp;hellip;&lt;/p&gt;

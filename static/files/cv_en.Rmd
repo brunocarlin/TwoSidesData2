@@ -23,7 +23,7 @@ library(tibble)
 ```{r education}
 tribble(
   ~ degree, ~ uni, ~ loc, ~ dates,
-  "Post-graduate Degree Data Science and Decisions", "Insper", "São Paulo, Brasil", "Jun. 2019 - Mar 2021",
+  "Post-graduate Degree Data Science and Decisions", "Insper", "São Paulo, Brasil", "Jun. 2019 - Jun. 2021",
   "Course Data Science", "Digital House", "São Paulo, Brasil", "Feb. 2019 - May. 2019",
   "Enonomics", "Insper", "São Paulo, Brasil", "Jan. 2014 - Dec. 2018",
   "Foreign Commerce", "Porto Seguro", "São Paulo, Brasil", "Jan. 2011 - Dec. 2013",
@@ -46,20 +46,33 @@ tribble(
 ```{r experience}
 tribble(
   ~ role, ~ company, ~ loc, ~ dates, ~ details,
-  "Account Receivables Data Analyst", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Present",
+  
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Develop data science models for the finance latam team.",
+  
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Project Leader or Participant as business representative on latam finance projects",
+  
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Reports maintanence and developement for latam finance",
+  
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Limeted scope programming solutions for the latam finance team",
+  
+  "Account Receivables Data Analyst Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
   "Developing the new Credit Model.",
   
-  "Account Receivables Data Analyst", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Present",
-  "Responsible for multiple adhoc solutions delivering quick results to the business employing programming scripts to process small to medium size problem effectively and reliably.",
+  "Account Receivables Data Analyst Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
+  "Responsible for multiple adhoc solutions delivering quick results to the business employing programming scripts to process small to medium size problems effectively and reliably.",
   
-  "Account Receivables Data Analyst", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Present",
+  "Account Receivables Data Analyst Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
   "Data Analysis on accounts receivables and revenues datasets, implementing pipelines from data extraction to dashboards",
   
-  "Account Receivables Data Analyst", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Present",
+  "Account Receivables Data Analyst", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
   "Critical Participant of a diverse array of projects like the DataGis of the Credit Area and the Online Financing tool.",
   
   "Credit Analyst", "Bayer", "São Paulo, Brasil", "Set. 2019 - Dec. 2020",
-  "Financial analysis",
+  "Financial analysis of the clients credit risks",
   
   
   "Credit Analyst", "Bayer", "São Paulo, Brasil", "Set. 2019 - Dec. 2020",
@@ -67,7 +80,7 @@ tribble(
   
   
   "Credit Analyst", "Bayer", "São Paulo, Brasil", "Set. 2019 - Dec. 2020",
-  "Starting the machine learning Credit Model project",
+  "Starting the first machine learning Credit Model project",
   
   "Data Science Consultant", "Driven Consultant", "São Paulo, Brasil", "Jul. 2019 - Set. 2019",
   "Developed the time series model for Days on Hand of the client.",
@@ -82,13 +95,13 @@ tribble(
   "Trainee", "EY", "São Paulo, Brasil", "Apr. 2019 - Jun. 2019",
   "Documentation and analysis of the whole SQL pipeline, delivering business understanding",
   
-  "Intern Risk Managment - Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
+  "Intern Risk Management - Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
   "Creation, automation and maintenance of several credit and cash flow reports",
   
-  "Intern Risk Managment - Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
+  "Intern Risk Management - Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
   "Creation and improvement of Dashboards",
   
-  "Intern Risk Managment - Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
+  "Intern Risk Management - Reporting", "Bayer", "São Paulo, Brasil", "Jan. 2018 - Dec 2018",
   "Forecasting project, using my own ensemble method of time series models to create hierachichal forecasts",
   
   
@@ -125,17 +138,19 @@ No Certification.
 
 # Data Science Skills
 
-Learning Data Science, following blogs, reading books, doing online and on site courses, watching conference videos and more.
+Always Learning more Data Science, following blogs, reading books, doing online and on site courses, watching videos and more.
 
-Well versed into using the tidyverse for Data Analysis and Statistical Inference.
+Well versed into using the tidyverse for Data Science and Statistical Inference.
 
 Multiple projects doing time series forecasts.
 
+Experienci doing machine learning projects.
+
 Work experience using and developing SQL queries.
 
-Dashboard creation using Shiny.
+Dashboard creation using Shiny and Tableau.
 
-Working knowledge of Git.
+Working knowledge of the Git Workflow.
 
 You can see my open source work on my Data Science blog [twosidesdata](twosidesdata.netlify.com).
 

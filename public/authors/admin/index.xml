@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>admin on TwoSidesData</title>
-    <link>/authors/admin/</link>
+    <link>https://twosidesdata.netlify.com/authors/admin/</link>
     <description>Recent content in admin on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Presentation Data Science and Decision Making 1</title>
-      <link>/2020/05/21/exploratory-data-analysis-basics-part2/</link>
+      <link>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -423,14 +423,14 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
 ##   total_missing_values complete_rows total_observations memory_usage
 ## 1               218989         51924            3589544     21551024&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DataExplorer::plot_intro(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
 ## Drop features&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r &amp;lt;- df_r %&amp;gt;% 
   select(-starts_with(&amp;quot;D2&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
 ## Encode response in r&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  df_r &amp;lt;- df_r %&amp;gt;% 
   rename(response = Target2) %&amp;gt;% 
@@ -450,7 +450,7 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
     y = NULL,
     title = &amp;quot;Distribution of cases&amp;quot;
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
 # Modeling&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;train-test-split&#34; class=&#34;section level2&#34;&gt;
@@ -675,7 +675,7 @@ explainer_rf &amp;lt;- explain(random_forest,x_dalex,y_dalex,label =&amp;quot;ra
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mp_log_reg &amp;lt;- model_parts(explainer_log_reg)
 mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(mp_log_reg,mp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;variable-explanation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Variable explanation&lt;/h2&gt;
@@ -685,7 +685,7 @@ mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adp_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;B1_2&amp;quot;)
 adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(adp_log_reg,adp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;factor-explanation&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Factor explanation&lt;/h3&gt;
@@ -698,7 +698,7 @@ adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;expl_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)
 expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(expl_log_reg,expl_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;single-prediction-explanation&#34; class=&#34;section level2&#34;&gt;
@@ -708,10 +708,10 @@ expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&am
 bd_rf &amp;lt;- predict_parts(explainer_rf, x_dalex[1,])&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Logistic Regression&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_log_reg)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
 Random Forest&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Not the coolest graph since unfortunately we use a normalization process, maybe in the future with the workflows package we can see better graphs&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -720,44 +720,51 @@ Random Forest&lt;/p&gt;
     
     <item>
       <title>exploratory data analysis: basics Python part 2</title>
-      <link>/2020/01/25/exploratory-data-analysis-basics-part2/</link>
+      <link>https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/</link>
       <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/01/25/exploratory-data-analysis-basics-part2/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/</guid>
       <description>
+&lt;script src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#libraries&#34;&gt;Libraries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#second-post&#34;&gt;Second Post&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#second-post&#34;&gt;Second Post&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#objectives&#34;&gt;Objectives&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#define-the-variables-used-in-the-conclusion&#34;&gt;Define the variables used in the conclusion&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#using-masks-or-other-methods-to-filter-the-data&#34;&gt;Using masks or other methods to filter the data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#visualizing-the-hypothesis&#34;&gt;Visualizing the hypothesis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#before-we-start&#34;&gt;Before we start&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#before-we-start&#34;&gt;Before we start&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#reservations&#34;&gt;Reservations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#data-dictionary&#34;&gt;Data Dictionary&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#importing-the-dataset-from-part-1&#34;&gt;Importing the dataset from part 1&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing1&#34;&gt;Difference in means&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#linear-regression&#34;&gt;Linear Regression&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#masks&#34;&gt;Linearity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#random&#34;&gt;Random&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#non-collinearity&#34;&gt;Non-Collinearity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#exogeneity&#34;&gt;Exogeneity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#homoscedasticity-homogeneity-of-variance-assumption-of-equal-variance&#34;&gt;Homoscedasticity / Homogeneity of Variance/ Assumption of Equal Variance&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing2&#34;&gt;Fitting the linear regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing2&#34;&gt;Fitting the linear regression&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#linear-regression-plots&#34;&gt;Linear Regression plots&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#qq-plot&#34;&gt;QQ plot&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#scale-location-plot&#34;&gt;Scale-Location Plot&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#leverage-plot&#34;&gt;Leverage plot&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#final-remarks&#34;&gt;Final Remarks&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#final-remarks&#34;&gt;Final Remarks&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#next-post&#34;&gt;Next post&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -767,17 +774,13 @@ Random Forest&lt;/p&gt;
 &lt;h1&gt;Libraries&lt;/h1&gt;
 &lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;reticulate::py_config()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## python:         /opt/python/3.7/bin/python3
-## libpython:      /opt/python/3.7/lib/libpython3.7m.so
-## pythonhome:     /opt/python/3.7:/opt/python/3.7
-## version:        3.7.4 (default, Aug 13 2019, 20:35:49)  [GCC 7.3.0]
-## numpy:          /opt/python/3.7/lib/python3.7/site-packages/numpy
-## numpy_version:  1.17.2
-## 
-## python versions found: 
-##  /opt/python/3.7/bin/python3
-##  /usr/bin/python3
-##  /usr/bin/python&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## python:         C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe
+## libpython:      C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python36.dll
+## pythonhome:     C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate
+## version:        3.6.12 (default, Dec  9 2020, 00:11:44) [MSC v.1916 64 bit (AMD64)]
+## Architecture:   64bit
+## numpy:          C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/Lib/site-packages/numpy
+## numpy_version:  1.19.5&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -822,7 +825,9 @@ from statsmodels.graphics.gofplots import ProbPlot&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Data Dictionary&lt;/h3&gt;
 &lt;p&gt;We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.&lt;/p&gt;
 &lt;details&gt;
-&lt;summary&gt;Portuguese&lt;/summary&gt;
+&lt;summary&gt;
+Portuguese
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Descrição do Registro de Indivíduos nos EUA.&lt;/p&gt;
 &lt;p&gt;Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.&lt;/p&gt;
@@ -837,7 +842,9 @@ from statsmodels.graphics.gofplots import ProbPlot&lt;/code&gt;&lt;/pre&gt;
 &lt;/p&gt;
 &lt;/details&gt;
 &lt;details&gt;
-&lt;summary&gt;English&lt;/summary&gt;
+&lt;summary&gt;
+English
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Description of the US Individual Registry.&lt;/p&gt;
 &lt;p&gt;Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.&lt;/p&gt;
@@ -864,15 +871,17 @@ from statsmodels.graphics.gofplots import ProbPlot&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## RangeIndex: 65795 entries, 0 to 65794
 ## Data columns (total 9 columns):
-## index           65795 non-null int64
-## age             65795 non-null int64
-## sex             65795 non-null object
-## years_study     65795 non-null category
-## color_race      65795 non-null object
-## salary          65795 non-null float64
-## civil_status    65795 non-null object
-## region          65795 non-null object
-## log_salary      65795 non-null float64
+##  #   Column        Non-Null Count  Dtype   
+## ---  ------        --------------  -----   
+##  0   index         65795 non-null  int64   
+##  1   age           65795 non-null  int64   
+##  2   sex           65795 non-null  object  
+##  3   years_study   65795 non-null  category
+##  4   color_race    65795 non-null  object  
+##  5   salary        65795 non-null  float64 
+##  6   civil_status  65795 non-null  object  
+##  7   region        65795 non-null  object  
+##  8   log_salary    65795 non-null  float64 
 ## dtypes: category(1), float64(2), int64(2), object(4)
 ## memory usage: 4.1+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s get going first define which variables to add to the hypothesis, to isolate the factor of salary ~ sex, if we consider that our sample of individuals is random in nature comparing the means of the individuals given their sex and seeing if there is a significant difference in their means.&lt;/p&gt;
@@ -899,7 +908,9 @@ df_agg2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Therefore which one should be done first log or mean?&lt;/p&gt;
 &lt;p&gt;The most common order is log then mean, because it is the order that reduces variance the most, you can read more about this &lt;a href=&#34;http://rpubs.com/hrlai/meanlog_logmean&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;details&gt;
-&lt;summary&gt;Group by explanation&lt;/summary&gt;
+&lt;summary&gt;
+Group by explanation
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Group by in pandas is a method that accepts a list of elements in this case just ‘sex’ and applies consequent operation in each group, in this case the mean method from a pandas DataFrame, .salary returns just the mean for the salary variable.&lt;/p&gt;
 &lt;/p&gt;
@@ -1040,7 +1051,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-19-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-19-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;It seems age is not a great fit let’s try to also log age as well.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;x = np.log(df_sex_thesis[&amp;#39;age&amp;#39;])
 y = df_sex_thesis[&amp;#39;log_salary&amp;#39;]
@@ -1051,7 +1062,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-20-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-20-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Better but still close to no impact, maybe if we filter our sample to just the earning population, we can improve on it, we can call theses filters ‘masks’ in pandas.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_filter = df_sex_thesis[df_sex_thesis[&amp;#39;log_salary&amp;#39;]&amp;gt; 2]&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_filter&lt;/code&gt;&lt;/pre&gt;
@@ -1078,7 +1089,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-23-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-23-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;There is some slight improvement, it is a good question whether to filter otherwise sane values, the point is that the entire analysis would change, changing to salary ~ sex in the earning population in 1970 in Brazil instead of the salary ~ sex for the whole population in 1970 in Brazil.&lt;/p&gt;
 &lt;p&gt;I think in both cases analyzing the Gender Pay Gap would be interesting it is even possible to split the hypothesis in two, analysing if Men and Women earn the same, and if Men and Women are have the same employment rate.&lt;/p&gt;
 &lt;p&gt;So for here on out We are analyzing just the Gender Pay Difference of employed people.&lt;/p&gt;
@@ -1094,12 +1105,12 @@ plt.show()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A good way too know if you are introducing too much Collinearity is looking at the heatmap.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;corr = pd.get_dummies(df_sex_thesis[[&amp;#39;sex&amp;#39;,&amp;#39;age&amp;#39;]]).corr()
 sns.heatmap(corr)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-24-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-24-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;This is quite cloudy let’s get rid of the Sex interaction with itself.&lt;/p&gt;
 &lt;p&gt;We are using a really cool pandas operation inspired this &lt;a href=&#34;https://stackoverflow.com/a/36567174&#34;&gt;stack overflow answer&lt;/a&gt;, and combining it with the negate operator ‘~’ effectively selecting just the columns that don’t start with sex.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;new_corr = corr.loc[:,~corr.columns.str.startswith(&amp;#39;sex&amp;#39;)]
 sns.heatmap(new_corr)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-25-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-25-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Very little correlation, we are fine.&lt;/p&gt;
 &lt;p&gt;Once again we don’t usually calculate the correlation between Categorical Variables.&lt;/p&gt;
 &lt;/div&gt;
@@ -1111,8 +1122,8 @@ sns.heatmap(new_corr)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Sex ~ Salary - Maybe people that get richer/poorer change Sex, probably not.&lt;br /&gt;
 Age ~ Salary - You can’t buy year with money .
 Years Study ~ Salary - Possible but this probably only happen to the latter years of education, still worth considering.
-Color/Race ~ Salary -
-No. Civil Status ~ Salary - Yes I can see that, taking this feature out.&lt;br /&gt;
+Color/Race ~ Salary - No.
+Civil Status ~ Salary - Yes I can see that, taking this feature out.&lt;br /&gt;
 Region ~ Salary - Do richer people migrate to richer regions? I think so, taking this feature out.&lt;/p&gt;
 &lt;p&gt;It is also nice to notice that this may be reason why we call the Predicted Variable the Independent Variable.&lt;/p&gt;
 &lt;/div&gt;
@@ -1122,7 +1133,7 @@ Region ~ Salary - Do richer people migrate to richer regions? I think so, taking
 &lt;p&gt;If broken the variance of the coefficients may be under or over estimated, meaning that we may fail to consider relevant features or consider wrongly irrelevant features, there are many formal statistical tests for this assumption let’s use scipy’s Bartlett’s test for homogeneity of variances where Ho is Homoscedasticity confirmation meaning we hope for p-values &amp;lt; 0.05.&lt;/p&gt;
 &lt;p&gt;We used a significance level of 5% for this assignment.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;ss.bartlett(df_filter[&amp;#39;log_salary&amp;#39;],df_filter[&amp;#39;age&amp;#39;])&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## BartlettResult(statistic=232468.57113475894, pvalue=0.0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## BartlettResult(statistic=232468.57113474328, pvalue=0.0)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Don’t reject H0 -&amp;gt; ok&lt;/p&gt;
 &lt;p&gt;Another way to check this assumption is using tests called Breusch-Pagan and Goldfeld-Quandt post fitting the linear model.&lt;/p&gt;
 &lt;/div&gt;
@@ -1138,8 +1149,8 @@ print(model_fit.summary())&lt;/code&gt;&lt;/pre&gt;
 ## Dep. Variable:             log_salary   R-squared:                       0.133
 ## Model:                            OLS   Adj. R-squared:                  0.133
 ## Method:                 Least Squares   F-statistic:                     613.6
-## Date:                sáb, 25 jan 2020   Prob (F-statistic):               0.00
-## Time:                        22:26:08   Log-Likelihood:                -81546.
+## Date:                Thu, 21 Jan 2021   Prob (F-statistic):               0.00
+## Time:                        01:05:49   Log-Likelihood:                -81546.
 ## No. Observations:               63973   AIC:                         1.631e+05
 ## Df Residuals:                   63956   BIC:                         1.633e+05
 ## Df Model:                          16                                         
@@ -1171,16 +1182,16 @@ print(model_fit.summary())&lt;/code&gt;&lt;/pre&gt;
 ## Kurtosis:                       6.386   Cond. No.                         584.
 ## ==============================================================================
 ## 
-## Warnings:
+## Notes:
 ## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Looking at the results, it is possible that there isGender Pay Gap, calculating the difference in estimated salaries done by&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;plus intercept + e ^ beta_variable = 5077,12&lt;/li&gt;
-&lt;li&gt;minus intercept 4105,16&lt;br /&gt;
+&lt;li&gt;plus intercept + e ^ beta_variable = 5077.12&lt;/li&gt;
+&lt;li&gt;minus intercept 4105.16&lt;br /&gt;
 &lt;/li&gt;
-&lt;li&gt;equals 971,96.&lt;/li&gt;
+&lt;li&gt;equals 971.96.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;There is a 971,96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7,59% of the mean salary at the time.&lt;/p&gt;
+&lt;p&gt;There is a 971.96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7.59% of the mean salary at the time.&lt;/p&gt;
 &lt;div id=&#34;linear-regression-plots&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Linear Regression plots&lt;/h3&gt;
 &lt;p&gt;Using the code from this excellent &lt;a href=&#34;https://medium.com/@emredjan/emulating-r-regression-plots-in-python-43741952c034&#34;&gt;post&lt;/a&gt; and combining it with the understanding from this &lt;a href=&#34;https://data.library.virginia.edu/diagnostic-plots/&#34;&gt;post&lt;/a&gt;.&lt;/p&gt;
@@ -1211,9 +1222,10 @@ model_cooks = model_fit.get_influence().cooks_distance[0]&lt;/code&gt;&lt;/pre&g
 plot_lm_1.axes[0] = sns.residplot(model_fitted_y, &amp;#39;log_salary&amp;#39;, data=df_filter,
                                   lowess=True,
                                   scatter_kws={&amp;#39;alpha&amp;#39;: 0.5},
-                                  line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})
-
-plot_lm_1.axes[0].set_title(&amp;#39;Residuals vs Fitted&amp;#39;)
+                                  line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\seaborn\_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+##   FutureWarning&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_1.axes[0].set_title(&amp;#39;Residuals vs Fitted&amp;#39;)
 plot_lm_1.axes[0].set_xlabel(&amp;#39;Fitted values&amp;#39;)
 plot_lm_1.axes[0].set_ylabel(&amp;#39;Residuals&amp;#39;)
 
@@ -1226,7 +1238,6 @@ for i in abs_resid_top_3.index:
     plot_lm_1.axes[0].annotate(i, 
                                xy=(model_fitted_y[i], 
                                    model_residuals[i]));&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-29-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Here we are looking for the red line to get as close to the doted black line meaning that our Predictors would have a perfectly linear relationship with our Dependent variable following the assumption of linearity.&lt;/p&gt;
 &lt;p&gt;I think we are close enough.&lt;/p&gt;
 &lt;/div&gt;
@@ -1247,7 +1258,6 @@ for r, i in enumerate(abs_norm_resid_top_3):
     plot_lm_2.axes[0].annotate(i, 
                                xy=(np.flip(QQ.theoretical_quantiles, 0)[r],
                                    model_norm_residuals[i]));&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-30-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Here we are looking for the circles to get as close to the red line as possible meaning that our variables follow a normal distribution and therefore our p-values are not biased.&lt;/p&gt;
 &lt;p&gt;I think we have two problems the extremes may be a bit too distant and there are three concerning outliers.&lt;/p&gt;
 &lt;/div&gt;
@@ -1274,7 +1284,6 @@ for i in abs_norm_resid_top_3:
     plot_lm_3.axes[0].annotate(i, 
                                xy=(model_fitted_y[i], 
                                    model_norm_residuals_abs_sqrt[i]));&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-31-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;This is the graph where we check the homoscedasticity assumption, we want the red line to be as straight as possible meaning that our Predictor variance is constant among the Dependent Variable values.&lt;/p&gt;
 &lt;p&gt;I think it is fine.&lt;/p&gt;
 &lt;/div&gt;
@@ -1290,9 +1299,9 @@ sns.regplot(model_leverage, model_norm_residuals,
             line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})
 
 plot_lm_4.axes[0].set_xlim(0, 0.005)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (0, 0.005)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (0.0, 0.005)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_4.axes[0].set_ylim(-3, 5)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (-3, 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (-3.0, 5.0)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_4.axes[0].set_title(&amp;#39;Residuals vs Leverage&amp;#39;)
 plot_lm_4.axes[0].set_xlabel(&amp;#39;Leverage&amp;#39;)
 plot_lm_4.axes[0].set_ylabel(&amp;#39;Standardized Residuals&amp;#39;)
@@ -1316,14 +1325,13 @@ p = len(model_fit.params) # number of model parameters
 graph(lambda x: np.sqrt((0.5 * p * (1 - x)) / x), 
       np.linspace(0.000, 0.005, 50), 
       &amp;#39;Cook\&amp;#39;s distance&amp;#39;) # 0.5 line&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## /opt/python/3.7/bin/python3:1: RuntimeWarning: divide by zero encountered in true_divide&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:1: RuntimeWarning: divide by zero encountered in true_divide&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;graph(lambda x: np.sqrt((1 * p * (1 - x)) / x), 
-      np.linspace(0.000, 0.005, 50)) # 1 line
-
-plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+      np.linspace(0.000, 0.005, 50)) # 1 line&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:1: RuntimeWarning: divide by zero encountered in true_divide&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Finally in this plot we are looking for outliers, it failed on the Python version, but it should show if the outliers plague the betas enough to the point where it may be worth studying removing them.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We want the Red line to be as close as possible to the dotted line.&lt;/p&gt;
 &lt;p&gt;Looking at the R plot We can say it is fine.&lt;/p&gt;
 &lt;p&gt;At the end I am comfortable not denying our Hypothesis that Salary ~ Sex in 1970 Brazil working population.&lt;/p&gt;
@@ -1347,24 +1355,29 @@ plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>exploratory data analysis: basics Python part 1</title>
-      <link>/2020/01/19/exploratory-data-analysis-basics-part1/</link>
+      <link>https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/</link>
       <pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/01/19/exploratory-data-analysis-basics-part1/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/</guid>
       <description>
+&lt;script src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#libraries&#34;&gt;Libraries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#the-exercise&#34;&gt;The Exercise&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#before-we-get-into-it&#34;&gt;Before we get into it&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#the-exercise&#34;&gt;The Exercise&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#before-we-get-into-it&#34;&gt;Before we get into it&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#objectives&#34;&gt;Objectives&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reservations&#34;&gt;Reservations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#data-dictionary&#34;&gt;Data Dictionary&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#python_pre_processing&#34;&gt;Pre-processing&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python_pre_processing&#34;&gt;Pre-processing&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#python_read_data&#34;&gt;Reading Data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#analyzing-some-basic-stuff-about-our-data-frame&#34;&gt;Analyzing some basic stuff about our data frame&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#replacing-columns-names&#34;&gt;Replacing columns names&lt;/a&gt;&lt;/li&gt;
@@ -1384,7 +1397,7 @@ plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import platform
 print(platform.python_version())&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 3.7.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 3.6.12&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -1449,7 +1462,9 @@ file_path_linux = r.file_path_linux&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Data Dictionary&lt;/h3&gt;
 &lt;p&gt;We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.&lt;/p&gt;
 &lt;details&gt;
-&lt;summary&gt;Portuguese&lt;/summary&gt;
+&lt;summary&gt;
+Portuguese
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Descrição do Registro de Indivíduos nos EUA.&lt;/p&gt;
 &lt;p&gt;Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.&lt;/p&gt;
@@ -1464,7 +1479,9 @@ file_path_linux = r.file_path_linux&lt;/code&gt;&lt;/pre&gt;
 &lt;/p&gt;
 &lt;/details&gt;
 &lt;details&gt;
-&lt;summary&gt;English&lt;/summary&gt;
+&lt;summary&gt;
+English
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Description of the US Individual Registry.&lt;/p&gt;
 &lt;p&gt;Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.&lt;/p&gt;
@@ -1500,15 +1517,17 @@ df.info()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## RangeIndex: 66470 entries, 0 to 66469
 ## Data columns (total 9 columns):
-## Unnamed: 0      66470 non-null int64
-## id              66470 non-null float64
-## idade           66470 non-null int64
-## sexo            66470 non-null object
-## anos_estudo     66036 non-null float64
-## cor/raca        66228 non-null object
-## salario         47878 non-null float64
-## estado_civil    66470 non-null float64
-## regiao          66470 non-null object
+##  #   Column        Non-Null Count  Dtype  
+## ---  ------        --------------  -----  
+##  0   Unnamed: 0    66470 non-null  int64  
+##  1   id            66470 non-null  float64
+##  2   idade         66470 non-null  int64  
+##  3   sexo          66470 non-null  object 
+##  4   anos_estudo   66036 non-null  float64
+##  5   cor/raca      66228 non-null  object 
+##  6   salario       47878 non-null  float64
+##  7   estado_civil  66470 non-null  float64
+##  8   regiao        66470 non-null  object 
 ## dtypes: float64(4), int64(2), object(3)
 ## memory usage: 4.6+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I do enjoy python’s base value_counts but when used in a loop it can create some ugly outputs, in order to fix I created a function that adds some flavor text to the print output and generates new information about the accumulated percentage of the data being displayed.&lt;/p&gt;
@@ -1679,7 +1698,9 @@ for col in df:
 ##       dtype=&amp;#39;object&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;My favorite way of doing this sort of trades is using a dictionary defined outside the replace method, the cool thing about replace is that if we liked some of the column names previously defined we can simply omit them, for example, both “Unnamed: 0” and “id” are useless but since their names are already in English I don’t need to mess with them right now&lt;/p&gt;
 &lt;details&gt;
-&lt;summary&gt;Translation discussion on race&lt;/summary&gt;
+&lt;summary&gt;
+Translation discussion on race
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;There is some valid discussion on whether to translate “cor/raca” into ethnic_group or color_race, but I am personally on the opinion that the ones making this data frame in 1970 were probably under other standards of naming conventions and racism accusations so I will keep their naming scheme, I apologize if anyone feels offended by the use of these terms&lt;/p&gt;
 &lt;/p&gt;
@@ -1772,14 +1793,12 @@ for col in df:
 ## Detailed traceback: 
 ##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
 ##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 6, in pretty_value_counts
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/series.py&amp;quot;, line 1068, in __getitem__
-##     result = self.index.get_value(self, key)
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/indexes/base.py&amp;quot;, line 4730, in get_value
-##     return self._engine.get_value(s, k, tz=getattr(series.dtype, &amp;quot;tz&amp;quot;, None))
-##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 80, in pandas._libs.index.IndexEngine.get_value
-##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 88, in pandas._libs.index.IndexEngine.get_value
-##   File &amp;quot;pandas/_libs/index.pyx&amp;quot;, line 128, in pandas._libs.index.IndexEngine.get_loc
-##   File &amp;quot;pandas/_libs/index_class_helper.pxi&amp;quot;, line 91, in pandas._libs.index.Int64Engine._check_type&lt;/code&gt;&lt;/pre&gt;
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\series.py&amp;quot;, line 882, in __getitem__
+##     return self._get_value(key)
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\series.py&amp;quot;, line 990, in _get_value
+##     loc = self.index.get_loc(label)
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\indexes\range.py&amp;quot;, line 358, in get_loc
+##     raise KeyError(key)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here is actually a example on why I don’t personally enjoy Pandas conversion of data, the function that we created pretty_value_counts is not gonna work in this example because Pandas converts a single column to an Series object, so we would have to write a pretty_value_counts for Series as well or we would have to mess with the Pandas method or we could convert the series back into a DataFrame like this&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(data=  df.sex))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Column sex with object data type 
@@ -1790,11 +1809,13 @@ for col in df:
 &lt;div id=&#34;replacing-values-with-an-dictionary-multiple-columns&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Replacing values with an dictionary: multiple columns&lt;/h4&gt;
 &lt;details&gt;
-&lt;summary&gt;Translation discussion on race part 2&lt;/summary&gt;
+&lt;summary&gt;
+Translation discussion on race part 2
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Again there is relevant discussion on whether I should translate “Parda” as brown but basically Brazil’s population sometimes answers that their skin color is “Parda” = brown when asked about for many reasons I will propose two, “Preta” black can be used as an racist term so some people prefer to be called “brown”, the second explanation is that most of the population is actually pretty well integrated meaning that there a lot of biracial couples in this case we see something like “Preta” parent + “Branca” parent = “Parda” = in English “brown”.&lt;/p&gt;
 &lt;p&gt;There is also the case for the English equivalent of brown skin we simply use “Indiano” = “Indian”.&lt;/p&gt;
-&lt;p&gt;Curiously the term “Negra” =~ &amp;quot;N*gger&amp;quot; is often preferred in Brazil, that may cause some confusion between Portuguese and English speakers.&lt;/p&gt;
+&lt;p&gt;Curiously the term “Negra” =~ &#34;N*gger&#34; is often preferred in Brazil, that may cause some confusion between Portuguese and English speakers.&lt;/p&gt;
 &lt;p&gt;I will use brown but do notice that there were multiple sensible approaches here.&lt;/p&gt;
 &lt;/p&gt;
 &lt;/details&gt;
@@ -1844,18 +1865,16 @@ so let’s convert it.&lt;/p&gt;
 ## 
 ## Detailed traceback: 
 ##   File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/generic.py&amp;quot;, line 5882, in astype
-##     dtype=dtype, copy=copy, errors=errors, **kwargs
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 581, in astype
-##     return self.apply(&amp;quot;astype&amp;quot;, dtype=dtype, **kwargs)
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/internals/managers.py&amp;quot;, line 438, in apply
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\generic.py&amp;quot;, line 5548, in astype
+##     new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors,)
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\internals\managers.py&amp;quot;, line 604, in astype
+##     return self.apply(&amp;quot;astype&amp;quot;, dtype=dtype, copy=copy, errors=errors)
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\internals\managers.py&amp;quot;, line 409, in apply
 ##     applied = getattr(b, f)(**kwargs)
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 559, in astype
-##     return self._astype(dtype, copy=copy, errors=errors, values=values, **kwargs)
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/internals/blocks.py&amp;quot;, line 614, in _astype
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\internals\blocks.py&amp;quot;, line 548, in astype
 ##     dtype = pandas_dtype(dtype)
-##   File &amp;quot;/opt/python/3.7/lib/python3.7/site-packages/pandas/core/dtypes/common.py&amp;quot;, line 2055, in pandas_dtype
-##     raise TypeError(&amp;quot;data type &amp;#39;{}&amp;#39; not understood&amp;quot;.format(dtype))&lt;/code&gt;&lt;/pre&gt;
+##   File &amp;quot;C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\pandas\core\dtypes\common.py&amp;quot;, line 1763, in pandas_dtype
+##     npdtype = np.dtype(dtype)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Another numpy quirk you can’t use integers because there are NaN values.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;float&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Converting civil_status into a category.&lt;/p&gt;
@@ -1880,15 +1899,15 @@ df.civil_status.head()&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;python_plots_categorical&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Seeing the effects of categorical Variables&lt;/h3&gt;
 &lt;p&gt;We can use a colored barplot to see the interaction of these Categorical Variables with our Hypothesis.&lt;/p&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;region&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
-plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;region&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py$sns_plot&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;seaborn.axisgrid.FacetGrid&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;civil_status&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-33-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-34-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sns_plot = sns.catplot(x=&amp;quot;sex&amp;quot;, y=&amp;quot;salary&amp;quot;, hue=&amp;quot;color_race&amp;quot;, kind=&amp;quot;bar&amp;quot;, data=df)
 plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-34-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-35-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cleaning-numerical-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Cleaning numerical data&lt;/h3&gt;
@@ -1899,13 +1918,13 @@ plt.show(sns_plot)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In order to know what to “clean” in numerical data I like to use plot such as a histogram&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.salary.hist(bins = 10)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-36-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-37-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Here we can see that the data may have a few outliers at 1000000 and that most of the salary data has a large Positive skew meaning that most data point are left to the mean of the dataset we can see that better using an density plot instead&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.salary.plot.kde()
 plot_density.set_xlim(0,100000)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (0, 100000)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (0.0, 100000.0)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-37-1.png&#34; /&gt;&lt;!-- --&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-38-1.png&#34; /&gt;&lt;!-- --&gt;
 #### Replacing variables {#python_custom_function_2}&lt;/p&gt;
 &lt;p&gt;If we go back to our &lt;a href=&#34;#python_custom_function_1&#34;&gt;custom function&lt;/a&gt; we can find that the values -1 and 999999 are unusually common after consulting the dictionary we decided to replace these values with the mean of the group.&lt;/p&gt;
 &lt;p&gt;This operation would be wrong for machine learning purposes since the mean of our train group would leak information from the test set as well but here in exploratory data analysis it is mostly fine also you need to replace the values with the numpy nan or else this operation doesn’t work as expected.&lt;/p&gt;
@@ -1940,7 +1959,7 @@ df.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
 &lt;h4&gt;Log of numerical data&lt;/h4&gt;
 &lt;p&gt;There is also a statisticall solution for the Positive skew in our Data we can take the log of the salary column, but we will have to add one to all values since log of 0 goes to -Inf&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.log_salary = np.log1p(df.salary)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## /opt/python/3.7/bin/python3:1: UserWarning: Pandas doesn&amp;#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:1: UserWarning: Pandas doesn&amp;#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.log_salary))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Column salary with float64 data type 
 ##            counts  percentages  cum_percentages
@@ -1954,32 +1973,34 @@ df.salary.fillna(df.salary.mean(),inplace= True)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## RangeIndex: 66470 entries, 0 to 66469
 ## Data columns (total 7 columns):
-## age             66470 non-null int64
-## sex             66470 non-null object
-## years_study     66036 non-null float64
-## color_race      66228 non-null object
-## salary          66470 non-null float64
-## civil_status    66470 non-null object
-## region          66470 non-null object
+##  #   Column        Non-Null Count  Dtype  
+## ---  ------        --------------  -----  
+##  0   age           66470 non-null  int64  
+##  1   sex           66470 non-null  object 
+##  2   years_study   66036 non-null  float64
+##  3   color_race    66228 non-null  object 
+##  4   salary        66470 non-null  float64
+##  5   civil_status  66470 non-null  object 
+##  6   region        66470 non-null  object 
 ## dtypes: float64(2), int64(1), object(4)
 ## memory usage: 3.6+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You are better off using the &lt;code&gt;[&lt;/code&gt; notation&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df[&amp;#39;log_salary&amp;#39;] = np.log1p(df.salary)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.log_salary.plot.kde(bw_method= 0.5)
 plot_density.set_xlim(0,15)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (0, 15)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (0.0, 15.0)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-46-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-47-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;It is now a usefull feature for most simple linear models&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;other-numerical-columns&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Other numerical columns&lt;/h4&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.age.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-47-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-48-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_density = df.age.plot.kde()
 plot_density&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-48-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-49-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;pretty_value_counts(pd.DataFrame(df.age))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Column age with int64 data type 
 ##      counts  percentages  cum_percentages
@@ -1994,14 +2015,16 @@ plot_density&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## RangeIndex: 66470 entries, 0 to 66469
 ## Data columns (total 8 columns):
-## age             66470 non-null int64
-## sex             66470 non-null object
-## years_study     66036 non-null float64
-## color_race      66228 non-null object
-## salary          66470 non-null float64
-## civil_status    66470 non-null object
-## region          66470 non-null object
-## log_salary      66470 non-null float64
+##  #   Column        Non-Null Count  Dtype  
+## ---  ------        --------------  -----  
+##  0   age           66470 non-null  int64  
+##  1   sex           66470 non-null  object 
+##  2   years_study   66036 non-null  float64
+##  3   color_race    66228 non-null  object 
+##  4   salary        66470 non-null  float64
+##  5   civil_status  66470 non-null  object 
+##  6   region        66470 non-null  object 
+##  7   log_salary    66470 non-null  float64
 ## dtypes: float64(3), int64(1), object(4)
 ## memory usage: 4.1+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We are missing 66470 - 66036 = 434 observation, this is a small enough number that we decided to drop these rows&lt;/p&gt;
@@ -2011,20 +2034,22 @@ plot_density&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## Int64Index: 65795 entries, 0 to 66469
 ## Data columns (total 8 columns):
-## age             65795 non-null int64
-## sex             65795 non-null object
-## years_study     65795 non-null float64
-## color_race      65795 non-null object
-## salary          65795 non-null float64
-## civil_status    65795 non-null object
-## region          65795 non-null object
-## log_salary      65795 non-null float64
+##  #   Column        Non-Null Count  Dtype  
+## ---  ------        --------------  -----  
+##  0   age           65795 non-null  int64  
+##  1   sex           65795 non-null  object 
+##  2   years_study   65795 non-null  float64
+##  3   color_race    65795 non-null  object 
+##  4   salary        65795 non-null  float64
+##  5   civil_status  65795 non-null  object 
+##  6   region        65795 non-null  object 
+##  7   log_salary    65795 non-null  float64
 ## dtypes: float64(3), int64(1), object(4)
 ## memory usage: 4.5+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Checking on year_study&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study.hist(bins = 20)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/19/index_files/figure-html/unnamed-chunk-53-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/index_files/figure-html/unnamed-chunk-54-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Let’s convert it back into a Category&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df.years_study = df.years_study.astype(&amp;#39;category&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -2088,10 +2113,10 @@ plt.show()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Google interview question in R - Calendar</title>
-      <link>/2020/01/12/google-interview-question-in-r/</link>
+      <link>https://twosidesdata.netlify.com/2020/01/12/google-interview-question-in-r/</link>
       <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/01/12/google-interview-question-in-r/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/01/12/google-interview-question-in-r/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -2334,20 +2359,20 @@ is_odd &amp;lt;- is_even %&amp;gt;% negate()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Classification - KNN</title>
-      <link>/2019/08/15/classification-knn/</link>
+      <link>https://twosidesdata.netlify.com/2019/08/15/classification-knn/</link>
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/08/15/classification-knn/</guid>
+      <guid>https://twosidesdata.netlify.com/2019/08/15/classification-knn/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://twosidesdata.netlify.com/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Breast Cancer problem.&lt;/p&gt;
@@ -2930,13 +2955,13 @@ library(DataExplorer)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Is a imho a prettier option with individual cool plots and a super powerfull(but slow) report creation tool when working outside of an Rmarkdownm document&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_intro()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_bar()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df %&amp;gt;% 
   DataExplorer::plot_correlation()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/08/15/index_files/figure-html/Data%20Explorer%20%20individual%20plots-3.png&#34; width=&#34;672&#34; /&gt;Data Explorer individual plots: 1.05 sec elapsed&lt;/p&gt;
 &lt;p&gt;There are much more amaziong tools such as the &lt;a href=&#34;https://www.data-imaginist.com/2019/a-flurry-of-facets/&#34;&gt;ggforce package&lt;/a&gt; , but I hope you get the gist of the exploration stage.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3099,9 +3124,9 @@ knn_search &amp;lt;- tune_bayes(knn_wflow,
 &lt;div id=&#34;visualizing-our-search&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Visualizing our search&lt;/h3&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;accuracy&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/08/15/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-5: 0.16 sec elapsed&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(knn_search, type = &amp;quot;performance&amp;quot;, metric = &amp;quot;roc_auc&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/08/15/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-6: 0.2 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;seing-the-best-result&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Seing the best result&lt;/h3&gt;
@@ -3248,7 +3273,7 @@ DT::datatable(best_naive_metrics,options = list(pageLength = 5, scrollX=T))&lt;/
   geom_point() +
   ylim(.95,1)
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/08/15/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;unnamed-chunk-16: 0.16 sec elapsed&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3284,10 +3309,10 @@ p&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>exploratory data analysis: basic pandas and dplyr</title>
-      <link>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</link>
+      <link>https://twosidesdata.netlify.com/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</link>
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</guid>
+      <guid>https://twosidesdata.netlify.com/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</guid>
       <description>
 This is an basic example of how you can use either R or Python to accomplish the same goals, I really enjoy using the tidyverse but as you will see sometimes Python is just the more intuitive option. If you find yourself confused on whether a code chunk is an R or Python code please ask me or check my github page for this project. &lt;br&gt; &lt;br&gt;
 
@@ -3772,7 +3797,7 @@ from pylab import *
 sales.plot(x=&amp;quot;InvoiceDate&amp;quot;, y=&amp;quot;Revenue&amp;quot;, kind=&amp;quot;line&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -3832,11 +3857,11 @@ CountryGroups.sort_values(by= &amp;quot;Revenue&amp;quot;, ascending=False)&lt;/
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.10&lt;/span&gt; Ploting an histogram&lt;/h3&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;CustomerID&amp;quot;] == 17850.0][&amp;quot;Revenue&amp;quot;].plot(kind=&amp;quot;hist&amp;quot;)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;another example.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;StockCode&amp;quot;] == &amp;#39;71053&amp;#39;][&amp;quot;Quantity&amp;quot;].hist()
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.11&lt;/span&gt; Handling Missing values&lt;/h3&gt;
@@ -4398,7 +4423,7 @@ raw_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% ggplot() +
   aes(x = InvoiceDate, y = Revenue) +
   geom_line()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -4486,14 +4511,14 @@ CountryGroups&lt;/code&gt;&lt;/pre&gt;
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Another example.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;%
   filter(StockCode == 71053) %&amp;gt;% 
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.11&lt;/span&gt; Handling Missing values in R&lt;/h3&gt;
@@ -4634,10 +4659,10 @@ sales3_solution&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title></title>
-      <link>/author/admin/</link>
+      <link>https://twosidesdata.netlify.com/author/admin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/author/admin/</guid>
+      <guid>https://twosidesdata.netlify.com/author/admin/</guid>
       <description>&lt;p&gt;Bruno Testaguzza Carlin is an student of Data Science at Insper.&lt;br&gt;
 Experience using R and BI tools, improving Python skills.&lt;br&gt;
 Currently working at Bayer.&lt;/p&gt;

@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>scipy on TwoSidesData</title>
-    <link>/tags/scipy/</link>
+    <link>https://twosidesdata.netlify.com/tags/scipy/</link>
     <description>Recent content in scipy on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,44 +10,51 @@
     
     <item>
       <title>exploratory data analysis: basics Python part 2</title>
-      <link>/2020/01/25/exploratory-data-analysis-basics-part2/</link>
+      <link>https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/</link>
       <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/01/25/exploratory-data-analysis-basics-part2/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/</guid>
       <description>
+&lt;script src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#libraries&#34;&gt;Libraries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#second-post&#34;&gt;Second Post&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#second-post&#34;&gt;Second Post&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#objectives&#34;&gt;Objectives&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#define-the-variables-used-in-the-conclusion&#34;&gt;Define the variables used in the conclusion&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#using-masks-or-other-methods-to-filter-the-data&#34;&gt;Using masks or other methods to filter the data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#visualizing-the-hypothesis&#34;&gt;Visualizing the hypothesis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#before-we-start&#34;&gt;Before we start&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#before-we-start&#34;&gt;Before we start&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#reservations&#34;&gt;Reservations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#data-dictionary&#34;&gt;Data Dictionary&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#importing-the-dataset-from-part-1&#34;&gt;Importing the dataset from part 1&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing1&#34;&gt;Difference in means&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#linear-regression&#34;&gt;Linear Regression&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#masks&#34;&gt;Linearity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#random&#34;&gt;Random&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#non-collinearity&#34;&gt;Non-Collinearity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#exogeneity&#34;&gt;Exogeneity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#homoscedasticity-homogeneity-of-variance-assumption-of-equal-variance&#34;&gt;Homoscedasticity / Homogeneity of Variance/ Assumption of Equal Variance&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing2&#34;&gt;Fitting the linear regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python_hypothesis_testing2&#34;&gt;Fitting the linear regression&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#linear-regression-plots&#34;&gt;Linear Regression plots&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#qq-plot&#34;&gt;QQ plot&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#scale-location-plot&#34;&gt;Scale-Location Plot&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#leverage-plot&#34;&gt;Leverage plot&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#final-remarks&#34;&gt;Final Remarks&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#final-remarks&#34;&gt;Final Remarks&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#next-post&#34;&gt;Next post&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -57,17 +64,13 @@
 &lt;h1&gt;Libraries&lt;/h1&gt;
 &lt;p&gt;Let’s see what version of python this env is running.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;reticulate::py_config()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## python:         /opt/python/3.7/bin/python3
-## libpython:      /opt/python/3.7/lib/libpython3.7m.so
-## pythonhome:     /opt/python/3.7:/opt/python/3.7
-## version:        3.7.4 (default, Aug 13 2019, 20:35:49)  [GCC 7.3.0]
-## numpy:          /opt/python/3.7/lib/python3.7/site-packages/numpy
-## numpy_version:  1.17.2
-## 
-## python versions found: 
-##  /opt/python/3.7/bin/python3
-##  /usr/bin/python3
-##  /usr/bin/python&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## python:         C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe
+## libpython:      C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python36.dll
+## pythonhome:     C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate
+## version:        3.6.12 (default, Dec  9 2020, 00:11:44) [MSC v.1916 64 bit (AMD64)]
+## Architecture:   64bit
+## numpy:          C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/Lib/site-packages/numpy
+## numpy_version:  1.19.5&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -112,7 +115,9 @@ from statsmodels.graphics.gofplots import ProbPlot&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Data Dictionary&lt;/h3&gt;
 &lt;p&gt;We got a Data Dictionary that will be very useful for our Analysis, it contains all the required information about the encoding of the columns and the intended format that the folks at STATA desired.&lt;/p&gt;
 &lt;details&gt;
-&lt;summary&gt;Portuguese&lt;/summary&gt;
+&lt;summary&gt;
+Portuguese
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Descrição do Registro de Indivíduos nos EUA.&lt;/p&gt;
 &lt;p&gt;Dataset do software STATA (pago), vamos abri-lo com o pandas e transforma-lo em DataFrame.&lt;/p&gt;
@@ -127,7 +132,9 @@ from statsmodels.graphics.gofplots import ProbPlot&lt;/code&gt;&lt;/pre&gt;
 &lt;/p&gt;
 &lt;/details&gt;
 &lt;details&gt;
-&lt;summary&gt;English&lt;/summary&gt;
+&lt;summary&gt;
+English
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Description of the US Individual Registry.&lt;/p&gt;
 &lt;p&gt;Dataset of the STATA software (paid), we will open it with pandas and turn it into DataFrame.&lt;/p&gt;
@@ -154,15 +161,17 @@ from statsmodels.graphics.gofplots import ProbPlot&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## &amp;lt;class &amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;
 ## RangeIndex: 65795 entries, 0 to 65794
 ## Data columns (total 9 columns):
-## index           65795 non-null int64
-## age             65795 non-null int64
-## sex             65795 non-null object
-## years_study     65795 non-null category
-## color_race      65795 non-null object
-## salary          65795 non-null float64
-## civil_status    65795 non-null object
-## region          65795 non-null object
-## log_salary      65795 non-null float64
+##  #   Column        Non-Null Count  Dtype   
+## ---  ------        --------------  -----   
+##  0   index         65795 non-null  int64   
+##  1   age           65795 non-null  int64   
+##  2   sex           65795 non-null  object  
+##  3   years_study   65795 non-null  category
+##  4   color_race    65795 non-null  object  
+##  5   salary        65795 non-null  float64 
+##  6   civil_status  65795 non-null  object  
+##  7   region        65795 non-null  object  
+##  8   log_salary    65795 non-null  float64 
 ## dtypes: category(1), float64(2), int64(2), object(4)
 ## memory usage: 4.1+ MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s get going first define which variables to add to the hypothesis, to isolate the factor of salary ~ sex, if we consider that our sample of individuals is random in nature comparing the means of the individuals given their sex and seeing if there is a significant difference in their means.&lt;/p&gt;
@@ -189,7 +198,9 @@ df_agg2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Therefore which one should be done first log or mean?&lt;/p&gt;
 &lt;p&gt;The most common order is log then mean, because it is the order that reduces variance the most, you can read more about this &lt;a href=&#34;http://rpubs.com/hrlai/meanlog_logmean&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;details&gt;
-&lt;summary&gt;Group by explanation&lt;/summary&gt;
+&lt;summary&gt;
+Group by explanation
+&lt;/summary&gt;
 &lt;p&gt;
 &lt;p&gt;Group by in pandas is a method that accepts a list of elements in this case just ‘sex’ and applies consequent operation in each group, in this case the mean method from a pandas DataFrame, .salary returns just the mean for the salary variable.&lt;/p&gt;
 &lt;/p&gt;
@@ -330,7 +341,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-19-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-19-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;It seems age is not a great fit let’s try to also log age as well.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;x = np.log(df_sex_thesis[&amp;#39;age&amp;#39;])
 y = df_sex_thesis[&amp;#39;log_salary&amp;#39;]
@@ -341,7 +352,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-20-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-20-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Better but still close to no impact, maybe if we filter our sample to just the earning population, we can improve on it, we can call theses filters ‘masks’ in pandas.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_filter = df_sex_thesis[df_sex_thesis[&amp;#39;log_salary&amp;#39;]&amp;gt; 2]&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;df_filter&lt;/code&gt;&lt;/pre&gt;
@@ -368,7 +379,7 @@ p = np.poly1d(z)
 plt.plot(x,p(x),&amp;quot;r--&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-23-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-23-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;There is some slight improvement, it is a good question whether to filter otherwise sane values, the point is that the entire analysis would change, changing to salary ~ sex in the earning population in 1970 in Brazil instead of the salary ~ sex for the whole population in 1970 in Brazil.&lt;/p&gt;
 &lt;p&gt;I think in both cases analyzing the Gender Pay Gap would be interesting it is even possible to split the hypothesis in two, analysing if Men and Women earn the same, and if Men and Women are have the same employment rate.&lt;/p&gt;
 &lt;p&gt;So for here on out We are analyzing just the Gender Pay Difference of employed people.&lt;/p&gt;
@@ -384,12 +395,12 @@ plt.show()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A good way too know if you are introducing too much Collinearity is looking at the heatmap.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;corr = pd.get_dummies(df_sex_thesis[[&amp;#39;sex&amp;#39;,&amp;#39;age&amp;#39;]]).corr()
 sns.heatmap(corr)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-24-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-24-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;This is quite cloudy let’s get rid of the Sex interaction with itself.&lt;/p&gt;
 &lt;p&gt;We are using a really cool pandas operation inspired this &lt;a href=&#34;https://stackoverflow.com/a/36567174&#34;&gt;stack overflow answer&lt;/a&gt;, and combining it with the negate operator ‘~’ effectively selecting just the columns that don’t start with sex.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;new_corr = corr.loc[:,~corr.columns.str.startswith(&amp;#39;sex&amp;#39;)]
 sns.heatmap(new_corr)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-25-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-25-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Very little correlation, we are fine.&lt;/p&gt;
 &lt;p&gt;Once again we don’t usually calculate the correlation between Categorical Variables.&lt;/p&gt;
 &lt;/div&gt;
@@ -401,8 +412,8 @@ sns.heatmap(new_corr)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Sex ~ Salary - Maybe people that get richer/poorer change Sex, probably not.&lt;br /&gt;
 Age ~ Salary - You can’t buy year with money .
 Years Study ~ Salary - Possible but this probably only happen to the latter years of education, still worth considering.
-Color/Race ~ Salary -
-No. Civil Status ~ Salary - Yes I can see that, taking this feature out.&lt;br /&gt;
+Color/Race ~ Salary - No.
+Civil Status ~ Salary - Yes I can see that, taking this feature out.&lt;br /&gt;
 Region ~ Salary - Do richer people migrate to richer regions? I think so, taking this feature out.&lt;/p&gt;
 &lt;p&gt;It is also nice to notice that this may be reason why we call the Predicted Variable the Independent Variable.&lt;/p&gt;
 &lt;/div&gt;
@@ -412,7 +423,7 @@ Region ~ Salary - Do richer people migrate to richer regions? I think so, taking
 &lt;p&gt;If broken the variance of the coefficients may be under or over estimated, meaning that we may fail to consider relevant features or consider wrongly irrelevant features, there are many formal statistical tests for this assumption let’s use scipy’s Bartlett’s test for homogeneity of variances where Ho is Homoscedasticity confirmation meaning we hope for p-values &amp;lt; 0.05.&lt;/p&gt;
 &lt;p&gt;We used a significance level of 5% for this assignment.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;ss.bartlett(df_filter[&amp;#39;log_salary&amp;#39;],df_filter[&amp;#39;age&amp;#39;])&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## BartlettResult(statistic=232468.57113475894, pvalue=0.0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## BartlettResult(statistic=232468.57113474328, pvalue=0.0)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Don’t reject H0 -&amp;gt; ok&lt;/p&gt;
 &lt;p&gt;Another way to check this assumption is using tests called Breusch-Pagan and Goldfeld-Quandt post fitting the linear model.&lt;/p&gt;
 &lt;/div&gt;
@@ -428,8 +439,8 @@ print(model_fit.summary())&lt;/code&gt;&lt;/pre&gt;
 ## Dep. Variable:             log_salary   R-squared:                       0.133
 ## Model:                            OLS   Adj. R-squared:                  0.133
 ## Method:                 Least Squares   F-statistic:                     613.6
-## Date:                sáb, 25 jan 2020   Prob (F-statistic):               0.00
-## Time:                        22:26:08   Log-Likelihood:                -81546.
+## Date:                Thu, 21 Jan 2021   Prob (F-statistic):               0.00
+## Time:                        01:05:49   Log-Likelihood:                -81546.
 ## No. Observations:               63973   AIC:                         1.631e+05
 ## Df Residuals:                   63956   BIC:                         1.633e+05
 ## Df Model:                          16                                         
@@ -461,16 +472,16 @@ print(model_fit.summary())&lt;/code&gt;&lt;/pre&gt;
 ## Kurtosis:                       6.386   Cond. No.                         584.
 ## ==============================================================================
 ## 
-## Warnings:
+## Notes:
 ## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Looking at the results, it is possible that there isGender Pay Gap, calculating the difference in estimated salaries done by&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;plus intercept + e ^ beta_variable = 5077,12&lt;/li&gt;
-&lt;li&gt;minus intercept 4105,16&lt;br /&gt;
+&lt;li&gt;plus intercept + e ^ beta_variable = 5077.12&lt;/li&gt;
+&lt;li&gt;minus intercept 4105.16&lt;br /&gt;
 &lt;/li&gt;
-&lt;li&gt;equals 971,96.&lt;/li&gt;
+&lt;li&gt;equals 971.96.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;There is a 971,96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7,59% of the mean salary at the time.&lt;/p&gt;
+&lt;p&gt;There is a 971.96 difference between men and women salaries in the earning population of Brazil in 1970 quite significant at 7.59% of the mean salary at the time.&lt;/p&gt;
 &lt;div id=&#34;linear-regression-plots&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Linear Regression plots&lt;/h3&gt;
 &lt;p&gt;Using the code from this excellent &lt;a href=&#34;https://medium.com/@emredjan/emulating-r-regression-plots-in-python-43741952c034&#34;&gt;post&lt;/a&gt; and combining it with the understanding from this &lt;a href=&#34;https://data.library.virginia.edu/diagnostic-plots/&#34;&gt;post&lt;/a&gt;.&lt;/p&gt;
@@ -501,9 +512,10 @@ model_cooks = model_fit.get_influence().cooks_distance[0]&lt;/code&gt;&lt;/pre&g
 plot_lm_1.axes[0] = sns.residplot(model_fitted_y, &amp;#39;log_salary&amp;#39;, data=df_filter,
                                   lowess=True,
                                   scatter_kws={&amp;#39;alpha&amp;#39;: 0.5},
-                                  line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})
-
-plot_lm_1.axes[0].set_title(&amp;#39;Residuals vs Fitted&amp;#39;)
+                                  line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## C:\Users\bruno\AppData\Local\R-MINI~1\envs\R-RETI~1\lib\site-packages\seaborn\_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+##   FutureWarning&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_1.axes[0].set_title(&amp;#39;Residuals vs Fitted&amp;#39;)
 plot_lm_1.axes[0].set_xlabel(&amp;#39;Fitted values&amp;#39;)
 plot_lm_1.axes[0].set_ylabel(&amp;#39;Residuals&amp;#39;)
 
@@ -516,7 +528,6 @@ for i in abs_resid_top_3.index:
     plot_lm_1.axes[0].annotate(i, 
                                xy=(model_fitted_y[i], 
                                    model_residuals[i]));&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-29-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Here we are looking for the red line to get as close to the doted black line meaning that our Predictors would have a perfectly linear relationship with our Dependent variable following the assumption of linearity.&lt;/p&gt;
 &lt;p&gt;I think we are close enough.&lt;/p&gt;
 &lt;/div&gt;
@@ -537,7 +548,6 @@ for r, i in enumerate(abs_norm_resid_top_3):
     plot_lm_2.axes[0].annotate(i, 
                                xy=(np.flip(QQ.theoretical_quantiles, 0)[r],
                                    model_norm_residuals[i]));&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-30-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Here we are looking for the circles to get as close to the red line as possible meaning that our variables follow a normal distribution and therefore our p-values are not biased.&lt;/p&gt;
 &lt;p&gt;I think we have two problems the extremes may be a bit too distant and there are three concerning outliers.&lt;/p&gt;
 &lt;/div&gt;
@@ -564,7 +574,6 @@ for i in abs_norm_resid_top_3:
     plot_lm_3.axes[0].annotate(i, 
                                xy=(model_fitted_y[i], 
                                    model_norm_residuals_abs_sqrt[i]));&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-31-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;This is the graph where we check the homoscedasticity assumption, we want the red line to be as straight as possible meaning that our Predictor variance is constant among the Dependent Variable values.&lt;/p&gt;
 &lt;p&gt;I think it is fine.&lt;/p&gt;
 &lt;/div&gt;
@@ -580,9 +589,9 @@ sns.regplot(model_leverage, model_norm_residuals,
             line_kws={&amp;#39;color&amp;#39;: &amp;#39;red&amp;#39;, &amp;#39;lw&amp;#39;: 1, &amp;#39;alpha&amp;#39;: 0.8})
 
 plot_lm_4.axes[0].set_xlim(0, 0.005)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (0, 0.005)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (0.0, 0.005)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_4.axes[0].set_ylim(-3, 5)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (-3, 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (-3.0, 5.0)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plot_lm_4.axes[0].set_title(&amp;#39;Residuals vs Leverage&amp;#39;)
 plot_lm_4.axes[0].set_xlabel(&amp;#39;Leverage&amp;#39;)
 plot_lm_4.axes[0].set_ylabel(&amp;#39;Standardized Residuals&amp;#39;)
@@ -606,14 +615,13 @@ p = len(model_fit.params) # number of model parameters
 graph(lambda x: np.sqrt((0.5 * p * (1 - x)) / x), 
       np.linspace(0.000, 0.005, 50), 
       &amp;#39;Cook\&amp;#39;s distance&amp;#39;) # 0.5 line&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## /opt/python/3.7/bin/python3:1: RuntimeWarning: divide by zero encountered in true_divide&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:1: RuntimeWarning: divide by zero encountered in true_divide&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;graph(lambda x: np.sqrt((1 * p * (1 - x)) / x), 
-      np.linspace(0.000, 0.005, 50)) # 1 line
-
-plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-32-1.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+      np.linspace(0.000, 0.005, 50)) # 1 line&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:1: RuntimeWarning: divide by zero encountered in true_divide&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Finally in this plot we are looking for outliers, it failed on the Python version, but it should show if the outliers plague the betas enough to the point where it may be worth studying removing them.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/01/25/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We want the Red line to be as close as possible to the dotted line.&lt;/p&gt;
 &lt;p&gt;Looking at the R plot We can say it is fine.&lt;/p&gt;
 &lt;p&gt;At the end I am comfortable not denying our Hypothesis that Salary ~ Sex in 1970 Brazil working population.&lt;/p&gt;
@@ -637,10 +645,10 @@ plt.legend(loc=&amp;#39;upper right&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>exploratory data analysis: basic statistical inference</title>
-      <link>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</link>
+      <link>https://twosidesdata.netlify.com/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</link>
       <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</guid>
+      <guid>https://twosidesdata.netlify.com/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</guid>
       <description>
 
 

@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>dplyr on TwoSidesData</title>
-    <link>/tags/dplyr/</link>
+    <link>https://twosidesdata.netlify.com/tags/dplyr/</link>
     <description>Recent content in dplyr on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Presentation Data Science and Decision Making 1</title>
-      <link>/2020/05/21/exploratory-data-analysis-basics-part2/</link>
+      <link>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -423,14 +423,14 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
 ##   total_missing_values complete_rows total_observations memory_usage
 ## 1               218989         51924            3589544     21551024&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DataExplorer::plot_intro(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
 ## Drop features&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r &amp;lt;- df_r %&amp;gt;% 
   select(-starts_with(&amp;quot;D2&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
 ## Encode response in r&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  df_r &amp;lt;- df_r %&amp;gt;% 
   rename(response = Target2) %&amp;gt;% 
@@ -450,7 +450,7 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
     y = NULL,
     title = &amp;quot;Distribution of cases&amp;quot;
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
 # Modeling&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;train-test-split&#34; class=&#34;section level2&#34;&gt;
@@ -675,7 +675,7 @@ explainer_rf &amp;lt;- explain(random_forest,x_dalex,y_dalex,label =&amp;quot;ra
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mp_log_reg &amp;lt;- model_parts(explainer_log_reg)
 mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(mp_log_reg,mp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;variable-explanation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Variable explanation&lt;/h2&gt;
@@ -685,7 +685,7 @@ mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adp_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;B1_2&amp;quot;)
 adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(adp_log_reg,adp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;factor-explanation&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Factor explanation&lt;/h3&gt;
@@ -698,7 +698,7 @@ adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;expl_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)
 expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(expl_log_reg,expl_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;single-prediction-explanation&#34; class=&#34;section level2&#34;&gt;
@@ -708,10 +708,10 @@ expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&am
 bd_rf &amp;lt;- predict_parts(explainer_rf, x_dalex[1,])&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Logistic Regression&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_log_reg)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
 Random Forest&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Not the coolest graph since unfortunately we use a normalization process, maybe in the future with the workflows package we can see better graphs&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -720,10 +720,10 @@ Random Forest&lt;/p&gt;
     
     <item>
       <title>exploratory data analysis: basic statistical inference</title>
-      <link>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</link>
+      <link>https://twosidesdata.netlify.com/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</link>
       <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</guid>
+      <guid>https://twosidesdata.netlify.com/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</guid>
       <description>
 
 
@@ -733,10 +733,10 @@ Random Forest&lt;/p&gt;
     
     <item>
       <title>exploratory data analysis: basic pandas and dplyr</title>
-      <link>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</link>
+      <link>https://twosidesdata.netlify.com/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</link>
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</guid>
+      <guid>https://twosidesdata.netlify.com/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</guid>
       <description>
 This is an basic example of how you can use either R or Python to accomplish the same goals, I really enjoy using the tidyverse but as you will see sometimes Python is just the more intuitive option. If you find yourself confused on whether a code chunk is an R or Python code please ask me or check my github page for this project. &lt;br&gt; &lt;br&gt;
 
@@ -1221,7 +1221,7 @@ from pylab import *
 sales.plot(x=&amp;quot;InvoiceDate&amp;quot;, y=&amp;quot;Revenue&amp;quot;, kind=&amp;quot;line&amp;quot;)
 
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-34-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -1281,11 +1281,11 @@ CountryGroups.sort_values(by= &amp;quot;Revenue&amp;quot;, ascending=False)&lt;/
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.10&lt;/span&gt; Ploting an histogram&lt;/h3&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;CustomerID&amp;quot;] == 17850.0][&amp;quot;Revenue&amp;quot;].plot(kind=&amp;quot;hist&amp;quot;)
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-37-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;another example.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;sales[sales[&amp;quot;StockCode&amp;quot;] == &amp;#39;71053&amp;#39;][&amp;quot;Quantity&amp;quot;].hist()
 plt.show()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_py&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.11&lt;/span&gt; Handling Missing values&lt;/h3&gt;
@@ -1847,7 +1847,7 @@ raw_sales %&amp;gt;% head()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;% ggplot() +
   aes(x = InvoiceDate, y = Revenue) +
   geom_line()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-68-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;filtering_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.8&lt;/span&gt; Filtering and replace data&lt;/h3&gt;
@@ -1935,14 +1935,14 @@ CountryGroups&lt;/code&gt;&lt;/pre&gt;
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-73-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Another example.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sales %&amp;gt;%
   filter(StockCode == 71053) %&amp;gt;% 
   ggplot() +
   aes(Revenue) +
   geom_histogram(bins = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2019/2019-03/2019-03-23/1/index_files/figure-html/exploratory_data1-74-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;missing_values_r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3.11&lt;/span&gt; Handling Missing values in R&lt;/h3&gt;

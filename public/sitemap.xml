@@ -2,310 +2,304 @@
   
     <url>
     
-      <loc>/talk/example/</loc>
+      <loc>https://twosidesdata.netlify.com/talk/example/</loc>
       <lastmod>2030-06-01T13:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/talk/</loc>
+      <loc>https://twosidesdata.netlify.com/talk/</loc>
       <lastmod>2030-06-01T13:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/authors/admin/</loc>
+      <loc>https://twosidesdata.netlify.com/</loc>
+      <lastmod>2030-06-01T13:00:00-03:00</lastmod>
+    </url>
+  
+    <url>
+    
+      <loc>https://twosidesdata.netlify.com/authors/admin/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/authors/</loc>
+      <loc>https://twosidesdata.netlify.com/authors/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/categories/</loc>
+      <loc>https://twosidesdata.netlify.com/categories/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/dplyr/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/dplyr/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/modeling/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/modeling/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/pandas/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/pandas/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/post/</loc>
+      <loc>https://twosidesdata.netlify.com/post/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2020/05/21/exploratory-data-analysis-basics-part2/</loc>
+      <loc>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/categories/r-and-python/</loc>
+      <loc>https://twosidesdata.netlify.com/categories/r-and-python/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/r-markdown/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/r-markdown/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/reticulate/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/reticulate/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/</loc>
       <lastmod>2020-05-21T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/portuguese/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/portuguese/</loc>
       <lastmod>2020-05-10T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/project/</loc>
+      <loc>https://twosidesdata.netlify.com/project/</loc>
       <lastmod>2020-05-10T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/shiny/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/shiny/</loc>
       <lastmod>2020-05-10T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/project/integrate-activity/</loc>
+      <loc>https://twosidesdata.netlify.com/project/integrate-activity/</loc>
       <lastmod>2020-05-10T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2020/01/25/exploratory-data-analysis-basics-part2/</loc>
+      <loc>https://twosidesdata.netlify.com/2020/01/25/exploratory-data-analysis-basics-part2/</loc>
       <lastmod>2020-01-25T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/scipy/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/scipy/</loc>
       <lastmod>2020-01-25T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/statsmodels/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/statsmodels/</loc>
       <lastmod>2020-01-25T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2020/01/19/exploratory-data-analysis-basics-part1/</loc>
+      <loc>https://twosidesdata.netlify.com/2020/01/19/exploratory-data-analysis-basics-part1/</loc>
       <lastmod>2020-01-19T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2020/01/12/google-interview-question-in-r/</loc>
+      <loc>https://twosidesdata.netlify.com/2020/01/12/google-interview-question-in-r/</loc>
       <lastmod>2020-01-12T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/programming/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/programming/</loc>
       <lastmod>2020-01-12T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/categories/r-project/</loc>
+      <loc>https://twosidesdata.netlify.com/categories/r-project/</loc>
       <lastmod>2020-01-12T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/tidyverse/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/tidyverse/</loc>
       <lastmod>2020-01-12T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2019/12/22/fizzbuzz-in-the-tidyverse/</loc>
+      <loc>https://twosidesdata.netlify.com/2019/12/22/fizzbuzz-in-the-tidyverse/</loc>
       <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2019/08/15/classification-knn/</loc>
+      <loc>https://twosidesdata.netlify.com/2019/08/15/classification-knn/</loc>
       <lastmod>2019-08-15T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/tidymodels/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/tidymodels/</loc>
       <lastmod>2019-08-15T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</loc>
+      <loc>https://twosidesdata.netlify.com/2019/04/05/exploratory-data-analysis-basic-statistical-inference/</loc>
       <lastmod>2019-04-05T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</loc>
+      <loc>https://twosidesdata.netlify.com/2019/03/23/exploratory-data-analysis-basic-pandas-and-dplyr/</loc>
       <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tutorial/example/</loc>
+      <loc>https://twosidesdata.netlify.com/tutorial/example/</loc>
       <lastmod>2018-09-09T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tutorial/</loc>
+      <loc>https://twosidesdata.netlify.com/tutorial/</loc>
       <lastmod>2018-09-09T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/privacy/</loc>
-      <lastmod>2018-06-28T00:00:00-03:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/</loc>
-      <lastmod>2018-06-28T00:00:00-03:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>/tags/forecast/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/forecast/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/project/external-project/</loc>
+      <loc>https://twosidesdata.netlify.com/project/external-project/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/libraries/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/libraries/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/tags/personal-website/</loc>
+      <loc>https://twosidesdata.netlify.com/tags/personal-website/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/project/internal-project/</loc>
+      <loc>https://twosidesdata.netlify.com/project/internal-project/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/publication_types/2/</loc>
+      <loc>https://twosidesdata.netlify.com/publication_types/2/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/publication/person-re-id/</loc>
+      <loc>https://twosidesdata.netlify.com/publication/person-re-id/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/authors/ga-cushen/</loc>
+      <loc>https://twosidesdata.netlify.com/authors/ga-cushen/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/publication_types/</loc>
+      <loc>https://twosidesdata.netlify.com/publication_types/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/publication/</loc>
+      <loc>https://twosidesdata.netlify.com/publication/</loc>
       <lastmod>2015-09-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/publication_types/1/</loc>
+      <loc>https://twosidesdata.netlify.com/publication_types/1/</loc>
       <lastmod>2013-07-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/publication/clothing-search/</loc>
+      <loc>https://twosidesdata.netlify.com/publication/clothing-search/</loc>
       <lastmod>2013-07-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/authors/ms-nixon/</loc>
+      <loc>https://twosidesdata.netlify.com/authors/ms-nixon/</loc>
       <lastmod>2013-07-01T00:00:00-03:00</lastmod>
     </url>
   
     <url>
     
-      <loc>/author/admin/</loc>
+      <loc>https://twosidesdata.netlify.com/author/admin/</loc>
     </url>
   
     <url>
     
-      <loc>/author/</loc>
+      <loc>https://twosidesdata.netlify.com/author/</loc>
     </url>
   
     <url>
     
-      <loc>/slides/</loc>
+      <loc>https://twosidesdata.netlify.com/slides/</loc>
     </url>
   
     <url>
     
-      <loc>/slides/example-slides/</loc>
+      <loc>https://twosidesdata.netlify.com/slides/example-slides/</loc>
     </url>
   
 </urlset>

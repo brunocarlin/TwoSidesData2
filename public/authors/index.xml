@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors on TwoSidesData</title>
-    <link>/authors/</link>
+    <link>https://twosidesdata.netlify.com/authors/</link>
     <description>Recent content in Authors on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,28 +10,28 @@
     
     <item>
       <title>admin</title>
-      <link>/authors/admin/</link>
+      <link>https://twosidesdata.netlify.com/authors/admin/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/authors/admin/</guid>
+      <guid>https://twosidesdata.netlify.com/authors/admin/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GA Cushen</title>
-      <link>/authors/ga-cushen/</link>
+      <link>https://twosidesdata.netlify.com/authors/ga-cushen/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 -0300</pubDate>
       
-      <guid>/authors/ga-cushen/</guid>
+      <guid>https://twosidesdata.netlify.com/authors/ga-cushen/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MS Nixon</title>
-      <link>/authors/ms-nixon/</link>
+      <link>https://twosidesdata.netlify.com/authors/ms-nixon/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 -0300</pubDate>
       
-      <guid>/authors/ms-nixon/</guid>
+      <guid>https://twosidesdata.netlify.com/authors/ms-nixon/</guid>
       <description></description>
     </item>
     

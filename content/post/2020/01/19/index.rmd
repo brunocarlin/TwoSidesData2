@@ -22,6 +22,8 @@ I am currently doing exercises from [digital house brasil](https://github.com/sn
 library(reticulate)
 file_path <- here::here()
 file_path_linux <- paste(file_path,"content","post","data",sep = "/")
+py_run_string('import os')
+py_run_string("os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'C:/Users/bruno/AppData/Local/r-miniconda/envs/r-reticulate/Library/plugins/platforms'")
 ```
 
 
@@ -478,7 +480,9 @@ We can use a colored barplot to see the interaction of these Categorical Variabl
 
 ```{python}
 sns_plot = sns.catplot(x="sex", y="salary", hue="region", kind="bar", data=df)
-plt.show(sns_plot)
+```
+```{r}
+py$sns_plot
 ```
 
   ```{python}

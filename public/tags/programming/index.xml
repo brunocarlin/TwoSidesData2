@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>programming on TwoSidesData</title>
-    <link>/tags/programming/</link>
+    <link>https://twosidesdata.netlify.com/tags/programming/</link>
     <description>Recent content in programming on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Google interview question in R - Calendar</title>
-      <link>/2020/01/12/google-interview-question-in-r/</link>
+      <link>https://twosidesdata.netlify.com/2020/01/12/google-interview-question-in-r/</link>
       <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/01/12/google-interview-question-in-r/</guid>
+      <guid>https://twosidesdata.netlify.com/2020/01/12/google-interview-question-in-r/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -256,10 +256,10 @@ is_odd &amp;lt;- is_even %&amp;gt;% negate()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>FizzBuzz in the tidyverse</title>
-      <link>/2019/12/22/fizzbuzz-in-the-tidyverse/</link>
+      <link>https://twosidesdata.netlify.com/2019/12/22/fizzbuzz-in-the-tidyverse/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/12/22/fizzbuzz-in-the-tidyverse/</guid>
+      <guid>https://twosidesdata.netlify.com/2019/12/22/fizzbuzz-in-the-tidyverse/</guid>
       <description>
 
 
