@@ -1,7 +1,7 @@
 ---
 name: Bruno Testaguzza Carlin
-position: "Trainee"
-address: "Ernst & Young - São Paulo"
+position: "Data Scientist Finance Latam"
+address: "Bayer - São Paulo"
 phone: +55 11 99376-5775
 www: twosidesdata.netlify.com/
 email: "brunotestaguzza@gmail.com"
@@ -130,7 +130,7 @@ Básico
 
 Sempre aprendendo mais ciência de dados, seguindo blogs, lendo livros, realizando cursos online e presenciais, assistindo vídeos e mais.
 
-Acostumdo a usar o tidyverse para ciência de dados e inferência estatística
+Acostumado a usar o tidyverse para ciência de dados e inferência estatística
 
 Múltiplos projetos realizando previsões de séries temporais
 

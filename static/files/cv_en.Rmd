@@ -1,6 +1,6 @@
 ---
 name: Bruno Testaguzza Carlin
-position: "Data Analyst"
+position: "Data Scientist Finance Latam"
 address: "Bayer - São Paulo"
 phone: +55 11 99376-5775
 www: twosidesdata.netlify.com/
