@@ -54,10 +54,10 @@ tribble(
   "Project Leader or Participant as business representative on latam finance projects",
   
   "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
-  "Reports maintanence and developement for latam finance",
+  "Reports maintenance  and development for latam finance",
   
   "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
-  "Limeted scope programming solutions for the latam finance team",
+  "Limited scope programming solutions for the latam finance team",
   
   "Account Receivables Data Analyst Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
   "Developing the new Credit Model.",
