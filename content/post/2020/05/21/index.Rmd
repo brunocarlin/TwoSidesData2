@@ -28,6 +28,8 @@ Read data from Brazil's cell phone companies and predict customer satisfaction
 ```{r}
 library(reticulate)
 use_miniconda("r-reticulate",required = TRUE)
+options(reticulate.repl.quiet = TRUE)
+
 ```
 
 ```{r}

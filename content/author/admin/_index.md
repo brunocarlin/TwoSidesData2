@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: Data Science learner
+bio: Data Scientist
 education:
   courses:
   - course: Data Science - Advanced Degree
@@ -27,13 +27,10 @@ interests:
 - Anime/Manga/LNs
 name: Bruno Carlin
 organizations:
-- name: Insper
-  url: "https://www.insper.edu.br/pos-graduacao/programas-avancados/programa-avancado-em-data-science-e-decisao/"
-- name: Bayer
-  url: "bayer.com"
-- name: Digital House
-  url: "https://br.digitalhouse.com/curso/data-science/"
-role: Student
+- name: Stone
+  url: "https://www.stone.com.br/"
+role: Data Scientist - Modeling
+
 social:
 - icon: envelope
   icon_pack: fas
@@ -52,9 +49,8 @@ social:
   link: https://www.linkedin.com/in/bruno-carlin-451007172/
 superuser: true
 user_groups:
-- Researchers
 - Visitors
 ---
-Bruno Testaguzza Carlin is an student of Data Science at Insper.  
-Experience using R and BI tools, improving Python skills.  
-Currently working at Bayer.
+Bruno Testaguzza Carlin is a Data Scientist working at Stone.  
+Experience using R, Python, BI tools and leading projects.  
+Currently working at Stone.

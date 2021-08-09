@@ -20,11 +20,13 @@ output:
     toc: true # table of content true
 ---
 
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
 <li><a href="#goal">Goal</a></li>
-<li><a href="#python">Python</a><ul>
+<li><a href="#python">Python</a>
+<ul>
 <li><a href="#import-libraries">Import libraries</a></li>
 <li><a href="#read-feather-data-frame">Read feather data frame</a></li>
 <li><a href="#describe-the-dataframe">Describe the dataframe</a></li>
@@ -37,7 +39,8 @@ output:
 <li><a href="#feature-encoding">Feature encoding</a></li>
 <li><a href="#prepare-df-to-export-to-r">Prepare df to export to r</a></li>
 </ul></li>
-<li><a href="#r">R</a><ul>
+<li><a href="#r">R</a>
+<ul>
 <li><a href="#import-df-from-python">Import df from python</a></li>
 <li><a href="#import-libraries-1">Import libraries</a></li>
 <li><a href="#encode-types">Encode types</a></li>
@@ -46,17 +49,21 @@ output:
 <li><a href="#train-test-split">Train test split</a></li>
 <li><a href="#recipe-for-models">Recipe for models</a></li>
 <li><a href="#prep-data">Prep Data</a></li>
-<li><a href="#logistic-regression">Logistic Regression</a><ul>
+<li><a href="#logistic-regression">Logistic Regression</a>
+<ul>
 <li><a href="#metrics-logistic">Metrics Logistic</a></li>
 <li><a href="#metrics-lasso">Metrics Lasso</a></li>
 </ul></li>
-<li><a href="#ridge">Ridge</a><ul>
+<li><a href="#ridge">Ridge</a>
+<ul>
 <li><a href="#metrics-ridge">Metrics Ridge</a></li>
 </ul></li>
-<li><a href="#random-forest">Random Forest</a><ul>
+<li><a href="#random-forest">Random Forest</a>
+<ul>
 <li><a href="#metrics-random-forest">Metrics Random forest</a></li>
 </ul></li>
-<li><a href="#h2o">h2o</a><ul>
+<li><a href="#h2o">h2o</a>
+<ul>
 <li><a href="#start-cluster">Start CLuster</a></li>
 <li><a href="#upload-dfs">Upload df’s</a></li>
 <li><a href="#fit-auto-ml">Fit auto ml</a></li>
@@ -65,11 +72,13 @@ output:
 <li><a href="#performance">Performance</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#dalex---are-machinge-learning-models-black-boxes">DALEX - Are machinge learning models Black Boxes?</a><ul>
+<li><a href="#dalex---are-machinge-learning-models-black-boxes">DALEX - Are machinge learning models Black Boxes?</a>
+<ul>
 <li><a href="#dalex-x-e-y">Dalex X e Y</a></li>
 <li><a href="#model-explainer">Model Explainer</a></li>
 <li><a href="#feature-importance">Feature Importance</a></li>
-<li><a href="#variable-explanation">Variable explanation</a><ul>
+<li><a href="#variable-explanation">Variable explanation</a>
+<ul>
 <li><a href="#accumulated-local-effects-profiles-aka-aleplots">Accumulated Local Effects Profiles aka ALEPlots</a></li>
 <li><a href="#factor-explanation">Factor explanation</a></li>
 </ul></li>
@@ -82,9 +91,10 @@ output:
 <h1>Goal</h1>
 <p>Read data from Brazil’s cell phone companies and predict customer satisfaction</p>
 <pre class="r"><code>library(reticulate)
-use_miniconda(&quot;r-reticulate&quot;,required = TRUE)</code></pre>
+use_miniconda(&quot;r-reticulate&quot;,required = TRUE)
+options(reticulate.repl.quiet = TRUE)</code></pre>
 <pre class="r"><code>file_path &lt;- here::here()
-file_path_linux &lt;- paste(file_path,&quot;content&quot;,&quot;post&quot;,&quot;data&quot;,sep = &quot;/&quot;)</code></pre>
+file_path_linux &lt;- &quot;C:/GitHub/TwoSidesData2/content/post/data&quot;</code></pre>
 </div>
 <div id="python" class="section level1">
 <h1>Python</h1>
@@ -300,32 +310,36 @@ unfortunally when replicating the code it seems I have a bug on reticulate so I 
 <h2>Import libraries</h2>
 <pre class="r"><code>library(DataExplorer)
 library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages ----------------------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
-<pre><code>## v ggplot2 3.3.0     v purrr   0.3.3
-## v tibble  3.0.0     v dplyr   0.8.5
-## v tidyr   1.0.2     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0</code></pre>
-<pre><code>## -- Conflicts -------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.0     v dplyr   1.0.4
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(tidymodels)</code></pre>
-<pre><code>## -- Attaching packages ---------------------------------------------------------------------------------------------- tidymodels 0.1.0 --</code></pre>
-<pre><code>## v broom     0.5.5      v rsample   0.0.6 
-## v dials     0.0.6      v tune      0.1.0 
-## v infer     0.5.1      v workflows 0.1.1 
-## v parsnip   0.1.1      v yardstick 0.0.6 
-## v recipes   0.1.12</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------------------------------------------------------------- tidymodels_conflicts() --
+<pre><code>## -- Attaching packages -------------------------------------- tidymodels 0.1.2 --</code></pre>
+<pre><code>## v broom     0.7.5      v recipes   0.1.15
+## v dials     0.0.9      v rsample   0.0.9 
+## v infer     0.5.4      v tune      0.1.3 
+## v modeldata 0.1.0      v workflows 0.2.1 
+## v parsnip   0.1.5      v yardstick 0.0.7</code></pre>
+<pre><code>## Warning: package &#39;broom&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Warning: package &#39;rsample&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Warning: package &#39;tune&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## -- Conflicts ----------------------------------------- tidymodels_conflicts() --
 ## x scales::discard() masks purrr::discard()
 ## x dplyr::filter()   masks stats::filter()
 ## x recipes::fixed()  masks stringr::fixed()
 ## x dplyr::lag()      masks stats::lag()
-## x dials::margin()   masks ggplot2::margin()
 ## x yardstick::spec() masks readr::spec()
 ## x recipes::step()   masks stats::step()</code></pre>
 <pre class="r"><code>library(furrr)</code></pre>
 <pre><code>## Loading required package: future</code></pre>
 <pre class="r"><code>library(h2o)</code></pre>
+<pre><code>## Warning: package &#39;h2o&#39; was built under R version 4.0.4</code></pre>
 <pre><code>## 
 ## ----------------------------------------------------------------------
 ## 
@@ -336,7 +350,7 @@ library(tidyverse)</code></pre>
 ##     &gt; ??h2o
 ## 
 ## After starting H2O, you can use the Web UI at http://localhost:54321
-## For more information visit http://docs.h2o.ai
+## For more information visit https://docs.h2o.ai
 ## 
 ## ----------------------------------------------------------------------</code></pre>
 <pre><code>## 
@@ -350,18 +364,20 @@ library(tidyverse)</code></pre>
 ##     colnames&lt;-, ifelse, is.character, is.factor, is.numeric, log,
 ##     log10, log1p, log2, round, signif, trunc</code></pre>
 <pre class="r"><code>library(DALEX)</code></pre>
-<pre><code>## Welcome to DALEX (version: 1.2.1).
-## Find examples and detailed introduction at: https://pbiecek.github.io/ema/
-## Additional features will be available after installation of: ggpubr.
-## Use &#39;install_dependencies()&#39; to get all suggested dependencies</code></pre>
+<pre><code>## Warning: package &#39;DALEX&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Welcome to DALEX (version: 2.1.1).
+## Find examples and detailed introduction at: http://ema.drwhy.ai/</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;DALEX&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     explain</code></pre>
-<pre class="r"><code>library(DALEXtra)
-library(iBreakDown)
-library(ingredients)</code></pre>
+<pre class="r"><code>library(DALEXtra)</code></pre>
+<pre><code>## Warning: package &#39;DALEXtra&#39; was built under R version 4.0.4</code></pre>
+<pre class="r"><code>library(iBreakDown)</code></pre>
+<pre><code>## Warning: package &#39;iBreakDown&#39; was built under R version 4.0.4</code></pre>
+<pre class="r"><code>library(ingredients)</code></pre>
+<pre><code>## Warning: package &#39;ingredients&#39; was built under R version 4.0.4</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;ingredients&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:iBreakDown&#39;:
@@ -371,6 +387,7 @@ library(ingredients)</code></pre>
 ## 
 ##     feature_importance</code></pre>
 <pre class="r"><code>library(probably)</code></pre>
+<pre><code>## Warning: package &#39;probably&#39; was built under R version 4.0.4</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;probably&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:h2o&#39;:
@@ -385,34 +402,34 @@ library(ingredients)</code></pre>
 <pre class="r"><code>df_r %&gt;% glimpse()</code></pre>
 <pre><code>## Rows: 128,198
 ## Columns: 28
-## $ Q5      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1,...
-## $ Q8      &lt;dbl&gt; 44, 50, 37, 19, 39, 38, NaN, 19, 22, 27, 24, 47, 29, 21, 40...
-## $ Q8a     &lt;dbl&gt; 7, 7, 6, 3, 6, 6, 7, 3, 3, 4, 3, 7, 4, 3, 6, 3, 4, 8, 7, 6,...
-## $ Q9      &lt;dbl&gt; 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 2, 2,...
-## $ B1_1    &lt;dbl&gt; 7, 4, 9, 5, 10, 10, 8, 8, 10, 4, 0, 8, 5, 5, 10, 5, 7, 10, ...
-## $ B1_2    &lt;dbl&gt; 9, 3, 10, 6, NaN, 10, 8, 6, 9, 6, 5, 8, 5, 3, 10, 10, 5, 10...
-## $ C1_1    &lt;dbl&gt; 10, 3, 10, 8, 10, 8, 7, 10, 10, 8, 7, 10, 10, 8, 10, 2, 7, ...
-## $ C1_2    &lt;dbl&gt; 10, 4, 10, 9, 10, 9, 6, 10, 5, 9, 0, 8, 10, 2, 10, 9, 8, 10...
-## $ D1      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 2, 2, 1,...
-## $ D2_1    &lt;dbl&gt; 8, NaN, 9, 4, 7, 10, NaN, 1, 10, 5, NaN, 6, NaN, 2, 8, 9, N...
-## $ D2_2    &lt;dbl&gt; 7, NaN, 7, 3, 5, 10, NaN, 1, 9, 7, NaN, 8, NaN, 0, 8, 7, Na...
-## $ D2_3    &lt;dbl&gt; 7, NaN, 7, 5, 5, 10, NaN, 1, 10, 6, NaN, 6, NaN, 0, 8, 8, N...
-## $ E1_1    &lt;dbl&gt; 8, 2, 9, 7, 8, 10, 7, 3, 9, 8, 0, 5, 7, 0, 10, 7, 7, 10, 10...
-## $ E1_2    &lt;dbl&gt; 8, 2, 9, 9, 10, 10, 7, 8, 9, 5, 0, 6, 5, 0, 10, 6, 7, 10, 1...
-## $ E1_3    &lt;dbl&gt; 10, 5, 9, 10, 8, 10, 8, 10, 10, 8, 0, 8, 5, 5, 10, 6, 8, 10...
-## $ A1_1    &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1,...
-## $ A1_2    &lt;dbl&gt; 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0,...
-## $ A1_3    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0,...
-## $ A1_4    &lt;dbl&gt; 97, 0, 0, 0, 97, 0, 0, 97, 0, 0, 97, 97, 97, 0, 0, 0, 0, 0,...
-## $ F1      &lt;dbl&gt; 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1,...
-## $ F3      &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2,...
-## $ F5      &lt;dbl&gt; 2, 0, 2, 1, 2, 2, 0, 1, 2, 1, 0, 2, 0, 2, 1, 2, 0, 0, 0, 2,...
-## $ G1      &lt;dbl&gt; 1, 1, 2, 2, 1, 2, 3, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ H1      &lt;dbl&gt; 3, NaN, 1, 3, 1, 5, 1, 2, 2, 1, 1, 1, 1, 4, 2, 2, 1, 2, 2, ...
-## $ I1      &lt;dbl&gt; 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2,...
-## $ PESO    &lt;dbl&gt; 1.1654135, 1.9118774, 0.6954887, 0.0540541, 0.1111111, 0.11...
-## $ RIQUEZA &lt;dbl&gt; NaN, NaN, 2, NaN, NaN, 1, NaN, NaN, 2, 2, 1, NaN, 2, NaN, 2...
-## $ Target2 &lt;dbl&gt; 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1,...</code></pre>
+## $ Q5      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,~
+## $ Q8      &lt;dbl&gt; 44, 50, 37, 19, 39, 38, NaN, 19, 22, 27, 24, 47, 29, 21, 40, 1~
+## $ Q8a     &lt;dbl&gt; 7, 7, 6, 3, 6, 6, 7, 3, 3, 4, 3, 7, 4, 3, 6, 3, 4, 8, 7, 6, 4,~
+## $ Q9      &lt;dbl&gt; 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2,~
+## $ B1_1    &lt;dbl&gt; 7, 4, 9, 5, 10, 10, 8, 8, 10, 4, 0, 8, 5, 5, 10, 5, 7, 10, 10,~
+## $ B1_2    &lt;dbl&gt; 9, 3, 10, 6, NaN, 10, 8, 6, 9, 6, 5, 8, 5, 3, 10, 10, 5, 10, 1~
+## $ C1_1    &lt;dbl&gt; 10, 3, 10, 8, 10, 8, 7, 10, 10, 8, 7, 10, 10, 8, 10, 2, 7, 10,~
+## $ C1_2    &lt;dbl&gt; 10, 4, 10, 9, 10, 9, 6, 10, 5, 9, 0, 8, 10, 2, 10, 9, 8, 10, 8~
+## $ D1      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 2, 2, 1, 2,~
+## $ D2_1    &lt;dbl&gt; 8, NaN, 9, 4, 7, 10, NaN, 1, 10, 5, NaN, 6, NaN, 2, 8, 9, NaN,~
+## $ D2_2    &lt;dbl&gt; 7, NaN, 7, 3, 5, 10, NaN, 1, 9, 7, NaN, 8, NaN, 0, 8, 7, NaN, ~
+## $ D2_3    &lt;dbl&gt; 7, NaN, 7, 5, 5, 10, NaN, 1, 10, 6, NaN, 6, NaN, 0, 8, 8, NaN,~
+## $ E1_1    &lt;dbl&gt; 8, 2, 9, 7, 8, 10, 7, 3, 9, 8, 0, 5, 7, 0, 10, 7, 7, 10, 10, 9~
+## $ E1_2    &lt;dbl&gt; 8, 2, 9, 9, 10, 10, 7, 8, 9, 5, 0, 6, 5, 0, 10, 6, 7, 10, 10, ~
+## $ E1_3    &lt;dbl&gt; 10, 5, 9, 10, 8, 10, 8, 10, 10, 8, 0, 8, 5, 5, 10, 6, 8, 10, 1~
+## $ A1_1    &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0,~
+## $ A1_2    &lt;dbl&gt; 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0,~
+## $ A1_3    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0,~
+## $ A1_4    &lt;dbl&gt; 97, 0, 0, 0, 97, 0, 0, 97, 0, 0, 97, 97, 97, 0, 0, 0, 0, 0, 97~
+## $ F1      &lt;dbl&gt; 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2,~
+## $ F3      &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2,~
+## $ F5      &lt;dbl&gt; 2, 0, 2, 1, 2, 2, 0, 1, 2, 1, 0, 2, 0, 2, 1, 2, 0, 0, 0, 2, 0,~
+## $ G1      &lt;dbl&gt; 1, 1, 2, 2, 1, 2, 3, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ H1      &lt;dbl&gt; 3, NaN, 1, 3, 1, 5, 1, 2, 2, 1, 1, 1, 1, 4, 2, 2, 1, 2, 2, 2, ~
+## $ I1      &lt;dbl&gt; 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2, 1,~
+## $ PESO    &lt;dbl&gt; 1.1654135, 1.9118774, 0.6954887, 0.0540541, 0.1111111, 0.11111~
+## $ RIQUEZA &lt;dbl&gt; NaN, NaN, 2, NaN, NaN, 1, NaN, NaN, 2, 2, 1, NaN, 2, NaN, 2, 2~
+## $ Target2 &lt;dbl&gt; 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1,~</code></pre>
 <pre class="r"><code>category_pipe &lt;- . %&gt;% 
   as.character() %&gt;% 
   if_else(. == &quot;NaN&quot;,NA_character_,.) %&gt;% 
@@ -428,14 +445,14 @@ library(ingredients)</code></pre>
 ##   total_missing_values complete_rows total_observations memory_usage
 ## 1               218989         51924            3589544     21551024</code></pre>
 <pre class="r"><code>DataExplorer::plot_intro(df_r)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <pre class="r"><code>plot_missing(df_r)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 ## Drop features</p>
 <pre class="r"><code>df_r &lt;- df_r %&gt;% 
   select(-starts_with(&quot;D2&quot;))</code></pre>
 <pre class="r"><code>plot_missing(df_r)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 ## Encode response in r</p>
 <pre class="r"><code>  df_r &lt;- df_r %&gt;% 
   rename(response = Target2) %&gt;% 
@@ -455,14 +472,14 @@ library(ingredients)</code></pre>
     y = NULL,
     title = &quot;Distribution of cases&quot;
   )</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 # Modeling</p>
 </div>
 <div id="train-test-split" class="section level2">
 <h2>Train test split</h2>
 <pre class="r"><code>telefone_initial_split &lt;- df_r %&gt;% rsample::initial_split(prop = 0.9)
 telefone_initial_split</code></pre>
-<pre><code>## &lt;Training/Validation/Total&gt;
+<pre><code>## &lt;Analysis/Assess/Total&gt;
 ## &lt;115379/12819/128198&gt;</code></pre>
 <pre class="r"><code>train_data &lt;- training(telefone_initial_split)
 test_data &lt;- testing(telefone_initial_split)</code></pre>
@@ -510,12 +527,12 @@ metrics_roc_auc &lt;- logistic_regression %&gt;%
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy binary         0.804
-## 2 kap      binary         0.608</code></pre>
+## 2 kap      binary         0.607</code></pre>
 <pre class="r"><code>metrics_roc_auc</code></pre>
 <pre><code>## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 roc_auc binary         0.885</code></pre>
+## 1 roc_auc binary         0.115</code></pre>
 <p>I am going to keep using roc from now on
 ## Lasso</p>
 <pre class="r"><code>lasso_regression &lt;- logistic_reg(mode = &quot;classification&quot;,mixture = 0) %&gt;% 
@@ -531,9 +548,9 @@ lasso_roc_auc_cv &lt;- lasso_regression %&gt;%
   unnest() %&gt;%
   spread(key = .metric,value = .estimate) %&gt;%
   arrange(roc_auc %&gt;% desc)</code></pre>
-<pre><code>## Warning: `cols` is now required.
+<pre><code>## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(.pred)`</code></pre>
-<pre><code>## Warning: `cols` is now required.
+<pre><code>## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(ok)`</code></pre>
 </div>
 <div id="metrics-lasso" class="section level3">
@@ -542,16 +559,16 @@ lasso_roc_auc_cv &lt;- lasso_regression %&gt;%
 <pre><code>## # A tibble: 100 x 3
 ##    penalty .estimator roc_auc
 ##      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
-##  1  0.0273 binary       0.884
-##  2  0.0300 binary       0.884
-##  3  0.0329 binary       0.884
-##  4  0.0361 binary       0.884
-##  5  0.0396 binary       0.884
-##  6  0.0435 binary       0.884
-##  7  0.0477 binary       0.884
-##  8  0.0523 binary       0.884
-##  9  0.0575 binary       0.884
-## 10  0.0631 binary       0.884
+##  1    273. binary       0.5  
+##  2    249. binary       0.123
+##  3    227. binary       0.123
+##  4    206. binary       0.123
+##  5    188. binary       0.123
+##  6    171. binary       0.123
+##  7    156. binary       0.123
+##  8    142. binary       0.123
+##  9    130. binary       0.123
+## 10    118. binary       0.123
 ## # ... with 90 more rows</code></pre>
 </div>
 </div>
@@ -570,27 +587,27 @@ ridge_results_cv &lt;- ridge_regression %&gt;%
   unnest() %&gt;%
   spread(key = .metric,value = .estimate) %&gt;%
   arrange(roc_auc %&gt;% desc)</code></pre>
-<pre><code>## Warning: `cols` is now required.
+<pre><code>## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(.pred)`</code></pre>
-<pre><code>## Warning: `cols` is now required.
+<pre><code>## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(ok)`</code></pre>
 <div id="metrics-ridge" class="section level3">
 <h3>Metrics Ridge</h3>
 <pre class="r"><code>ridge_results_cv</code></pre>
-<pre><code>## # A tibble: 65 x 3
-##     penalty .estimator roc_auc
-##       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
-##  1 0.00136  binary       0.885
-##  2 0.00149  binary       0.885
-##  3 0.00164  binary       0.885
-##  4 0.00124  binary       0.885
-##  5 0.00180  binary       0.885
-##  6 0.00103  binary       0.885
-##  7 0.00113  binary       0.885
-##  8 0.000936 binary       0.885
-##  9 0.000777 binary       0.885
-## 10 0.000708 binary       0.885
-## # ... with 55 more rows</code></pre>
+<pre><code>## # A tibble: 66 x 3
+##    penalty .estimator roc_auc
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+##  1   0.273 binary       0.5  
+##  2   0.249 binary       0.171
+##  3   0.227 binary       0.155
+##  4   0.206 binary       0.152
+##  5   0.188 binary       0.150
+##  6   0.171 binary       0.141
+##  7   0.156 binary       0.134
+##  8   0.142 binary       0.130
+##  9   0.130 binary       0.127
+## 10   0.118 binary       0.125
+## # ... with 56 more rows</code></pre>
 </div>
 </div>
 <div id="random-forest" class="section level2">
@@ -608,7 +625,7 @@ ridge_results_cv &lt;- ridge_regression %&gt;%
 <pre><code>## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 roc_auc binary         0.889</code></pre>
+## 1 roc_auc binary         0.110</code></pre>
 </div>
 </div>
 <div id="h2o" class="section level2">
@@ -680,7 +697,7 @@ explainer_rf &lt;- explain(random_forest,x_dalex,y_dalex,label =&quot;random_for
 <pre class="r"><code>mp_log_reg &lt;- model_parts(explainer_log_reg)
 mp_rf &lt;- model_parts(explainer_rf)</code></pre>
 <pre class="r"><code>plot(mp_log_reg,mp_rf)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 </div>
 <div id="variable-explanation" class="section level2">
 <h2>Variable explanation</h2>
@@ -690,7 +707,7 @@ mp_rf &lt;- model_parts(explainer_rf)</code></pre>
 <pre class="r"><code>adp_log_reg &lt;- accumulated_dependence(explainer_log_reg,variables = &quot;B1_2&quot;)
 adp_rf &lt;- accumulated_dependence(explainer_rf,variables = &quot;B1_2&quot;)</code></pre>
 <pre class="r"><code>plot(adp_log_reg,adp_rf)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 </div>
 <div id="factor-explanation" class="section level3">
 <h3>Factor explanation</h3>
@@ -703,7 +720,7 @@ adp_rf &lt;- accumulated_dependence(explainer_rf,variables = &quot;B1_2&quot;)</
 <pre class="r"><code>expl_log_reg &lt;- accumulated_dependence(explainer_log_reg,variables = &quot;G1&quot;, variable_type = &quot;categorical&quot;)
 expl_rf&lt;- accumulated_dependence(explainer_rf,variables = &quot;G1&quot;, variable_type = &quot;categorical&quot;)</code></pre>
 <pre class="r"><code>plot(expl_log_reg,expl_rf)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
 </div>
 <div id="single-prediction-explanation" class="section level2">
@@ -713,10 +730,10 @@ expl_rf&lt;- accumulated_dependence(explainer_rf,variables = &quot;G1&quot;, var
 bd_rf &lt;- predict_parts(explainer_rf, x_dalex[1,])</code></pre>
 <p>Logistic Regression</p>
 <pre class="r"><code>plot(bd_log_reg)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-63-1.png" width="672" />
 Random Forest</p>
 <pre class="r"><code>plot(bd_rf)</code></pre>
-<p><img src="/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>Not the coolest graph since unfortunately we use a normalization process, maybe in the future with the workflows package we can see better graphs</p>
 </div>
 </div>

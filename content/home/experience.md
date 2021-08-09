@@ -18,18 +18,41 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
+
+
 [[experience]]
-  title = "Accounts Receivables Data Analyst"
-  company = "Bayer"
-  company_url = "https://www.bayer.com.br/"
+  title = "Data Scientist - Modeling"
+  company = "Stone"
+  company_url = "https://www.stone.com.br/"
   location = "São Paulo"
-  date_start = "2020-01-01"
-  date_end = ""
+  date_start = "2021-03-19"
   description = """
   Responsibilities Include:
 
   * Data Science models
   * Data Pipelines
+  * Analytics reports and studies
+  
+  
+  """
+  
+  
+
+[[experience]]
+  title = "Accounts Receivables Data Scientist"
+  company = "Bayer"
+  company_url = "https://www.bayer.com.br/"
+  location = "São Paulo"
+  date_start = "2020-01-01"
+  date_end =   "2021-03-18"
+  description = """
+  Responsibilities Include:
+
+  * Data Science models
+  * Data Pipelines
+  * Analytics reports and studies
+  * Project Leader
+  
   
   """
   
