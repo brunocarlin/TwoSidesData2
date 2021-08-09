@@ -1,7 +1,7 @@
 ---
 name: Bruno Testaguzza Carlin
-position: "Data Scientist Finance Latam"
-address: "Bayer - São Paulo"
+position: "Data Scientist - Modeling"
+address: "Stone - São Paulo"
 phone: +55 11 99376-5775
 www: twosidesdata.netlify.com/
 email: "brunotestaguzza@gmail.com"
@@ -47,16 +47,27 @@ tribble(
 tribble(
   ~ role, ~ company, ~ loc, ~ dates, ~ details,
   
-  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Data Scientist - Modeling", "Stone", "São Paulo, Brasil", "Apr. 2021 - Present",
+  "Develop data science models for the credit team at Stone",
+  
+  "Data Scientist - Modeling", "Stone", "São Paulo, Brasil", "Apr. 2021 - Present",
+  "Develop studies and data analysis for the credit team at Stone",
+  
+  
+  "Data Scientist - Modeling", "Stone", "São Paulo, Brasil", "Apr. 2021 - Present",
+  "Develop business critical concession and retention logic for the credit team at Stone",
+  
+  
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Apr. 2021",
   "Develop data science models for the finance latam team.",
   
-  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Apr. 2021",
   "Project Leader or Participant as business representative on latam finance projects",
   
-  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Apr. 2021",
   "Reports maintenance  and development for latam finance",
   
-  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Apr. 2021",
   "Limited scope programming solutions for the latam finance team",
   
   "Account Receivables Data Analyst Latam", "Bayer", "São Paulo, Brasil", "Jan. 2020 - Jul. 2020",
@@ -144,7 +155,7 @@ Well versed into using the tidyverse for Data Science and Statistical Inference.
 
 Multiple projects doing time series forecasts.
 
-Experienci doing machine learning projects.
+Experience doing machine learning projects.
 
 Work experience using and developing SQL queries.
 
