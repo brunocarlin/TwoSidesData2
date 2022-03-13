@@ -5,8 +5,28 @@
     <description>Recent content in Projects on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 May 2020 00:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 28 Feb 2022 00:00:00 -0300</lastBuildDate>
     <atom:link href="/project/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Bruno Testaguzza Carlin blog</title>
+      <link>https://twosidesdata.netlify.com/project/carlin/</link>
+      <pubDate>Mon, 28 Feb 2022 00:00:00 -0300</pubDate>
+      
+      <guid>https://twosidesdata.netlify.com/project/carlin/</guid>
+      <description>&lt;p&gt;#&lt;code&gt;external_link&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>tidy.outliers</title>
+      <link>https://twosidesdata.netlify.com/project/tidy.outliers/</link>
+      <pubDate>Mon, 28 Feb 2022 00:00:00 -0300</pubDate>
+      
+      <guid>https://twosidesdata.netlify.com/project/tidy.outliers/</guid>
+      <description>&lt;p&gt;#&lt;code&gt;external_link&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Shiny OLIST</title>

@@ -5,8 +5,26 @@
     <description>Recent content in Tags on TwoSidesData</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 28 Feb 2022 00:00:00 -0300</lastBuildDate>
     <atom:link href="/tags/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>libraries</title>
+      <link>https://twosidesdata.netlify.com/tags/libraries/</link>
+      <pubDate>Mon, 28 Feb 2022 00:00:00 -0300</pubDate>
+      
+      <guid>https://twosidesdata.netlify.com/tags/libraries/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Personal Website</title>
+      <link>https://twosidesdata.netlify.com/tags/personal-website/</link>
+      <pubDate>Mon, 28 Feb 2022 00:00:00 -0300</pubDate>
+      
+      <guid>https://twosidesdata.netlify.com/tags/personal-website/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dplyr</title>
@@ -122,24 +140,6 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
       <guid>https://twosidesdata.netlify.com/tags/forecast/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>libraries</title>
-      <link>https://twosidesdata.netlify.com/tags/libraries/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>https://twosidesdata.netlify.com/tags/libraries/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Personal Website</title>
-      <link>https://twosidesdata.netlify.com/tags/personal-website/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>https://twosidesdata.netlify.com/tags/personal-website/</guid>
       <description></description>
     </item>
     

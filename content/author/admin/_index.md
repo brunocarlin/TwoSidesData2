@@ -27,9 +27,9 @@ interests:
 - Anime/Manga/LNs
 name: Bruno Carlin
 organizations:
-- name: Stone
-  url: "https://www.stone.com.br/"
-role: Data Scientist - Modeling
+- name: Recovery - Itau
+  url: "https://www.gruporecovery.com/"
+role: Data Scientist - Specialist
 
 social:
 - icon: envelope
@@ -46,11 +46,10 @@ social:
   link: https://github.com/brunocarlin
 - icon: linkedin
   icon_pack: fab
-  link: https://www.linkedin.com/in/bruno-carlin-451007172/
+  link: https://www.linkedin.com/in/bruno-carlin/
 superuser: true
 user_groups:
 - Visitors
 ---
-Bruno Testaguzza Carlin is a Data Scientist working at Stone.  
-Experience using R, Python, BI tools and leading projects.  
-Currently working at Stone.
+Bruno Testaguzza Carlin is a Data Scientist working at Recovery.  
+Experience using R, Python, BI tools and leading projects.

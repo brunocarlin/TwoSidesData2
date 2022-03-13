@@ -19,6 +19,22 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 
+[[experience]]
+  title = "Data Scientist - Specialist"
+  company = "Recovery - Itau"
+  company_url = "https://www.gruporecovery.com/"
+  location = "São Paulo"
+  date_start = "2021-11-01"
+  description = """
+  Responsibilities Include:
+
+  * Data Science models
+  * Data Pipelines
+  * Analytics reports and studies
+  * Experimentation Platform
+  
+  
+  """
 
 [[experience]]
   title = "Data Scientist - Modeling"
@@ -26,6 +42,7 @@ date_format = "Jan 2006"
   company_url = "https://www.stone.com.br/"
   location = "São Paulo"
   date_start = "2021-03-19"
+  date_end = '2022-10-31'
   description = """
   Responsibilities Include:
 

@@ -15,11 +15,13 @@
       
       <guid>https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/</guid>
       <description>
+&lt;script src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#goal&#34;&gt;Goal&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python&#34;&gt;Python&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#import-libraries&#34;&gt;Import libraries&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#read-feather-data-frame&#34;&gt;Read feather data frame&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#describe-the-dataframe&#34;&gt;Describe the dataframe&lt;/a&gt;&lt;/li&gt;
@@ -32,7 +34,8 @@
 &lt;li&gt;&lt;a href=&#34;#feature-encoding&#34;&gt;Feature encoding&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#prepare-df-to-export-to-r&#34;&gt;Prepare df to export to r&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#r&#34;&gt;R&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#r&#34;&gt;R&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#import-df-from-python&#34;&gt;Import df from python&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#import-libraries-1&#34;&gt;Import libraries&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#encode-types&#34;&gt;Encode types&lt;/a&gt;&lt;/li&gt;
@@ -41,17 +44,21 @@
 &lt;li&gt;&lt;a href=&#34;#train-test-split&#34;&gt;Train test split&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#recipe-for-models&#34;&gt;Recipe for models&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#prep-data&#34;&gt;Prep Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#logistic-regression&#34;&gt;Logistic Regression&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#logistic-regression&#34;&gt;Logistic Regression&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#metrics-logistic&#34;&gt;Metrics Logistic&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#metrics-lasso&#34;&gt;Metrics Lasso&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#ridge&#34;&gt;Ridge&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#ridge&#34;&gt;Ridge&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#metrics-ridge&#34;&gt;Metrics Ridge&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#random-forest&#34;&gt;Random Forest&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#random-forest&#34;&gt;Random Forest&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#metrics-random-forest&#34;&gt;Metrics Random forest&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#h2o&#34;&gt;h2o&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#h2o&#34;&gt;h2o&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#start-cluster&#34;&gt;Start CLuster&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#upload-dfs&#34;&gt;Upload df’s&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#fit-auto-ml&#34;&gt;Fit auto ml&lt;/a&gt;&lt;/li&gt;
@@ -60,11 +67,13 @@
 &lt;li&gt;&lt;a href=&#34;#performance&#34;&gt;Performance&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#dalex---are-machinge-learning-models-black-boxes&#34;&gt;DALEX - Are machinge learning models Black Boxes?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#dalex---are-machinge-learning-models-black-boxes&#34;&gt;DALEX - Are machinge learning models Black Boxes?&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#dalex-x-e-y&#34;&gt;Dalex X e Y&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#model-explainer&#34;&gt;Model Explainer&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#feature-importance&#34;&gt;Feature Importance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#variable-explanation&#34;&gt;Variable explanation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#variable-explanation&#34;&gt;Variable explanation&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#accumulated-local-effects-profiles-aka-aleplots&#34;&gt;Accumulated Local Effects Profiles aka ALEPlots&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#factor-explanation&#34;&gt;Factor explanation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -77,9 +86,10 @@
 &lt;h1&gt;Goal&lt;/h1&gt;
 &lt;p&gt;Read data from Brazil’s cell phone companies and predict customer satisfaction&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)
-use_miniconda(&amp;quot;r-reticulate&amp;quot;,required = TRUE)&lt;/code&gt;&lt;/pre&gt;
+use_miniconda(&amp;quot;r-reticulate&amp;quot;,required = TRUE)
+options(reticulate.repl.quiet = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_path &amp;lt;- here::here()
-file_path_linux &amp;lt;- paste(file_path,&amp;quot;content&amp;quot;,&amp;quot;post&amp;quot;,&amp;quot;data&amp;quot;,sep = &amp;quot;/&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+file_path_linux &amp;lt;- &amp;quot;C:/GitHub/TwoSidesData2/content/post/data&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;python&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Python&lt;/h1&gt;
@@ -295,32 +305,36 @@ unfortunally when replicating the code it seems I have a bug on reticulate so I 
 &lt;h2&gt;Import libraries&lt;/h2&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DataExplorer)
 library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages ----------------------------------------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.0     v purrr   0.3.3
-## v tibble  3.0.0     v dplyr   0.8.5
-## v tidyr   1.0.2     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts -------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.0     v dplyr   1.0.4
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidymodels)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------------------------------------------------------------------- tidymodels 0.1.0 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v broom     0.5.5      v rsample   0.0.6 
-## v dials     0.0.6      v tune      0.1.0 
-## v infer     0.5.1      v workflows 0.1.1 
-## v parsnip   0.1.1      v yardstick 0.0.6 
-## v recipes   0.1.12&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------------------------------------------------- tidymodels_conflicts() --
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages -------------------------------------- tidymodels 0.1.2 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v broom     0.7.5      v recipes   0.1.15
+## v dials     0.0.9      v rsample   0.0.9 
+## v infer     0.5.4      v tune      0.1.3 
+## v modeldata 0.1.0      v workflows 0.2.1 
+## v parsnip   0.1.5      v yardstick 0.0.7&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;broom&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;rsample&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tune&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ----------------------------------------- tidymodels_conflicts() --
 ## x scales::discard() masks purrr::discard()
 ## x dplyr::filter()   masks stats::filter()
 ## x recipes::fixed()  masks stringr::fixed()
 ## x dplyr::lag()      masks stats::lag()
-## x dials::margin()   masks ggplot2::margin()
 ## x yardstick::spec() masks readr::spec()
 ## x recipes::step()   masks stats::step()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(furrr)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: future&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(h2o)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;h2o&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## ----------------------------------------------------------------------
 ## 
@@ -331,7 +345,7 @@ library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 ##     &amp;gt; ??h2o
 ## 
 ## After starting H2O, you can use the Web UI at http://localhost:54321
-## For more information visit http://docs.h2o.ai
+## For more information visit https://docs.h2o.ai
 ## 
 ## ----------------------------------------------------------------------&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -345,18 +359,20 @@ library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 ##     colnames&amp;lt;-, ifelse, is.character, is.factor, is.numeric, log,
 ##     log10, log1p, log2, round, signif, trunc&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DALEX)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Welcome to DALEX (version: 1.2.1).
-## Find examples and detailed introduction at: https://pbiecek.github.io/ema/
-## Additional features will be available after installation of: ggpubr.
-## Use &amp;#39;install_dependencies()&amp;#39; to get all suggested dependencies&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;DALEX&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Welcome to DALEX (version: 2.1.1).
+## Find examples and detailed introduction at: http://ema.drwhy.ai/&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Attaching package: &amp;#39;DALEX&amp;#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:dplyr&amp;#39;:
 ## 
 ##     explain&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DALEXtra)
-library(iBreakDown)
-library(ingredients)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DALEXtra)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;DALEXtra&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(iBreakDown)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;iBreakDown&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ingredients)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ingredients&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Attaching package: &amp;#39;ingredients&amp;#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:iBreakDown&amp;#39;:
@@ -366,6 +382,7 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ##     feature_importance&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(probably)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;probably&amp;#39; was built under R version 4.0.4&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Attaching package: &amp;#39;probably&amp;#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:h2o&amp;#39;:
@@ -380,34 +397,34 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r %&amp;gt;% glimpse()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Rows: 128,198
 ## Columns: 28
-## $ Q5      &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1,...
-## $ Q8      &amp;lt;dbl&amp;gt; 44, 50, 37, 19, 39, 38, NaN, 19, 22, 27, 24, 47, 29, 21, 40...
-## $ Q8a     &amp;lt;dbl&amp;gt; 7, 7, 6, 3, 6, 6, 7, 3, 3, 4, 3, 7, 4, 3, 6, 3, 4, 8, 7, 6,...
-## $ Q9      &amp;lt;dbl&amp;gt; 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 2, 2,...
-## $ B1_1    &amp;lt;dbl&amp;gt; 7, 4, 9, 5, 10, 10, 8, 8, 10, 4, 0, 8, 5, 5, 10, 5, 7, 10, ...
-## $ B1_2    &amp;lt;dbl&amp;gt; 9, 3, 10, 6, NaN, 10, 8, 6, 9, 6, 5, 8, 5, 3, 10, 10, 5, 10...
-## $ C1_1    &amp;lt;dbl&amp;gt; 10, 3, 10, 8, 10, 8, 7, 10, 10, 8, 7, 10, 10, 8, 10, 2, 7, ...
-## $ C1_2    &amp;lt;dbl&amp;gt; 10, 4, 10, 9, 10, 9, 6, 10, 5, 9, 0, 8, 10, 2, 10, 9, 8, 10...
-## $ D1      &amp;lt;dbl&amp;gt; 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 2, 2, 1,...
-## $ D2_1    &amp;lt;dbl&amp;gt; 8, NaN, 9, 4, 7, 10, NaN, 1, 10, 5, NaN, 6, NaN, 2, 8, 9, N...
-## $ D2_2    &amp;lt;dbl&amp;gt; 7, NaN, 7, 3, 5, 10, NaN, 1, 9, 7, NaN, 8, NaN, 0, 8, 7, Na...
-## $ D2_3    &amp;lt;dbl&amp;gt; 7, NaN, 7, 5, 5, 10, NaN, 1, 10, 6, NaN, 6, NaN, 0, 8, 8, N...
-## $ E1_1    &amp;lt;dbl&amp;gt; 8, 2, 9, 7, 8, 10, 7, 3, 9, 8, 0, 5, 7, 0, 10, 7, 7, 10, 10...
-## $ E1_2    &amp;lt;dbl&amp;gt; 8, 2, 9, 9, 10, 10, 7, 8, 9, 5, 0, 6, 5, 0, 10, 6, 7, 10, 1...
-## $ E1_3    &amp;lt;dbl&amp;gt; 10, 5, 9, 10, 8, 10, 8, 10, 10, 8, 0, 8, 5, 5, 10, 6, 8, 10...
-## $ A1_1    &amp;lt;dbl&amp;gt; 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1,...
-## $ A1_2    &amp;lt;dbl&amp;gt; 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0,...
-## $ A1_3    &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0,...
-## $ A1_4    &amp;lt;dbl&amp;gt; 97, 0, 0, 0, 97, 0, 0, 97, 0, 0, 97, 97, 97, 0, 0, 0, 0, 0,...
-## $ F1      &amp;lt;dbl&amp;gt; 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1,...
-## $ F3      &amp;lt;dbl&amp;gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2,...
-## $ F5      &amp;lt;dbl&amp;gt; 2, 0, 2, 1, 2, 2, 0, 1, 2, 1, 0, 2, 0, 2, 1, 2, 0, 0, 0, 2,...
-## $ G1      &amp;lt;dbl&amp;gt; 1, 1, 2, 2, 1, 2, 3, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ H1      &amp;lt;dbl&amp;gt; 3, NaN, 1, 3, 1, 5, 1, 2, 2, 1, 1, 1, 1, 4, 2, 2, 1, 2, 2, ...
-## $ I1      &amp;lt;dbl&amp;gt; 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2,...
-## $ PESO    &amp;lt;dbl&amp;gt; 1.1654135, 1.9118774, 0.6954887, 0.0540541, 0.1111111, 0.11...
-## $ RIQUEZA &amp;lt;dbl&amp;gt; NaN, NaN, 2, NaN, NaN, 1, NaN, NaN, 2, 2, 1, NaN, 2, NaN, 2...
-## $ Target2 &amp;lt;dbl&amp;gt; 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1,...&lt;/code&gt;&lt;/pre&gt;
+## $ Q5      &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,~
+## $ Q8      &amp;lt;dbl&amp;gt; 44, 50, 37, 19, 39, 38, NaN, 19, 22, 27, 24, 47, 29, 21, 40, 1~
+## $ Q8a     &amp;lt;dbl&amp;gt; 7, 7, 6, 3, 6, 6, 7, 3, 3, 4, 3, 7, 4, 3, 6, 3, 4, 8, 7, 6, 4,~
+## $ Q9      &amp;lt;dbl&amp;gt; 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2,~
+## $ B1_1    &amp;lt;dbl&amp;gt; 7, 4, 9, 5, 10, 10, 8, 8, 10, 4, 0, 8, 5, 5, 10, 5, 7, 10, 10,~
+## $ B1_2    &amp;lt;dbl&amp;gt; 9, 3, 10, 6, NaN, 10, 8, 6, 9, 6, 5, 8, 5, 3, 10, 10, 5, 10, 1~
+## $ C1_1    &amp;lt;dbl&amp;gt; 10, 3, 10, 8, 10, 8, 7, 10, 10, 8, 7, 10, 10, 8, 10, 2, 7, 10,~
+## $ C1_2    &amp;lt;dbl&amp;gt; 10, 4, 10, 9, 10, 9, 6, 10, 5, 9, 0, 8, 10, 2, 10, 9, 8, 10, 8~
+## $ D1      &amp;lt;dbl&amp;gt; 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 2, 2, 1, 2,~
+## $ D2_1    &amp;lt;dbl&amp;gt; 8, NaN, 9, 4, 7, 10, NaN, 1, 10, 5, NaN, 6, NaN, 2, 8, 9, NaN,~
+## $ D2_2    &amp;lt;dbl&amp;gt; 7, NaN, 7, 3, 5, 10, NaN, 1, 9, 7, NaN, 8, NaN, 0, 8, 7, NaN, ~
+## $ D2_3    &amp;lt;dbl&amp;gt; 7, NaN, 7, 5, 5, 10, NaN, 1, 10, 6, NaN, 6, NaN, 0, 8, 8, NaN,~
+## $ E1_1    &amp;lt;dbl&amp;gt; 8, 2, 9, 7, 8, 10, 7, 3, 9, 8, 0, 5, 7, 0, 10, 7, 7, 10, 10, 9~
+## $ E1_2    &amp;lt;dbl&amp;gt; 8, 2, 9, 9, 10, 10, 7, 8, 9, 5, 0, 6, 5, 0, 10, 6, 7, 10, 10, ~
+## $ E1_3    &amp;lt;dbl&amp;gt; 10, 5, 9, 10, 8, 10, 8, 10, 10, 8, 0, 8, 5, 5, 10, 6, 8, 10, 1~
+## $ A1_1    &amp;lt;dbl&amp;gt; 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0,~
+## $ A1_2    &amp;lt;dbl&amp;gt; 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0,~
+## $ A1_3    &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0,~
+## $ A1_4    &amp;lt;dbl&amp;gt; 97, 0, 0, 0, 97, 0, 0, 97, 0, 0, 97, 97, 97, 0, 0, 0, 0, 0, 97~
+## $ F1      &amp;lt;dbl&amp;gt; 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2,~
+## $ F3      &amp;lt;dbl&amp;gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2,~
+## $ F5      &amp;lt;dbl&amp;gt; 2, 0, 2, 1, 2, 2, 0, 1, 2, 1, 0, 2, 0, 2, 1, 2, 0, 0, 0, 2, 0,~
+## $ G1      &amp;lt;dbl&amp;gt; 1, 1, 2, 2, 1, 2, 3, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ H1      &amp;lt;dbl&amp;gt; 3, NaN, 1, 3, 1, 5, 1, 2, 2, 1, 1, 1, 1, 4, 2, 2, 1, 2, 2, 2, ~
+## $ I1      &amp;lt;dbl&amp;gt; 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2, 1,~
+## $ PESO    &amp;lt;dbl&amp;gt; 1.1654135, 1.9118774, 0.6954887, 0.0540541, 0.1111111, 0.11111~
+## $ RIQUEZA &amp;lt;dbl&amp;gt; NaN, NaN, 2, NaN, NaN, 1, NaN, NaN, 2, 2, 1, NaN, 2, NaN, 2, 2~
+## $ Target2 &amp;lt;dbl&amp;gt; 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1,~&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;category_pipe &amp;lt;- . %&amp;gt;% 
   as.character() %&amp;gt;% 
   if_else(. == &amp;quot;NaN&amp;quot;,NA_character_,.) %&amp;gt;% 
@@ -423,14 +440,14 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
 ##   total_missing_values complete_rows total_observations memory_usage
 ## 1               218989         51924            3589544     21551024&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DataExplorer::plot_intro(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;
 ## Drop features&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_r &amp;lt;- df_r %&amp;gt;% 
   select(-starts_with(&amp;quot;D2&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_missing(df_r)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;672&#34; /&gt;
 ## Encode response in r&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;  df_r &amp;lt;- df_r %&amp;gt;% 
   rename(response = Target2) %&amp;gt;% 
@@ -450,14 +467,14 @@ library(ingredients)&lt;/code&gt;&lt;/pre&gt;
     y = NULL,
     title = &amp;quot;Distribution of cases&amp;quot;
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
 # Modeling&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;train-test-split&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Train test split&lt;/h2&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;telefone_initial_split &amp;lt;- df_r %&amp;gt;% rsample::initial_split(prop = 0.9)
 telefone_initial_split&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## &amp;lt;Training/Validation/Total&amp;gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;Analysis/Assess/Total&amp;gt;
 ## &amp;lt;115379/12819/128198&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;train_data &amp;lt;- training(telefone_initial_split)
 test_data &amp;lt;- testing(telefone_initial_split)&lt;/code&gt;&lt;/pre&gt;
@@ -505,12 +522,12 @@ metrics_roc_auc &amp;lt;- logistic_regression %&amp;gt;%
 ##   .metric  .estimator .estimate
 ##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
 ## 1 accuracy binary         0.804
-## 2 kap      binary         0.608&lt;/code&gt;&lt;/pre&gt;
+## 2 kap      binary         0.607&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;metrics_roc_auc&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
-## 1 roc_auc binary         0.885&lt;/code&gt;&lt;/pre&gt;
+## 1 roc_auc binary         0.115&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I am going to keep using roc from now on
 ## Lasso&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lasso_regression &amp;lt;- logistic_reg(mode = &amp;quot;classification&amp;quot;,mixture = 0) %&amp;gt;% 
@@ -526,9 +543,9 @@ lasso_roc_auc_cv &amp;lt;- lasso_regression %&amp;gt;%
   unnest() %&amp;gt;%
   spread(key = .metric,value = .estimate) %&amp;gt;%
   arrange(roc_auc %&amp;gt;% desc)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(.pred)`&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(ok)`&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;metrics-lasso&#34; class=&#34;section level3&#34;&gt;
@@ -537,16 +554,16 @@ lasso_roc_auc_cv &amp;lt;- lasso_regression %&amp;gt;%
 &lt;pre&gt;&lt;code&gt;## # A tibble: 100 x 3
 ##    penalty .estimator roc_auc
 ##      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
-##  1  0.0273 binary       0.884
-##  2  0.0300 binary       0.884
-##  3  0.0329 binary       0.884
-##  4  0.0361 binary       0.884
-##  5  0.0396 binary       0.884
-##  6  0.0435 binary       0.884
-##  7  0.0477 binary       0.884
-##  8  0.0523 binary       0.884
-##  9  0.0575 binary       0.884
-## 10  0.0631 binary       0.884
+##  1    273. binary       0.5  
+##  2    249. binary       0.123
+##  3    227. binary       0.123
+##  4    206. binary       0.123
+##  5    188. binary       0.123
+##  6    171. binary       0.123
+##  7    156. binary       0.123
+##  8    142. binary       0.123
+##  9    130. binary       0.123
+## 10    118. binary       0.123
 ## # ... with 90 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -565,27 +582,27 @@ ridge_results_cv &amp;lt;- ridge_regression %&amp;gt;%
   unnest() %&amp;gt;%
   spread(key = .metric,value = .estimate) %&amp;gt;%
   arrange(roc_auc %&amp;gt;% desc)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(.pred)`&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c(ok)`&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;metrics-ridge&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Metrics Ridge&lt;/h3&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ridge_results_cv&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 65 x 3
-##     penalty .estimator roc_auc
-##       &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
-##  1 0.00136  binary       0.885
-##  2 0.00149  binary       0.885
-##  3 0.00164  binary       0.885
-##  4 0.00124  binary       0.885
-##  5 0.00180  binary       0.885
-##  6 0.00103  binary       0.885
-##  7 0.00113  binary       0.885
-##  8 0.000936 binary       0.885
-##  9 0.000777 binary       0.885
-## 10 0.000708 binary       0.885
-## # ... with 55 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 66 x 3
+##    penalty .estimator roc_auc
+##      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1   0.273 binary       0.5  
+##  2   0.249 binary       0.171
+##  3   0.227 binary       0.155
+##  4   0.206 binary       0.152
+##  5   0.188 binary       0.150
+##  6   0.171 binary       0.141
+##  7   0.156 binary       0.134
+##  8   0.142 binary       0.130
+##  9   0.130 binary       0.127
+## 10   0.118 binary       0.125
+## # ... with 56 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;random-forest&#34; class=&#34;section level2&#34;&gt;
@@ -603,7 +620,7 @@ ridge_results_cv &amp;lt;- ridge_regression %&amp;gt;%
 &lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;
-## 1 roc_auc binary         0.889&lt;/code&gt;&lt;/pre&gt;
+## 1 roc_auc binary         0.110&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;h2o&#34; class=&#34;section level2&#34;&gt;
@@ -675,7 +692,7 @@ explainer_rf &amp;lt;- explain(random_forest,x_dalex,y_dalex,label =&amp;quot;ra
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mp_log_reg &amp;lt;- model_parts(explainer_log_reg)
 mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(mp_log_reg,mp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;variable-explanation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Variable explanation&lt;/h2&gt;
@@ -685,7 +702,7 @@ mp_rf &amp;lt;- model_parts(explainer_rf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adp_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;B1_2&amp;quot;)
 adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(adp_log_reg,adp_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-59-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;factor-explanation&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Factor explanation&lt;/h3&gt;
@@ -698,7 +715,7 @@ adp_rf &amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;B1_2&
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;expl_log_reg &amp;lt;- accumulated_dependence(explainer_log_reg,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)
 expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&amp;quot;, variable_type = &amp;quot;categorical&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(expl_log_reg,expl_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-61-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;single-prediction-explanation&#34; class=&#34;section level2&#34;&gt;
@@ -708,10 +725,10 @@ expl_rf&amp;lt;- accumulated_dependence(explainer_rf,variables = &amp;quot;G1&am
 bd_rf &amp;lt;- predict_parts(explainer_rf, x_dalex[1,])&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Logistic Regression&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_log_reg)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-63-1.png&#34; width=&#34;672&#34; /&gt;
 Random Forest&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(bd_rf)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/post/2020/05/21/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://twosidesdata.netlify.com/2020/05/21/exploratory-data-analysis-basics-part2/index_files/figure-html/unnamed-chunk-64-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Not the coolest graph since unfortunately we use a normalization process, maybe in the future with the workflows package we can see better graphs&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4663,9 +4680,8 @@ sales3_solution&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://twosidesdata.netlify.com/author/admin/</guid>
-      <description>&lt;p&gt;Bruno Testaguzza Carlin is an student of Data Science at Insper.&lt;br&gt;
-Experience using R and BI tools, improving Python skills.&lt;br&gt;
-Currently working at Bayer.&lt;/p&gt;
+      <description>&lt;p&gt;Bruno Testaguzza Carlin is a Data Scientist working at Recovery.&lt;br&gt;
+Experience using R, Python, BI tools and leading projects.&lt;/p&gt;
 </description>
     </item>
     
