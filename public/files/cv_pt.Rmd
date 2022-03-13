@@ -1,7 +1,7 @@
 ---
 name: Bruno Testaguzza Carlin
-position: "Trainee"
-address: "Ernst & Young - São Paulo"
+position: "Data Scientist - Modeling"
+address: "Stone - São Paulo"
 phone: +55 11 99376-5775
 www: twosidesdata.netlify.com/
 email: "brunotestaguzza@gmail.com"
@@ -44,13 +44,23 @@ tribble(
 tribble(
   ~ role, ~ company, ~ loc, ~ dates, ~ details,
   
-  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Data Scientist - Modeling", "Stone", "São Paulo, Brasil", "Apr. 2021 - Present",
+  "Desenvolver modelos de Ciência de dados para o time de Crédito da Stone",
+  
+  "Data Scientist - Modeling", "Stone", "São Paulo, Brasil", "Apr. 2021 - Present",
+  "Desenvolver estudos e análises para o time de crédito da Stone",
+  
+  "Data Scientist - Modeling", "Stone", "São Paulo, Brasil", "Apr. 2021 - Present",
+  "Desenvolver regras de negócio para a concessão e a retenção de crédito na Stone",
+
+  
+  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Apr. 2021",
   "Desenvolver os modelos de Ciência de dados para o time de finanças latam",
   
-  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Apr. 2021",
   "Lider de projeto ou participante representando o negócio nos projetos de finanças latam",
 
-  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
+  "Cientista de Dados Finanças Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Apr. 2021",
   "Desenvolvimento e manutenção de reports para finanças latam",
 
   "Finance Data Scientist Latam", "Bayer", "São Paulo, Brasil", "Aug. 2020 - Present",
@@ -130,7 +140,7 @@ Básico
 
 Sempre aprendendo mais ciência de dados, seguindo blogs, lendo livros, realizando cursos online e presenciais, assistindo vídeos e mais.
 
-Acostumdo a usar o tidyverse para ciência de dados e inferência estatística
+Acostumado a usar o tidyverse para ciência de dados e inferência estatística
 
 Múltiplos projetos realizando previsões de séries temporais
 
